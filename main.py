@@ -2,7 +2,7 @@ import sae
 import copy
 import torch
 from training import train_sae_group_seperate_wandb
-from sae import BatchTopKSAE, GlobalBatchTopKMatryoshkaSAE
+from sae import BatchTopKSAE, GlobalBatchTopKMatryoshkaSAE, MatryoshkaTranscoder
 from activation_store import ActivationsStore
 from config import get_default_cfg, post_init_cfg
 from transformer_lens import HookedTransformer
