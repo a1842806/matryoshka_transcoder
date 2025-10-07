@@ -111,15 +111,6 @@ class TranscoderActivationsStore:
         source_acts = cache[self.source_hook_point]
         target_acts = cache[self.target_hook_point]
         
-        # Apply RMSNorm scaling for Gemma-2 models if needed
-        if self.config.get("apply_rmsnorm_scaling", False):
-            from utils.config import apply_rmsnorm_scaling
-            source_acts = apply_rmsnorm_scaling(
-                source_acts, 
-                self.model, 
-                self.config["source_layer"]
-            )
-        
         return source_acts, target_acts
 
     def _fill_buffer(self):

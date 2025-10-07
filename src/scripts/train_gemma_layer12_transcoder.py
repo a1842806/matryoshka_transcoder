@@ -12,7 +12,9 @@ import torch
 from transformer_lens import HookedTransformer
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+# Add the parent directory to the path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from src.models.sae import MatryoshkaTranscoder
 from src.models.transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
@@ -40,7 +42,7 @@ def main():
     cfg["model_batch_size"] = 4   # Smaller for Gemma's larger size
     cfg["batch_size"] = 1024      # Reasonable batch size
     cfg["seq_len"] = 64           # Sequence length
-    cfg["lr"] = 1e-4              # Learning rate
+    cfg["lr"] = 3e-4              # Learning rate
     cfg["model_dtype"] = torch.bfloat16  # Use bfloat16 for Gemma
     cfg["dtype"] = torch.bfloat16
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"

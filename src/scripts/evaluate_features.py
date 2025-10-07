@@ -190,7 +190,7 @@ class FeatureEvaluator:
             "absorption_score": absorption_score,
             "absorbed_pairs": absorbed_pairs,
             "similar_pairs": similar_pairs,
-            "similarity_matrix": similarities.cpu()
+            # similarity_matrix omitted for memory safety in chunked mode
         }
     
     def compute_feature_splitting(self, threshold=0.5):
@@ -269,7 +269,7 @@ class FeatureEvaluator:
         split_pairs = [(i_idx, j_idx, rate) for (rate, i_idx, j_idx) in top_heap]
         
         print(f"Splitting Score: {splitting_score:.4f}")
-        print(f"  ({split_pairs_count:.0f}/{total_pairs:.0f} pairs co-activate > {threshold} of the time)")
+        print(f"  ({split_pairs_count_int:.0f}/{total_pairs:.0f} pairs co-activate > {threshold} of the time)")
         print(f"\nTop 10 Most Co-activating Feature Pairs:")
         for i, j, coact in split_pairs[:10]:
             group_i = self._get_group_index(i)
@@ -314,8 +314,9 @@ class FeatureEvaluator:
             active_acts = acts[acts > 0]
             
             if len(active_acts) > 10:
-                # Discretize activations into bins
-                hist, _ = np.histogram(active_acts.numpy(), bins=50, density=True)
+                # Discretize activations into bins (cast to float32 for numpy)
+                active_np = active_acts.float().cpu().numpy()
+                hist, _ = np.histogram(active_np, bins=50, density=True)
                 hist = hist + 1e-10  # Avoid log(0)
                 ent = entropy(hist)
                 entropies.append(ent)

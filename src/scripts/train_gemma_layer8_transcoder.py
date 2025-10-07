@@ -1,11 +1,11 @@
 """
-Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with CORRECT hooks.
+Train Gemma-2-2B Matryoshka Transcoder on Layer 8.
 
-This script addresses the reviewer's feedback by using the correct hooks:
-- Source: ln2.hook_normalized (post-RMSNorm) + RMSNorm scaling
-- Target: hook_mlp_out (MLP output contribution)
+This script trains a Matryoshka Transcoder using:
+- Source: resid_mid (residual stream after attention)
+- Target: mlp_out (MLP output contribution)
 
-This captures the TRUE MLP transformation, not just a pre-norm transformation.
+This captures the MLP transformation for layer 8.
 
 Usage:
     python train_gemma_layer8_transcoder_corrected.py
@@ -26,55 +26,52 @@ from src.utils.config import get_default_cfg, create_gemma_mlp_transcoder_config
 
 
 def main():
-    """Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with CORRECT hooks."""
+    """Train Gemma-2-2B Matryoshka Transcoder on Layer 8."""
     
     print("=" * 80)
-    print("Gemma-2-2B Matryoshka Transcoder Training - Layer 8 (CORRECTED)")
+    print("Gemma-2-2B Matryoshka Transcoder Training - Layer 8")
     print("=" * 80)
-    print("✅ Using ln2.hook_normalized + RMSNorm scaling (actual MLP input)")
+    print("✅ Source: resid_mid (residual stream after attention)")
     print("✅ Target: hook_mlp_out (MLP output contribution)")
-    print("✅ This captures the TRUE MLP transformation")
+    print("✅ Dictionary size: 36,864 (16x expansion)")
+    print("✅ Groups: 5 (hierarchical feature learning)")
     print("=" * 80)
     
     # Base configuration
     cfg = get_default_cfg()
     
     # Model settings - Gemma-2-2B specific
-    cfg["model_name"] = "google/gemma-2-2b"
-    cfg["dataset_path"] = "c4"  # Use C4 dataset (more reliable)
+    cfg["model_name"] = "gemma-2-2b"  # Remove slash for W&B compatibility
+    cfg["dataset_path"] = "HuggingFaceFW/fineweb-edu"  # Use fineweb-edu (more reliable)
     cfg["layer"] = 8  # Target layer 8 as requested
     
-    # Training settings - optimized for 10k steps
+    # Training settings - optimized for interpretability
     cfg["num_tokens"] = int(1e7)  # 10M tokens for 10k steps (1000 tokens per step)
     cfg["model_batch_size"] = 4   # Smaller for Gemma's larger size
-    cfg["batch_size"] = 1024      # Reasonable batch size
+    cfg["batch_size"] = 512       # Smaller batch for better interpretability
     cfg["seq_len"] = 64           # Sequence length
-    cfg["lr"] = 1e-4              # Learning rate (reduced for stability)
+    cfg["lr"] = 2e-4              # Slightly higher LR to compensate for smaller batch
     cfg["model_dtype"] = torch.bfloat16  # Use bfloat16 for Gemma
     cfg["dtype"] = torch.bfloat16
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
     
-    # Matryoshka Transcoder architecture - optimized for Gemma-2-2B
+    # Matryoshka Transcoder architecture - optimized for Gemma-2-2B (5 groups)
     cfg["sae_type"] = "matryoshka-transcoder"
     cfg["dict_size"] = 36864      # 16x expansion (2304 * 16) for Gemma
-    cfg["group_sizes"] = [2304, 4608, 9216, 20736]  # 1x, 2x, 4x, 9x for Gemma
+    cfg["group_sizes"] = [1152, 2304, 4608, 9216, 19584]  # 0.5x, 1x, 2x, 4x, 8.5x for Gemma (5 groups)
     cfg["top_k"] = 96             # Higher for larger model
     cfg["l1_coeff"] = 0.0         # Using TopK, not L1
     cfg["aux_penalty"] = 1/32
     cfg["n_batches_to_dead"] = 20
     cfg["top_k_aux"] = 512
     
-    # Create CORRECT transcoder configuration for layer 8
-    print(f"\n🔧 Creating CORRECT transcoder configuration for layer 8...")
+    # Create transcoder configuration for layer 8
+    print(f"\n🔧 Creating transcoder configuration for layer 8...")
     print(f"   Layer: 8")
-    print(f"   Source: ln2.hook_normalized (post-RMSNorm) + scaling")
+    print(f"   Source: resid_mid (residual stream after attention)")
     print(f"   Target: hook_mlp_out (MLP output)")
     
-    transcoder_cfg = create_gemma_mlp_transcoder_config(
-        cfg, 
-        layer=8, 
-        use_ln2_normalized=True  # CORRECT approach
-    )
+    transcoder_cfg = create_gemma_mlp_transcoder_config(cfg, layer=8)
     
     # W&B settings
     transcoder_cfg["wandb_project"] = "gemma-2-2b-layer8-transcoder-corrected"
@@ -91,7 +88,6 @@ def main():
     print(f"Dataset: {transcoder_cfg['dataset_path']}")
     print(f"Source: {transcoder_cfg['source_hook_point']}")
     print(f"Target: {transcoder_cfg['target_hook_point']}")
-    print(f"RMSNorm scaling: {transcoder_cfg.get('apply_rmsnorm_scaling', False)}")
     print(f"Dictionary size: {transcoder_cfg['dict_size']:,}")
     print(f"Group sizes: {transcoder_cfg['group_sizes']}")
     print(f"Top-K: {transcoder_cfg['top_k']}")
@@ -108,7 +104,7 @@ def main():
     try:
         # Load model with standard configuration
         model = HookedTransformer.from_pretrained(
-            transcoder_cfg["model_name"],
+            "google/gemma-2-2b",  # Use full name for loading
             device=transcoder_cfg["device"]
         ).to(transcoder_cfg["model_dtype"])
         
@@ -131,7 +127,6 @@ def main():
         print(f"✓ Activation store created")
         print(f"  - Source hook: {transcoder_cfg['source_hook_point']}")
         print(f"  - Target hook: {transcoder_cfg['target_hook_point']}")
-        print(f"  - RMSNorm scaling: {transcoder_cfg.get('apply_rmsnorm_scaling', False)}")
         print(f"  - Context size: {activation_store.context_size}")
         
     except Exception as e:
@@ -162,10 +157,10 @@ def main():
     
     # Training
     print("\n" + "=" * 80)
-    print("🚀 Starting training with CORRECT hooks...")
+    print("🚀 Starting training...")
     print("=" * 80)
-    print("This transcoder learns the TRUE MLP transformation:")
-    print("  ln2_normalized * ln2.w → mlp_out")
+    print("This transcoder learns the MLP transformation:")
+    print("  resid_mid → mlp_out")
     print("")
     print("Metrics tracked:")
     print("  - Loss: Total training loss")
@@ -188,8 +183,7 @@ def main():
         print("=" * 80)
         print(f"\nCheckpoints saved to: checkpoints/{transcoder_cfg['name']}_*/")
         print(f"W&B dashboard: https://wandb.ai/{transcoder_cfg.get('wandb_entity', 'your-entity')}/{transcoder_cfg['wandb_project']}")
-        print("\nThis transcoder now captures the TRUE MLP transformation!")
-        print("You can now:")
+        print("\nYou can now:")
         print("  1. View training metrics on W&B dashboard")
         print("  2. Load the checkpoint for inference")
         print("  3. Analyze learned features")

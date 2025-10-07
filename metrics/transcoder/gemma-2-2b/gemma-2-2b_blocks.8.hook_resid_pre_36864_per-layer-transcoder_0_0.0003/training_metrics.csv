@@ -1,0 +1,1 @@
+step,loss,mean_fvu,mean_r2,dead_features,dead_pct,lr,grad_norm,acts_active_frac,decoder_norm_mean,decoder_norm_std
