@@ -1,4 +1,4 @@
-# Matryoshka Sparse Autoencoders
+# Matryoshka Transcoder
 
 Matryoshka SAEs are a new variant of sparse autoencoders that learn features at multiple levels of abstraction by splitting the dictionary into groups of latents of increasing size. Earlier groups are regularized to reconstruct well without access to later groups, forcing the SAE to learn both high-level concepts and low-level concepts, rather than absorbing them in specific low-level features.
 
@@ -32,8 +32,8 @@ python src/scripts/train_gemma_example.py
 ## Installation
 
 ```bash
-git clone https://github.com/bartbussmann/matryoshka_sae.git
-cd matryoshka_sae
+git clone https://github.com/a1842806/matryoshka_transcoder.git
+cd matryoshka_transcoder
 pip install transformer_lens wandb datasets torch
 ```
 
@@ -300,7 +300,7 @@ cfg["num_tokens"] = int(5e7)
 ## File Structure
 
 ```
-matryoshka_sae/
+matryoshka_transcoder/
 ├── sae.py                              # SAE and Transcoder classes
 ├── transcoder_activation_store.py      # Data pipeline for transcoders
 ├── training.py                         # Training functions
