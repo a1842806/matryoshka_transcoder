@@ -1,0 +1,141 @@
+import transformer_lens.utils as utils
+import torch 
+
+
+def get_model_config(model_name):
+    """
+    Get model-specific configuration including correct hook names.
+    
+    Gemma-2 models use different hook naming conventions than GPT-2.
+    TransformerLens handles this, but we need to set proper defaults.
+    """
+    model_configs = {
+        "gpt2": {"act_size": 768, "n_layers": 12},
+        "gpt2-medium": {"act_size": 1024, "n_layers": 24},
+        "gpt2-large": {"act_size": 1280, "n_layers": 36},
+        "gpt2-xl": {"act_size": 1600, "n_layers": 48},
+        "gemma-2-2b": {"act_size": 2304, "n_layers": 26},
+        "gemma-2-9b": {"act_size": 3584, "n_layers": 42},
+        "gemma-2-27b": {"act_size": 4608, "n_layers": 46},
+    }
+    
+    # Check for model family
+    for model_key, config in model_configs.items():
+        if model_key in model_name.lower():
+            return config
+    
+    # Default fallback
+    return {"act_size": 768, "n_layers": 12}
+
+
+def get_hook_name(site, layer, model_name):
+    """
+    Get correct hook name for the model.
+    
+    TransformerLens uses different conventions for different models:
+    - GPT-2: blocks.{layer}.hook_{site}
+    - Gemma-2: blocks.{layer}.hook_{site} (same, but Gemma has different sites)
+    
+    Available sites:
+    - resid_pre: residual stream before the layer
+    - attn_out: output of attention (before adding to residual)
+    - resid_mid: residual stream after attention, before MLP
+    - mlp_out: output of MLP (before adding to residual)
+    - resid_post: residual stream after the layer
+    """
+    # TransformerLens handles the naming automatically
+    # Just use the standard naming convention
+    return utils.get_act_name(site, layer)
+
+
+def get_default_cfg():
+    default_cfg = {
+        "seed": 49,
+        "batch_size": 4096,
+        "lr": 3e-4,
+        "num_tokens": int(1e9),
+        "l1_coeff": 0,
+        "beta1": 0.9,
+        "beta2": 0.99,
+        "max_grad_norm": 100000,
+        "seq_len": 128,
+        "dtype": torch.float32,
+        "model_dtype": torch.float32,
+        "model_name": "gpt2-small",
+        "site": "resid_pre",
+        "layer": 8,
+        "act_size": 768,
+        "dict_size": 12288,
+        "device": "cuda:0",
+        "model_batch_size": 512,
+        "num_batches_in_buffer": 10,
+        "dataset_path": "Skylion007/openwebtext",
+        "wandb_project": "sparse_autoencoders",
+        "input_unit_norm": True,
+        "perf_log_freq": 1000,
+        "sae_type": "topk",
+        "checkpoint_freq": 10000,
+        "n_batches_to_dead": 20,
+
+        # (Batch)TopKSAE specific
+        "top_k": 32,
+        "top_k_aux": 512,
+        "aux_penalty": (1/32),
+        
+        # for jumprelu
+        "bandwidth": 0.001,
+    }
+    default_cfg = post_init_cfg(default_cfg)
+    return default_cfg
+
+def post_init_cfg(cfg):
+    """
+    Post-process configuration to add derived fields.
+    Also applies model-specific defaults if not already set.
+    """
+    # Get model-specific defaults
+    model_config = get_model_config(cfg["model_name"])
+    
+    # Set act_size from model config if not explicitly provided
+    if "act_size" not in cfg or cfg["act_size"] is None:
+        cfg["act_size"] = model_config["act_size"]
+    
+    # Set hook point using proper naming
+    cfg["hook_point"] = get_hook_name(cfg["site"], cfg["layer"], cfg["model_name"])
+    
+    # Create descriptive name
+    cfg["name"] = f"{cfg['model_name']}_{cfg['hook_point']}_{cfg['dict_size']}_{cfg['sae_type']}_{cfg['top_k']}_{cfg['lr']}"
+    
+    return cfg
+
+
+def compute_fvu(x_original, x_reconstruct):
+    """
+    Compute Fraction of Variance Unexplained (FVU).
+    
+    FVU = Var(residuals) / Var(original)
+        = MSE(original, reconstruct) / Var(original)
+    
+    Lower FVU is better (0 = perfect reconstruction, 1 = no better than mean)
+    
+    Args:
+        x_original: Original input tensor
+        x_reconstruct: Reconstructed tensor
+    
+    Returns:
+        FVU as a scalar tensor
+    """
+    # Compute residuals
+    residuals = x_original.float() - x_reconstruct.float()
+    
+    # Variance of residuals (MSE)
+    var_residuals = residuals.pow(2).mean()
+    
+    # Variance of original data
+    var_original = x_original.float().var()
+    
+    # FVU = Var(residuals) / Var(original)
+    # Add small epsilon to avoid division by zero
+    fvu = var_residuals / (var_original + 1e-8)
+    
+    return fvu
