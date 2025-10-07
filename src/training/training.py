@@ -2,6 +2,7 @@ import torch
 import tqdm
 import sys
 import os
+import math
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from utils.logs import init_wandb, log_wandb, log_model_performance, save_checkpoint
@@ -10,6 +11,46 @@ from queue import Empty
 import wandb
 import json
 import os
+from torch.optim.lr_scheduler import LambdaLR, CosineAnnealingLR, SequentialLR, LinearLR
+
+
+def linear_warmup(step, warmup_steps, base_lr):
+    """Linear warmup function for learning rate scheduling."""
+    return min(1.0, step / warmup_steps)
+
+
+def warmup_cosine_decay(step, warmup_steps, total_steps, base_lr):
+    """Combined warmup and cosine decay function."""
+    if step < warmup_steps:
+        # Warmup phase: linear increase
+        return step / warmup_steps
+    else:
+        # Decay phase: cosine annealing
+        progress = (step - warmup_steps) / (total_steps - warmup_steps)
+        return 0.5 * (1 + math.cos(math.pi * progress))
+
+
+def create_scheduler(optimizer, cfg, num_batches):
+    """Create learning rate scheduler based on configuration."""
+    scheduler_type = cfg.get("scheduler_type", "none")
+    
+    if scheduler_type == "warmup_only":
+        warmup_steps = cfg.get("warmup_steps", 1000)
+        return LambdaLR(optimizer, lr_lambda=lambda step: linear_warmup(step, warmup_steps, cfg["lr"]))
+    
+    elif scheduler_type == "decay_only":
+        min_lr = cfg.get("min_lr", cfg["lr"] * 0.01)
+        return CosineAnnealingLR(optimizer, T_max=num_batches, eta_min=min_lr)
+    
+    elif scheduler_type == "warmup_decay":
+        warmup_steps = cfg.get("warmup_steps", 1000)
+        min_lr = cfg.get("min_lr", cfg["lr"] * 0.01)
+        return LambdaLR(optimizer, lr_lambda=lambda step: warmup_cosine_decay(step, warmup_steps, num_batches, cfg["lr"]))
+    
+    else:
+        # No scheduler
+        return None
+
 
 def train_sae(sae, activation_store, model, cfg):
     num_batches = cfg["num_tokens"] // cfg["batch_size"]
@@ -250,6 +291,10 @@ def train_transcoder(transcoder, activation_store, model, cfg):
     """
     num_batches = int(cfg["num_tokens"] // cfg["batch_size"])
     optimizer = torch.optim.Adam(transcoder.parameters(), lr=cfg["lr"], betas=(cfg["beta1"], cfg["beta2"]))
+    
+    # Create learning rate scheduler
+    scheduler = create_scheduler(optimizer, cfg, num_batches)
+    
     pbar = tqdm.trange(num_batches)
 
     wandb_run = init_wandb(cfg)
@@ -264,6 +309,11 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         # Log metrics
         log_wandb(transcoder_output, i, wandb_run)
         
+        # Log learning rate if scheduler is used
+        if scheduler is not None:
+            current_lr = optimizer.param_groups[0]['lr']
+            wandb_run.log({"learning_rate": current_lr}, step=i)
+        
         if i % cfg["perf_log_freq"] == 0:
             log_transcoder_performance(wandb_run, i, model, activation_store, transcoder)
 
@@ -271,18 +321,28 @@ def train_transcoder(transcoder, activation_store, model, cfg):
             save_checkpoint(wandb_run, transcoder, cfg, i)
 
         loss = transcoder_output["loss"]
+        
+        # Log current learning rate if scheduler is used
+        current_lr = optimizer.param_groups[0]['lr']
+        
         pbar.set_postfix({
             "Loss": f"{loss.item():.4f}", 
             "L0": f"{transcoder_output['l0_norm']:.4f}", 
             "L2": f"{transcoder_output['l2_loss']:.4f}", 
             "FVU": f"{transcoder_output['fvu']:.4f}",
-            "Dead": f"{transcoder_output['num_dead_features']}"
+            "Dead": f"{transcoder_output['num_dead_features']}",
+            "LR": f"{current_lr:.2e}"
         })
         
         loss.backward()
         torch.nn.utils.clip_grad_norm_(transcoder.parameters(), cfg["max_grad_norm"])
         transcoder.make_decoder_weights_and_grad_unit_norm()
         optimizer.step()
+        
+        # Step the scheduler if it exists
+        if scheduler is not None:
+            scheduler.step()
+            
         optimizer.zero_grad()
 
     save_checkpoint(wandb_run, transcoder, cfg, i)
