@@ -72,7 +72,22 @@ def log_model_performance(wandb_run, step, model, activations_store, sae, index=
     wandb_run.log(log_dict, step=step)
 
 def save_checkpoint(wandb_run, sae, cfg, step):
-    save_dir = f"checkpoints/{cfg['name']}_{step}"
+    """
+    Save checkpoint with organized structure:
+    checkpoints/{model_type}/{base_model}/{name}_{step}/
+    """
+    # Determine model type (sae or transcoder)
+    sae_type = cfg.get("sae_type", "topk")
+    if "transcoder" in sae_type or "clt" in sae_type:
+        model_type = "transcoder"
+    else:
+        model_type = "sae"
+    
+    # Get base model name (e.g., "gpt2-small", "gemma-2-2b")
+    base_model = cfg["model_name"]
+    
+    # Create organized directory structure
+    save_dir = f"checkpoints/{model_type}/{base_model}/{cfg['name']}_{step}"
     os.makedirs(save_dir, exist_ok=True)
 
     # Save model state
@@ -104,5 +119,5 @@ def save_checkpoint(wandb_run, sae, cfg, step):
     artifact.add_file(config_path)
     wandb_run.log_artifact(artifact)
 
-    print(f"Model and config saved as artifact at step {step}")
+    print(f"Model and config saved to {save_dir}")
 

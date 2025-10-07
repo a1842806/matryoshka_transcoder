@@ -87,8 +87,20 @@ def save_checkpoint_mp(sae, cfg, step):
     """
     Save checkpoint without requiring a wandb run object.
     Creates an artifact but doesn't log it to wandb directly.
+    Uses organized structure: checkpoints/{model_type}/{base_model}/{name}_{step}/
     """
-    save_dir = f"checkpoints/{cfg['name']}_{step}"
+    # Determine model type (sae or transcoder)
+    sae_type = cfg.get("sae_type", "topk")
+    if "transcoder" in sae_type or "clt" in sae_type:
+        model_type = "transcoder"
+    else:
+        model_type = "sae"
+    
+    # Get base model name (e.g., "gpt2-small", "gemma-2-2b")
+    base_model = cfg["model_name"]
+    
+    # Create organized directory structure
+    save_dir = f"checkpoints/{model_type}/{base_model}/{cfg['name']}_{step}"
     os.makedirs(save_dir, exist_ok=True)
 
     # Save model state

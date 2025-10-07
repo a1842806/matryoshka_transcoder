@@ -1,8 +1,8 @@
 # Matryoshka Transcoder Implementation Summary
 
-## What Was Created
+## Overview
 
-I've implemented a complete **Matryoshka Transcoder** system that combines the hierarchical feature learning of Matryoshka SAEs with cross-layer feature transformation (transcoders/PLT).
+This document provides a technical summary of the **Matryoshka Transcoder** implementation that combines the hierarchical feature learning of Matryoshka SAEs with cross-layer feature transformation (transcoders/PLT).
 
 ## New Files Created
 

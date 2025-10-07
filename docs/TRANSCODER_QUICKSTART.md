@@ -1,6 +1,8 @@
 # Matryoshka Transcoder - Quick Start Guide
 
-## Installation
+## Prerequisites
+
+Make sure you have the required packages installed:
 
 ```bash
 pip install transformer_lens torch wandb datasets

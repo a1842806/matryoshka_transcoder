@@ -23,23 +23,29 @@ def main(checkpoint_path=None):
     """Run evaluation on a trained transcoder."""
     
     if checkpoint_path is None:
-        # Find most recent checkpoint
-        checkpoint_dir = "checkpoints"
-        if not os.path.exists(checkpoint_dir):
+        # Find most recent checkpoint in organized structure
+        checkpoint_base = "checkpoints"
+        if not os.path.exists(checkpoint_base):
             print("❌ No checkpoints directory found!")
-            print("Train a model first using: python train_gpt2_transcoder.py")
+            print("Train a model first using: python src/scripts/train_gpt2_transcoder.py")
             return
         
-        # Find all checkpoint directories
-        checkpoints = [
-            os.path.join(checkpoint_dir, d) 
-            for d in os.listdir(checkpoint_dir) 
-            if os.path.isdir(os.path.join(checkpoint_dir, d))
-        ]
+        # Search in organized structure: checkpoints/{model_type}/{base_model}/
+        checkpoints = []
+        for model_type in ["sae", "transcoder"]:
+            type_dir = os.path.join(checkpoint_base, model_type)
+            if os.path.exists(type_dir):
+                for base_model in os.listdir(type_dir):
+                    model_dir = os.path.join(type_dir, base_model)
+                    if os.path.isdir(model_dir):
+                        for ckpt in os.listdir(model_dir):
+                            ckpt_path = os.path.join(model_dir, ckpt)
+                            if os.path.isdir(ckpt_path) and os.path.exists(os.path.join(ckpt_path, "config.json")):
+                                checkpoints.append(ckpt_path)
         
         if not checkpoints:
             print("❌ No checkpoints found!")
-            print("Train a model first using: python train_gpt2_transcoder.py")
+            print("Train a model first using: python src/scripts/train_gpt2_transcoder.py")
             return
         
         # Use most recent

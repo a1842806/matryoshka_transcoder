@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import DataLoader, TensorDataset
 from transformer_lens.hook_points import HookedRootModule
 from datasets import load_dataset
-from config import get_hook_name
+from utils.config import get_hook_name
 
 
 class TranscoderActivationsStore:
