@@ -1,46 +1,55 @@
 """
-Train Gemma-2-2B Matryoshka Transcoder on Layer 12 with OpenWebText.
+Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with CORRECT hooks.
 
-This script trains a Matryoshka transcoder that learns cross-layer feature
-transformations in Gemma-2-2B, specifically focusing on layer 12 with 10k steps.
+This script addresses the reviewer's feedback by using the correct hooks:
+- Source: ln2.hook_normalized (post-RMSNorm) + RMSNorm scaling
+- Target: hook_mlp_out (MLP output contribution)
+
+This captures the TRUE MLP transformation, not just a pre-norm transformation.
 
 Usage:
-    python train_gemma_layer12_transcoder.py
+    python train_gemma_layer8_transcoder_corrected.py
 """
 
 import torch
-from transformer_lens import HookedTransformer
+from transformer_lens import HookedTransformer, HookedTransformerConfig
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+# Add the parent directory to the path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from src.models.sae import MatryoshkaTranscoder
-from src.models.transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
+from src.models.transcoder_activation_store import TranscoderActivationsStore
 from src.training.training import train_transcoder
-from src.utils.config import get_default_cfg, post_init_cfg
+from src.utils.config import get_default_cfg, create_gemma_mlp_transcoder_config
 
 
 def main():
-    """Train Gemma-2-2B Matryoshka Transcoder on Layer 12."""
+    """Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with CORRECT hooks."""
     
     print("=" * 80)
-    print("Gemma-2-2B Matryoshka Transcoder Training - Layer 12")
+    print("Gemma-2-2B Matryoshka Transcoder Training - Layer 8 (CORRECTED)")
+    print("=" * 80)
+    print("✅ Using ln2.hook_normalized + RMSNorm scaling (actual MLP input)")
+    print("✅ Target: hook_mlp_out (MLP output contribution)")
+    print("✅ This captures the TRUE MLP transformation")
     print("=" * 80)
     
     # Base configuration
     cfg = get_default_cfg()
     
     # Model settings - Gemma-2-2B specific
-    cfg["model_name"] = "gemma-2-2b"
-    cfg["dataset_path"] = "HuggingFaceFW/fineweb-edu"  # High-quality alternative to OpenWebText
-    cfg["layer"] = 12  # Target layer 12 as requested
+    cfg["model_name"] = "google/gemma-2-2b"
+    cfg["dataset_path"] = "c4"  # Use C4 dataset (more reliable)
+    cfg["layer"] = 8  # Target layer 8 as requested
     
     # Training settings - optimized for 10k steps
     cfg["num_tokens"] = int(1e7)  # 10M tokens for 10k steps (1000 tokens per step)
     cfg["model_batch_size"] = 4   # Smaller for Gemma's larger size
     cfg["batch_size"] = 1024      # Reasonable batch size
     cfg["seq_len"] = 64           # Sequence length
-    cfg["lr"] = 1e-4              # Learning rate
+    cfg["lr"] = 1e-4              # Learning rate (reduced for stability)
     cfg["model_dtype"] = torch.bfloat16  # Use bfloat16 for Gemma
     cfg["dtype"] = torch.bfloat16
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
@@ -55,53 +64,61 @@ def main():
     cfg["n_batches_to_dead"] = 20
     cfg["top_k_aux"] = 512
     
-    # Configure cross-layer mapping: resid_mid -> mlp_out on layer 12
-    # This learns how the MLP transforms features at layer 12
-    cfg = create_transcoder_config(
-        cfg,
-        source_layer=12,         # Layer 12 as requested
-        target_layer=12,         # Same layer
-        source_site="resid_mid", # After attention, before MLP
-        target_site="mlp_out"    # Output of MLP
+    # Create CORRECT transcoder configuration for layer 8
+    print(f"\n🔧 Creating CORRECT transcoder configuration for layer 8...")
+    print(f"   Layer: 8")
+    print(f"   Source: ln2.hook_normalized (post-RMSNorm) + scaling")
+    print(f"   Target: hook_mlp_out (MLP output)")
+    
+    transcoder_cfg = create_gemma_mlp_transcoder_config(
+        cfg, 
+        layer=8, 
+        use_ln2_normalized=True  # CORRECT approach
     )
     
     # W&B settings
-    cfg["wandb_project"] = "gemma-2-2b-layer12-transcoder"
-    cfg["checkpoint_freq"] = 1000   # Save every 1000 steps
-    cfg["perf_log_freq"] = 500      # Log performance every 500 steps
+    transcoder_cfg["wandb_project"] = "gemma-2-2b-layer8-transcoder-corrected"
+    transcoder_cfg["checkpoint_freq"] = 1000   # Save every 1000 steps
+    transcoder_cfg["perf_log_freq"] = 500      # Log performance every 500 steps
     
     # Print configuration
     print("\n" + "=" * 80)
     print("Configuration:")
     print("=" * 80)
-    print(f"Model: {cfg['model_name']}")
-    print(f"Layer: {cfg['layer']}")
-    print(f"Device: {cfg['device']}")
-    print(f"Dataset: {cfg['dataset_path']}")
-    print(f"Source: {cfg['source_hook_point']}")
-    print(f"Target: {cfg['target_hook_point']}")
-    print(f"Dictionary size: {cfg['dict_size']:,}")
-    print(f"Group sizes: {cfg['group_sizes']}")
-    print(f"Top-K: {cfg['top_k']}")
-    print(f"Training tokens: {cfg['num_tokens']:,.0f}")
-    print(f"Expected steps: ~{cfg['num_tokens'] // cfg['batch_size']:,}")
-    print(f"Batch size: {cfg['batch_size']}")
-    print(f"Learning rate: {cfg['lr']}")
-    print(f"W&B project: {cfg['wandb_project']}")
-    print(f"Run name: {cfg['name']}")
+    print(f"Model: {transcoder_cfg['model_name']}")
+    print(f"Layer: {transcoder_cfg['layer']}")
+    print(f"Device: {transcoder_cfg['device']}")
+    print(f"Dataset: {transcoder_cfg['dataset_path']}")
+    print(f"Source: {transcoder_cfg['source_hook_point']}")
+    print(f"Target: {transcoder_cfg['target_hook_point']}")
+    print(f"RMSNorm scaling: {transcoder_cfg.get('apply_rmsnorm_scaling', False)}")
+    print(f"Dictionary size: {transcoder_cfg['dict_size']:,}")
+    print(f"Group sizes: {transcoder_cfg['group_sizes']}")
+    print(f"Top-K: {transcoder_cfg['top_k']}")
+    print(f"Training tokens: {transcoder_cfg['num_tokens']:,.0f}")
+    print(f"Expected steps: ~{transcoder_cfg['num_tokens'] // transcoder_cfg['batch_size']:,}")
+    print(f"Batch size: {transcoder_cfg['batch_size']}")
+    print(f"Learning rate: {transcoder_cfg['lr']}")
+    print(f"W&B project: {transcoder_cfg['wandb_project']}")
+    print(f"Run name: {transcoder_cfg['name']}")
     print("=" * 80)
     
-    # Load model
-    print(f"\n📥 Loading {cfg['model_name']}...")
+    # Load model with proper configuration
+    print(f"\n📥 Loading {transcoder_cfg['model_name']}...")
     try:
-        model = HookedTransformer.from_pretrained_no_processing(
-            cfg["model_name"]
-        ).to(cfg["model_dtype"]).to(cfg["device"])
+        # Load model with standard configuration
+        model = HookedTransformer.from_pretrained(
+            transcoder_cfg["model_name"],
+            device=transcoder_cfg["device"]
+        ).to(transcoder_cfg["model_dtype"])
+        
         print(f"✓ Model loaded successfully")
         print(f"  - Activation size: {model.cfg.d_model}")
         print(f"  - Number of layers: {model.cfg.n_layers}")
         print(f"  - Vocabulary size: {model.cfg.d_vocab}")
         print(f"  - Model dtype: {model.cfg.dtype}")
+        print(f"  - RMSNorm enabled: {hasattr(model.blocks[0].ln2, 'w')}")
+        
     except Exception as e:
         print(f"❌ Failed to load model: {e}")
         print("Make sure you have access to Gemma-2-2B model")
@@ -110,19 +127,22 @@ def main():
     # Create transcoder activation store
     print(f"\n📊 Creating transcoder activation store...")
     try:
-        activation_store = TranscoderActivationsStore(model, cfg)
+        activation_store = TranscoderActivationsStore(model, transcoder_cfg)
         print(f"✓ Activation store created")
-        print(f"  - Source hook: {cfg['source_hook_point']}")
-        print(f"  - Target hook: {cfg['target_hook_point']}")
+        print(f"  - Source hook: {transcoder_cfg['source_hook_point']}")
+        print(f"  - Target hook: {transcoder_cfg['target_hook_point']}")
+        print(f"  - RMSNorm scaling: {transcoder_cfg.get('apply_rmsnorm_scaling', False)}")
         print(f"  - Context size: {activation_store.context_size}")
+        
     except Exception as e:
         print(f"❌ Failed to create activation store: {e}")
+        print("This might be due to dataset loading issues.")
         return
     
     # Create Matryoshka Transcoder
     print(f"\n🏗️  Initializing Matryoshka Transcoder...")
     try:
-        transcoder = MatryoshkaTranscoder(cfg)
+        transcoder = MatryoshkaTranscoder(transcoder_cfg)
         
         # Count parameters
         total_params = sum(p.numel() for p in transcoder.parameters())
@@ -131,18 +151,22 @@ def main():
         print(f"✓ Transcoder initialized")
         print(f"  - Total parameters: {total_params:,}")
         print(f"  - Trainable parameters: {trainable_params:,}")
-        print(f"  - Groups: {len(cfg['group_sizes'])}")
-        print(f"  - Group sizes: {cfg['group_sizes']}")
+        print(f"  - Groups: {len(transcoder_cfg['group_sizes'])}")
+        print(f"  - Group sizes: {transcoder_cfg['group_sizes']}")
         print(f"  - Source act size: {transcoder.source_act_size}")
         print(f"  - Target act size: {transcoder.target_act_size}")
+        
     except Exception as e:
         print(f"❌ Failed to initialize transcoder: {e}")
         return
     
     # Training
     print("\n" + "=" * 80)
-    print("🚀 Starting training...")
+    print("🚀 Starting training with CORRECT hooks...")
     print("=" * 80)
+    print("This transcoder learns the TRUE MLP transformation:")
+    print("  ln2_normalized * ln2.w → mlp_out")
+    print("")
     print("Metrics tracked:")
     print("  - Loss: Total training loss")
     print("  - L2: Reconstruction error")
@@ -158,13 +182,14 @@ def main():
     print()
     
     try:
-        train_transcoder(transcoder, activation_store, model, cfg)
+        train_transcoder(transcoder, activation_store, model, transcoder_cfg)
         print("\n" + "=" * 80)
         print("✅ Training completed successfully!")
         print("=" * 80)
-        print(f"\nCheckpoints saved to: checkpoints/{cfg['name']}_*/")
-        print(f"W&B dashboard: https://wandb.ai/{cfg.get('wandb_entity', 'your-entity')}/{cfg['wandb_project']}")
-        print("\nYou can now:")
+        print(f"\nCheckpoints saved to: checkpoints/{transcoder_cfg['name']}_*/")
+        print(f"W&B dashboard: https://wandb.ai/{transcoder_cfg.get('wandb_entity', 'your-entity')}/{transcoder_cfg['wandb_project']}")
+        print("\nThis transcoder now captures the TRUE MLP transformation!")
+        print("You can now:")
         print("  1. View training metrics on W&B dashboard")
         print("  2. Load the checkpoint for inference")
         print("  3. Analyze learned features")

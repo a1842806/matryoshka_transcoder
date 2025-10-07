@@ -92,6 +92,9 @@ class TranscoderActivationsStore:
         """
         Get activations from both source and target hook points.
         
+        For Gemma-2 models with ln2_normalized source, applies RMSNorm scaling
+        to get the actual MLP input (post-norm, post-scale).
+        
         Args:
             batch_tokens: Tokenized input (batch_size, seq_len)
         
@@ -107,6 +110,15 @@ class TranscoderActivationsStore:
         
         source_acts = cache[self.source_hook_point]
         target_acts = cache[self.target_hook_point]
+        
+        # Apply RMSNorm scaling for Gemma-2 models if needed
+        if self.config.get("apply_rmsnorm_scaling", False):
+            from utils.config import apply_rmsnorm_scaling
+            source_acts = apply_rmsnorm_scaling(
+                source_acts, 
+                self.model, 
+                self.config["source_layer"]
+            )
         
         return source_acts, target_acts
 

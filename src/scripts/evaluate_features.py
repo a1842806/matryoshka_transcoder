@@ -46,6 +46,13 @@ class FeatureEvaluator:
         self.cfg = cfg
         self.device = cfg["device"]
         
+        # Memory-safe evaluation settings
+        self.eval_compute_on_cpu = bool(cfg.get("eval_compute_on_cpu", True))
+        self.eval_chunk_size = int(cfg.get("eval_chunk_size", 2048))
+        self.eval_max_pairs_reported = int(cfg.get("eval_max_pairs_reported", 10))
+        # If > 0, randomly sample this many features for pairwise stats to reduce memory pressure
+        self.eval_feature_subset = int(cfg.get("eval_feature_subset", 0))
+        
         # Storage for analysis
         self.feature_acts_history = []
         self.feature_weights = transcoder.W_dec.detach()  # (dict_size, act_size)
@@ -98,33 +105,78 @@ class FeatureEvaluator:
         print("Computing Feature Absorption (Cosine Similarity)")
         print("=" * 70)
         
-        # Normalize feature vectors
-        feature_vecs_norm = F.normalize(self.feature_weights, p=2, dim=1)
+        # Normalize feature vectors and move to target device (CPU for safety by default)
+        feature_vecs_norm = F.normalize(self.feature_weights, p=2, dim=1).detach()
+        if self.eval_compute_on_cpu:
+            feature_vecs_norm = feature_vecs_norm.float().cpu()
+            eye_device = "cpu"
+        else:
+            eye_device = feature_vecs_norm.device
         
-        # Compute pairwise cosine similarities
-        similarities = feature_vecs_norm @ feature_vecs_norm.T
+        # Optionally sample a subset of features for pairwise computation
+        num_features = feature_vecs_norm.shape[0]
+        if 0 < self.eval_feature_subset < num_features:
+            idx_perm = torch.randperm(num_features)[: self.eval_feature_subset]
+            fv = feature_vecs_norm[idx_perm]
+            index_map = idx_perm
+        else:
+            fv = feature_vecs_norm
+            index_map = torch.arange(num_features)
+        m = fv.shape[0]
         
-        # Remove diagonal (self-similarity)
-        similarities = similarities - torch.eye(self.dict_size, device=self.device)
+        # Chunked pairwise cosine similarity to avoid OOM
+        import heapq
+        chunk = max(256, min(self.eval_chunk_size, m))
+        total_pairs = (m * (m - 1)) // 2
+        absorbed_pairs = 0
+        # Min-heap for top pairs (keep size <= eval_max_pairs_reported)
+        top_heap = []  # (sim, i_idx, j_idx)
         
-        # Count pairs above threshold
-        absorbed_pairs = (similarities > threshold).sum().item() / 2  # Divide by 2 for symmetry
-        total_pairs = (self.dict_size * (self.dict_size - 1)) / 2
-        absorption_score = absorbed_pairs / total_pairs
+        for i_start in range(0, m, chunk):
+            i_end = min(m, i_start + chunk)
+            A = fv[i_start:i_end]  # (ci, d)
+            # Precompute A @ B^T in chunks over B
+            for j_start in range(i_start, m, chunk):
+                j_end = min(m, j_start + chunk)
+                B = fv[j_start:j_end]
+                # (ci, cj)
+                S = A @ B.T
+                if i_start == j_start:
+                    # mask diagonal and lower triangle
+                    diag_len = S.shape[0]
+                    S = S.to(torch.float32)
+                    tri_mask = torch.triu(torch.ones_like(S, dtype=torch.bool), diagonal=1)
+                    # Count above threshold only on upper triangle
+                    block_count = (S[tri_mask] > threshold).sum().item()
+                else:
+                    block_count = (S > threshold).sum().item()
+                absorbed_pairs += block_count
+                
+                # Track top similar pairs within this block (small k for efficiency)
+                k_block = min(max(self.eval_max_pairs_reported * 2, 10), S.numel())
+                # Flatten and get top-k values and their indices
+                vals, flat_idx = torch.topk(S.flatten(), k_block)
+                # Map flat indices to (ii, jj)
+                jj = (flat_idx % S.shape[1]).tolist()
+                ii = (flat_idx // S.shape[1]).tolist()
+                for vv, li, lj in zip(vals.tolist(), ii, jj):
+                    # Skip diagonal and lower triangle within same block
+                    gi = i_start + li
+                    gj = j_start + lj
+                    if gi == gj or (gi > gj):
+                        continue
+                    # Push to heap
+                    heapq.heappush(top_heap, (vv, index_map[gi].item(), index_map[gj].item()))
+                    if len(top_heap) > self.eval_max_pairs_reported:
+                        heapq.heappop(top_heap)
+                
+                # Free block memory
+                del S
         
-        # Find most similar pairs
-        triu_indices = torch.triu_indices(self.dict_size, self.dict_size, offset=1)
-        upper_tri_sims = similarities[triu_indices[0], triu_indices[1]]
-        
-        # Get top 10 most similar pairs
-        top_k = min(10, len(upper_tri_sims))
-        top_similarities, top_indices = torch.topk(upper_tri_sims, top_k)
-        
-        similar_pairs = []
-        for sim, idx in zip(top_similarities, top_indices):
-            i = triu_indices[0][idx].item()
-            j = triu_indices[1][idx].item()
-            similar_pairs.append((i, j, sim.item()))
+        absorption_score = absorbed_pairs / max(1, total_pairs)
+        # Convert heap to sorted list (descending by similarity)
+        top_heap.sort(key=lambda x: x[0], reverse=True)
+        similar_pairs = [(i_idx, j_idx, sim) for (sim, i_idx, j_idx) in top_heap]
         
         print(f"Absorption Score: {absorption_score:.4f}")
         print(f"  ({absorbed_pairs:.0f}/{total_pairs:.0f} pairs with similarity > {threshold})")
@@ -160,33 +212,61 @@ class FeatureEvaluator:
             print("No activations collected. Run collect_activations() first.")
             return None
         
-        # Binarize activations
-        active_features = (self.feature_acts_history > 0).float()  # (n_samples, dict_size)
+        # Binarize activations (on CPU for safety)
+        active_features = (self.feature_acts_history > 0).float().cpu()  # (n_samples, dict_size)
+        n_samples, n_features = active_features.shape
         
-        # Compute co-activation rates
-        # co_activation[i,j] = fraction of samples where both i and j are active
-        co_activation = (active_features.T @ active_features) / active_features.shape[0]
+        # Optionally sample a subset of features to reduce memory
+        if 0 < self.eval_feature_subset < n_features:
+            idx_perm = torch.randperm(n_features)[: self.eval_feature_subset]
+            AF = active_features[:, idx_perm]
+            index_map = idx_perm
+        else:
+            AF = active_features
+            index_map = torch.arange(n_features)
+        m = AF.shape[1]
         
-        # Remove diagonal
-        co_activation = co_activation - torch.eye(self.dict_size)
+        import heapq
+        chunk = max(256, min(self.eval_chunk_size, m))
+        total_pairs = (m * (m - 1)) // 2
+        split_pairs_count_int = 0
+        top_heap = []  # (rate, i_idx, j_idx)
         
-        # Count pairs above threshold
-        split_pairs_count = (co_activation > threshold).sum().item() / 2
-        total_pairs = (self.dict_size * (self.dict_size - 1)) / 2
-        splitting_score = split_pairs_count / total_pairs
+        # Compute co-activation matrix in chunks: (AF^T @ AF) / n_samples
+        for i_start in range(0, m, chunk):
+            i_end = min(m, i_start + chunk)
+            A = AF[:, i_start:i_end]  # (n, ci)
+            for j_start in range(i_start, m, chunk):
+                j_end = min(m, j_start + chunk)
+                B = AF[:, j_start:j_end]  # (n, cj)
+                # (ci, cj)
+                C = (A.T @ B) / max(1, n_samples)
+                if i_start == j_start:
+                    tri_mask = torch.triu(torch.ones_like(C, dtype=torch.bool), diagonal=1)
+                    block_count = (C[tri_mask] > threshold).sum().item()
+                else:
+                    block_count = (C > threshold).sum().item()
+                split_pairs_count_int += block_count
+                
+                # Track top co-activating pairs in this block
+                k_block = min(max(self.eval_max_pairs_reported * 2, 10), C.numel())
+                vals, flat_idx = torch.topk(C.flatten(), k_block)
+                jj = (flat_idx % C.shape[1]).tolist()
+                ii = (flat_idx // C.shape[1]).tolist()
+                for vv, li, lj in zip(vals.tolist(), ii, jj):
+                    gi = i_start + li
+                    gj = j_start + lj
+                    if gi == gj or (gi > gj):
+                        continue
+                    heapq.heappush(top_heap, (vv, index_map[gi].item(), index_map[gj].item()))
+                    if len(top_heap) > self.eval_max_pairs_reported:
+                        heapq.heappop(top_heap)
+                
+                del C
         
-        # Find most co-activating pairs
-        triu_indices = torch.triu_indices(self.dict_size, self.dict_size, offset=1)
-        upper_tri_coact = co_activation[triu_indices[0], triu_indices[1]]
-        
-        top_k = min(10, len(upper_tri_coact))
-        top_coactivations, top_indices = torch.topk(upper_tri_coact, top_k)
-        
-        split_pairs = []
-        for coact, idx in zip(top_coactivations, top_indices):
-            i = triu_indices[0][idx].item()
-            j = triu_indices[1][idx].item()
-            split_pairs.append((i, j, coact.item()))
+        splitting_score = split_pairs_count_int / max(1, total_pairs)
+        top_heap.sort(key=lambda x: x[0], reverse=True)
+        split_pairs = [(i_idx, j_idx, rate) for (rate, i_idx, j_idx) in top_heap]
         
         print(f"Splitting Score: {splitting_score:.4f}")
         print(f"  ({split_pairs_count:.0f}/{total_pairs:.0f} pairs co-activate > {threshold} of the time)")
@@ -198,9 +278,8 @@ class FeatureEvaluator:
         
         return {
             "splitting_score": splitting_score,
-            "split_pairs_count": split_pairs_count,
+            "split_pairs_count": split_pairs_count_int,
             "split_pairs": split_pairs,
-            "co_activation_matrix": co_activation.cpu()
         }
     
     def compute_monosemanticity(self):

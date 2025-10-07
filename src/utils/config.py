@@ -42,9 +42,17 @@ def get_hook_name(site, layer, model_name):
     - resid_mid: residual stream after attention, before MLP
     - mlp_out: output of MLP (before adding to residual)
     - resid_post: residual stream after the layer
+    - ln2_normalized: RMSNorm output (post-norm, pre-scale) - CORRECT for Gemma-2 MLP input
+    - mlp_in: pre-norm stream (only if use_hook_mlp_in=True)
     """
-    # TransformerLens handles the naming automatically
-    # Just use the standard naming convention
+    # Handle special cases for Gemma-2 models
+    if "gemma" in model_name.lower():
+        if site == "ln2_normalized":
+            return f"blocks.{layer}.ln2.hook_normalized"
+        elif site == "mlp_in":
+            return f"blocks.{layer}.hook_mlp_in"
+    
+    # TransformerLens handles the naming automatically for standard sites
     return utils.get_act_name(site, layer)
 
 
@@ -105,6 +113,86 @@ def post_init_cfg(cfg):
     
     # Create descriptive name
     cfg["name"] = f"{cfg['model_name']}_{cfg['hook_point']}_{cfg['dict_size']}_{cfg['sae_type']}_{cfg['top_k']}_{cfg['lr']}"
+    
+    return cfg
+
+
+def apply_rmsnorm_scaling(x_normalized, model, layer):
+    """
+    Apply RMSNorm scaling to get the actual MLP input.
+    
+    For Gemma-2 models, the MLP input is:
+    x_mlp_input = ln2.hook_normalized * ln2.w
+    
+    Args:
+        x_normalized: Output from ln2.hook_normalized (post-norm, pre-scale)
+        model: HookedTransformer model
+        layer: Layer number
+    
+    Returns:
+        Scaled activations (actual MLP input)
+    """
+    # Get the RMSNorm weight for this layer
+    ln2_weight = model.blocks[layer].ln2.w  # [d_model]
+    
+    # Apply scaling: normalized * weight = actual MLP input
+    x_mlp_input = x_normalized * ln2_weight
+    
+    return x_mlp_input
+
+
+def create_gemma_mlp_transcoder_config(base_cfg, layer, use_ln2_normalized=True):
+    """
+    Create proper transcoder configuration for Gemma-2 MLP transformation.
+    
+    This addresses the reviewer's feedback by using the correct hooks:
+    - Source: ln2.hook_normalized (post-RMSNorm) + scaling
+    - Target: hook_mlp_out (MLP output contribution)
+    
+    Args:
+        base_cfg: Base configuration dictionary
+        layer: Layer number to target
+        use_ln2_normalized: If True, use ln2_normalized (correct). If False, use resid_mid (legacy)
+    
+    Returns:
+        Updated configuration dictionary with proper Gemma-2 hooks
+    """
+    cfg = base_cfg.copy()
+    
+    # Set layer information
+    cfg["source_layer"] = layer
+    cfg["target_layer"] = layer
+    cfg["layer"] = layer
+    
+    if use_ln2_normalized:
+        # CORRECT: Use post-RMSNorm activations (what MLP actually sees)
+        cfg["source_site"] = "ln2_normalized"
+        cfg["target_site"] = "mlp_out"
+        cfg["apply_rmsnorm_scaling"] = True  # Flag to apply scaling
+        cfg["source_hook_point"] = f"blocks.{layer}.ln2.hook_normalized"
+        cfg["target_hook_point"] = f"blocks.{layer}.hook_mlp_out"
+        
+        # Update name to reflect correct approach
+        cfg["name"] = (
+            f"{cfg['model_name']}_ln2norm_to_mlpout_{layer}_"
+            f"{cfg['dict_size']}_{cfg['sae_type']}_{cfg['top_k']}_{cfg['lr']}"
+        )
+    else:
+        # LEGACY: Use resid_mid (pre-norm, not actual MLP input)
+        cfg["source_site"] = "resid_mid"
+        cfg["target_site"] = "mlp_out"
+        cfg["apply_rmsnorm_scaling"] = False
+        cfg["source_hook_point"] = f"blocks.{layer}.hook_resid_mid"
+        cfg["target_hook_point"] = f"blocks.{layer}.hook_mlp_out"
+        
+        # Update name to reflect legacy approach
+        cfg["name"] = (
+            f"{cfg['model_name']}_residmid_to_mlpout_{layer}_"
+            f"{cfg['dict_size']}_{cfg['sae_type']}_{cfg['top_k']}_{cfg['lr']}"
+        )
+    
+    # Set hook_point for compatibility
+    cfg["hook_point"] = cfg["source_hook_point"]
     
     return cfg
 
