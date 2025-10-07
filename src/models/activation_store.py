@@ -28,6 +28,10 @@ class ActivationsStore:
         self.tokens_column = self._get_tokens_column()
         self.config = cfg
         self.tokenizer = model.tokenizer
+        
+        # Store recent tokens for activation sample collection
+        self.store_tokens = cfg.get("store_tokens_for_samples", False)
+        self.current_tokens = None
 
     def _get_tokens_column(self):
         sample = next(self.dataset)
@@ -70,10 +74,18 @@ class ActivationsStore:
 
     def _fill_buffer(self):
         all_activations = []
+        all_tokens = []
         for _ in range(self.num_batches_in_buffer):
             batch_tokens = self.get_batch_tokens()
             activations = self.get_activations(batch_tokens).reshape(-1, self.config["act_size"])
             all_activations.append(activations)
+            if self.store_tokens:
+                all_tokens.append(batch_tokens)
+        
+        # Store tokens if needed for sample collection
+        if self.store_tokens and all_tokens:
+            self.current_tokens = torch.cat(all_tokens, dim=0)
+        
         return torch.cat(all_activations, dim=0)
 
     def _get_dataloader(self):
@@ -89,4 +101,10 @@ class ActivationsStore:
             self.dataloader = self._get_dataloader()
             self.dataloader_iter = iter(self.dataloader)
             return next(self.dataloader_iter)[0]
+    
+    def get_batch_with_tokens(self):
+        """Get a fresh batch of activations with corresponding tokens for sample collection."""
+        batch_tokens = self.get_batch_tokens()
+        activations = self.get_activations(batch_tokens)
+        return activations, batch_tokens
 

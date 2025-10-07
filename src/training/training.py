@@ -6,6 +6,7 @@ import math
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from utils.logs import init_wandb, log_wandb, log_model_performance, save_checkpoint
+from utils.activation_samples import ActivationSampleCollector
 import multiprocessing as mp
 from queue import Empty
 import wandb
@@ -20,7 +21,7 @@ def linear_warmup(step, warmup_steps, base_lr):
 
 
 def warmup_cosine_decay(step, warmup_steps, total_steps, base_lr):
-    """Combined warmup and cosine decay function."""
+    """Combined warmup and cosine decay function.""" 
     if step < warmup_steps:
         # Warmup phase: linear increase
         return step / warmup_steps
@@ -59,15 +60,37 @@ def train_sae(sae, activation_store, model, cfg):
 
     wandb_run = init_wandb(cfg)
     
+    # Initialize activation sample collector if enabled
+    sample_collector = None
+    if cfg.get("save_activation_samples", False):
+        sample_collector = ActivationSampleCollector(
+            max_samples_per_feature=cfg.get("max_samples_per_feature", 100),
+            context_size=cfg.get("sample_context_size", 20),
+            storage_threshold=cfg.get("sample_activation_threshold", 0.1)
+        )
+        print(f"Activation sample collection enabled (collecting every {cfg.get('sample_collection_freq', 1000)} steps)")
+    
     for i in pbar:
         batch = activation_store.next_batch()
         sae_output = sae(batch)
         log_wandb(sae_output, i, wandb_run)
+        
         if i % cfg["perf_log_freq"]  == 0:
             log_model_performance(wandb_run, i, model, activation_store, sae)
 
         if i % cfg["checkpoint_freq"] == 0:
             save_checkpoint(wandb_run, sae, cfg, i)
+        
+        # Collect activation samples periodically
+        if sample_collector is not None and i % cfg.get("sample_collection_freq", 1000) == 0:
+            with torch.no_grad():
+                sample_batch, sample_tokens = activation_store.get_batch_with_tokens()
+                sample_acts = sae.encode(sample_batch)
+                sample_collector.collect_batch_samples(
+                    sample_acts,
+                    sample_tokens,
+                    model.tokenizer
+                )
 
         loss = sae_output["loss"]
         pbar.set_postfix({
@@ -83,6 +106,16 @@ def train_sae(sae, activation_store, model, cfg):
         optimizer.zero_grad()
 
     save_checkpoint(wandb_run, sae, cfg, i)
+    
+    # Save collected samples at end of training
+    if sample_collector is not None:
+        sample_dir = f"checkpoints/{cfg.get('model_type', 'sae')}/{cfg['model_name']}/{cfg['name']}_activation_samples"
+        sample_collector.save_samples(
+            sample_dir,
+            top_k_features=cfg.get("top_features_to_save", 100),
+            samples_per_feature=cfg.get("samples_per_feature_to_save", 10)
+        )
+        print(f"\nSaved activation samples to {sample_dir}")
     
 
 def train_sae_group(saes, activation_store, model, cfgs):
@@ -299,6 +332,16 @@ def train_transcoder(transcoder, activation_store, model, cfg):
 
     wandb_run = init_wandb(cfg)
     
+    # Initialize activation sample collector if enabled
+    sample_collector = None
+    if cfg.get("save_activation_samples", False):
+        sample_collector = ActivationSampleCollector(
+            max_samples_per_feature=cfg.get("max_samples_per_feature", 100),
+            context_size=cfg.get("sample_context_size", 20),
+            storage_threshold=cfg.get("sample_activation_threshold", 0.1)
+        )
+        print(f"Activation sample collection enabled (collecting every {cfg.get('sample_collection_freq', 1000)} steps)")
+    
     for i in pbar:
         # Get paired activations (source, target)
         source_batch, target_batch = activation_store.next_batch()
@@ -319,6 +362,19 @@ def train_transcoder(transcoder, activation_store, model, cfg):
 
         if i % cfg["checkpoint_freq"] == 0:
             save_checkpoint(wandb_run, transcoder, cfg, i)
+        
+        # Collect activation samples periodically for transcoders
+        if sample_collector is not None and i % cfg.get("sample_collection_freq", 1000) == 0:
+            with torch.no_grad():
+                # Get batch with tokens from source activation store
+                if hasattr(activation_store, 'source_store'):
+                    sample_batch, sample_tokens = activation_store.source_store.get_batch_with_tokens()
+                    sample_acts = transcoder.encode(sample_batch)
+                    sample_collector.collect_batch_samples(
+                        sample_acts,
+                        sample_tokens,
+                        model.tokenizer
+                    )
 
         loss = transcoder_output["loss"]
         
@@ -346,6 +402,16 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         optimizer.zero_grad()
 
     save_checkpoint(wandb_run, transcoder, cfg, i)
+    
+    # Save collected samples at end of training
+    if sample_collector is not None:
+        sample_dir = f"checkpoints/transcoder/{cfg['model_name']}/{cfg['name']}_activation_samples"
+        sample_collector.save_samples(
+            sample_dir,
+            top_k_features=cfg.get("top_features_to_save", 100),
+            samples_per_feature=cfg.get("samples_per_feature_to_save", 10)
+        )
+        print(f"\nSaved activation samples to {sample_dir}")
 
 
 def log_transcoder_performance(wandb_run, step, model, activation_store, transcoder):

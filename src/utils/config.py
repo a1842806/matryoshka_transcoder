@@ -92,6 +92,16 @@ def get_default_cfg():
         
         # for jumprelu
         "bandwidth": 0.001,
+        
+        # Activation sample collection (Anthropic-style interpretability)
+        "save_activation_samples": False,  # Enable to collect high-activation samples
+        "sample_collection_freq": 1000,     # Collect samples every N steps
+        "max_samples_per_feature": 100,     # Max samples to store per feature
+        "sample_context_size": 20,          # Tokens of context around activation
+        "sample_activation_threshold": 0.1, # Minimum activation to consider
+        "top_features_to_save": 100,        # Number of top features to save samples for
+        "samples_per_feature_to_save": 10,  # Number of samples to save per feature
+        "store_tokens_for_samples": False,  # Store tokens in activation buffer
     }
     default_cfg = post_init_cfg(default_cfg)
     return default_cfg
