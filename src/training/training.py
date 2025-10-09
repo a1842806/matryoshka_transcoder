@@ -7,6 +7,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from utils.logs import init_wandb, log_wandb, log_model_performance, save_checkpoint
 from utils.activation_samples import ActivationSampleCollector
+from utils.diversity_regularization import create_diversity_regularizer
+from utils.position_stratified_sampling import create_position_sampler
+from utils.feature_correlation_monitor import create_correlation_monitor
 import multiprocessing as mp
 from queue import Empty
 import wandb

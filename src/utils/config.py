@@ -102,6 +102,31 @@ def get_default_cfg():
         "top_features_to_save": 100,        # Number of top features to save samples for
         "samples_per_feature_to_save": 10,  # Number of samples to save per feature
         "store_tokens_for_samples": False,  # Store tokens in activation buffer
+        
+        # Diversity regularization (to reduce feature duplication)
+        "use_diversity_regularization": False,
+        "diversity_regularizer_type": "adaptive",  # "standard" or "adaptive"
+        "orthogonality_weight": 0.01,
+        "correlation_weight": 0.005,
+        "cka_weight": 0.001,
+        "position_diversity_weight": 0.01,
+        
+        # Position-stratified sampling (to reduce BOS bias)
+        "use_position_stratified_sampling": False,
+        "position_sampler_type": "adaptive",  # "stratified", "adaptive", or "nms"
+        "position_bins": 10,
+        "min_samples_per_bin": 2,
+        "bos_penalty_factor": 0.5,
+        "max_bos_ratio": 0.3,
+        "overlap_threshold": 0.8,
+        "position_tolerance": 1,
+        
+        # Feature correlation monitoring
+        "use_correlation_monitoring": False,
+        "correlation_threshold": 0.8,
+        "correlation_window_size": 100,
+        "correlation_save_frequency": 1000,
+        "correlation_output_dir": "feature_correlation_logs",
     }
     default_cfg = post_init_cfg(default_cfg)
     return default_cfg
