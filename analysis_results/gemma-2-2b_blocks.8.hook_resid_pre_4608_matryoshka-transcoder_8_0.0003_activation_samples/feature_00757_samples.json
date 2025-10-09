@@ -1,0 +1,582 @@
+{
+  "statistics": {
+    "feature_idx": 757,
+    "num_samples": 50,
+    "max_activation": 15.109685897827148,
+    "mean_activation": 9.707659034729003,
+    "std_activation": 2.1974486151888852,
+    "min_activation": 7.263781547546387,
+    "activation_count": 119,
+    "all_time_max": 15.109685897827148
+  },
+  "top_samples": [
+    {
+      "feature_idx": 757,
+      "activation_value": 15.109685897827148,
+      "tokens": [
+        3968,
+        235265
+      ],
+      "text": " similar.",
+      "position": 4,
+      "context_tokens": [
+        685,
+        984,
+        708,
+        3968,
+        235265,
+        6372,
+        685,
+        6269,
+        578,
+        6578,
+        7549,
+        8363,
+        573
+      ],
+      "context_text": " as they are similar. Just as political and economic factors determine the"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 14.686912536621094,
+      "tokens": [
+        26405,
+        235265
+      ],
+      "text": " cooked.",
+      "position": 25,
+      "context_tokens": [
+        2788,
+        2187,
+        5760,
+        1794,
+        1284,
+        729,
+        7382,
+        26405,
+        235265,
+        590,
+        235349,
+        524,
+        16788,
+        573,
+        953
+      ],
+      "context_text": " week old baby before she was fully cooked. I\u2019ve watched the pre"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 14.097952842712402,
+      "tokens": [
+        4337,
+        235265
+      ],
+      "text": " section.",
+      "position": 4,
+      "context_tokens": [
+        774,
+        573,
+        8776,
+        4337,
+        235265,
+        108,
+        651,
+        11877,
+        576,
+        4168,
+        235269,
+        476,
+        7827
+      ],
+      "context_text": " from the upper section.\nThe dance of death, a favorite"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 13.243799209594727,
+      "tokens": [
+        1916,
+        235265
+      ],
+      "text": " type.",
+      "position": 4,
+      "context_tokens": [
+        708,
+        575,
+        16740,
+        1916,
+        235265,
+        108,
+        235274,
+        235274,
+        6363,
+        235248,
+        235284,
+        235276,
+        235276
+      ],
+      "context_text": " are in bold type.\n11 February 200"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 13.242690086364746,
+      "tokens": [
+        6044,
+        235265
+      ],
+      "text": " learning.",
+      "position": 11,
+      "context_tokens": [
+        1570,
+        3069,
+        708,
+        15504,
+        575,
+        40753,
+        828,
+        6044,
+        235265,
+        26604,
+        3725,
+        24541,
+        708,
+        573,
+        15620,
+        774,
+        948
+      ],
+      "context_text": " where children are engaged in expeditionary learning. Native American cultures are the foundation from which"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 13.136870384216309,
+      "tokens": [
+        6044,
+        235265
+      ],
+      "text": " learning.",
+      "position": 7,
+      "context_tokens": [
+        18866,
+        3787,
+        577,
+        3542,
+        235290,
+        6576,
+        6044,
+        235265,
+        3339,
+        8035,
+        675,
+        30509,
+        7340,
+        235269,
+        692,
+        235303
+      ],
+      "context_text": " introduce students to project-based learning. By starting with engaging projects, you'"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 13.032764434814453,
+      "tokens": [
+        7489,
+        235265
+      ],
+      "text": " beginning.",
+      "position": 8,
+      "context_tokens": [
+        524,
+        1125,
+        2412,
+        736,
+        6178,
+        2754,
+        573,
+        7489,
+        235265,
+        714,
+        58934,
+        603,
+        6815,
+        674,
+        22566,
+        20010,
+        2480
+      ],
+      "context_text": "ve been following this technology since the beginning. The breakthrough is software that lets researchers design"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 12.87535572052002,
+      "tokens": [
+        3641,
+        235265
+      ],
+      "text": " space.",
+      "position": 6,
+      "context_tokens": [
+        113037,
+        10638,
+        16175,
+        24582,
+        575,
+        3641,
+        235265,
+        2365,
+        1942,
+        1450,
+        24582,
+        575,
+        573,
+        88146,
+        125461
+      ],
+      "context_text": " Telescope identified oxygen molecules in space. They found these molecules in the Orion nebula"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 12.171307563781738,
+      "tokens": [
+        5119,
+        235265
+      ],
+      "text": " features.",
+      "position": 5,
+      "context_tokens": [
+        1368,
+        577,
+        3114,
+        3383,
+        5119,
+        235265,
+        2365,
+        7783,
+        791,
+        23246,
+        21039,
+        1178,
+        12624,
+        689
+      ],
+      "context_text": " how to perform certain features. They generally have fewer graphics than printed or"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 11.718278884887695,
+      "tokens": [
+        4065,
+        235265
+      ],
+      "text": " step.",
+      "position": 12,
+      "context_tokens": [
+        4134,
+        36940,
+        578,
+        212534,
+        708,
+        26033,
+        575,
+        4065,
+        235265,
+        108,
+        5375,
+        235269,
+        476,
+        2970,
+        696,
+        573,
+        21103
+      ],
+      "context_text": " energy peaks and troughs are precisely in step.\nNow, a team at the Massachusetts"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 11.42233943939209,
+      "tokens": [
+        7418,
+        235265
+      ],
+      "text": " exception.",
+      "position": 9,
+      "context_tokens": [
+        9228,
+        708,
+        573,
+        8611,
+        4644,
+        1178,
+        573,
+        7418,
+        235265,
+        19896,
+        665,
+        236193,
+        235256,
+        1024,
+        29881,
+        576,
+        39987
+      ],
+      "context_text": " communication are the norm rather than the exception. Whether it\ufffds their traits of curiosity"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 11.273178100585938,
+      "tokens": [
+        4363,
+        235265
+      ],
+      "text": " minutes.",
+      "position": 10,
+      "context_tokens": [
+        7914,
+        3614,
+        3190,
+        2819,
+        476,
+        4391,
+        576,
+        4363,
+        235265,
+        1448,
+        235303,
+        529,
+        3293,
+        736,
+        3542,
+        731,
+        6044
+      ],
+      "context_text": " achieve quality results within a matter of minutes. We'll begin this project by learning"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 11.043562889099121,
+      "tokens": [
+        34055,
+        235265
+      ],
+      "text": " eaten.",
+      "position": 9,
+      "context_tokens": [
+        10845,
+        8923,
+        3381,
+        576,
+        16512,
+        984,
+        791,
+        34055,
+        235265,
+        5626,
+        1160,
+        7177,
+        9723,
+        49598,
+        577,
+        11941,
+        15513
+      ],
+      "context_text": " nutrional content of foods they have eaten. Our work uses shopping receipts to generate suggestions"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 11.009748458862305,
+      "tokens": [
+        235315,
+        235265
+      ],
+      "text": "9.",
+      "position": 12,
+      "context_tokens": [
+        14665,
+        9198,
+        575,
+        235248,
+        235284,
+        235276,
+        235276,
+        235315,
+        235265,
+        714,
+        4282,
+        5685,
+        7549,
+        3707,
+        235292,
+        573,
+        8914
+      ],
+      "context_text": " breast cancer in 2009. The various risk factors include: the female"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 10.931459426879883,
+      "tokens": [
+        12852,
+        235265
+      ],
+      "text": " identity.",
+      "position": 3,
+      "context_tokens": [
+        5229,
+        576,
+        12852,
+        235265,
+        2399,
+        27778,
+        576,
+        578,
+        28746,
+        2691,
+        573,
+        23056
+      ],
+      "context_text": " sense of identity. Persecution of and discrimination against the Jews"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 10.912546157836914,
+      "tokens": [
+        1929,
+        235265
+      ],
+      "text": "function.",
+      "position": 5,
+      "context_tokens": [
+        577,
+        573,
+        8199,
+        235290,
+        1929,
+        235265,
+        1927,
+        573,
+        6221,
+        585,
+        603,
+        780,
+        2845,
+        575
+      ],
+      "context_text": " to the zero-function. If the constant C is not important in"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 10.549866676330566,
+      "tokens": [
+        756,
+        14417
+      ],
+      "text": "ty.\u2019",
+      "position": 12,
+      "context_tokens": [
+        708,
+        780,
+        10918,
+        731,
+        736,
+        3031,
+        72853,
+        756,
+        14417,
+        4828,
+        9231,
+        2613,
+        3307,
+        671,
+        25081,
+        4303,
+        604
+      ],
+      "context_text": " are not affected by this \u2018novelty.\u2019 Dan Brown might seem an unlikely source for"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 10.371050834655762,
+      "tokens": [
+        235371,
+        108
+      ],
+      "text": "|\n",
+      "position": 4,
+      "context_tokens": [
+        3663,
+        577,
+        21029,
+        235371,
+        108,
+        1818,
+        713,
+        235265,
+        112189,
+        2672,
+        108,
+        53834,
+        21904
+      ],
+      "context_text": "Back to Contents|\nBy J. Raloff\nCanadian scientists"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 10.168444633483887,
+      "tokens": [
+        1578,
+        235265
+      ],
+      "text": " well.",
+      "position": 9,
+      "context_tokens": [
+        614,
+        16321,
+        1013,
+        783,
+        16788,
+        235269,
+        685,
+        1578,
+        235265,
+        1474,
+        8598,
+        27558,
+        235265,
+        108,
+        31008,
+        1355,
+        577
+      ],
+      "context_text": " be wise if we watched, as well. And prepared accordingly.\nThink back to"
+    },
+    {
+      "feature_idx": 757,
+      "activation_value": 9.763121604919434,
+      "tokens": [
+        1744,
+        235265
+      ],
+      "text": " day.",
+      "position": 9,
+      "context_tokens": [
+        235256,
+        18729,
+        13669,
+        576,
+        1461,
+        1535,
+        3821,
+        1744,
+        235265,
+        1307,
+        4391,
+        1570,
+        692,
+        708,
+        575,
+        573,
+        2134
+      ],
+      "context_text": "s killing thousands of people every single day. No matter where you are in the world"
+    }
+  ]
+}

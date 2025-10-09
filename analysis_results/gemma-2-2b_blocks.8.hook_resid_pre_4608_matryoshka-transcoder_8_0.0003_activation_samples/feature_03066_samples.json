@@ -1,0 +1,436 @@
+{
+  "statistics": {
+    "feature_idx": 3066,
+    "num_samples": 50,
+    "max_activation": 14.621220588684082,
+    "mean_activation": 8.981577558517456,
+    "std_activation": 1.4824849395044846,
+    "min_activation": 7.147138595581055,
+    "activation_count": 123,
+    "all_time_max": 14.621220588684082
+  },
+  "top_samples": [
+    {
+      "feature_idx": 3066,
+      "activation_value": 14.621220588684082,
+      "tokens": [
+        62756
+      ],
+      "text": " Americas",
+      "position": 0,
+      "context_tokens": [
+        62756,
+        235269,
+        901,
+        603,
+        27766,
+        3402,
+        577,
+        21787,
+        20630
+      ],
+      "context_text": " Americas, but is vulnerable due to expanded agriculture"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 13.439203262329102,
+      "tokens": [
+        1872
+      ],
+      "text": " main",
+      "position": 0,
+      "context_tokens": [
+        1872,
+        16089,
+        576,
+        14354,
+        603,
+        1644,
+        908,
+        576,
+        476
+      ],
+      "context_text": " main substance of bone is made up of a"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.917510032653809,
+      "tokens": [
+        12410
+      ],
+      "text": " procedures",
+      "position": 0,
+      "context_tokens": [
+        12410,
+        604,
+        573,
+        11621,
+        708,
+        780,
+        10918,
+        731,
+        736
+      ],
+      "context_text": " procedures for the election are not affected by this"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.846137046813965,
+      "tokens": [
+        798
+      ],
+      "text": " can",
+      "position": 0,
+      "context_tokens": [
+        798,
+        614,
+        235265,
+        1448,
+        31171,
+        3221,
+        6514,
+        4815,
+        17923
+      ],
+      "context_text": " can be. We continuously review safety management guidelines"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.76317310333252,
+      "tokens": [
+        3520
+      ],
+      "text": " United",
+      "position": 0,
+      "context_tokens": [
+        3520,
+        3858,
+        108,
+        4038,
+        1744,
+        575,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": " United States\nOne day in 19"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.729290008544922,
+      "tokens": [
+        4956
+      ],
+      "text": " received",
+      "position": 0,
+      "context_tokens": [
+        4956,
+        476,
+        19491,
+        576,
+        14665,
+        9198,
+        575,
+        235248,
+        235284
+      ],
+      "context_text": " received a diagnosis of breast cancer in 2"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.533058166503906,
+      "tokens": [
+        3354
+      ],
+      "text": " night",
+      "position": 0,
+      "context_tokens": [
+        3354,
+        575,
+        5245,
+        5468,
+        235269,
+        235248,
+        235284,
+        235276,
+        235276
+      ],
+      "context_text": " night in late January, 200"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.232090950012207,
+      "tokens": [
+        9581
+      ],
+      "text": " library",
+      "position": 0,
+      "context_tokens": [
+        9581,
+        235265,
+        108,
+        1596,
+        18862,
+        26178,
+        974,
+        576,
+        573
+      ],
+      "context_text": " library.\nThis museum profiles one of the"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.221062660217285,
+      "tokens": [
+        10275
+      ],
+      "text": " facts",
+      "position": 0,
+      "context_tokens": [
+        10275,
+        674,
+        47065,
+        1368,
+        5100,
+        3831,
+        20617,
+        578,
+        3890
+      ],
+      "context_text": " facts that discusses how items become damaged and simple"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.21351146697998,
+      "tokens": [
+        2113
+      ],
+      "text": " information",
+      "position": 0,
+      "context_tokens": [
+        2113,
+        1105,
+        10742,
+        15950,
+        235265,
+        653,
+        1844,
+        1014,
+        774
+      ],
+      "context_text": " information about African Americans. Gleanings from"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 10.145512580871582,
+      "tokens": [
+        90644
+      ],
+      "text": " HID",
+      "position": 0,
+      "context_tokens": [
+        90644,
+        4643,
+        596,
+        18050,
+        45127,
+        235338,
+        1615,
+        2379,
+        2993
+      ],
+      "context_text": " HIDUP PADA LANJUT USIA"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.761364936828613,
+      "tokens": [
+        3210
+      ],
+      "text": " problem",
+      "position": 0,
+      "context_tokens": [
+        3210,
+        26149,
+        235265,
+        1417,
+        2733,
+        603,
+        6869,
+        577,
+        8147
+      ],
+      "context_text": " problem solving. This program is designed to establish"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.752178192138672,
+      "tokens": [
+        16670
+      ],
+      "text": " Instead",
+      "position": 0,
+      "context_tokens": [
+        16670,
+        235269,
+        30763,
+        235290,
+        7553,
+        44832,
+        32808,
+        1582,
+        685
+      ],
+      "context_text": " Instead, lighter-weight compressed formats such as"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.719149589538574,
+      "tokens": [
+        7149
+      ],
+      "text": " British",
+      "position": 0,
+      "context_tokens": [
+        7149,
+        3320,
+        919,
+        1942,
+        235265,
+        108,
+        122005,
+        791,
+        1942
+      ],
+      "context_text": " British study has found.\nResearchers have found"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.390280723571777,
+      "tokens": [
+        4523
+      ],
+      "text": " according",
+      "position": 0,
+      "context_tokens": [
+        4523,
+        577,
+        476,
+        2379,
+        3320,
+        235265,
+        108,
+        235281,
+        1734
+      ],
+      "context_text": " according to a US study.\n\"We"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.381634712219238,
+      "tokens": [
+        58943
+      ],
+      "text": " plantation",
+      "position": 0,
+      "context_tokens": [
+        58943,
+        235265,
+        6136,
+        235248,
+        235274,
+        235276,
+        235276,
+        25311,
+        675
+      ],
+      "context_text": " plantation. Over 100 interviews with"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.355602264404297,
+      "tokens": [
+        1104
+      ],
+      "text": " there",
+      "position": 0,
+      "context_tokens": [
+        1104,
+        603,
+        476,
+        1536,
+        3712,
+        577,
+        2523,
+        1706,
+        573
+      ],
+      "context_text": " there is a high price to pay down the"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.309924125671387,
+      "tokens": [
+        2134
+      ],
+      "text": " world",
+      "position": 0,
+      "context_tokens": [
+        2134,
+        3895,
+        9122,
+        6325,
+        696,
+        736,
+        2788,
+        235349,
+        235256
+      ],
+      "context_text": " world took centre stage at this week\u2019s"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.118444442749023,
+      "tokens": [
+        69246
+      ],
+      "text": " marriages",
+      "position": 0,
+      "context_tokens": [
+        69246,
+        578,
+        6156,
+        1853,
+        2329,
+        573,
+        1833,
+        577,
+        24989
+      ],
+      "context_text": " marriages and gives each state the right to refuse"
+    },
+    {
+      "feature_idx": 3066,
+      "activation_value": 9.050835609436035,
+      "tokens": [
+        10275,
+        674
+      ],
+      "text": " facts that",
+      "position": 1,
+      "context_tokens": [
+        10275,
+        674,
+        47065,
+        1368,
+        5100,
+        3831,
+        20617,
+        578,
+        3890,
+        7161
+      ],
+      "context_text": " facts that discusses how items become damaged and simple steps"
+    }
+  ]
+}

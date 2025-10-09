@@ -1,0 +1,576 @@
+{
+  "statistics": {
+    "feature_idx": 2891,
+    "num_samples": 50,
+    "max_activation": 15.230746269226074,
+    "mean_activation": 13.366832962036133,
+    "std_activation": 0.6679293049020897,
+    "min_activation": 12.424911499023438,
+    "activation_count": 1261,
+    "all_time_max": 15.230746269226074
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2891,
+      "activation_value": 15.230746269226074,
+      "tokens": [
+        28262,
+        108
+      ],
+      "text": " Halloween\n",
+      "position": 14,
+      "context_tokens": [
+        233631,
+        235269,
+        974,
+        576,
+        573,
+        22013,
+        576,
+        28262,
+        108,
+        235371,
+        6956,
+        3151,
+        10979,
+        2430,
+        640,
+        77480,
+        235303
+      ],
+      "context_text": "lantern, one of the symbols of Halloween\n|Also called||All Hallows'"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.68824291229248,
+      "tokens": [
+        235290,
+        1165
+      ],
+      "text": "- It",
+      "position": 31,
+      "context_tokens": [
+        41660,
+        577,
+        674,
+        5612,
+        235269,
+        578,
+        108,
+        235290,
+        1165
+      ],
+      "context_text": " indigenous to that region, and\n- It"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.63968276977539,
+      "tokens": [
+        752,
+        235265
+      ],
+      "text": " U.",
+      "position": 21,
+      "context_tokens": [
+        235269,
+        997,
+        235265,
+        8868,
+        235269,
+        2105,
+        1173,
+        752,
+        235265,
+        235277,
+        235265,
+        108,
+        6944,
+        48993,
+        61178,
+        578,
+        27156
+      ],
+      "context_text": ", St. Charles, Mo., U.S.\nblack pioneer trader and founder"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.584254264831543,
+      "tokens": [
+        235265,
+        235248
+      ],
+      "text": ". ",
+      "position": 4,
+      "context_tokens": [
+        2,
+        11052,
+        3896,
+        235265,
+        235248,
+        235284,
+        235321,
+        235269,
+        235248,
+        235274,
+        235321,
+        235274,
+        235321
+      ],
+      "context_text": "<bos>died Aug. 28, 1818"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.479045867919922,
+      "tokens": [
+        235292,
+        108
+      ],
+      "text": ":\n",
+      "position": 9,
+      "context_tokens": [
+        235285,
+        877,
+        1297,
+        2377,
+        921,
+        1378,
+        212297,
+        235292,
+        108,
+        235290,
+        1448,
+        2952,
+        12039,
+        674,
+        5499,
+        22660,
+        576
+      ],
+      "context_text": "I will only point out two caveats:\n- We cannot assume that click speakers of"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.441164016723633,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 18,
+      "context_tokens": [
+        235290,
+        1448,
+        2952,
+        12039,
+        674,
+        5499,
+        22660,
+        576,
+        573,
+        10742,
+        50908,
+        708,
+        15917,
+        41660,
+        577,
+        674,
+        5612
+      ],
+      "context_text": "- We cannot assume that click speakers of the African Southwest are necessarily indigenous to that region"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.36416244506836,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 6,
+      "context_tokens": [
+        2,
+        2122,
+        736,
+        1744,
+        575,
+        235248,
+        235274,
+        235315,
+        235308,
+        235274,
+        235269,
+        978,
+        1178,
+        4442,
+        1658
+      ],
+      "context_text": "<bos>On this day in 1951, more than six years"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.209831237792969,
+      "tokens": [
+        16690,
+        603
+      ],
+      "text": "idae is",
+      "position": 5,
+      "context_tokens": [
+        2,
+        235356,
+        741,
+        8206,
+        16690,
+        603,
+        476,
+        2983,
+        495,
+        576,
+        32962,
+        964,
+        819,
+        591
+      ],
+      "context_text": "<bos>Xantusiidae is a clade of viviparous ("
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 14.190132141113281,
+      "tokens": [
+        136665,
+        674
+      ],
+      "text": " lizards that",
+      "position": 18,
+      "context_tokens": [
+        32962,
+        964,
+        819,
+        591,
+        8064,
+        19138,
+        235275,
+        136665,
+        674,
+        24867,
+        774,
+        99694,
+        4612,
+        5783,
+        578,
+        85278,
+        6092
+      ],
+      "context_text": " viviparous (live bearing) lizards that ranges from southwestern North America and Baja California"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.89745044708252,
+      "tokens": [
+        8172,
+        235290
+      ],
+      "text": " jack-",
+      "position": 3,
+      "context_tokens": [
+        2,
+        235280,
+        8172,
+        235290,
+        235253,
+        19708,
+        233631,
+        235269,
+        974,
+        576,
+        573,
+        22013
+      ],
+      "context_text": "<bos>A jack-o'-lantern, one of the symbols"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.885498046875,
+      "tokens": [
+        731,
+        573
+      ],
+      "text": " by the",
+      "position": 10,
+      "context_tokens": [
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        9771,
+        12028,
+        731,
+        573,
+        7757,
+        604,
+        7040,
+        111213,
+        35889,
+        1942,
+        235248,
+        235308
+      ],
+      "context_text": " 2012 survey conducted by the Association for Pet Obesity Prevention found 5"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.688141822814941,
+      "tokens": [
+        235274,
+        235284
+      ],
+      "text": "12",
+      "position": 6,
+      "context_tokens": [
+        2,
+        235280,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        9771,
+        12028,
+        731,
+        573,
+        7757,
+        604,
+        7040,
+        111213
+      ],
+      "context_text": "<bos>A 2012 survey conducted by the Association for Pet Obesity"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.664159774780273,
+      "tokens": [
+        495,
+        576
+      ],
+      "text": "de of",
+      "position": 9,
+      "context_tokens": [
+        235356,
+        741,
+        8206,
+        16690,
+        603,
+        476,
+        2983,
+        495,
+        576,
+        32962,
+        964,
+        819,
+        591,
+        8064,
+        19138,
+        235275,
+        136665
+      ],
+      "context_text": "Xantusiidae is a clade of viviparous (live bearing) lizards"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.610664367675781,
+      "tokens": [
+        603,
+        476
+      ],
+      "text": " is a",
+      "position": 6,
+      "context_tokens": [
+        2,
+        235356,
+        741,
+        8206,
+        16690,
+        603,
+        476,
+        2983,
+        495,
+        576,
+        32962,
+        964,
+        819,
+        591,
+        8064
+      ],
+      "context_text": "<bos>Xantusiidae is a clade of viviparous (live"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.544983863830566,
+      "tokens": [
+        11052,
+        3896
+      ],
+      "text": "died Aug",
+      "position": 2,
+      "context_tokens": [
+        2,
+        11052,
+        3896,
+        235265,
+        235248,
+        235284,
+        235321,
+        235269,
+        235248,
+        235274,
+        235321
+      ],
+      "context_text": "<bos>died Aug. 28, 18"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.486018180847168,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 24,
+      "context_tokens": [
+        8868,
+        235269,
+        2105,
+        1173,
+        752,
+        235265,
+        235277,
+        235265,
+        108,
+        6944,
+        48993,
+        61178,
+        578,
+        27156,
+        576,
+        573
+      ],
+      "context_text": " Charles, Mo., U.S.\nblack pioneer trader and founder of the"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.475765228271484,
+      "tokens": [
+        577,
+        674
+      ],
+      "text": " to that",
+      "position": 25,
+      "context_tokens": [
+        576,
+        573,
+        10742,
+        50908,
+        708,
+        15917,
+        41660,
+        577,
+        674,
+        5612,
+        235269,
+        578,
+        108,
+        235290,
+        1165
+      ],
+      "context_text": " of the African Southwest are necessarily indigenous to that region, and\n- It"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.469560623168945,
+      "tokens": [
+        235276,
+        235274
+      ],
+      "text": "01",
+      "position": 5,
+      "context_tokens": [
+        2,
+        235280,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        9771,
+        12028,
+        731,
+        573,
+        7757,
+        604,
+        7040
+      ],
+      "context_text": "<bos>A 2012 survey conducted by the Association for Pet"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.421544075012207,
+      "tokens": [
+        603,
+        14966
+      ],
+      "text": " is fairly",
+      "position": 23,
+      "context_tokens": [
+        18821,
+        689,
+        4644,
+        6222,
+        8964,
+        235336,
+        79390,
+        603,
+        14966,
+        151488,
+        2647,
+        5168,
+        235269,
+        578,
+        665,
+        235303,
+        235256
+      ],
+      "context_text": " happiness or rather positive affect? Happiness is fairly ambigious term, and it's"
+    },
+    {
+      "feature_idx": 2891,
+      "activation_value": 13.417484283447266,
+      "tokens": [
+        674,
+        24867
+      ],
+      "text": " that ranges",
+      "position": 19,
+      "context_tokens": [
+        964,
+        819,
+        591,
+        8064,
+        19138,
+        235275,
+        136665,
+        674,
+        24867,
+        774,
+        99694,
+        4612,
+        5783,
+        578,
+        85278,
+        6092,
+        591
+      ],
+      "context_text": "parous (live bearing) lizards that ranges from southwestern North America and Baja California ("
+    }
+  ]
+}

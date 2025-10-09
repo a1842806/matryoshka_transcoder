@@ -1,0 +1,571 @@
+{
+  "statistics": {
+    "feature_idx": 1314,
+    "num_samples": 50,
+    "max_activation": 32.15353775024414,
+    "mean_activation": 28.793718147277833,
+    "std_activation": 0.9080597705887031,
+    "min_activation": 27.73602867126465,
+    "activation_count": 3738,
+    "all_time_max": 32.15353775024414
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1314,
+      "activation_value": 32.15353775024414,
+      "tokens": [
+        1162,
+        27217
+      ],
+      "text": " year Gulf",
+      "position": 7,
+      "context_tokens": [
+        2,
+        1596,
+        603,
+        573,
+        1069,
+        576,
+        1162,
+        27217,
+        14161,
+        13058,
+        3293,
+        11041,
+        573,
+        8957,
+        8134,
+        577
+      ],
+      "context_text": "<bos>This is the time of year Gulf Coast residents begin watching the weather reports to"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 30.715953826904297,
+      "tokens": [
+        25175,
+        708
+      ],
+      "text": " computers are",
+      "position": 12,
+      "context_tokens": [
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847,
+        4998,
+        1163,
+        573,
+        2040,
+        576,
+        3515,
+        27290
+      ],
+      "context_text": " 27 (IANS) Personal computers are fast taking over the place of human beings"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 30.485502243041992,
+      "tokens": [
+        651,
+        12734
+      ],
+      "text": "The Nature",
+      "position": 2,
+      "context_tokens": [
+        2,
+        651,
+        12734,
+        74431,
+        108,
+        651,
+        30084,
+        1461,
+        791,
+        2593,
+        11012
+      ],
+      "context_text": "<bos>The Nature Elephant\nThe Karen people have always lived"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 30.309036254882812,
+      "tokens": [
+        8659,
+        74901
+      ],
+      "text": "Select Preservation",
+      "position": 2,
+      "context_tokens": [
+        2,
+        8659,
+        74901,
+        13017,
+        108,
+        235290,
+        8392,
+        5174,
+        19509,
+        235292,
+        59829
+      ],
+      "context_text": "<bos>Select Preservation Resources\n- Shocking Statistics: Reasons"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 30.215694427490234,
+      "tokens": [
+        573,
+        14216
+      ],
+      "text": " the Canadian",
+      "position": 13,
+      "context_tokens": [
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        235269,
+        573,
+        14216,
+        19985,
+        5138,
+        591,
+        93336,
+        235275,
+        5504,
+        674,
+        573
+      ],
+      "context_text": ", 2011, the Canadian Ice Service (CIS) reported that the"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.911760330200195,
+      "tokens": [
+        573,
+        33336
+      ],
+      "text": " the Caribbean",
+      "position": 11,
+      "context_tokens": [
+        235256,
+        3980,
+        696,
+        1370,
+        30993,
+        577,
+        68384,
+        573,
+        33336,
+        25199,
+        685,
+        832,
+        1855,
+        573,
+        1809,
+        30619,
+        235269
+      ],
+      "context_text": "s easy at first glance to envision the Caribbean islands as all being the same sunny,"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.760164260864258,
+      "tokens": [
+        651,
+        14944
+      ],
+      "text": "The Language",
+      "position": 2,
+      "context_tokens": [
+        2,
+        651,
+        14944,
+        576,
+        6771,
+        108,
+        14024,
+        235269,
+        3896,
+        235248,
+        235274
+      ],
+      "context_text": "<bos>The Language of Color\nSun, Aug 1"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.657119750976562,
+      "tokens": [
+        3958,
+        235269
+      ],
+      "text": " ago,",
+      "position": 13,
+      "context_tokens": [
+        81220,
+        32638,
+        235269,
+        13697,
+        108,
+        9069,
+        17481,
+        3958,
+        235269,
+        1013,
+        692,
+        1093,
+        23135,
+        577,
+        14586,
+        172501,
+        235303
+      ],
+      "context_text": "Louise Chang, MD\nTwo decades ago, if you had moderate to severe Crohn'"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.62222671508789,
+      "tokens": [
+        576,
+        531
+      ],
+      "text": " of h",
+      "position": 5,
+      "context_tokens": [
+        2,
+        65904,
+        476,
+        5683,
+        576,
+        531,
+        235284,
+        235264,
+        235284,
+        108,
+        17883,
+        88992,
+        235269,
+        476
+      ],
+      "context_text": "<bos>Become a fan of h2g2\nDaniel Boone, a"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.435306549072266,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 8,
+      "context_tokens": [
+        2,
+        14437,
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276
+      ],
+      "context_text": "<bos>Posted: Oct 9, 2012 3:00"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.41344451904297,
+      "tokens": [
+        40128,
+        5552
+      ],
+      "text": "Taking Play",
+      "position": 2,
+      "context_tokens": [
+        2,
+        40128,
+        5552,
+        82576,
+        108,
+        1818,
+        57474,
+        928,
+        9219,
+        6100,
+        235382
+      ],
+      "context_text": "<bos>Taking Play Seriously\nBy ROBIN MARANTZ"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.273305892944336,
+      "tokens": [
+        227531,
+        235269
+      ],
+      "text": " Detectors,",
+      "position": 3,
+      "context_tokens": [
+        2,
+        76890,
+        227531,
+        235269,
+        21599,
+        3061,
+        34631,
+        227531,
+        235269,
+        13108,
+        227531,
+        108
+      ],
+      "context_text": "<bos>Smoke Detectors, Carbon Monoxide Detectors, Gas Detectors\n"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.26849937438965,
+      "tokens": [
+        235292,
+        3725
+      ],
+      "text": ": American",
+      "position": 4,
+      "context_tokens": [
+        2,
+        105237,
+        26288,
+        235292,
+        3725,
+        117015,
+        591,
+        235311,
+        55106,
+        50996,
+        74410,
+        235275,
+        108
+      ],
+      "context_text": "<bos>Creature Feature: American Beech (Fagus grandifolia)\n"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.240875244140625,
+      "tokens": [
+        235280,
+        41821
+      ],
+      "text": "A cardiac",
+      "position": 13,
+      "context_tokens": [
+        235321,
+        235310,
+        235308,
+        235324,
+        235308,
+        586,
+        108,
+        235280,
+        41821,
+        233721,
+        22787,
+        22997,
+        603,
+        25732,
+        577,
+        954,
+        18506
+      ],
+      "context_text": "84575 A\nA cardiac pacemaker pulse generator is adapted to .generate"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.110855102539062,
+      "tokens": [
+        14216,
+        19985
+      ],
+      "text": " Canadian Ice",
+      "position": 14,
+      "context_tokens": [
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        235269,
+        573,
+        14216,
+        19985,
+        5138,
+        591,
+        93336,
+        235275,
+        5504,
+        674,
+        573,
+        8234
+      ],
+      "context_text": " 2011, the Canadian Ice Service (CIS) reported that the Peter"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.089323043823242,
+      "tokens": [
+        15103,
+        25175
+      ],
+      "text": " Personal computers",
+      "position": 11,
+      "context_tokens": [
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847,
+        4998,
+        1163,
+        573,
+        2040,
+        576,
+        3515
+      ],
+      "context_text": " July 27 (IANS) Personal computers are fast taking over the place of human"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 29.009626388549805,
+      "tokens": [
+        108,
+        651
+      ],
+      "text": "\nThe",
+      "position": 21,
+      "context_tokens": [
+        235276,
+        235274,
+        235274,
+        1420,
+        2021,
+        5139,
+        34041,
+        108,
+        651,
+        2238,
+        576,
+        573,
+        2493,
+        1162,
+        6952,
+        671,
+        8884
+      ],
+      "context_text": "011 | Suzie Boss\nThe start of the school year offers an ideal"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 28.901203155517578,
+      "tokens": [
+        11571,
+        22757
+      ],
+      "text": "Common streaming",
+      "position": 2,
+      "context_tokens": [
+        2,
+        11571,
+        22757,
+        9934,
+        32808,
+        578,
+        6640,
+        108,
+        2331,
+        73320,
+        9248
+      ],
+      "context_text": "<bos>Common streaming audio formats and players\nUncompressed CD"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 28.873682022094727,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 17,
+      "context_tokens": [
+        3545,
+        108,
+        15339,
+        235248,
+        235276,
+        235274,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        108,
+        651,
+        14511,
+        576,
+        10080
+      ],
+      "context_text": " services\nDecember 01, 1999\nThe Bureau of Labor"
+    },
+    {
+      "feature_idx": 1314,
+      "activation_value": 28.818252563476562,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 12,
+      "context_tokens": [
+        181800,
+        29381,
+        14808,
+        235248,
+        235274,
+        235284,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        1420,
+        2021,
+        5139,
+        34041,
+        108
+      ],
+      "context_text": " Engaging ProjectsSeptember 12, 2011 | Suzie Boss\n"
+    }
+  ]
+}

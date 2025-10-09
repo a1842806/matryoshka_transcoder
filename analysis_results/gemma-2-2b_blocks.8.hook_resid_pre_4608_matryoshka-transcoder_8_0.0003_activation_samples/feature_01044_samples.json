@@ -1,0 +1,577 @@
+{
+  "statistics": {
+    "feature_idx": 1044,
+    "num_samples": 50,
+    "max_activation": 11.319299697875977,
+    "mean_activation": 7.805352439880371,
+    "std_activation": 1.0104351294533156,
+    "min_activation": 6.758853435516357,
+    "activation_count": 309,
+    "all_time_max": 11.319299697875977
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1044,
+      "activation_value": 11.319299697875977,
+      "tokens": [
+        235284,
+        235276
+      ],
+      "text": "20",
+      "position": 9,
+      "context_tokens": [
+        14437,
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276,
+        5907
+      ],
+      "context_text": "Posted: Oct 9, 2012 3:00 PM"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 10.335332870483398,
+      "tokens": [
+        235274,
+        235274
+      ],
+      "text": "11",
+      "position": 15,
+      "context_tokens": [
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        108,
+        2437,
+        2456,
+        56134,
+        575,
+        11678,
+        235336,
+        108
+      ],
+      "context_text": " September 7, 2011\nIs There Oxygen in Space?\n"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 10.12519645690918,
+      "tokens": [
+        235284,
+        235276
+      ],
+      "text": "20",
+      "position": 23,
+      "context_tokens": [
+        235292,
+        6363,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235276,
+        235321,
+        108,
+        2122,
+        476,
+        2354,
+        73265,
+        10111
+      ],
+      "context_text": ": February 17, 2008\nOn a drizzly Tuesday"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 9.590595245361328,
+      "tokens": [
+        235274,
+        235284
+      ],
+      "text": "12",
+      "position": 11,
+      "context_tokens": [
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276,
+        5907,
+        731,
+        7866
+      ],
+      "context_text": " Oct 9, 2012 3:00 PM by Robert"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 9.338669776916504,
+      "tokens": [
+        11890,
+        577
+      ],
+      "text": "Welcome to",
+      "position": 2,
+      "context_tokens": [
+        2,
+        11890,
+        577,
+        123053,
+        151603,
+        235248,
+        235308,
+        235274,
+        3482,
+        921,
+        576
+      ],
+      "context_text": "<bos>Welcome to BSA Troop 51 based out of"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 9.114120483398438,
+      "tokens": [
+        235276,
+        235321
+      ],
+      "text": "08",
+      "position": 25,
+      "context_tokens": [
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235276,
+        235321,
+        108,
+        2122,
+        476,
+        2354,
+        73265,
+        10111
+      ],
+      "context_text": " 17, 2008\nOn a drizzly Tuesday"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 9.045402526855469,
+      "tokens": [
+        235284,
+        235276
+      ],
+      "text": "20",
+      "position": 29,
+      "context_tokens": [
+        235269,
+        4482,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": ", March 17, 2013"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.895347595214844,
+      "tokens": [
+        235284,
+        235276
+      ],
+      "text": "20",
+      "position": 14,
+      "context_tokens": [
+        14024,
+        235269,
+        3896,
+        235248,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        6440,
+        44161,
+        235269,
+        21120,
+        235248,
+        235304
+      ],
+      "context_text": "Sun, Aug 1, 2010 ~ Wed, Jul 3"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.689478874206543,
+      "tokens": [
+        235274,
+        235276
+      ],
+      "text": "10",
+      "position": 16,
+      "context_tokens": [
+        3896,
+        235248,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        6440,
+        44161,
+        235269,
+        21120,
+        235248,
+        235304,
+        235274,
+        235269
+      ],
+      "context_text": " Aug 1, 2010 ~ Wed, Jul 31,"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.5864839553833,
+      "tokens": [
+        235274,
+        235304
+      ],
+      "text": "13",
+      "position": 31,
+      "context_tokens": [
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": " 17, 2013"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.553778648376465,
+      "tokens": [
+        235315,
+        235315
+      ],
+      "text": "99",
+      "position": 20,
+      "context_tokens": [
+        235248,
+        235276,
+        235274,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        108,
+        651,
+        14511,
+        576,
+        10080,
+        19509,
+        7378,
+        8417
+      ],
+      "context_text": " 01, 1999\nThe Bureau of Labor Statistics recently released"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.226038932800293,
+      "tokens": [
+        235276,
+        235274
+      ],
+      "text": "01",
+      "position": 10,
+      "context_tokens": [
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276,
+        5907,
+        731
+      ],
+      "context_text": ": Oct 9, 2012 3:00 PM by"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.120172500610352,
+      "tokens": [
+        235276,
+        235274
+      ],
+      "text": "01",
+      "position": 30,
+      "context_tokens": [
+        4482,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": " March 17, 2013"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.040509223937988,
+      "tokens": [
+        235269,
+        5225
+      ],
+      "text": ", September",
+      "position": 17,
+      "context_tokens": [
+        3663,
+        577,
+        16724,
+        4890,
+        68881,
+        108,
+        21525,
+        235269,
+        5225,
+        235248,
+        235274,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315
+      ],
+      "context_text": "Back to Regional News Digest\nSaturday, September 19, 199"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 8.028767585754395,
+      "tokens": [
+        108,
+        18425
+      ],
+      "text": "\nPublished",
+      "position": 18,
+      "context_tokens": [
+        235349,
+        108,
+        1818,
+        24277,
+        120766,
+        3462,
+        235252,
+        108,
+        18425,
+        235292,
+        8084,
+        235269,
+        4482,
+        235248,
+        235274,
+        235324,
+        235269
+      ],
+      "context_text": "\u2019\nBy Laura Szepesi\nPublished: Sunday, March 17,"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 7.976564884185791,
+      "tokens": [
+        235274,
+        235315
+      ],
+      "text": "19",
+      "position": 24,
+      "context_tokens": [
+        235269,
+        5225,
+        235248,
+        235274,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235321,
+        10391,
+        15480,
+        696,
+        235248,
+        235304
+      ],
+      "context_text": ", September 19, 1998 Last modified at 3"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 7.949683666229248,
+      "tokens": [
+        235276,
+        235276
+      ],
+      "text": "00",
+      "position": 24,
+      "context_tokens": [
+        6363,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235276,
+        235321,
+        108,
+        2122,
+        476,
+        2354,
+        73265,
+        10111
+      ],
+      "context_text": " February 17, 2008\nOn a drizzly Tuesday"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 7.868770599365234,
+      "tokens": [
+        18425,
+        235292
+      ],
+      "text": "Published:",
+      "position": 19,
+      "context_tokens": [
+        108,
+        1818,
+        24277,
+        120766,
+        3462,
+        235252,
+        108,
+        18425,
+        235292,
+        8084,
+        235269,
+        4482,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248
+      ],
+      "context_text": "\nBy Laura Szepesi\nPublished: Sunday, March 17, "
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 7.7608723640441895,
+      "tokens": [
+        3604,
+        714
+      ],
+      "text": "From The",
+      "position": 2,
+      "context_tokens": [
+        2,
+        3604,
+        714,
+        5936,
+        578,
+        25188,
+        18003,
+        51766,
+        108,
+        651,
+        2252
+      ],
+      "context_text": "<bos>From The Art and Popular Culture Encyclopedia\nThe fact"
+    },
+    {
+      "feature_idx": 1044,
+      "activation_value": 7.750929832458496,
+      "tokens": [
+        21525,
+        235269
+      ],
+      "text": "Saturday,",
+      "position": 16,
+      "context_tokens": [
+        768,
+        3663,
+        577,
+        16724,
+        4890,
+        68881,
+        108,
+        21525,
+        235269,
+        5225,
+        235248,
+        235274,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": "\">Back to Regional News Digest\nSaturday, September 19, 19"
+    }
+  ]
+}

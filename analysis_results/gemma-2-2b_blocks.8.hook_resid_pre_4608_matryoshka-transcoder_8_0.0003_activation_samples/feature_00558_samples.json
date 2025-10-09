@@ -1,0 +1,440 @@
+{
+  "statistics": {
+    "feature_idx": 558,
+    "num_samples": 50,
+    "max_activation": 23.41731071472168,
+    "mean_activation": 16.377405338287353,
+    "std_activation": 2.5205739526439794,
+    "min_activation": 12.483654975891113,
+    "activation_count": 285,
+    "all_time_max": 23.41731071472168
+  },
+  "top_samples": [
+    {
+      "feature_idx": 558,
+      "activation_value": 23.41731071472168,
+      "tokens": [
+        235269
+      ],
+      "text": ",",
+      "position": 0,
+      "context_tokens": [
+        235269,
+        235248,
+        235324,
+        235292,
+        235276,
+        235315,
+        503,
+        235265,
+        235262
+      ],
+      "context_text": ", 7:09 p.m"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 21.405536651611328,
+      "tokens": [
+        235269
+      ],
+      "text": ",",
+      "position": 0,
+      "context_tokens": [
+        235269,
+        689,
+        685,
+        476,
+        18983,
+        235265,
+        1165,
+        603,
+        780
+      ],
+      "context_text": ", or as a joke. It is not"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 21.26770782470703,
+      "tokens": [
+        235265
+      ],
+      "text": ".",
+      "position": 0,
+      "context_tokens": [
+        235265,
+        108,
+        1969,
+        118674,
+        6934,
+        674,
+        3598,
+        685,
+        671
+      ],
+      "context_text": ".\nAn SMTP server that works as an"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 20.91101837158203,
+      "tokens": [
+        235349,
+        235256
+      ],
+      "text": "\u2019s",
+      "position": 1,
+      "context_tokens": [
+        235349,
+        235256,
+        18729,
+        13669,
+        576,
+        1461,
+        1535,
+        3821,
+        1744,
+        235265
+      ],
+      "context_text": "\u2019s killing thousands of people every single day."
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.662691116333008,
+      "tokens": [
+        235265
+      ],
+      "text": ".",
+      "position": 0,
+      "context_tokens": [
+        235265,
+        7029,
+        20223,
+        3787,
+        577,
+        5422,
+        7185,
+        578,
+        1536
+      ],
+      "context_text": ". track graduate students to assist middle and high"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.505474090576172,
+      "tokens": [
+        235349
+      ],
+      "text": "\u2019",
+      "position": 0,
+      "context_tokens": [
+        235349,
+        235256,
+        18729,
+        13669,
+        576,
+        1461,
+        1535,
+        3821,
+        1744
+      ],
+      "context_text": "\u2019s killing thousands of people every single day"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.32393455505371,
+      "tokens": [
+        235349,
+        235251
+      ],
+      "text": "\u2019t",
+      "position": 1,
+      "context_tokens": [
+        235349,
+        235251,
+        1230,
+        26033,
+        1212,
+        984,
+        708,
+        689,
+        1693,
+        674
+      ],
+      "context_text": "\u2019t know precisely what they are or even that"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.220043182373047,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 1,
+      "context_tokens": [
+        235265,
+        108,
+        1969,
+        118674,
+        6934,
+        674,
+        3598,
+        685,
+        671,
+        2174
+      ],
+      "context_text": ".\nAn SMTP server that works as an open"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.19305419921875,
+      "tokens": [
+        235349
+      ],
+      "text": "\u2019",
+      "position": 0,
+      "context_tokens": [
+        235349,
+        235251,
+        1230,
+        26033,
+        1212,
+        984,
+        708,
+        689,
+        1693
+      ],
+      "context_text": "\u2019t know precisely what they are or even"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.190391540527344,
+      "tokens": [
+        235265
+      ],
+      "text": ".",
+      "position": 0,
+      "context_tokens": [
+        235265,
+        1165,
+        798,
+        6947,
+        614,
+        60359,
+        235265,
+        1646,
+        791
+      ],
+      "context_text": ". It can sometimes be stressful. You have"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 19.07017707824707,
+      "tokens": [
+        578
+      ],
+      "text": " and",
+      "position": 0,
+      "context_tokens": [
+        578,
+        141749,
+        1359,
+        235269,
+        4523,
+        577,
+        476,
+        888,
+        3484
+      ],
+      "context_text": " and bisexual men, according to a new report"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 18.947864532470703,
+      "tokens": [
+        235265
+      ],
+      "text": ".",
+      "position": 0,
+      "context_tokens": [
+        235265,
+        714,
+        3178,
+        235290,
+        5584,
+        32912,
+        604,
+        18729,
+        637
+      ],
+      "context_text": ". The low-level primitive for killing E"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 18.30331039428711,
+      "tokens": [
+        235265
+      ],
+      "text": ".",
+      "position": 0,
+      "context_tokens": [
+        235265,
+        586,
+        1426,
+        3287,
+        12722,
+        908,
+        575,
+        35097,
+        11533
+      ],
+      "context_text": ". A good example turns up in Olive Kit"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 17.843406677246094,
+      "tokens": [
+        235269
+      ],
+      "text": ",",
+      "position": 0,
+      "context_tokens": [
+        235269,
+        1074,
+        15308,
+        591,
+        235284,
+        235276,
+        235274,
+        235284,
+        235275
+      ],
+      "context_text": ", Cherie (2012)"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 17.79477882385254,
+      "tokens": [
+        235248
+      ],
+      "text": " ",
+      "position": 0,
+      "context_tokens": [
+        235248,
+        235308,
+        108,
+        1841,
+        235303,
+        235256,
+        1993,
+        604,
+        12948
+      ],
+      "context_text": " 5\nWhat's On for Today"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 17.34619140625,
+      "tokens": [
+        573
+      ],
+      "text": " the",
+      "position": 0,
+      "context_tokens": [
+        573,
+        235248,
+        235284,
+        8269,
+        79289,
+        4549,
+        774,
+        235336,
+        10979
+      ],
+      "context_text": " the 2 sources Financing comes from?||"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 17.024499893188477,
+      "tokens": [
+        108
+      ],
+      "text": "\n",
+      "position": 0,
+      "context_tokens": [
+        108,
+        2495,
+        692,
+        8339,
+        861,
+        552,
+        1714,
+        23733,
+        235269
+      ],
+      "context_text": "\nIf you reduce your nute loads,"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 16.845073699951172,
+      "tokens": [
+        235292
+      ],
+      "text": ":",
+      "position": 0,
+      "context_tokens": [
+        235292,
+        235284,
+        235310,
+        476,
+        235265,
+        235262,
+        235265,
+        611,
+        8733
+      ],
+      "context_text": ":24 a.m. on Saturday"
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 16.702560424804688,
+      "tokens": [
+        108
+      ],
+      "text": "\n",
+      "position": 0,
+      "context_tokens": [
+        108,
+        1718,
+        729,
+        970,
+        2257,
+        1162,
+        10649,
+        23099,
+        235265
+      ],
+      "context_text": "\nIt was my second year teaching physics."
+    },
+    {
+      "feature_idx": 558,
+      "activation_value": 16.47966957092285,
+      "tokens": [
+        108
+      ],
+      "text": "\n",
+      "position": 0,
+      "context_tokens": [
+        108,
+        191472,
+        576,
+        3118,
+        235269,
+        9010,
+        235269,
+        10436,
+        235269
+      ],
+      "context_text": "\nshades of red, pink, orange,"
+    }
+  ]
+}

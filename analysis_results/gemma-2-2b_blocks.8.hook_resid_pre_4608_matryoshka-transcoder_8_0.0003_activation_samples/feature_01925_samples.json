@@ -1,0 +1,596 @@
+{
+  "statistics": {
+    "feature_idx": 1925,
+    "num_samples": 50,
+    "max_activation": 15.12651538848877,
+    "mean_activation": 10.499673557281493,
+    "std_activation": 2.216254840676557,
+    "min_activation": 7.444948673248291,
+    "activation_count": 176,
+    "all_time_max": 15.12651538848877
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1925,
+      "activation_value": 15.12651538848877,
+      "tokens": [
+        235336,
+        108
+      ],
+      "text": "?\n",
+      "position": 13,
+      "context_tokens": [
+        3476,
+        671,
+        6871,
+        1013,
+        780,
+        4871,
+        5039,
+        235336,
+        108,
+        1596,
+        603,
+        970,
+        3904,
+        235265,
+        108,
+        1718,
+        6343
+      ],
+      "context_text": " least an equal if not higher standard?\nThis is my story.\nIt began"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 14.624120712280273,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 5,
+      "context_tokens": [
+        774,
+        573,
+        8776,
+        4337,
+        235265,
+        108,
+        651,
+        11877,
+        576,
+        4168,
+        235269,
+        476,
+        7827,
+        5245
+      ],
+      "context_text": " from the upper section.\nThe dance of death, a favorite late"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 14.158777236938477,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 13,
+      "context_tokens": [
+        36940,
+        578,
+        212534,
+        708,
+        26033,
+        575,
+        4065,
+        235265,
+        108,
+        5375,
+        235269,
+        476,
+        2970,
+        696,
+        573,
+        21103,
+        7986
+      ],
+      "context_text": " peaks and troughs are precisely in step.\nNow, a team at the Massachusetts Institute"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 13.746451377868652,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 14,
+      "context_tokens": [
+        1280,
+        12001,
+        14372,
+        575,
+        573,
+        21429,
+        17481,
+        235265,
+        108,
+        651,
+        27217,
+        6246,
+        1154,
+        30550,
+        33409,
+        578,
+        68128
+      ],
+      "context_text": " into rough waters in the upcoming decades.\nThe Gulf states like Saudi Arabia and Kuwait"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 13.518855094909668,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 8,
+      "context_tokens": [
+        573,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        29281,
+        235265,
+        108,
+        99118,
+        974,
+        575,
+        235248,
+        235274,
+        235276,
+        1461,
+        575
+      ],
+      "context_text": " the 2011 Census.\nNearly one in 10 people in"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 13.194934844970703,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 8,
+      "context_tokens": [
+        34883,
+        235269,
+        6284,
+        578,
+        1156,
+        55786,
+        7257,
+        235265,
+        108,
+        235280,
+        2611,
+        235290,
+        50623,
+        11287,
+        576,
+        573,
+        9494
+      ],
+      "context_text": " metabolism, sleep and other bodily functions.\nA light-sensitive portion of the brain"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 13.091362953186035,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 11,
+      "context_tokens": [
+        752,
+        235265,
+        235277,
+        235265,
+        122222,
+        675,
+        9066,
+        235265,
+        108,
+        651,
+        5613,
+        1580,
+        577,
+        573,
+        2036,
+        3392,
+        9981
+      ],
+      "context_text": " U.S. hostilities with Germany.\nThe official end to the war came nine"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 13.020462989807129,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 6,
+      "context_tokens": [
+        4523,
+        577,
+        476,
+        2379,
+        3320,
+        235265,
+        108,
+        235281,
+        1734,
+        832,
+        1230,
+        674,
+        104941,
+        9987,
+        603
+      ],
+      "context_text": " according to a US study.\n\"We all know that aerobic exercise is"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 13.013996124267578,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 15,
+      "context_tokens": [
+        235315,
+        235321,
+        235290,
+        235284,
+        235276,
+        235276,
+        235321,
+        235265,
+        108,
+        5393,
+        576,
+        573,
+        25473,
+        674,
+        1249,
+        614,
+        2845
+      ],
+      "context_text": "98-2008.\nSome of the themes that may be important"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 12.983039855957031,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 18,
+      "context_tokens": [
+        573,
+        48171,
+        604,
+        26995,
+        7572,
+        578,
+        35889,
+        235265,
+        108,
+        651,
+        1370,
+        3103,
+        4085,
+        14461,
+        576,
+        4975,
+        24345
+      ],
+      "context_text": " the Centers for Disease Control and Prevention.\nThe first multiyear estimate of national HIV"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 12.888432502746582,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 14,
+      "context_tokens": [
+        235269,
+        4616,
+        235269,
+        595,
+        235290,
+        235288,
+        235371,
+        108,
+        235371,
+        2504,
+        24809,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276,
+        19214
+      ],
+      "context_text": ", King, M-C|\n|Date Published||2010 Apr"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 12.457189559936523,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 5,
+      "context_tokens": [
+        235318,
+        8057,
+        20236,
+        173854,
+        108,
+        235371,
+        1596,
+        21061,
+        108111,
+        14350,
+        6215,
+        6307,
+        37533,
+        235403
+      ],
+      "context_text": "6 Microsoft Corp.|\n|This tutorial\u2014.NET Type Design Guidelines\u2014"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 12.364291191101074,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 5,
+      "context_tokens": [
+        603,
+        476,
+        162686,
+        2602,
+        235265,
+        108,
+        2045,
+        708,
+        1508,
+        9319,
+        577,
+        5598,
+        1089,
+        14565
+      ],
+      "context_text": " is a brainstorming page.\nYou are very welcome to write any crazy"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 12.362518310546875,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 19,
+      "context_tokens": [
+        25851,
+        235269,
+        2895,
+        576,
+        112394,
+        192813,
+        134808,
+        235265,
+        108,
+        10126,
+        591,
+        235308,
+        235321,
+        117456,
+        235275,
+        1420,
+        46655
+      ],
+      "context_text": " thesis, University of Muhammadiyah Malang.\nDownload (58Kb) | Preview"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 12.089109420776367,
+      "tokens": [
+        1816,
+        108
+      ],
+      "text": ".\u201d\n",
+      "position": 13,
+      "context_tokens": [
+        30425,
+        578,
+        1459,
+        506,
+        33284,
+        576,
+        11360,
+        1816,
+        108,
+        886,
+        1767,
+        14257,
+        1064,
+        21303,
+        21339,
+        235269,
+        7042
+      ],
+      "context_text": "asia and apraxia of speech.\u201d\nIn many adults who survive stroke, damage"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 11.809727668762207,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 2,
+      "context_tokens": [
+        9581,
+        235265,
+        108,
+        1596,
+        18862,
+        26178,
+        974,
+        576,
+        573,
+        235248,
+        235284
+      ],
+      "context_text": " library.\nThis museum profiles one of the 2"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 11.7471342086792,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 15,
+      "context_tokens": [
+        235336,
+        10979,
+        235248,
+        235274,
+        235265,
+        73173,
+        235371,
+        108,
+        235371,
+        226244,
+        708,
+        1644,
+        575,
+        573,
+        2412,
+        235292,
+        10979
+      ],
+      "context_text": "?|| 1. Owners|\n|Investments are made in the following:||"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 11.725523948669434,
+      "tokens": [
+        108,
+        235281
+      ],
+      "text": "\n\"",
+      "position": 7,
+      "context_tokens": [
+        4523,
+        577,
+        476,
+        2379,
+        3320,
+        235265,
+        108,
+        235281,
+        1734,
+        832,
+        1230,
+        674,
+        104941,
+        9987,
+        603,
+        26014
+      ],
+      "context_text": " according to a US study.\n\"We all know that aerobic exercise is beneficial"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 11.217155456542969,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 22,
+      "context_tokens": [
+        9198,
+        919,
+        1125,
+        6990,
+        731,
+        7149,
+        20010,
+        235265,
+        108,
+        651,
+        2121,
+        104787,
+        953,
+        63122,
+        819,
+        5999,
+        575
+      ],
+      "context_text": " cancer has been developed by British researchers.\nThe test detects precancerous cells in"
+    },
+    {
+      "feature_idx": 1925,
+      "activation_value": 11.12074089050293,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 14,
+      "context_tokens": [
+        235269,
+        685,
+        1578,
+        235265,
+        1474,
+        8598,
+        27558,
+        235265,
+        108,
+        31008,
+        1355,
+        577,
+        5424,
+        235248,
+        235274,
+        235315,
+        235315
+      ],
+      "context_text": ", as well. And prepared accordingly.\nThink back to October 199"
+    }
+  ]
+}

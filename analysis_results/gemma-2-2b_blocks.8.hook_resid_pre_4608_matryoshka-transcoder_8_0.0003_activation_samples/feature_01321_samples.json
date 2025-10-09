@@ -1,0 +1,578 @@
+{
+  "statistics": {
+    "feature_idx": 1321,
+    "num_samples": 30,
+    "max_activation": 15.870537757873535,
+    "mean_activation": 8.618888290723165,
+    "std_activation": 3.8268818944475305,
+    "min_activation": 2.5379886627197266,
+    "activation_count": 30,
+    "all_time_max": 15.870537757873535
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1321,
+      "activation_value": 15.870537757873535,
+      "tokens": [
+        4883,
+        10979
+      ],
+      "text": "Title||",
+      "position": 3,
+      "context_tokens": [
+        2,
+        235371,
+        4883,
+        10979,
+        85890,
+        93732,
+        575,
+        3515,
+        7197,
+        173854,
+        108,
+        235371
+      ],
+      "context_text": "<bos>|Title||Genetic heterogeneity in human disease.|\n|"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 14.84166145324707,
+      "tokens": [
+        235292,
+        10979
+      ],
+      "text": ":||",
+      "position": 16,
+      "context_tokens": [
+        2333,
+        10172,
+        14473,
+        108,
+        235371,
+        139905,
+        17753,
+        235292,
+        10979,
+        235274,
+        235276,
+        10979,
+        10930,
+        17753,
+        235292,
+        10979,
+        235276
+      ],
+      "context_text": " barcoding coverage\n|Specimen Records:||10||Public Records:||0"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 14.8284330368042,
+      "tokens": [
+        6215,
+        10979
+      ],
+      "text": " Type||",
+      "position": 14,
+      "context_tokens": [
+        575,
+        3515,
+        7197,
+        173854,
+        108,
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371,
+        108,
+        235371,
+        9370,
+        576,
+        36509
+      ],
+      "context_text": " in human disease.|\n|Publication Type||Journal Article|\n|Year of Publication"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 14.78994083404541,
+      "tokens": [
+        7197,
+        173854
+      ],
+      "text": " disease.|",
+      "position": 9,
+      "context_tokens": [
+        235371,
+        4883,
+        10979,
+        85890,
+        93732,
+        575,
+        3515,
+        7197,
+        173854,
+        108,
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371
+      ],
+      "context_text": "|Title||Genetic heterogeneity in human disease.|\n|Publication Type||Journal Article|"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 14.00368595123291,
+      "tokens": [
+        235276,
+        10979
+      ],
+      "text": "0||",
+      "position": 19,
+      "context_tokens": [
+        108,
+        235371,
+        139905,
+        17753,
+        235292,
+        10979,
+        235274,
+        235276,
+        10979,
+        10930,
+        17753,
+        235292,
+        10979,
+        235276,
+        235371,
+        108,
+        235371
+      ],
+      "context_text": "\n|Specimen Records:||10||Public Records:||0|\n|"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 12.730931282043457,
+      "tokens": [
+        11630,
+        235371
+      ],
+      "text": " Article|",
+      "position": 17,
+      "context_tokens": [
+        173854,
+        108,
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371,
+        108,
+        235371,
+        9370,
+        576,
+        36509,
+        10979,
+        235284,
+        235276
+      ],
+      "context_text": ".|\n|Publication Type||Journal Article|\n|Year of Publication||20"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.787659645080566,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 29,
+      "context_tokens": [
+        235274,
+        235265,
+        216701,
+        9082,
+        578,
+        14869,
+        235371,
+        108,
+        235371,
+        1841,
+        708
+      ],
+      "context_text": "1.Establishing goals and strategies|\n|What are"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.712271690368652,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 11,
+      "context_tokens": [
+        10979,
+        85890,
+        93732,
+        575,
+        3515,
+        7197,
+        173854,
+        108,
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371,
+        108,
+        235371
+      ],
+      "context_text": "||Genetic heterogeneity in human disease.|\n|Publication Type||Journal Article|\n|"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.55115032196045,
+      "tokens": [
+        36509,
+        10979
+      ],
+      "text": " Publication||",
+      "position": 23,
+      "context_tokens": [
+        23197,
+        11630,
+        235371,
+        108,
+        235371,
+        9370,
+        576,
+        36509,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276,
+        235371,
+        108,
+        235371,
+        18517
+      ],
+      "context_text": "Journal Article|\n|Year of Publication||2010|\n|Authors"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.547737121582031,
+      "tokens": [
+        235292,
+        10979
+      ],
+      "text": ":||",
+      "position": 19,
+      "context_tokens": [
+        235371,
+        18405,
+        29752,
+        26958,
+        576,
+        7211,
+        114671,
+        235292,
+        10979,
+        235248,
+        235274,
+        235265,
+        216701,
+        9082,
+        578,
+        14869,
+        235371
+      ],
+      "context_text": "|Four Principal Activities of Business Firms:|| 1.Establishing goals and strategies|"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.393095970153809,
+      "tokens": [
+        135865,
+        235371
+      ],
+      "text": " Tutorials|",
+      "position": 12,
+      "context_tokens": [
+        6307,
+        37533,
+        108,
+        235371,
+        19268,
+        585,
+        235345,
+        135865,
+        235371,
+        108,
+        14254,
+        14350,
+        32159,
+        135865,
+        235371,
+        108,
+        235265
+      ],
+      "context_text": " Design Guidelines\n|Visual C# Tutorials|\n|.NET Framework Tutorials|\n."
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.128702163696289,
+      "tokens": [
+        235292,
+        10979
+      ],
+      "text": ":||",
+      "position": 23,
+      "context_tokens": [
+        235292,
+        10979,
+        235274,
+        235276,
+        10979,
+        10930,
+        17753,
+        235292,
+        10979,
+        235276,
+        235371,
+        108,
+        235371,
+        4823,
+        18535,
+        675,
+        137344
+      ],
+      "context_text": ":||10||Public Records:||0|\n|Specimens with Sequences"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 10.041669845581055,
+      "tokens": [
+        235276,
+        235371
+      ],
+      "text": "0|",
+      "position": 28,
+      "context_tokens": [
+        9370,
+        576,
+        36509,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276,
+        235371,
+        108,
+        235371,
+        18517
+      ],
+      "context_text": "Year of Publication||2010|\n|Authors"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 9.226288795471191,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 19,
+      "context_tokens": [
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371,
+        108,
+        235371,
+        9370,
+        576,
+        36509,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276
+      ],
+      "context_text": "|Publication Type||Journal Article|\n|Year of Publication||2010"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 8.540684700012207,
+      "tokens": [
+        14869,
+        235371
+      ],
+      "text": " strategies|",
+      "position": 27,
+      "context_tokens": [
+        10979,
+        235248,
+        235274,
+        235265,
+        216701,
+        9082,
+        578,
+        14869,
+        235371,
+        108,
+        235371,
+        1841,
+        708
+      ],
+      "context_text": "|| 1.Establishing goals and strategies|\n|What are"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 8.153535842895508,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 27,
+      "context_tokens": [
+        10979,
+        10930,
+        17753,
+        235292,
+        10979,
+        235276,
+        235371,
+        108,
+        235371,
+        4823,
+        18535,
+        675,
+        137344
+      ],
+      "context_text": "||Public Records:||0|\n|Specimens with Sequences"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 8.080924034118652,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 30,
+      "context_tokens": [
+        36509,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276,
+        235371,
+        108,
+        235371,
+        18517
+      ],
+      "context_text": " Publication||2010|\n|Authors"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 6.842525959014893,
+      "tokens": [
+        235276,
+        235371
+      ],
+      "text": "0|",
+      "position": 25,
+      "context_tokens": [
+        235274,
+        235276,
+        10979,
+        10930,
+        17753,
+        235292,
+        10979,
+        235276,
+        235371,
+        108,
+        235371,
+        4823,
+        18535,
+        675,
+        137344
+      ],
+      "context_text": "10||Public Records:||0|\n|Specimens with Sequences"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 6.838442325592041,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 11,
+      "context_tokens": [
+        728,
+        4029,
+        235248,
+        235274,
+        724,
+        235248,
+        235284,
+        108,
+        235371,
+        18405,
+        29752,
+        26958,
+        576,
+        7211,
+        114671,
+        235292,
+        10979
+      ],
+      "context_text": " - CH 1 & 2\n|Four Principal Activities of Business Firms:||"
+    },
+    {
+      "feature_idx": 1321,
+      "activation_value": 6.3795061111450195,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 26,
+      "context_tokens": [
+        235371,
+        108,
+        235265,
+        14350,
+        6215,
+        6307,
+        37533,
+        108,
+        235371,
+        236011,
+        235248,
+        235284,
+        235276,
+        235276
+      ],
+      "context_text": "|\n.NET Type Design Guidelines\n|\u00a9 200"
+    }
+  ]
+}

@@ -1,0 +1,526 @@
+{
+  "statistics": {
+    "feature_idx": 661,
+    "num_samples": 18,
+    "max_activation": 11.482680320739746,
+    "mean_activation": 5.70692143175337,
+    "std_activation": 2.5765494019856146,
+    "min_activation": 2.484827756881714,
+    "activation_count": 18,
+    "all_time_max": 11.482680320739746
+  },
+  "top_samples": [
+    {
+      "feature_idx": 661,
+      "activation_value": 11.482680320739746,
+      "tokens": [
+        6630,
+        7783
+      ],
+      "text": " files generally",
+      "position": 27,
+      "context_tokens": [
+        576,
+        573,
+        15703,
+        10470,
+        1812,
+        235265,
+        13332,
+        6630,
+        7783,
+        2888,
+        3309,
+        12027,
+        1105
+      ],
+      "context_text": " of the destination operating system. Help files generally contain short instructions about"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 10.318604469299316,
+      "tokens": [
+        2062,
+        5250
+      ],
+      "text": " \u2014 usually",
+      "position": 27,
+      "context_tokens": [
+        1165,
+        20604,
+        577,
+        1378,
+        689,
+        978,
+        26606,
+        2062,
+        5250,
+        476,
+        2493,
+        578,
+        476
+      ],
+      "context_text": " It refers to two or more entities \u2014 usually a school and a"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 7.892669200897217,
+      "tokens": [
+        692,
+        3695
+      ],
+      "text": " you often",
+      "position": 17,
+      "context_tokens": [
+        14190,
+        10367,
+        108,
+        8652,
+        708,
+        1378,
+        3907,
+        692,
+        3695,
+        4675,
+        20463,
+        2449,
+        578,
+        978,
+        3695,
+        674,
+        780
+      ],
+      "context_text": " Dark Energy\nThese are two words you often hear thrown around and more often that not"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 7.748747825622559,
+      "tokens": [
+        978,
+        3695
+      ],
+      "text": " more often",
+      "position": 23,
+      "context_tokens": [
+        3907,
+        692,
+        3695,
+        4675,
+        20463,
+        2449,
+        578,
+        978,
+        3695,
+        674,
+        780,
+        590,
+        2063,
+        4492,
+        1461,
+        1064,
+        1453
+      ],
+      "context_text": " words you often hear thrown around and more often that not I come across people who don"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 7.2956767082214355,
+      "tokens": [
+        2045,
+        3695
+      ],
+      "text": "You often",
+      "position": 20,
+      "context_tokens": [
+        156625,
+        1925,
+        608,
+        235303,
+        23516,
+        195154,
+        108,
+        2045,
+        3695,
+        1443,
+        476,
+        8717,
+        27753,
+        576,
+        1357,
+        675,
+        476
+      ],
+      "context_text": " Marcellino D'Ambrosio\nYou often see a garden statue of him with a"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 7.1277079582214355,
+      "tokens": [
+        674,
+        780
+      ],
+      "text": " that not",
+      "position": 25,
+      "context_tokens": [
+        3695,
+        4675,
+        20463,
+        2449,
+        578,
+        978,
+        3695,
+        674,
+        780,
+        590,
+        2063,
+        4492,
+        1461,
+        1064,
+        1453
+      ],
+      "context_text": " often hear thrown around and more often that not I come across people who don"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 7.118107318878174,
+      "tokens": [
+        235269,
+        5250
+      ],
+      "text": ", usually",
+      "position": 30,
+      "context_tokens": [
+        39353,
+        573,
+        5027,
+        577,
+        11877,
+        675,
+        1174,
+        235269,
+        5250,
+        575
+      ],
+      "context_text": " forcing the living to dance with them, usually in"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 6.229799747467041,
+      "tokens": [
+        2185,
+        16342
+      ],
+      "text": " process normally",
+      "position": 27,
+      "context_tokens": [
+        121462,
+        774,
+        476,
+        17145,
+        235269,
+        573,
+        3910,
+        2185,
+        16342,
+        108,
+        624,
+        8240,
+        2582
+      ],
+      "context_text": "macs from a terminal, the parent process normally\nresumes control"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 6.025526523590088,
+      "tokens": [
+        108,
+        22905
+      ],
+      "text": "\nalways",
+      "position": 10,
+      "context_tokens": [
+        26544,
+        603,
+        47024,
+        577,
+        31073,
+        15768,
+        235269,
+        108,
+        22905,
+        3402,
+        577,
+        3178,
+        8512,
+        235287,
+        113425,
+        108,
+        1752
+      ],
+      "context_text": "WC is prone to Root Rot,\nalways due to low DO*Altitude\nplay"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 4.7711100578308105,
+      "tokens": [
+        3695,
+        1443
+      ],
+      "text": " often see",
+      "position": 21,
+      "context_tokens": [
+        1925,
+        608,
+        235303,
+        23516,
+        195154,
+        108,
+        2045,
+        3695,
+        1443,
+        476,
+        8717,
+        27753,
+        576,
+        1357,
+        675,
+        476,
+        13170
+      ],
+      "context_text": "ino D'Ambrosio\nYou often see a garden statue of him with a bird"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 4.2745232582092285,
+      "tokens": [
+        955,
+        29880
+      ],
+      "text": "...Sometimes",
+      "position": 15,
+      "context_tokens": [
+        235283,
+        7978,
+        4249,
+        8119,
+        82482,
+        235281,
+        108,
+        955,
+        29880,
+        665,
+        603,
+        1317,
+        978,
+        6016,
+        674,
+        603,
+        4880
+      ],
+      "context_text": "/High School Math Tutor\"\n...Sometimes it is just more practice that is needed"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 4.021909236907959,
+      "tokens": [
+        235265,
+        7922
+      ],
+      "text": ". Most",
+      "position": 16,
+      "context_tokens": [
+        603,
+        573,
+        15087,
+        674,
+        15093,
+        573,
+        2971,
+        235265,
+        7922,
+        22241,
+        708,
+        32752,
+        235265,
+        41256,
+        67472,
+        603,
+        573
+      ],
+      "context_text": " is the framework that supports the body. Most bones are hollow. Bone marrow is the"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 3.8716020584106445,
+      "tokens": [
+        22241,
+        708
+      ],
+      "text": " bones are",
+      "position": 18,
+      "context_tokens": [
+        15087,
+        674,
+        15093,
+        573,
+        2971,
+        235265,
+        7922,
+        22241,
+        708,
+        32752,
+        235265,
+        41256,
+        67472,
+        603,
+        573,
+        4072,
+        14976
+      ],
+      "context_text": " framework that supports the body. Most bones are hollow. Bone marrow is the soft tissue"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 3.5389890670776367,
+      "tokens": [
+        791,
+        2593
+      ],
+      "text": " have always",
+      "position": 9,
+      "context_tokens": [
+        651,
+        12734,
+        74431,
+        108,
+        651,
+        30084,
+        1461,
+        791,
+        2593,
+        11012,
+        17256,
+        575,
+        573,
+        9309,
+        235269,
+        578,
+        235269
+      ],
+      "context_text": "The Nature Elephant\nThe Karen people have always lived naturally in the forest, and,"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 3.146561622619629,
+      "tokens": [
+        798,
+        614
+      ],
+      "text": " can be",
+      "position": 30,
+      "context_tokens": [
+        235269,
+        21780,
+        235269,
+        578,
+        8787,
+        235265,
+        2365,
+        798,
+        614,
+        11843
+      ],
+      "context_text": ", providers, and partners. They can be bread"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 2.7558255195617676,
+      "tokens": [
+        1165,
+        7783
+      ],
+      "text": " It generally",
+      "position": 19,
+      "context_tokens": [
+        476,
+        7827,
+        5245,
+        32901,
+        5642,
+        5091,
+        235265,
+        1165,
+        7783,
+        4918,
+        115457,
+        39353,
+        573,
+        5027,
+        577,
+        11877,
+        675
+      ],
+      "context_text": " a favorite late medieval picture subject. It generally shows skeletons forcing the living to dance with"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 2.6197171211242676,
+      "tokens": [
+        22905,
+        3402
+      ],
+      "text": "always due",
+      "position": 11,
+      "context_tokens": [
+        603,
+        47024,
+        577,
+        31073,
+        15768,
+        235269,
+        108,
+        22905,
+        3402,
+        577,
+        3178,
+        8512,
+        235287,
+        113425,
+        108,
+        1752,
+        671
+      ],
+      "context_text": " is prone to Root Rot,\nalways due to low DO*Altitude\nplay an"
+    },
+    {
+      "feature_idx": 661,
+      "activation_value": 2.484827756881714,
+      "tokens": [
+        108,
+        11116
+      ],
+      "text": "\nMost",
+      "position": 19,
+      "context_tokens": [
+        108,
+        8024,
+        59987,
+        22047,
+        70460,
+        22576,
+        235292,
+        108,
+        11116,
+        1461,
+        708,
+        8105,
+        576,
+        573,
+        8416,
+        576,
+        3967
+      ],
+      "context_text": "\nSMOKE DETECTOR INFORMATION:\nMost people are aware of the danger of fire"
+    }
+  ]
+}

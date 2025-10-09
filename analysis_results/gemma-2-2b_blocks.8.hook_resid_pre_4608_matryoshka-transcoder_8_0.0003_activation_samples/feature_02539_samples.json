@@ -1,0 +1,327 @@
+{
+  "statistics": {
+    "feature_idx": 2539,
+    "num_samples": 11,
+    "max_activation": 11.410795211791992,
+    "mean_activation": 4.542574427344582,
+    "std_activation": 2.361362851479308,
+    "min_activation": 2.529571056365967,
+    "activation_count": 11,
+    "all_time_max": 11.410795211791992
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2539,
+      "activation_value": 11.410795211791992,
+      "tokens": [
+        235269,
+        3359
+      ],
+      "text": ", including",
+      "position": 23,
+      "context_tokens": [
+        14652,
+        44867,
+        573,
+        34760,
+        576,
+        8205,
+        16011,
+        235269,
+        3359,
+        1941,
+        8830,
+        731,
+        98620,
+        66968,
+        45371,
+        591,
+        235277
+      ],
+      "context_text": " closely monitors the incidence of animal diseases, including those caused by swine influenza viruses (S"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 5.705835342407227,
+      "tokens": [
+        235269,
+        5199
+      ],
+      "text": ", especially",
+      "position": 15,
+      "context_tokens": [
+        235256,
+        7489,
+        15731,
+        576,
+        199233,
+        1249,
+        2375,
+        235269,
+        5199,
+        1185,
+        20585,
+        908,
+        696,
+        476,
+        2566,
+        7148,
+        689
+      ],
+      "context_text": "s beginning stages of deflation may feel, especially when filling up at a service station or"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 4.974294185638428,
+      "tokens": [
+        2062,
+        5250
+      ],
+      "text": " \u2014 usually",
+      "position": 27,
+      "context_tokens": [
+        1165,
+        20604,
+        577,
+        1378,
+        689,
+        978,
+        26606,
+        2062,
+        5250,
+        476,
+        2493,
+        578,
+        476
+      ],
+      "context_text": " It refers to two or more entities \u2014 usually a school and a"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 4.6999335289001465,
+      "tokens": [
+        35237,
+        18416
+      ],
+      "text": " complications involving",
+      "position": 23,
+      "context_tokens": [
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290,
+        7617,
+        35237,
+        18416,
+        573,
+        25141,
+        235269,
+        4628,
+        578,
+        77817,
+        235269,
+        578
+      ],
+      "context_text": " blood sugar levels and long-term complications involving the circulation, eyes and kidneys, and"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 3.9621517658233643,
+      "tokens": [
+        798,
+        3707
+      ],
+      "text": " can include",
+      "position": 12,
+      "context_tokens": [
+        235336,
+        2439,
+        1721,
+        736,
+        2714,
+        235336,
+        56974,
+        798,
+        3707,
+        2775,
+        674,
+        603,
+        21145,
+        27769,
+        577,
+        476,
+        3666
+      ],
+      "context_text": "? What does this mean? Definitions can include something that is potentially offensive to a particular"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 3.9375686645507812,
+      "tokens": [
+        3731,
+        675
+      ],
+      "text": " along with",
+      "position": 7,
+      "context_tokens": [
+        2,
+        35788,
+        1913,
+        18348,
+        31511,
+        235269,
+        3731,
+        675,
+        888,
+        12382,
+        235269,
+        17377,
+        235269,
+        578,
+        2418,
+        20114
+      ],
+      "context_text": "<bos>College life involves excitement, along with new challenges, risks, and responsibilities"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 3.5654616355895996,
+      "tokens": [
+        235269,
+        22368
+      ],
+      "text": ", titled",
+      "position": 26,
+      "context_tokens": [
+        2351,
+        2149,
+        1658,
+        577,
+        3466,
+        573,
+        3542,
+        235269,
+        22368,
+        1080,
+        29009,
+        13727,
+        93294,
+        5701
+      ],
+      "context_text": " next three years to fund the project, titled \u201cAuditory masking effects"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 3.5072686672210693,
+      "tokens": [
+        7148,
+        689
+      ],
+      "text": " station or",
+      "position": 23,
+      "context_tokens": [
+        5199,
+        1185,
+        20585,
+        908,
+        696,
+        476,
+        2566,
+        7148,
+        689,
+        9723,
+        604,
+        476,
+        3036,
+        235269,
+        78129,
+        42550,
+        674
+      ],
+      "context_text": " especially when filling up at a service station or shopping for a house, economists warn that"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 2.8868560791015625,
+      "tokens": [
+        3359,
+        1941
+      ],
+      "text": " including those",
+      "position": 24,
+      "context_tokens": [
+        44867,
+        573,
+        34760,
+        576,
+        8205,
+        16011,
+        235269,
+        3359,
+        1941,
+        8830,
+        731,
+        98620,
+        66968,
+        45371,
+        591,
+        235277
+      ],
+      "context_text": " monitors the incidence of animal diseases, including those caused by swine influenza viruses (S"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 2.7885825634002686,
+      "tokens": [
+        235269,
+        6996
+      ],
+      "text": ", meaning",
+      "position": 31,
+      "context_tokens": [
+        235269,
+        573,
+        68179,
+        2611,
+        15336,
+        708,
+        63269,
+        235269,
+        6996
+      ],
+      "context_text": ", the emitted light waves are coherent, meaning"
+    },
+    {
+      "feature_idx": 2539,
+      "activation_value": 2.529571056365967,
+      "tokens": [
+        576,
+        93277
+      ],
+      "text": " of carbohydrate",
+      "position": 9,
+      "context_tokens": [
+        3974,
+        696,
+        948,
+        235248,
+        235308,
+        235276,
+        27491,
+        576,
+        93277,
+        575,
+        476,
+        3666,
+        2960,
+        603,
+        36105,
+        1280,
+        573
+      ],
+      "context_text": " rate at which 50 grams of carbohydrate in a particular food is absorbed into the"
+    }
+  ]
+}

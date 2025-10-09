@@ -1,0 +1,228 @@
+{
+  "statistics": {
+    "feature_idx": 402,
+    "num_samples": 8,
+    "max_activation": 14.376065254211426,
+    "mean_activation": 10.61694997549057,
+    "std_activation": 2.7658298068000455,
+    "min_activation": 4.661144733428955,
+    "activation_count": 8,
+    "all_time_max": 14.376065254211426
+  },
+  "top_samples": [
+    {
+      "feature_idx": 402,
+      "activation_value": 14.376065254211426,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 11,
+      "context_tokens": [
+        10979,
+        85890,
+        93732,
+        575,
+        3515,
+        7197,
+        173854,
+        108,
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371,
+        108,
+        235371
+      ],
+      "context_text": "||Genetic heterogeneity in human disease.|\n|Publication Type||Journal Article|\n|"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 12.691130638122559,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 19,
+      "context_tokens": [
+        235371,
+        37326,
+        6215,
+        10979,
+        23197,
+        11630,
+        235371,
+        108,
+        235371,
+        9370,
+        576,
+        36509,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276
+      ],
+      "context_text": "|Publication Type||Journal Article|\n|Year of Publication||2010"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 12.56359577178955,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 27,
+      "context_tokens": [
+        10979,
+        10930,
+        17753,
+        235292,
+        10979,
+        235276,
+        235371,
+        108,
+        235371,
+        4823,
+        18535,
+        675,
+        137344
+      ],
+      "context_text": "||Public Records:||0|\n|Specimens with Sequences"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 11.21291732788086,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 30,
+      "context_tokens": [
+        36509,
+        10979,
+        235284,
+        235276,
+        235274,
+        235276,
+        235371,
+        108,
+        235371,
+        18517
+      ],
+      "context_text": " Publication||2010|\n|Authors"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 10.68248176574707,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 29,
+      "context_tokens": [
+        235274,
+        235265,
+        216701,
+        9082,
+        578,
+        14869,
+        235371,
+        108,
+        235371,
+        1841,
+        708
+      ],
+      "context_text": "1.Establishing goals and strategies|\n|What are"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 9.540915489196777,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 29,
+      "context_tokens": [
+        10930,
+        113091,
+        235256,
+        235292,
+        10979,
+        235276,
+        235371,
+        108,
+        235371,
+        34302,
+        3279
+      ],
+      "context_text": "Public BINs:||0|\n|Species With"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 9.207348823547363,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 26,
+      "context_tokens": [
+        235371,
+        108,
+        235265,
+        14350,
+        6215,
+        6307,
+        37533,
+        108,
+        235371,
+        236011,
+        235248,
+        235284,
+        235276,
+        235276
+      ],
+      "context_text": "|\n.NET Type Design Guidelines\n|\u00a9 200"
+    },
+    {
+      "feature_idx": 402,
+      "activation_value": 4.661144733428955,
+      "tokens": [
+        108,
+        14254
+      ],
+      "text": "\n|.",
+      "position": 14,
+      "context_tokens": [
+        108,
+        235371,
+        19268,
+        585,
+        235345,
+        135865,
+        235371,
+        108,
+        14254,
+        14350,
+        32159,
+        135865,
+        235371,
+        108,
+        235265,
+        14350,
+        6215
+      ],
+      "context_text": "\n|Visual C# Tutorials|\n|.NET Framework Tutorials|\n.NET Type"
+    }
+  ]
+}

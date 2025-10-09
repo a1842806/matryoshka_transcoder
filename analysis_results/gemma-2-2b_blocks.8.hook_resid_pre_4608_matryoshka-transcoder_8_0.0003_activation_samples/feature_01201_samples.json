@@ -1,0 +1,570 @@
+{
+  "statistics": {
+    "feature_idx": 1201,
+    "num_samples": 30,
+    "max_activation": 12.76665210723877,
+    "mean_activation": 5.566834076245626,
+    "std_activation": 2.897758600596806,
+    "min_activation": 2.6982765197753906,
+    "activation_count": 30,
+    "all_time_max": 12.76665210723877
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1201,
+      "activation_value": 12.76665210723877,
+      "tokens": [
+        576,
+        3486
+      ],
+      "text": " of young",
+      "position": 24,
+      "context_tokens": [
+        235284,
+        235276,
+        235274,
+        235276,
+        108,
+        651,
+        4731,
+        576,
+        3486,
+        1461,
+        575,
+        19031,
+        573,
+        2329,
+        576,
+        573
+      ],
+      "context_text": "2010\nThe role of young people in improving the state of the"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 11.793689727783203,
+      "tokens": [
+        578,
+        14257
+      ],
+      "text": " and adults",
+      "position": 12,
+      "context_tokens": [
+        476,
+        1703,
+        577,
+        4740,
+        10353,
+        604,
+        3069,
+        578,
+        14257,
+        577,
+        614,
+        978,
+        27888,
+        6066,
+        235265,
+        1165,
+        20604
+      ],
+      "context_text": " a way to increase opportunities for children and adults to be more physically active. It refers"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 10.979965209960938,
+      "tokens": [
+        3486,
+        1461
+      ],
+      "text": " young people",
+      "position": 4,
+      "context_tokens": [
+        2,
+        57379,
+        171953,
+        3486,
+        1461,
+        235349,
+        235256,
+        12881,
+        575,
+        24345,
+        24023,
+        108,
+        235284
+      ],
+      "context_text": "<bos>Conference underscores young people\u2019s leadership in HIV prevention\n2"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 10.128121376037598,
+      "tokens": [
+        171953,
+        3486
+      ],
+      "text": " underscores young",
+      "position": 3,
+      "context_tokens": [
+        2,
+        57379,
+        171953,
+        3486,
+        1461,
+        235349,
+        235256,
+        12881,
+        575,
+        24345,
+        24023,
+        108
+      ],
+      "context_text": "<bos>Conference underscores young people\u2019s leadership in HIV prevention\n"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 9.435548782348633,
+      "tokens": [
+        3932,
+        3486
+      ],
+      "text": " among young",
+      "position": 29,
+      "context_tokens": [
+        235284,
+        235276,
+        235276,
+        235315,
+        2862,
+        27790,
+        6629,
+        3932,
+        3486,
+        2656,
+        18104
+      ],
+      "context_text": "2009 though infections increased among young black gay"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 8.76810073852539,
+      "tokens": [
+        3486,
+        1461
+      ],
+      "text": " young people",
+      "position": 25,
+      "context_tokens": [
+        235276,
+        235274,
+        235276,
+        108,
+        651,
+        4731,
+        576,
+        3486,
+        1461,
+        575,
+        19031,
+        573,
+        2329,
+        576,
+        573
+      ],
+      "context_text": "010\nThe role of young people in improving the state of the"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 8.338323593139648,
+      "tokens": [
+        235292,
+        3911
+      ],
+      "text": ": age",
+      "position": 5,
+      "context_tokens": [
+        2,
+        21876,
+        31206,
+        25473,
+        235292,
+        3911,
+        235269,
+        5404,
+        235269,
+        3545,
+        108,
+        15339,
+        235248,
+        235276
+      ],
+      "context_text": "<bos>Millennial themes: age, education, services\nDecember 0"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 6.498042106628418,
+      "tokens": [
+        1535,
+        8586
+      ],
+      "text": " every kid",
+      "position": 5,
+      "context_tokens": [
+        2,
+        235366,
+        235285,
+        1742,
+        1535,
+        8586,
+        919,
+        15532,
+        908,
+        671,
+        7103,
+        7095,
+        2316,
+        1284
+      ],
+      "context_text": "<bos>\u201cI think every kid has picked up an interesting rock,\u201d she"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 6.466852188110352,
+      "tokens": [
+        604,
+        3069
+      ],
+      "text": " for children",
+      "position": 10,
+      "context_tokens": [
+        1281,
+        603,
+        476,
+        1703,
+        577,
+        4740,
+        10353,
+        604,
+        3069,
+        578,
+        14257,
+        577,
+        614,
+        978,
+        27888,
+        6066,
+        235265
+      ],
+      "context_text": " use is a way to increase opportunities for children and adults to be more physically active."
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 6.1013007164001465,
+      "tokens": [
+        7978,
+        4249
+      ],
+      "text": "High School",
+      "position": 9,
+      "context_tokens": [
+        235281,
+        161081,
+        235269,
+        40918,
+        235269,
+        12884,
+        235283,
+        7978,
+        4249,
+        8119,
+        82482,
+        235281,
+        108,
+        955,
+        29880,
+        665,
+        603
+      ],
+      "context_text": "\"Caring, Effective, Middle/High School Math Tutor\"\n...Sometimes it is"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 5.585921764373779,
+      "tokens": [
+        21876,
+        31206
+      ],
+      "text": "Millennial",
+      "position": 2,
+      "context_tokens": [
+        2,
+        21876,
+        31206,
+        25473,
+        235292,
+        3911,
+        235269,
+        5404,
+        235269,
+        3545,
+        108
+      ],
+      "context_text": "<bos>Millennial themes: age, education, services\n"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 5.1830058097839355,
+      "tokens": [
+        235284,
+        235290
+      ],
+      "text": "2-",
+      "position": 7,
+      "context_tokens": [
+        2,
+        26244,
+        575,
+        573,
+        235248,
+        235274,
+        235284,
+        235290,
+        46572,
+        54896,
+        6307,
+        56760,
+        235336,
+        235256,
+        7151,
+        2733
+      ],
+      "context_text": "<bos>Students in the 12-quarter Graphic Design bachelor?s degree program"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.613423824310303,
+      "tokens": [
+        235283,
+        7978
+      ],
+      "text": "/High",
+      "position": 8,
+      "context_tokens": [
+        2,
+        235281,
+        161081,
+        235269,
+        40918,
+        235269,
+        12884,
+        235283,
+        7978,
+        4249,
+        8119,
+        82482,
+        235281,
+        108,
+        955,
+        29880,
+        665
+      ],
+      "context_text": "<bos>\"Caring, Effective, Middle/High School Math Tutor\"\n...Sometimes it"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.575758457183838,
+      "tokens": [
+        747,
+        235290
+      ],
+      "text": " K-",
+      "position": 8,
+      "context_tokens": [
+        2,
+        4398,
+        5626,
+        4249,
+        108,
+        3492,
+        36886,
+        747,
+        235290,
+        235321,
+        603,
+        7023,
+        696,
+        573,
+        16098,
+        35437,
+        12980
+      ],
+      "context_text": "<bos>About Our School\nPathfinder K-8 is located at the Cooper Elementary Building"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.509655475616455,
+      "tokens": [
+        235290,
+        235321
+      ],
+      "text": "-8",
+      "position": 9,
+      "context_tokens": [
+        4398,
+        5626,
+        4249,
+        108,
+        3492,
+        36886,
+        747,
+        235290,
+        235321,
+        603,
+        7023,
+        696,
+        573,
+        16098,
+        35437,
+        12980,
+        611
+      ],
+      "context_text": "About Our School\nPathfinder K-8 is located at the Cooper Elementary Building on"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.313609600067139,
+      "tokens": [
+        235274,
+        235284
+      ],
+      "text": "12",
+      "position": 6,
+      "context_tokens": [
+        2,
+        26244,
+        575,
+        573,
+        235248,
+        235274,
+        235284,
+        235290,
+        46572,
+        54896,
+        6307,
+        56760,
+        235336,
+        235256,
+        7151
+      ],
+      "context_text": "<bos>Students in the 12-quarter Graphic Design bachelor?s degree"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.131942272186279,
+      "tokens": [
+        926,
+        20471
+      ],
+      "text": " his elder",
+      "position": 9,
+      "context_tokens": [
+        6604,
+        3958,
+        27875,
+        235290,
+        2397,
+        11012,
+        675,
+        926,
+        20471,
+        18388,
+        575,
+        476,
+        24501,
+        235290,
+        6111,
+        235269,
+        984
+      ],
+      "context_text": "Long ago Fisher-Man lived with his elder brothers in a sweat-house, they"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.121389865875244,
+      "tokens": [
+        476,
+        2493
+      ],
+      "text": " a school",
+      "position": 29,
+      "context_tokens": [
+        577,
+        1378,
+        689,
+        978,
+        26606,
+        2062,
+        5250,
+        476,
+        2493,
+        578,
+        476
+      ],
+      "context_text": " to two or more entities \u2014 usually a school and a"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 4.008715629577637,
+      "tokens": [
+        861,
+        2730
+      ],
+      "text": " your family",
+      "position": 28,
+      "context_tokens": [
+        573,
+        7640,
+        30871,
+        15306,
+        235269,
+        692,
+        578,
+        861,
+        2730,
+        877,
+        3918,
+        36726
+      ],
+      "context_text": " the Bluegrass Region, you and your family will learn fascinating"
+    },
+    {
+      "feature_idx": 1201,
+      "activation_value": 3.4906535148620605,
+      "tokens": [
+        235269,
+        235248
+      ],
+      "text": ", ",
+      "position": 16,
+      "context_tokens": [
+        235269,
+        3545,
+        108,
+        15339,
+        235248,
+        235276,
+        235274,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        108,
+        651,
+        14511,
+        576
+      ],
+      "context_text": ", services\nDecember 01, 1999\nThe Bureau of"
+    }
+  ]
+}

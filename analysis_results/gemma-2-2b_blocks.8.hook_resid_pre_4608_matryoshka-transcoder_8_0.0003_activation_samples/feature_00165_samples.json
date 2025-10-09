@@ -1,0 +1,235 @@
+{
+  "statistics": {
+    "feature_idx": 165,
+    "num_samples": 8,
+    "max_activation": 15.049948692321777,
+    "mean_activation": 7.123603045940399,
+    "std_activation": 4.068792938463359,
+    "min_activation": 2.515993118286133,
+    "activation_count": 8,
+    "all_time_max": 15.049948692321777
+  },
+  "top_samples": [
+    {
+      "feature_idx": 165,
+      "activation_value": 15.049948692321777,
+      "tokens": [
+        578,
+        41486
+      ],
+      "text": " and renewable",
+      "position": 22,
+      "context_tokens": [
+        888,
+        4684,
+        578,
+        5137,
+        16364,
+        5163,
+        908,
+        578,
+        41486,
+        4134,
+        14335,
+        39258,
+        5228,
+        24459,
+        235269,
+        573,
+        40086
+      ],
+      "context_text": " new oil and gas nations coming up and renewable energy usage gaining global momentum, the fossil"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 10.432997703552246,
+      "tokens": [
+        41486,
+        4134
+      ],
+      "text": " renewable energy",
+      "position": 23,
+      "context_tokens": [
+        4684,
+        578,
+        5137,
+        16364,
+        5163,
+        908,
+        578,
+        41486,
+        4134,
+        14335,
+        39258,
+        5228,
+        24459,
+        235269,
+        573,
+        40086,
+        47043
+      ],
+      "context_text": " oil and gas nations coming up and renewable energy usage gaining global momentum, the fossil fuels"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 9.722559928894043,
+      "tokens": [
+        573,
+        40086
+      ],
+      "text": " the fossil",
+      "position": 30,
+      "context_tokens": [
+        41486,
+        4134,
+        14335,
+        39258,
+        5228,
+        24459,
+        235269,
+        573,
+        40086,
+        47043
+      ],
+      "context_text": " renewable energy usage gaining global momentum, the fossil fuels"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 6.9272918701171875,
+      "tokens": [
+        4134,
+        14335
+      ],
+      "text": " energy usage",
+      "position": 24,
+      "context_tokens": [
+        578,
+        5137,
+        16364,
+        5163,
+        908,
+        578,
+        41486,
+        4134,
+        14335,
+        39258,
+        5228,
+        24459,
+        235269,
+        573,
+        40086,
+        47043
+      ],
+      "context_text": " and gas nations coming up and renewable energy usage gaining global momentum, the fossil fuels"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 5.625412940979004,
+      "tokens": [
+        40086,
+        47043
+      ],
+      "text": " fossil fuels",
+      "position": 31,
+      "context_tokens": [
+        4134,
+        14335,
+        39258,
+        5228,
+        24459,
+        235269,
+        573,
+        40086,
+        47043
+      ],
+      "context_text": " energy usage gaining global momentum, the fossil fuels"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 3.466571092605591,
+      "tokens": [
+        18506,
+        16756
+      ],
+      "text": "generate electrical",
+      "position": 22,
+      "context_tokens": [
+        233721,
+        22787,
+        22997,
+        603,
+        25732,
+        577,
+        954,
+        18506,
+        16756,
+        56531,
+        696,
+        476,
+        1370,
+        113286,
+        3974,
+        235269,
+        578
+      ],
+      "context_text": " pacemaker pulse generator is adapted to .generate electrical stimuli at a first pacing rate, and"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 3.248049020767212,
+      "tokens": [
+        578,
+        5137
+      ],
+      "text": " and gas",
+      "position": 17,
+      "context_tokens": [
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578,
+        5137,
+        16364,
+        5163,
+        908,
+        578,
+        41486,
+        4134,
+        14335,
+        39258
+      ],
+      "context_text": " (Xinhua) -- With new oil and gas nations coming up and renewable energy usage gaining"
+    },
+    {
+      "feature_idx": 165,
+      "activation_value": 2.515993118286133,
+      "tokens": [
+        39258,
+        5228
+      ],
+      "text": " gaining global",
+      "position": 26,
+      "context_tokens": [
+        16364,
+        5163,
+        908,
+        578,
+        41486,
+        4134,
+        14335,
+        39258,
+        5228,
+        24459,
+        235269,
+        573,
+        40086,
+        47043
+      ],
+      "context_text": " nations coming up and renewable energy usage gaining global momentum, the fossil fuels"
+    }
+  ]
+}

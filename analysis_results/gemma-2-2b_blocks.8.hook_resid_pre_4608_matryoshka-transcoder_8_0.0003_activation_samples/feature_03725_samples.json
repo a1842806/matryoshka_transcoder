@@ -1,0 +1,573 @@
+{
+  "statistics": {
+    "feature_idx": 3725,
+    "num_samples": 50,
+    "max_activation": 12.258108139038086,
+    "mean_activation": 8.144696159362793,
+    "std_activation": 1.1908633654588554,
+    "min_activation": 6.806812763214111,
+    "activation_count": 159,
+    "all_time_max": 12.258108139038086
+  },
+  "top_samples": [
+    {
+      "feature_idx": 3725,
+      "activation_value": 12.258108139038086,
+      "tokens": [
+        15774,
+        235269
+      ],
+      "text": " dimensions,",
+      "position": 31,
+      "context_tokens": [
+        177306,
+        685,
+        4880,
+        577,
+        573,
+        5299,
+        5912,
+        15774,
+        235269
+      ],
+      "context_text": " reformat as needed to the screen window dimensions,"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 11.25041675567627,
+      "tokens": [
+        35464,
+        235269
+      ],
+      "text": " relay,",
+      "position": 11,
+      "context_tokens": [
+        118674,
+        6934,
+        674,
+        3598,
+        685,
+        671,
+        2174,
+        35464,
+        235269,
+        603,
+        476,
+        4801,
+        6934,
+        674,
+        1721,
+        780,
+        17231
+      ],
+      "context_text": " SMTP server that works as an open relay, is a email server that does not verify"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 10.542302131652832,
+      "tokens": [
+        8042,
+        235269
+      ],
+      "text": " science,",
+      "position": 27,
+      "context_tokens": [
+        1212,
+        603,
+        591,
+        2189,
+        614,
+        13437,
+        731,
+        8042,
+        235269,
+        19754,
+        689,
+        3519,
+        235275
+      ],
+      "context_text": " what is (can be discovered by science, philosophy or reason)"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 10.448728561401367,
+      "tokens": [
+        1174,
+        235269
+      ],
+      "text": " them,",
+      "position": 29,
+      "context_tokens": [
+        115457,
+        39353,
+        573,
+        5027,
+        577,
+        11877,
+        675,
+        1174,
+        235269,
+        5250,
+        575
+      ],
+      "context_text": " skeletons forcing the living to dance with them, usually in"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 10.07339859008789,
+      "tokens": [
+        27049,
+        235269
+      ],
+      "text": " wolf,",
+      "position": 27,
+      "context_tokens": [
+        577,
+        573,
+        13141,
+        235269,
+        12629,
+        4513,
+        476,
+        27049,
+        235269,
+        578,
+        2507,
+        3584,
+        671
+      ],
+      "context_text": " to the birds, pacified a wolf, and put together an"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 9.509706497192383,
+      "tokens": [
+        5312,
+        235269
+      ],
+      "text": "ising,",
+      "position": 27,
+      "context_tokens": [
+        235290,
+        483,
+        235290,
+        72433,
+        574,
+        235283,
+        1599,
+        5312,
+        235269,
+        22440,
+        8600,
+        235269,
+        3547
+      ],
+      "context_text": "-or-treating/guising, costume parties, making"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 9.338536262512207,
+      "tokens": [
+        8143,
+        235269
+      ],
+      "text": " characters,",
+      "position": 15,
+      "context_tokens": [
+        603,
+        780,
+        476,
+        151505,
+        1671,
+        675,
+        9202,
+        8143,
+        235269,
+        901,
+        1013,
+        665,
+        1049,
+        1134,
+        984,
+        614,
+        3443
+      ],
+      "context_text": " is not a trope used with male characters, but if it were would they be taken"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 9.20223331451416,
+      "tokens": [
+        5809,
+        235269
+      ],
+      "text": " temperature,",
+      "position": 15,
+      "context_tokens": [
+        71402,
+        9404,
+        7059,
+        675,
+        8957,
+        3707,
+        2681,
+        5809,
+        235269,
+        2681,
+        5601,
+        235269,
+        36351,
+        235269,
+        6785,
+        235269,
+        578
+      ],
+      "context_text": " measurable variables associated with weather include air temperature, air pressure, humidity, wind, and"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 9.184982299804688,
+      "tokens": [
+        4168,
+        235269
+      ],
+      "text": " death,",
+      "position": 10,
+      "context_tokens": [
+        8776,
+        4337,
+        235265,
+        108,
+        651,
+        11877,
+        576,
+        4168,
+        235269,
+        476,
+        7827,
+        5245,
+        32901,
+        5642,
+        5091,
+        235265,
+        1165
+      ],
+      "context_text": " upper section.\nThe dance of death, a favorite late medieval picture subject. It"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 9.102818489074707,
+      "tokens": [
+        5993,
+        235269
+      ],
+      "text": "ums,",
+      "position": 14,
+      "context_tokens": [
+        24286,
+        578,
+        13231,
+        14130,
+        1154,
+        15185,
+        45619,
+        5993,
+        235269,
+        38489,
+        7969,
+        578,
+        158663,
+        235265,
+        714,
+        7819,
+        603
+      ],
+      "context_text": " indoor and outdoor spaces like gymnasiums, athletic fields and playgrounds. The concept is"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.818007469177246,
+      "tokens": [
+        6785,
+        235269
+      ],
+      "text": " wind,",
+      "position": 22,
+      "context_tokens": [
+        5809,
+        235269,
+        2681,
+        5601,
+        235269,
+        36351,
+        235269,
+        6785,
+        235269,
+        578,
+        39699,
+        235265,
+        714,
+        13795,
+        1170,
+        7744,
+        16010
+      ],
+      "context_text": " temperature, air pressure, humidity, wind, and precipitation. The atmosphere also contains organized"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.606842041015625,
+      "tokens": [
+        23868,
+        235269
+      ],
+      "text": " habitat,",
+      "position": 20,
+      "context_tokens": [
+        7094,
+        40938,
+        476,
+        9677,
+        36451,
+        11634,
+        46899,
+        23868,
+        235269,
+        948,
+        603,
+        2076,
+        4756,
+        20110,
+        235265,
+        3725,
+        116346
+      ],
+      "context_text": " currently maintains a slightly lesser native geographic habitat, which is still quite impressive. American beech"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.564757347106934,
+      "tokens": [
+        26208,
+        235269
+      ],
+      "text": "hook,",
+      "position": 24,
+      "context_tokens": [
+        16616,
+        108,
+        22393,
+        235290,
+        49516,
+        3335,
+        235290,
+        26208,
+        235269,
+        1492,
+        76551,
+        573,
+        637,
+        121462,
+        2185,
+        578
+      ],
+      "context_text": " hook\nkill-emacs-hook, then exits the Emacs process and"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.479450225830078,
+      "tokens": [
+        5601,
+        235269
+      ],
+      "text": " pressure,",
+      "position": 18,
+      "context_tokens": [
+        675,
+        8957,
+        3707,
+        2681,
+        5809,
+        235269,
+        2681,
+        5601,
+        235269,
+        36351,
+        235269,
+        6785,
+        235269,
+        578,
+        39699,
+        235265,
+        714
+      ],
+      "context_text": " with weather include air temperature, air pressure, humidity, wind, and precipitation. The"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.373162269592285,
+      "tokens": [
+        13141,
+        235269
+      ],
+      "text": " birds,",
+      "position": 22,
+      "context_tokens": [
+        675,
+        8398,
+        235265,
+        1315,
+        72354,
+        577,
+        573,
+        13141,
+        235269,
+        12629,
+        4513,
+        476,
+        27049,
+        235269,
+        578,
+        2507,
+        3584
+      ],
+      "context_text": " with animals. He preached to the birds, pacified a wolf, and put together"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.349976539611816,
+      "tokens": [
+        39987,
+        235269
+      ],
+      "text": " curiosity,",
+      "position": 18,
+      "context_tokens": [
+        19896,
+        665,
+        236193,
+        235256,
+        1024,
+        29881,
+        576,
+        39987,
+        235269,
+        99597,
+        235269,
+        35378,
+        689,
+        1554,
+        235269,
+        65075,
+        3120
+      ],
+      "context_text": " Whether it\ufffds their traits of curiosity, perseverance, loyalty or play, wolves exist"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.308826446533203,
+      "tokens": [
+        235276,
+        235269
+      ],
+      "text": "0,",
+      "position": 30,
+      "context_tokens": [
+        578,
+        17006,
+        577,
+        978,
+        1178,
+        235248,
+        235315,
+        235276,
+        235269,
+        235276
+      ],
+      "context_text": " and contribute to more than 90,0"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.301231384277344,
+      "tokens": [
+        21339,
+        235269
+      ],
+      "text": " stroke,",
+      "position": 20,
+      "context_tokens": [
+        1816,
+        108,
+        886,
+        1767,
+        14257,
+        1064,
+        21303,
+        21339,
+        235269,
+        7042,
+        577,
+        11360,
+        12955,
+        576,
+        573,
+        9494,
+        3190
+      ],
+      "context_text": ".\u201d\nIn many adults who survive stroke, damage to speech regions of the brain results"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.284489631652832,
+      "tokens": [
+        8600,
+        235269
+      ],
+      "text": " parties,",
+      "position": 30,
+      "context_tokens": [
+        72433,
+        574,
+        235283,
+        1599,
+        5312,
+        235269,
+        22440,
+        8600,
+        235269,
+        3547
+      ],
+      "context_text": "treating/guising, costume parties, making"
+    },
+    {
+      "feature_idx": 3725,
+      "activation_value": 8.234030723571777,
+      "tokens": [
+        2960,
+        235269
+      ],
+      "text": " food,",
+      "position": 16,
+      "context_tokens": [
+        791,
+        577,
+        4180,
+        675,
+        33786,
+        5678,
+        577,
+        2960,
+        235269,
+        7182,
+        235269,
+        10819,
+        235269,
+        13970,
+        235269,
+        578,
+        13103
+      ],
+      "context_text": " have to deal with pressures related to food, drink, appearance, drugs, and sexual"
+    }
+  ]
+}

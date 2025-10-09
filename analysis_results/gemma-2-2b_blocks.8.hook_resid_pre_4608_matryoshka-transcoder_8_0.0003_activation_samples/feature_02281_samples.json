@@ -1,0 +1,576 @@
+{
+  "statistics": {
+    "feature_idx": 2281,
+    "num_samples": 50,
+    "max_activation": 21.65997886657715,
+    "mean_activation": 19.476041984558105,
+    "std_activation": 0.9364936748833014,
+    "min_activation": 18.27640151977539,
+    "activation_count": 991,
+    "all_time_max": 21.65997886657715
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2281,
+      "activation_value": 21.65997886657715,
+      "tokens": [
+        235284,
+        235315
+      ],
+      "text": "29",
+      "position": 27,
+      "context_tokens": [
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": " incorporated as a Borough on November 29, 19"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 21.604631423950195,
+      "tokens": [
+        1277,
+        5115
+      ],
+      "text": " its growth",
+      "position": 14,
+      "context_tokens": [
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979
+      ],
+      "context_text": " New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a Borough"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 21.57862091064453,
+      "tokens": [
+        28914,
+        685
+      ],
+      "text": " incorporated as",
+      "position": 20,
+      "context_tokens": [
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269
+      ],
+      "context_text": " to its growth. Bowmanstown was incorporated as a Borough on November 29,"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 21.11603546142578,
+      "tokens": [
+        40311,
+        729
+      ],
+      "text": "stown was",
+      "position": 18,
+      "context_tokens": [
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284
+      ],
+      "context_text": " soon added to its growth. Bowmanstown was incorporated as a Borough on November 2"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 20.98990821838379,
+      "tokens": [
+        729,
+        28914
+      ],
+      "text": " was incorporated",
+      "position": 19,
+      "context_tokens": [
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315
+      ],
+      "context_text": " added to its growth. Bowmanstown was incorporated as a Borough on November 29"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 20.96642303466797,
+      "tokens": [
+        577,
+        1277
+      ],
+      "text": " to its",
+      "position": 13,
+      "context_tokens": [
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476
+      ],
+      "context_text": " nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 20.92025375366211,
+      "tokens": [
+        235315,
+        235269
+      ],
+      "text": "9,",
+      "position": 28,
+      "context_tokens": [
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": " as a Borough on November 29, 19"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 20.816190719604492,
+      "tokens": [
+        65979,
+        611
+      ],
+      "text": " Borough on",
+      "position": 23,
+      "context_tokens": [
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": ". Bowmanstown was incorporated as a Borough on November 29, 19"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 20.607309341430664,
+      "tokens": [
+        611,
+        5516
+      ],
+      "text": " on November",
+      "position": 24,
+      "context_tokens": [
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": " Bowmanstown was incorporated as a Borough on November 29, 19"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 20.381534576416016,
+      "tokens": [
+        24159,
+        3394
+      ],
+      "text": "antusia",
+      "position": 17,
+      "context_tokens": [
+        25510,
+        591,
+        16427,
+        2980,
+        11796,
+        846,
+        1576,
+        24159,
+        3394,
+        3945,
+        152055,
+        12702,
+        575,
+        85278,
+        6092,
+        235265,
+        1576
+      ],
+      "context_text": " Cuba (Cricosaura). Xantusia magdalena occurs in Baja California. X"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.99295997619629,
+      "tokens": [
+        685,
+        476
+      ],
+      "text": " as a",
+      "position": 21,
+      "context_tokens": [
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269,
+        235248
+      ],
+      "context_text": " its growth. Bowmanstown was incorporated as a Borough on November 29, "
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.962242126464844,
+      "tokens": [
+        89684,
+        40311
+      ],
+      "text": " Bowmanstown",
+      "position": 17,
+      "context_tokens": [
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248
+      ],
+      "context_text": " Company soon added to its growth. Bowmanstown was incorporated as a Borough on November "
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.86759376525879,
+      "tokens": [
+        68893,
+        6210
+      ],
+      "text": " Zinc Company",
+      "position": 9,
+      "context_tokens": [
+        235315,
+        235318,
+        901,
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311
+      ],
+      "context_text": "96 but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.852277755737305,
+      "tokens": [
+        72433,
+        574
+      ],
+      "text": "treating",
+      "position": 23,
+      "context_tokens": [
+        52087,
+        903,
+        10979,
+        86788,
+        235290,
+        483,
+        235290,
+        72433,
+        574,
+        235283,
+        1599,
+        5312,
+        235269,
+        22440,
+        8600,
+        235269,
+        3547
+      ],
+      "context_text": "Celebrations||Trick-or-treating/guising, costume parties, making"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.76165199279785,
+      "tokens": [
+        1546,
+        69221
+      ],
+      "text": " most Africans",
+      "position": 30,
+      "context_tokens": [
+        5088,
+        576,
+        62691,
+        87502,
+        98457,
+        235269,
+        2183,
+        1546,
+        69221,
+        46442
+      ],
+      "context_text": " types of phonemic inventories, while most Africans inherited"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.729881286621094,
+      "tokens": [
+        603,
+        476
+      ],
+      "text": " is a",
+      "position": 30,
+      "context_tokens": [
+        85278,
+        6092,
+        235265,
+        1576,
+        741,
+        8206,
+        16690,
+        603,
+        476,
+        11873
+      ],
+      "context_text": " Baja California. Xantusiidae is a relatively"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.68531608581543,
+      "tokens": [
+        10310,
+        578
+      ],
+      "text": " processing and",
+      "position": 18,
+      "context_tokens": [
+        1763,
+        575,
+        674,
+        665,
+        919,
+        71322,
+        2356,
+        10310,
+        578,
+        793,
+        65219,
+        44239,
+        235265,
+        108,
+        235290,
+        714,
+        7907
+      ],
+      "context_text": " tea in that it has undergone little processing and no fermentation whatsoever.\n- The leaves"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.625701904296875,
+      "tokens": [
+        181748,
+        235269
+      ],
+      "text": " Sable,",
+      "position": 12,
+      "context_tokens": [
+        573,
+        3413,
+        576,
+        10147,
+        235265,
+        108,
+        13667,
+        181748,
+        235269,
+        6305,
+        6987,
+        5842,
+        1093,
+        8509,
+        577,
+        52676,
+        578
+      ],
+      "context_text": " the city of Chicago.\nDu Sable, whose French father had moved to Haiti and"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.606475830078125,
+      "tokens": [
+        476,
+        11873
+      ],
+      "text": " a relatively",
+      "position": 31,
+      "context_tokens": [
+        6092,
+        235265,
+        1576,
+        741,
+        8206,
+        16690,
+        603,
+        476,
+        11873
+      ],
+      "context_text": " California. Xantusiidae is a relatively"
+    },
+    {
+      "feature_idx": 2281,
+      "activation_value": 19.55876350402832,
+      "tokens": [
+        2183,
+        1546
+      ],
+      "text": " while most",
+      "position": 29,
+      "context_tokens": [
+        2167,
+        5088,
+        576,
+        62691,
+        87502,
+        98457,
+        235269,
+        2183,
+        1546,
+        69221,
+        46442
+      ],
+      "context_text": " different types of phonemic inventories, while most Africans inherited"
+    }
+  ]
+}

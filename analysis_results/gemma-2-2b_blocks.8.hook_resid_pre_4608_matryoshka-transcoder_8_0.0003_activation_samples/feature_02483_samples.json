@@ -1,0 +1,449 @@
+{
+  "statistics": {
+    "feature_idx": 2483,
+    "num_samples": 15,
+    "max_activation": 11.829558372497559,
+    "mean_activation": 5.377258586883545,
+    "std_activation": 2.246319132800596,
+    "min_activation": 2.719014883041382,
+    "activation_count": 15,
+    "all_time_max": 11.829558372497559
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2483,
+      "activation_value": 11.829558372497559,
+      "tokens": [
+        603,
+        611
+      ],
+      "text": " is on",
+      "position": 5,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd,"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 7.32312536239624,
+      "tokens": [
+        5061,
+        603
+      ],
+      "text": " Day is",
+      "position": 4,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 6.821630954742432,
+      "tokens": [
+        611,
+        8778
+      ],
+      "text": " on Monday",
+      "position": 6,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 6.807278156280518,
+      "tokens": [
+        8778,
+        235269
+      ],
+      "text": " Monday,",
+      "position": 7,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and it"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 6.246279239654541,
+      "tokens": [
+        491,
+        235269
+      ],
+      "text": "nd,",
+      "position": 13,
+      "context_tokens": [
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575
+      ],
+      "context_text": " on Monday, March 22nd, and it's a crucial moment in"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 6.171035289764404,
+      "tokens": [
+        235269,
+        578
+      ],
+      "text": ", and",
+      "position": 14,
+      "context_tokens": [
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573
+      ],
+      "context_text": " Monday, March 22nd, and it's a crucial moment in the"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 5.638426780700684,
+      "tokens": [
+        578,
+        665
+      ],
+      "text": " and it",
+      "position": 15,
+      "context_tokens": [
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900
+      ],
+      "context_text": ", March 22nd, and it's a crucial moment in the fight"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 4.492629051208496,
+      "tokens": [
+        5794,
+        5061
+      ],
+      "text": " Water Day",
+      "position": 3,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 4.3728227615356445,
+      "tokens": [
+        235284,
+        491
+      ],
+      "text": "2nd",
+      "position": 12,
+      "context_tokens": [
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318
+      ],
+      "context_text": " is on Monday, March 22nd, and it's a crucial moment"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 4.044353008270264,
+      "tokens": [
+        20305,
+        4318
+      ],
+      "text": " crucial moment",
+      "position": 20,
+      "context_tokens": [
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900,
+        2691,
+        573,
+        5228,
+        70000,
+        578
+      ],
+      "context_text": "nd, and it's a crucial moment in the fight against the global sanitation and"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 3.9545910358428955,
+      "tokens": [
+        235256,
+        476
+      ],
+      "text": "s a",
+      "position": 18,
+      "context_tokens": [
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900,
+        2691,
+        573,
+        5228
+      ],
+      "context_text": "22nd, and it's a crucial moment in the fight against the global"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 3.723243474960327,
+      "tokens": [
+        235269,
+        4482
+      ],
+      "text": ", March",
+      "position": 8,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and it'"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 3.6477630138397217,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 10,
+      "context_tokens": [
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476
+      ],
+      "context_text": " Water Day is on Monday, March 22nd, and it's a"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 2.8671274185180664,
+      "tokens": [
+        235303,
+        235256
+      ],
+      "text": "'s",
+      "position": 17,
+      "context_tokens": [
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900,
+        2691,
+        573
+      ],
+      "context_text": " 22nd, and it's a crucial moment in the fight against the"
+    },
+    {
+      "feature_idx": 2483,
+      "activation_value": 2.719014883041382,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 23,
+      "context_tokens": [
+        20351,
+        144202,
+        3921,
+        7177,
+        476,
+        6959,
+        774,
+        235248,
+        235274,
+        577,
+        235248,
+        235274,
+        235276,
+        235276,
+        235269,
+        948,
+        14939
+      ],
+      "context_text": " glycemic index uses a scale from 1 to 100, which indicates"
+    }
+  ]
+}

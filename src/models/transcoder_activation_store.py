@@ -165,6 +165,13 @@ class TranscoderActivationsStore:
             self.dataloader_iter = iter(self.dataloader)
             return next(self.dataloader_iter)
 
+    def get_batch_with_tokens(self):
+        """Get a fresh batch of activations with corresponding tokens for sample collection."""
+        batch_tokens = self.get_batch_tokens()
+        source_acts, target_acts = self.get_paired_activations(batch_tokens)
+        # Return source activations and tokens for sample collection
+        return source_acts, batch_tokens
+
 
 def create_transcoder_config(base_cfg, source_layer, target_layer, source_site, target_site):
     """

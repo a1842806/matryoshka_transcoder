@@ -1,0 +1,480 @@
+{
+  "training_config": {
+    "model_name": "gemma-2-2b",
+    "layer": 8,
+    "dict_size": 4608,
+    "num_tokens": 50000,
+    "sample_collection_freq": 50,
+    "activation_threshold": 0.05
+  },
+  "sample_summary": {
+    "total_features_with_samples": 1246,
+    "total_samples_collected": 9836,
+    "average_samples_per_feature": 7.89406099518459,
+    "specialized_features": 0,
+    "general_features": 1246
+  },
+  "top_features": [
+    {
+      "feature_idx": 1936,
+      "max_activation": 35.65053939819336,
+      "mean_activation": 35.25815086364746,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 35.65053939819336,
+          "context": "<bos>\"Caring, Effective, Middle/High",
+          "position": 0
+        },
+        {
+          "activation": 35.64673614501953,
+          "context": "<bos>African Americans in the Bluegrass\nWhether",
+          "position": 0
+        },
+        {
+          "activation": 35.61983108520508,
+          "context": "<bos>Botanical Name and Pronunciation:\nDend",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 830,
+      "max_activation": 34.9888801574707,
+      "mean_activation": 34.54939186096191,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 34.9888801574707,
+          "context": "<bos>Conference underscores young people\u2019s leadership in",
+          "position": 0
+        },
+        {
+          "activation": 34.96544647216797,
+          "context": "<bos>African Americans in the Bluegrass\nWhether",
+          "position": 0
+        },
+        {
+          "activation": 34.96022415161133,
+          "context": "<bos>\"Caring, Effective, Middle/High",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 2177,
+      "max_activation": 34.145450592041016,
+      "mean_activation": 33.68010513305664,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 34.145450592041016,
+          "context": "<bos>\"Caring, Effective, Middle/High",
+          "position": 0
+        },
+        {
+          "activation": 34.12611389160156,
+          "context": "<bos>African Americans in the Bluegrass\nWhether",
+          "position": 0
+        },
+        {
+          "activation": 34.10478973388672,
+          "context": "<bos>Conference underscores young people\u2019s leadership in",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 2149,
+      "max_activation": 33.67094421386719,
+      "mean_activation": 33.34100326538086,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 33.67094421386719,
+          "context": "<bos>Conference underscores young people\u2019s leadership in",
+          "position": 0
+        },
+        {
+          "activation": 33.65632629394531,
+          "context": "<bos>\"Caring, Effective, Middle/High",
+          "position": 0
+        },
+        {
+          "activation": 33.63892364501953,
+          "context": "<bos>African Americans in the Bluegrass\nWhether",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 1732,
+      "max_activation": 33.411861419677734,
+      "mean_activation": 31.14488998413086,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 33.411861419677734,
+          "context": " soon added to its growth. Bowmanstown was incorporated as a Borough on November 2",
+          "position": 18
+        },
+        {
+          "activation": 33.15250015258789,
+          "context": " but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated",
+          "position": 11
+        },
+        {
+          "activation": 33.144100189208984,
+          "context": " New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a Borough",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "feature_idx": 71,
+      "max_activation": 33.087379455566406,
+      "mean_activation": 32.60007492065429,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 33.087379455566406,
+          "context": "<bos>Conference underscores young people\u2019s leadership in",
+          "position": 0
+        },
+        {
+          "activation": 33.05167770385742,
+          "context": "<bos>\"Caring, Effective, Middle/High",
+          "position": 0
+        },
+        {
+          "activation": 33.0444450378418,
+          "context": "<bos>African Americans in the Bluegrass\nWhether",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 461,
+      "max_activation": 33.06570816040039,
+      "mean_activation": 28.537727928161623,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 33.06570816040039,
+          "context": "<bos>A main character\u2019s name often gives you",
+          "position": 1
+        },
+        {
+          "activation": 33.05575942993164,
+          "context": "<bos>On August 9, 201",
+          "position": 1
+        },
+        {
+          "activation": 32.9119873046875,
+          "context": "<bos>There's this kid who gets bullied a",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "feature_idx": 1713,
+      "max_activation": 32.255859375,
+      "mean_activation": 27.940336494445802,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 32.255859375,
+          "context": " that all of the energy peaks and troughs are precisely in step.\nNow",
+          "position": 6
+        },
+        {
+          "activation": 30.972368240356445,
+          "context": " that all of the energy peaks and troughs are precisely in step.\n",
+          "position": 5
+        },
+        {
+          "activation": 30.582839965820312,
+          "context": " the 2011 Census.\nNearly one",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "feature_idx": 1314,
+      "max_activation": 32.15353775024414,
+      "mean_activation": 28.793718147277833,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 32.15353775024414,
+          "context": "<bos>This is the time of year Gulf Coast residents begin watching the weather reports to",
+          "position": 7
+        },
+        {
+          "activation": 30.715953826904297,
+          "context": " 27 (IANS) Personal computers are fast taking over the place of human beings",
+          "position": 12
+        },
+        {
+          "activation": 30.485502243041992,
+          "context": "<bos>The Nature Elephant\nThe Karen people have always lived",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "feature_idx": 1386,
+      "max_activation": 31.925844192504883,
+      "mean_activation": 29.210487365722656,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 31.925844192504883,
+          "context": " New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a Borough",
+          "position": 14
+        },
+        {
+          "activation": 31.71057891845703,
+          "context": " but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated",
+          "position": 11
+        },
+        {
+          "activation": 31.126333236694336,
+          "context": " soon added to its growth. Bowmanstown was incorporated as a Borough on November 2",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "feature_idx": 218,
+      "max_activation": 30.425569534301758,
+      "mean_activation": 27.899906730651857,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 30.425569534301758,
+          "context": " countless number of movies and novels set in the British Regency and Victorian Era women are plagued",
+          "position": 11
+        },
+        {
+          "activation": 29.846860885620117,
+          "context": " 27 (IANS) Personal computers are fast taking over the place of human beings",
+          "position": 12
+        },
+        {
+          "activation": 29.816539764404297,
+          "context": " wasn\u2019t for earthquakes, humans wouldn\u2019t have innovated architecture\nThey wouldn",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "feature_idx": 384,
+      "max_activation": 30.087045669555664,
+      "mean_activation": 26.940098724365235,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 30.087045669555664,
+          "context": "Saturday, September 19, 1998 Last modified at 3",
+          "position": 23
+        },
+        {
+          "activation": 29.025266647338867,
+          "context": ", 2011, the Canadian Ice Service (CIS) reported that the",
+          "position": 13
+        },
+        {
+          "activation": 28.713808059692383,
+          "context": " countless number of movies and novels set in the British Regency and Victorian Era women are plagued",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "feature_idx": 353,
+      "max_activation": 29.96569061279297,
+      "mean_activation": 24.354660568237303,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 29.96569061279297,
+          "context": " gives each state the right to refuse recognition of same-sex marriage licenses issued by other",
+          "position": 10
+        },
+        {
+          "activation": 29.797863006591797,
+          "context": " recognition of same-sex marriage licenses issued by other states. The act does not prohibit",
+          "position": 17
+        },
+        {
+          "activation": 27.81857681274414,
+          "context": " standards. Which means the programs are delivered by qualified faculty and are constantly updated to follow",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "feature_idx": 62,
+      "max_activation": 28.835830688476562,
+      "mean_activation": 24.026648063659668,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 28.835830688476562,
+          "context": " United States\nOne day in 19",
+          "position": 0
+        },
+        {
+          "activation": 27.711307525634766,
+          "context": " United States\nOne day in 190",
+          "position": 1
+        },
+        {
+          "activation": 27.617780685424805,
+          "context": " library.\nThis museum profiles one of the",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 777,
+      "max_activation": 27.968955993652344,
+      "mean_activation": 24.97202548980713,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 27.968955993652344,
+          "context": " New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a Borough",
+          "position": 14
+        },
+        {
+          "activation": 27.638626098632812,
+          "context": " but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated",
+          "position": 11
+        },
+        {
+          "activation": 26.834150314331055,
+          "context": "96 but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "feature_idx": 4071,
+      "max_activation": 26.96973991394043,
+      "mean_activation": 7.44482646882534,
+      "sample_count": 16,
+      "top_examples": [
+        {
+          "activation": 26.96973991394043,
+          "context": "<bos>|Title||Genetic heterogeneity in human disease.|",
+          "position": 1
+        },
+        {
+          "activation": 10.132589340209961,
+          "context": " Genetics\nStatistics of barcoding coverage\n|Specimen Records:||10||Public",
+          "position": 12
+        },
+        {
+          "activation": 9.245523452758789,
+          "context": " - CH 1 & 2\n|Four Principal Activities of Business Firms:||",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "feature_idx": 1149,
+      "max_activation": 26.552322387695312,
+      "mean_activation": 23.613064041137694,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 26.552322387695312,
+          "context": " New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a Borough",
+          "position": 14
+        },
+        {
+          "activation": 25.724040985107422,
+          "context": " but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated",
+          "position": 11
+        },
+        {
+          "activation": 25.36571502685547,
+          "context": " due to ancient admixture between quite divergent peoples who possessed two different types of phonemic inventories",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "feature_idx": 558,
+      "max_activation": 23.41731071472168,
+      "mean_activation": 16.377405338287353,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 23.41731071472168,
+          "context": ", 7:09 p.m",
+          "position": 0
+        },
+        {
+          "activation": 21.405536651611328,
+          "context": ", or as a joke. It is not",
+          "position": 0
+        },
+        {
+          "activation": 21.26770782470703,
+          "context": ".\nAn SMTP server that works as an",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "feature_idx": 838,
+      "max_activation": 23.171857833862305,
+      "mean_activation": 13.31893367767334,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 23.171857833862305,
+          "context": "<bos>Posted: Oct 9, 2012 3",
+          "position": 5
+        },
+        {
+          "activation": 21.276134490966797,
+          "context": "<bos>London, July 27 (IANS) Personal computers are fast taking",
+          "position": 6
+        },
+        {
+          "activation": 19.608898162841797,
+          "context": "Twenty Ideas for Engaging ProjectsSeptember 12, 2011 | Su",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "feature_idx": 1524,
+      "max_activation": 22.922393798828125,
+      "mean_activation": 17.306875019073487,
+      "sample_count": 50,
+      "top_examples": [
+        {
+          "activation": 22.922393798828125,
+          "context": "<bos>A main character\u2019s name often gives you",
+          "position": 1
+        },
+        {
+          "activation": 22.812179565429688,
+          "context": "<bos>If it wasn\u2019t for earthquakes, humans",
+          "position": 1
+        },
+        {
+          "activation": 22.447750091552734,
+          "context": "<bos>The Operations Layer defines the operational processes and procedures",
+          "position": 1
+        }
+      ]
+    }
+  ],
+  "specialized_features": []
+}

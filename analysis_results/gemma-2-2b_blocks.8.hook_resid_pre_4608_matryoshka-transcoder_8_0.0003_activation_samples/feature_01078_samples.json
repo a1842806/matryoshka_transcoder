@@ -1,0 +1,570 @@
+{
+  "statistics": {
+    "feature_idx": 1078,
+    "num_samples": 50,
+    "max_activation": 11.416022300720215,
+    "mean_activation": 7.851880836486816,
+    "std_activation": 1.5525219397848702,
+    "min_activation": 5.757835388183594,
+    "activation_count": 196,
+    "all_time_max": 11.416022300720215
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1078,
+      "activation_value": 11.416022300720215,
+      "tokens": [
+        4664,
+        573
+      ],
+      "text": " meet the",
+      "position": 29,
+      "context_tokens": [
+        16263,
+        9894,
+        577,
+        1611,
+        573,
+        4559,
+        578,
+        4664,
+        573,
+        4026,
+        576
+      ],
+      "context_text": " constantly updated to follow the changes and meet the needs of"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 11.264442443847656,
+      "tokens": [
+        611,
+        1024
+      ],
+      "text": " on their",
+      "position": 22,
+      "context_tokens": [
+        4564,
+        674,
+        1080,
+        3422,
+        1461,
+        23382,
+        978,
+        611,
+        1024,
+        5929,
+        1178,
+        984,
+        749,
+        611,
+        1024,
+        7533,
+        2316
+      ],
+      "context_text": " believe that \u201cmost people rely more on their dog than they do on their PC,\u201d"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 10.535091400146484,
+      "tokens": [
+        575,
+        573
+      ],
+      "text": " in the",
+      "position": 16,
+      "context_tokens": [
+        1744,
+        235265,
+        1307,
+        4391,
+        1570,
+        692,
+        708,
+        575,
+        573,
+        2134,
+        692,
+        798,
+        20774,
+        3855,
+        5794,
+        5061,
+        235341
+      ],
+      "context_text": " day. No matter where you are in the world you can celebrate World Water Day!"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 10.159589767456055,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 17,
+      "context_tokens": [
+        2003,
+        19636,
+        729,
+        974,
+        576,
+        573,
+        89659,
+        576,
+        573,
+        2970,
+        9028,
+        675,
+        476,
+        8761,
+        3178,
+        11585,
+        3974
+      ],
+      "context_text": " water polo was one of the safest of the team sports with a relative low injury rate"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 10.040617942810059,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 17,
+      "context_tokens": [
+        23246,
+        21039,
+        1178,
+        12624,
+        689,
+        16034,
+        6142,
+        576,
+        573,
+        1809,
+        2893,
+        235265,
+        13332,
+        6630,
+        177306,
+        685,
+        4880
+      ],
+      "context_text": " fewer graphics than printed or electronic books of the same material. Help files reformat as needed"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 10.01605224609375,
+      "tokens": [
+        4998,
+        476
+      ],
+      "text": " taking a",
+      "position": 16,
+      "context_tokens": [
+        235265,
+        19380,
+        58317,
+        798,
+        614,
+        56399,
+        731,
+        4998,
+        476,
+        11137,
+        576,
+        3757,
+        58108,
+        1535,
+        1744,
+        604,
+        696
+      ],
+      "context_text": ". Active tuberculosis can be cured by taking a combination of several antibiotics every day for at"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.959927558898926,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 15,
+      "context_tokens": [
+        6269,
+        578,
+        6578,
+        7549,
+        8363,
+        573,
+        18347,
+        576,
+        573,
+        25199,
+        235269,
+        712,
+        749,
+        4282,
+        2840,
+        12110,
+        674
+      ],
+      "context_text": " political and economic factors determine the personality of the islands, so do various landforms that"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.810040473937988,
+      "tokens": [
+        611,
+        476
+      ],
+      "text": " on a",
+      "position": 23,
+      "context_tokens": [
+        2613,
+        3307,
+        671,
+        25081,
+        4303,
+        604,
+        2113,
+        611,
+        476,
+        191222,
+        11621,
+        901,
+        573,
+        11352,
+        5966,
+        575,
+        45752
+      ],
+      "context_text": " might seem an unlikely source for information on a Papal election but the detailed description in Angels"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.535512924194336,
+      "tokens": [
+        1212,
+        573
+      ],
+      "text": " what the",
+      "position": 13,
+      "context_tokens": [
+        3221,
+        6514,
+        4815,
+        17923,
+        578,
+        10724,
+        577,
+        1212,
+        573,
+        9560,
+        12930,
+        791,
+        577,
+        1931,
+        235292,
+        108,
+        235290
+      ],
+      "context_text": " review safety management guidelines and listen to what the independent experts have to say:\n-"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.498746871948242,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 14,
+      "context_tokens": [
+        729,
+        1942,
+        674,
+        2003,
+        19636,
+        729,
+        974,
+        576,
+        573,
+        89659,
+        576,
+        573,
+        2970,
+        9028,
+        675,
+        476,
+        8761
+      ],
+      "context_text": " was found that water polo was one of the safest of the team sports with a relative"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.392552375793457,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 29,
+      "context_tokens": [
+        3855,
+        5794,
+        5061,
+        235341,
+        6958,
+        921,
+        1009,
+        576,
+        573,
+        5742,
+        3582
+      ],
+      "context_text": " World Water Day! Check out some of the ways below"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.34338092803955,
+      "tokens": [
+        14002,
+        578
+      ],
+      "text": " Safety and",
+      "position": 27,
+      "context_tokens": [
+        235292,
+        108,
+        235290,
+        93646,
+        1157,
+        714,
+        69029,
+        14002,
+        578,
+        5101,
+        15713,
+        919,
+        1142
+      ],
+      "context_text": ":\n- OSHA \u2013 The Occupational Safety and Health Administration has set"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 9.18064022064209,
+      "tokens": [
+        1611,
+        573
+      ],
+      "text": " follow the",
+      "position": 25,
+      "context_tokens": [
+        19767,
+        21143,
+        578,
+        708,
+        16263,
+        9894,
+        577,
+        1611,
+        573,
+        4559,
+        578,
+        4664,
+        573,
+        4026,
+        576
+      ],
+      "context_text": " qualified faculty and are constantly updated to follow the changes and meet the needs of"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.830198287963867,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 26,
+      "context_tokens": [
+        21303,
+        21339,
+        235269,
+        7042,
+        577,
+        11360,
+        12955,
+        576,
+        573,
+        9494,
+        3190,
+        575,
+        476,
+        72635
+      ],
+      "context_text": " survive stroke, damage to speech regions of the brain results in a distorted"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.755311965942383,
+      "tokens": [
+        611,
+        1024
+      ],
+      "text": " on their",
+      "position": 28,
+      "context_tokens": [
+        978,
+        611,
+        1024,
+        5929,
+        1178,
+        984,
+        749,
+        611,
+        1024,
+        7533,
+        2316,
+        2183
+      ],
+      "context_text": " more on their dog than they do on their PC,\u201d while"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.557555198669434,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 31,
+      "context_tokens": [
+        1554,
+        235269,
+        65075,
+        3120,
+        604,
+        573,
+        19034,
+        576,
+        573
+      ],
+      "context_text": " play, wolves exist for the survival of the"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.469480514526367,
+      "tokens": [
+        3454,
+        573
+      ],
+      "text": " means the",
+      "position": 12,
+      "context_tokens": [
+        168523,
+        577,
+        1536,
+        3614,
+        10053,
+        235265,
+        12236,
+        3454,
+        573,
+        7658,
+        708,
+        13245,
+        731,
+        19767,
+        21143,
+        578,
+        708
+      ],
+      "context_text": " adheres to high quality standards. Which means the programs are delivered by qualified faculty and are"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.418232917785645,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 28,
+      "context_tokens": [
+        1492,
+        2500,
+        11303,
+        52722,
+        575,
+        573,
+        4724,
+        576,
+        573,
+        7841,
+        235265,
+        108
+      ],
+      "context_text": " then build advanced competence in the application of the skills.\n"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.259527206420898,
+      "tokens": [
+        2449,
+        573
+      ],
+      "text": " around the",
+      "position": 23,
+      "context_tokens": [
+        13457,
+        8121,
+        604,
+        1024,
+        31454,
+        578,
+        50163,
+        2449,
+        573,
+        2134,
+        235265,
+        108,
+        651,
+        23056,
+        576,
+        4238,
+        11987
+      ],
+      "context_text": " historical reasons for their migrations and settlements around the world.\nThe Jews of Europe arrived"
+    },
+    {
+      "feature_idx": 1078,
+      "activation_value": 8.197386741638184,
+      "tokens": [
+        604,
+        573
+      ],
+      "text": " for the",
+      "position": 28,
+      "context_tokens": [
+        235269,
+        35378,
+        689,
+        1554,
+        235269,
+        65075,
+        3120,
+        604,
+        573,
+        19034,
+        576,
+        573
+      ],
+      "context_text": ", loyalty or play, wolves exist for the survival of the"
+    }
+  ]
+}

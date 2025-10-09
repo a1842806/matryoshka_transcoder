@@ -1,0 +1,597 @@
+{
+  "statistics": {
+    "feature_idx": 3913,
+    "num_samples": 50,
+    "max_activation": 12.684592247009277,
+    "mean_activation": 8.281918516159058,
+    "std_activation": 1.53549874739897,
+    "min_activation": 6.399071216583252,
+    "activation_count": 163,
+    "all_time_max": 12.684592247009277
+  },
+  "top_samples": [
+    {
+      "feature_idx": 3913,
+      "activation_value": 12.684592247009277,
+      "tokens": [
+        235265,
+        2456
+      ],
+      "text": ". There",
+      "position": 23,
+      "context_tokens": [
+        2004,
+        614,
+        8496,
+        577,
+        1277,
+        5463,
+        1736,
+        235265,
+        2456,
+        708,
+        4282,
+        5358,
+        577,
+        749,
+        736,
+        235292,
+        1009
+      ],
+      "context_text": " must be returned to its exact form. There are various methods to do this: some"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 11.442827224731445,
+      "tokens": [
+        235265,
+        714
+      ],
+      "text": ". The",
+      "position": 14,
+      "context_tokens": [
+        1582,
+        685,
+        6349,
+        2031,
+        578,
+        595,
+        10728,
+        235265,
+        714,
+        1872,
+        6045,
+        576,
+        573,
+        25438,
+        34780,
+        603,
+        577
+      ],
+      "context_text": " such as ITIL and MOF. The main focus of the Operations Layer is to"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 11.37163257598877,
+      "tokens": [
+        235265,
+        1417
+      ],
+      "text": ". This",
+      "position": 21,
+      "context_tokens": [
+        10401,
+        948,
+        28227,
+        47197,
+        708,
+        13525,
+        1706,
+        235265,
+        1417,
+        3833,
+        573,
+        14354,
+        1508,
+        2811,
+        578,
+        3779,
+        235265
+      ],
+      "context_text": " onto which calcium salts are laid down. This makes the bone very hard and strong."
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 11.31186580657959,
+      "tokens": [
+        235265,
+        3766
+      ],
+      "text": ". These",
+      "position": 9,
+      "context_tokens": [
+        6022,
+        575,
+        573,
+        3520,
+        3858,
+        1853,
+        1162,
+        235265,
+        3766,
+        27790,
+        2063,
+        696,
+        671,
+        8897,
+        2458,
+        576,
+        697
+      ],
+      "context_text": " patients in the United States each year. These infections come at an annual cost of $"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 10.377657890319824,
+      "tokens": [
+        235265,
+        2365
+      ],
+      "text": ". They",
+      "position": 28,
+      "context_tokens": [
+        4516,
+        576,
+        3679,
+        235269,
+        13543,
+        578,
+        10649,
+        235265,
+        2365,
+        1170,
+        2765,
+        917
+      ],
+      "context_text": " areas of research, publication and teaching. They also allow us"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.985261917114258,
+      "tokens": [
+        235265,
+        878
+      ],
+      "text": ". In",
+      "position": 10,
+      "context_tokens": [
+        603,
+        6929,
+        577,
+        28969,
+        476,
+        23901,
+        7837,
+        235265,
+        878,
+        2550,
+        37230,
+        235269,
+        665,
+        603,
+        573,
+        25219,
+        1865
+      ],
+      "context_text": " is limited to describing a collective opinion. In another formulation, it is the distinction between"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.91580867767334,
+      "tokens": [
+        235265,
+        1165
+      ],
+      "text": ". It",
+      "position": 6,
+      "context_tokens": [
+        235269,
+        689,
+        685,
+        476,
+        18983,
+        235265,
+        1165,
+        603,
+        780,
+        476,
+        151505,
+        1671,
+        675,
+        9202,
+        8143
+      ],
+      "context_text": ", or as a joke. It is not a trope used with male characters"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.840487480163574,
+      "tokens": [
+        235265,
+        12236
+      ],
+      "text": ". Which",
+      "position": 10,
+      "context_tokens": [
+        573,
+        2493,
+        168523,
+        577,
+        1536,
+        3614,
+        10053,
+        235265,
+        12236,
+        3454,
+        573,
+        7658,
+        708,
+        13245,
+        731,
+        19767,
+        21143
+      ],
+      "context_text": " the school adheres to high quality standards. Which means the programs are delivered by qualified faculty"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.805489540100098,
+      "tokens": [
+        235265,
+        1448
+      ],
+      "text": ". We",
+      "position": 11,
+      "context_tokens": [
+        3614,
+        3190,
+        2819,
+        476,
+        4391,
+        576,
+        4363,
+        235265,
+        1448,
+        235303,
+        529,
+        3293,
+        736,
+        3542,
+        731,
+        6044,
+        573
+      ],
+      "context_text": " quality results within a matter of minutes. We'll begin this project by learning the"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.721152305603027,
+      "tokens": [
+        714,
+        1872
+      ],
+      "text": " The main",
+      "position": 15,
+      "context_tokens": [
+        685,
+        6349,
+        2031,
+        578,
+        595,
+        10728,
+        235265,
+        714,
+        1872,
+        6045,
+        576,
+        573,
+        25438,
+        34780,
+        603,
+        577,
+        17991
+      ],
+      "context_text": " as ITIL and MOF. The main focus of the Operations Layer is to execute"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.69121265411377,
+      "tokens": [
+        235265,
+        714
+      ],
+      "text": ". The",
+      "position": 24,
+      "context_tokens": [
+        235269,
+        978,
+        7378,
+        235269,
+        604,
+        14817,
+        33774,
+        235265,
+        714,
+        30084,
+        1461,
+        6574,
+        1134,
+        780,
+        21303,
+        2346
+      ],
+      "context_text": ", more recently, for carrying tourists. The Karen people simply would not survive without"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.578381538391113,
+      "tokens": [
+        235265,
+        586
+      ],
+      "text": ". A",
+      "position": 11,
+      "context_tokens": [
+        3974,
+        577,
+        476,
+        2257,
+        4871,
+        113286,
+        3974,
+        235265,
+        586,
+        20797,
+        53455,
+        573,
+        3974,
+        4740,
+        577,
+        8147,
+        573
+      ],
+      "context_text": " rate to a second higher pacing rate. A timer triggers the rate increase to establish the"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.51701831817627,
+      "tokens": [
+        235265,
+        3766
+      ],
+      "text": ". These",
+      "position": 21,
+      "context_tokens": [
+        15198,
+        708,
+        12777,
+        604,
+        22757,
+        6011,
+        9934,
+        235265,
+        3766,
+        32808,
+        1281,
+        1212,
+        708,
+        3151,
+        664,
+        6381,
+        235267
+      ],
+      "context_text": "Audio are employed for streaming network audio. These formats use what are called \"lossy"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.456351280212402,
+      "tokens": [
+        235265,
+        2365
+      ],
+      "text": ". They",
+      "position": 23,
+      "context_tokens": [
+        842,
+        37540,
+        235269,
+        578,
+        39216,
+        10238,
+        1578,
+        235265,
+        2365,
+        2004,
+        1170,
+        791,
+        3311,
+        664,
+        4308,
+        5229,
+        1464
+      ],
+      "context_text": " percents, and proportions extremely well. They must also have general \"number sense.\""
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.215899467468262,
+      "tokens": [
+        235265,
+        714
+      ],
+      "text": ". The",
+      "position": 7,
+      "context_tokens": [
+        2456,
+        708,
+        2149,
+        5088,
+        576,
+        68239,
+        235265,
+        714,
+        1546,
+        3818,
+        1916,
+        576,
+        68239,
+        603,
+        1185,
+        1461
+      ],
+      "context_text": " There are three types of ADHD. The most common type of ADHD is when people"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 9.148119926452637,
+      "tokens": [
+        235265,
+        5626
+      ],
+      "text": ". Our",
+      "position": 10,
+      "context_tokens": [
+        8923,
+        3381,
+        576,
+        16512,
+        984,
+        791,
+        34055,
+        235265,
+        5626,
+        1160,
+        7177,
+        9723,
+        49598,
+        577,
+        11941,
+        15513,
+        1105
+      ],
+      "context_text": "onal content of foods they have eaten. Our work uses shopping receipts to generate suggestions about"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 8.90511703491211,
+      "tokens": [
+        1165,
+        603
+      ],
+      "text": " It is",
+      "position": 7,
+      "context_tokens": [
+        235269,
+        689,
+        685,
+        476,
+        18983,
+        235265,
+        1165,
+        603,
+        780,
+        476,
+        151505,
+        1671,
+        675,
+        9202,
+        8143,
+        235269
+      ],
+      "context_text": ", or as a joke. It is not a trope used with male characters,"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 8.6162691116333,
+      "tokens": [
+        6036,
+        3279
+      ],
+      "text": "'. With",
+      "position": 12,
+      "context_tokens": [
+        1249,
+        791,
+        1125,
+        20232,
+        3631,
+        689,
+        11594,
+        6036,
+        3279,
+        832,
+        6207,
+        577,
+        3046,
+        88992,
+        728,
+        1064,
+        729
+      ],
+      "context_text": " may have been confused once or twice'. With all respect to Mr Boone - who was"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 8.603242874145508,
+      "tokens": [
+        2456,
+        708
+      ],
+      "text": " There are",
+      "position": 24,
+      "context_tokens": [
+        614,
+        8496,
+        577,
+        1277,
+        5463,
+        1736,
+        235265,
+        2456,
+        708,
+        4282,
+        5358,
+        577,
+        749,
+        736,
+        235292,
+        1009
+      ],
+      "context_text": " be returned to its exact form. There are various methods to do this: some"
+    },
+    {
+      "feature_idx": 3913,
+      "activation_value": 8.597219467163086,
+      "tokens": [
+        2365,
+        1170
+      ],
+      "text": " They also",
+      "position": 29,
+      "context_tokens": [
+        576,
+        3679,
+        235269,
+        13543,
+        578,
+        10649,
+        235265,
+        2365,
+        1170,
+        2765,
+        917
+      ],
+      "context_text": " of research, publication and teaching. They also allow us"
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "statistics": {
+    "feature_idx": 4181,
+    "num_samples": 9,
+    "max_activation": 16.130887985229492,
+    "mean_activation": 8.52733219994439,
+    "std_activation": 4.590510735733459,
+    "min_activation": 3.1054015159606934,
+    "activation_count": 9,
+    "all_time_max": 16.130887985229492
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4181,
+      "activation_value": 16.130887985229492,
+      "tokens": [
+        481,
+        235269
+      ],
+      "text": "an,",
+      "position": 22,
+      "context_tokens": [
+        14847,
+        3069,
+        235349,
+        235256,
+        12339,
+        108,
+        70687,
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724
+      ],
+      "context_text": " Australian children\u2019s literature\nMallan, Kerry M., Cross, Amy, &"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 12.632011413574219,
+      "tokens": [
+        595,
+        1173
+      ],
+      "text": " M.,",
+      "position": 25,
+      "context_tokens": [
+        235256,
+        12339,
+        108,
+        70687,
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724,
+        46688
+      ],
+      "context_text": "s literature\nMallan, Kerry M., Cross, Amy, & Allan"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 12.503460884094238,
+      "tokens": [
+        27161,
+        235269
+      ],
+      "text": " Amy,",
+      "position": 29,
+      "context_tokens": [
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724,
+        46688
+      ],
+      "context_text": "an, Kerry M., Cross, Amy, & Allan"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 12.148213386535645,
+      "tokens": [
+        10006,
+        235269
+      ],
+      "text": " Cross,",
+      "position": 27,
+      "context_tokens": [
+        108,
+        70687,
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724,
+        46688
+      ],
+      "context_text": "\nMallan, Kerry M., Cross, Amy, & Allan"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 7.197992324829102,
+      "tokens": [
+        235269,
+        724
+      ],
+      "text": ", &",
+      "position": 30,
+      "context_tokens": [
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724,
+        46688
+      ],
+      "context_text": ", Kerry M., Cross, Amy, & Allan"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 5.185052394866943,
+      "tokens": [
+        2013,
+        235269
+      ],
+      "text": "lin,",
+      "position": 3,
+      "context_tokens": [
+        2,
+        3793,
+        2013,
+        235269,
+        7640,
+        1157,
+        31237,
+        108,
+        10716,
+        162532,
+        603,
+        476
+      ],
+      "context_text": "<bos>Marlin, Blue \u2013 Hawaii\nBlue Marlin is a"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 4.730588912963867,
+      "tokens": [
+        231263,
+        108
+      ],
+      "text": " Dunkin\n",
+      "position": 4,
+      "context_tokens": [
+        2,
+        20806,
+        17384,
+        231263,
+        108,
+        81220,
+        32638,
+        235269,
+        13697,
+        108,
+        9069,
+        17481,
+        3958
+      ],
+      "context_text": "<bos>Mary Anne Dunkin\nLouise Chang, MD\nTwo decades ago"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 3.1123809814453125,
+      "tokens": [
+        63728,
+        595
+      ],
+      "text": " Kerry M",
+      "position": 24,
+      "context_tokens": [
+        235349,
+        235256,
+        12339,
+        108,
+        70687,
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724,
+        46688
+      ],
+      "context_text": "\u2019s literature\nMallan, Kerry M., Cross, Amy, & Allan"
+    },
+    {
+      "feature_idx": 4181,
+      "activation_value": 3.1054015159606934,
+      "tokens": [
+        32638,
+        235269
+      ],
+      "text": " Chang,",
+      "position": 7,
+      "context_tokens": [
+        2,
+        20806,
+        17384,
+        231263,
+        108,
+        81220,
+        32638,
+        235269,
+        13697,
+        108,
+        9069,
+        17481,
+        3958,
+        235269,
+        1013,
+        692
+      ],
+      "context_text": "<bos>Mary Anne Dunkin\nLouise Chang, MD\nTwo decades ago, if you"
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+{
+  "statistics": {
+    "feature_idx": 1348,
+    "num_samples": 50,
+    "max_activation": 12.275552749633789,
+    "mean_activation": 6.403640608787537,
+    "std_activation": 2.238136991029742,
+    "min_activation": 3.9741578102111816,
+    "activation_count": 71,
+    "all_time_max": 12.275552749633789
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1348,
+      "activation_value": 12.275552749633789,
+      "tokens": [
+        145118,
+        235275
+      ],
+      "text": "Xinhua)",
+      "position": 11,
+      "context_tokens": [
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578,
+        5137,
+        16364,
+        5163
+      ],
+      "context_text": ", Jan. 20 (Xinhua) -- With new oil and gas nations coming"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 10.817038536071777,
+      "tokens": [
+        235324,
+        591
+      ],
+      "text": "7 (",
+      "position": 7,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847,
+        4998,
+        1163
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal computers are fast taking over"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 10.700332641601562,
+      "tokens": [
+        235315,
+        591
+      ],
+      "text": "9 (",
+      "position": 29,
+      "context_tokens": [
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315,
+        591,
+        13010,
+        7366
+      ],
+      "context_text": "idt\nTUESDAY, Oct. 9 (HealthDay"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 10.658182144165039,
+      "tokens": [
+        19748,
+        235269
+      ],
+      "text": "London,",
+      "position": 2,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 10.591994285583496,
+      "tokens": [
+        11605,
+        235265
+      ],
+      "text": " Oct.",
+      "position": 26,
+      "context_tokens": [
+        731,
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315,
+        591,
+        13010,
+        7366
+      ],
+      "context_text": " by Robert Preidt\nTUESDAY, Oct. 9 (HealthDay"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 10.117729187011719,
+      "tokens": [
+        141458,
+        235269
+      ],
+      "text": "BAI,",
+      "position": 3,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua)"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 9.795489311218262,
+      "tokens": [
+        235276,
+        591
+      ],
+      "text": "0 (",
+      "position": 9,
+      "context_tokens": [
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578,
+        5137
+      ],
+      "context_text": "DUBAI, Jan. 20 (Xinhua) -- With new oil and gas"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 9.721972465515137,
+      "tokens": [
+        235275,
+        3297
+      ],
+      "text": ") --",
+      "position": 12,
+      "context_tokens": [
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578,
+        5137,
+        16364,
+        5163,
+        908
+      ],
+      "context_text": " Jan. 20 (Xinhua) -- With new oil and gas nations coming up"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 8.628125190734863,
+      "tokens": [
+        132152,
+        235269
+      ],
+      "text": "TUESDAY,",
+      "position": 24,
+      "context_tokens": [
+        235276,
+        5907,
+        731,
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315,
+        591,
+        13010,
+        7366
+      ],
+      "context_text": "0 PM by Robert Preidt\nTUESDAY, Oct. 9 (HealthDay"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 8.438458442687988,
+      "tokens": [
+        235269,
+        4707
+      ],
+      "text": ", July",
+      "position": 3,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal computers"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 8.434208869934082,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 7,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) -- With new oil"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 7.871650218963623,
+      "tokens": [
+        37057,
+        235275
+      ],
+      "text": "IANS)",
+      "position": 9,
+      "context_tokens": [
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847,
+        4998,
+        1163,
+        573,
+        2040
+      ],
+      "context_text": "London, July 27 (IANS) Personal computers are fast taking over the place"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 7.74882698059082,
+      "tokens": [
+        5696,
+        235275
+      ],
+      "text": "PT)",
+      "position": 4,
+      "context_tokens": [
+        2,
+        235278,
+        235305,
+        5696,
+        235275,
+        728,
+        21540,
+        235269,
+        3359,
+        69627,
+        578,
+        20671,
+        235269
+      ],
+      "context_text": "<bos>(BPT) - Everyone, including moms and doctors,"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 7.704660892486572,
+      "tokens": [
+        3417,
+        235265
+      ],
+      "text": " Jan.",
+      "position": 5,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) -- With"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 7.1967339515686035,
+      "tokens": [
+        235284,
+        235276
+      ],
+      "text": "20",
+      "position": 8,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) -- With new oil and"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 7.077775955200195,
+      "tokens": [
+        591,
+        37057
+      ],
+      "text": " (IANS",
+      "position": 8,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847,
+        4998,
+        1163,
+        573
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal computers are fast taking over the"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 6.820139408111572,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 5,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal computers are fast"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 6.571252346038818,
+      "tokens": [
+        87967,
+        108
+      ],
+      "text": "idt\n",
+      "position": 22,
+      "context_tokens": [
+        235292,
+        235276,
+        235276,
+        5907,
+        731,
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315,
+        591,
+        13010
+      ],
+      "context_text": ":00 PM by Robert Preidt\nTUESDAY, Oct. 9 (Health"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 6.564138889312744,
+      "tokens": [
+        591,
+        145118
+      ],
+      "text": " (Xinhua",
+      "position": 10,
+      "context_tokens": [
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578,
+        5137,
+        16364
+      ],
+      "context_text": "BAI, Jan. 20 (Xinhua) -- With new oil and gas nations"
+    },
+    {
+      "feature_idx": 1348,
+      "activation_value": 6.207486629486084,
+      "tokens": [
+        731,
+        7866
+      ],
+      "text": " by Robert",
+      "position": 19,
+      "context_tokens": [
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276,
+        5907,
+        731,
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248
+      ],
+      "context_text": "2 3:00 PM by Robert Preidt\nTUESDAY, Oct. "
+    }
+  ]
+}

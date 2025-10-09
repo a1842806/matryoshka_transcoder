@@ -1,0 +1,184 @@
+{
+  "statistics": {
+    "feature_idx": 4367,
+    "num_samples": 6,
+    "max_activation": 13.345071792602539,
+    "mean_activation": 4.593724648157756,
+    "std_activation": 3.9365852920651916,
+    "min_activation": 2.402529716491699,
+    "activation_count": 6,
+    "all_time_max": 13.345071792602539
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4367,
+      "activation_value": 13.345071792602539,
+      "tokens": [
+        1718,
+        235303
+      ],
+      "text": "It'",
+      "position": 2,
+      "context_tokens": [
+        2,
+        1718,
+        235303,
+        235256,
+        3980,
+        696,
+        1370,
+        30993,
+        577,
+        68384,
+        573
+      ],
+      "context_text": "<bos>It's easy at first glance to envision the"
+    },
+    {
+      "feature_idx": 4367,
+      "activation_value": 3.518463134765625,
+      "tokens": [
+        2551,
+        235349
+      ],
+      "text": " Can\u2019",
+      "position": 4,
+      "context_tokens": [
+        2,
+        48633,
+        235265,
+        2551,
+        235349,
+        235251,
+        3685,
+        675,
+        3031,
+        565,
+        235269,
+        798,
+        235349
+      ],
+      "context_text": "<bos>Animals. Can\u2019t live with \u2018em, can\u2019"
+    },
+    {
+      "feature_idx": 4367,
+      "activation_value": 3.283390522003174,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 12,
+      "context_tokens": [
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        108,
+        2437,
+        2456,
+        56134,
+        575
+      ],
+      "context_text": "\nWednesday, September 7, 2011\nIs There Oxygen in"
+    },
+    {
+      "feature_idx": 4367,
+      "activation_value": 2.5620627403259277,
+      "tokens": [
+        798,
+        235349
+      ],
+      "text": " can\u2019",
+      "position": 12,
+      "context_tokens": [
+        235349,
+        235251,
+        3685,
+        675,
+        3031,
+        565,
+        235269,
+        798,
+        235349,
+        235251,
+        3685,
+        2346,
+        12150,
+        3031,
+        565,
+        235265,
+        591
+      ],
+      "context_text": "\u2019t live with \u2018em, can\u2019t live without eating \u2018em. ("
+    },
+    {
+      "feature_idx": 4367,
+      "activation_value": 2.4508299827575684,
+      "tokens": [
+        774,
+        235248
+      ],
+      "text": " from ",
+      "position": 22,
+      "context_tokens": [
+        651,
+        20351,
+        144202,
+        3921,
+        7177,
+        476,
+        6959,
+        774,
+        235248,
+        235274,
+        577,
+        235248,
+        235274,
+        235276,
+        235276,
+        235269,
+        948
+      ],
+      "context_text": "The glycemic index uses a scale from 1 to 100, which"
+    },
+    {
+      "feature_idx": 4367,
+      "activation_value": 2.402529716491699,
+      "tokens": [
+        6959,
+        774
+      ],
+      "text": " scale from",
+      "position": 21,
+      "context_tokens": [
+        108,
+        651,
+        20351,
+        144202,
+        3921,
+        7177,
+        476,
+        6959,
+        774,
+        235248,
+        235274,
+        577,
+        235248,
+        235274,
+        235276,
+        235276,
+        235269
+      ],
+      "context_text": "\nThe glycemic index uses a scale from 1 to 100,"
+    }
+  ]
+}

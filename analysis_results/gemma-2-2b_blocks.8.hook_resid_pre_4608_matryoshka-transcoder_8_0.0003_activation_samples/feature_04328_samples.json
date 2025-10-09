@@ -1,0 +1,593 @@
+{
+  "statistics": {
+    "feature_idx": 4328,
+    "num_samples": 50,
+    "max_activation": 12.979066848754883,
+    "mean_activation": 8.243575448989867,
+    "std_activation": 1.792454418460624,
+    "min_activation": 6.156649589538574,
+    "activation_count": 82,
+    "all_time_max": 12.979066848754883
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4328,
+      "activation_value": 12.979066848754883,
+      "tokens": [
+        19288,
+        9943
+      ],
+      "text": " Eric Wo",
+      "position": 26,
+      "context_tokens": [
+        235269,
+        6110,
+        68339,
+        235269,
+        28357,
+        8095,
+        235269,
+        19288,
+        9943,
+        1684,
+        521,
+        235265,
+        108,
+        2441
+      ],
+      "context_text": ", James Graves, Chelsea Hall, Eric Woelfel.\nNew"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 12.221735000610352,
+      "tokens": [
+        29349,
+        21045
+      ],
+      "text": " Emma Dean",
+      "position": 15,
+      "context_tokens": [
+        235311,
+        55106,
+        50996,
+        74410,
+        235275,
+        108,
+        1818,
+        29349,
+        21045,
+        235269,
+        25368,
+        6809,
+        11289,
+        108,
+        23772,
+        3631,
+        13277
+      ],
+      "context_text": "Fagus grandifolia)\nBy Emma Dean, CG Science Editor\nThough once believed"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 12.096845626831055,
+      "tokens": [
+        6046,
+        5132
+      ],
+      "text": " David German",
+      "position": 16,
+      "context_tokens": [
+        1562,
+        20855,
+        108,
+        142025,
+        235278,
+        235256,
+        1245,
+        6046,
+        5132,
+        235253,
+        235269,
+        6110,
+        68339,
+        235269,
+        28357,
+        8095,
+        235269
+      ],
+      "context_text": " > Overview\nContributor(s): David Germano, James Graves, Chelsea Hall,"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 11.76801872253418,
+      "tokens": [
+        1066,
+        22765
+      ],
+      "text": "man Tow",
+      "position": 19,
+      "context_tokens": [
+        714,
+        62369,
+        576,
+        77434,
+        3426,
+        584,
+        8539,
+        1066,
+        22765,
+        1430,
+        14324,
+        573,
+        39110,
+        576,
+        573,
+        27049,
+        3386
+      ],
+      "context_text": " The Wisdom of Wolves author Twyman Towery shares the milieu of the wolf pack"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 11.749064445495605,
+      "tokens": [
+        23757,
+        12491
+      ],
+      "text": " Bruce Boy",
+      "position": 3,
+      "context_tokens": [
+        2,
+        1547,
+        23757,
+        12491,
+        618,
+        235269,
+        108,
+        5906,
+        1812,
+        576,
+        11902,
+        20630
+      ],
+      "context_text": "<bos>by Bruce Boyers,\nOur system of factory agriculture"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 11.737384796142578,
+      "tokens": [
+        23114,
+        49465
+      ],
+      "text": " Steven Maxwell",
+      "position": 4,
+      "context_tokens": [
+        2,
+        3154,
+        235292,
+        23114,
+        49465,
+        235269,
+        235248,
+        235324,
+        235321,
+        235308,
+        235290,
+        235308,
+        235304
+      ],
+      "context_text": "<bos>Source: Steven Maxwell, 785-53"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 10.772299766540527,
+      "tokens": [
+        7866,
+        2769
+      ],
+      "text": " Robert Pre",
+      "position": 20,
+      "context_tokens": [
+        235248,
+        235304,
+        235292,
+        235276,
+        235276,
+        5907,
+        731,
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315
+      ],
+      "context_text": " 3:00 PM by Robert Preidt\nTUESDAY, Oct. 9"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 10.388644218444824,
+      "tokens": [
+        6110,
+        68339
+      ],
+      "text": " James Graves",
+      "position": 20,
+      "context_tokens": [
+        235278,
+        235256,
+        1245,
+        6046,
+        5132,
+        235253,
+        235269,
+        6110,
+        68339,
+        235269,
+        28357,
+        8095,
+        235269,
+        19288,
+        9943,
+        1684,
+        521
+      ],
+      "context_text": "(s): David Germano, James Graves, Chelsea Hall, Eric Woelfel"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 9.915227890014648,
+      "tokens": [
+        584,
+        8539
+      ],
+      "text": " Twy",
+      "position": 17,
+      "context_tokens": [
+        235336,
+        878,
+        714,
+        62369,
+        576,
+        77434,
+        3426,
+        584,
+        8539,
+        1066,
+        22765,
+        1430,
+        14324,
+        573,
+        39110,
+        576,
+        573
+      ],
+      "context_text": "? In The Wisdom of Wolves author Twyman Towery shares the milieu of the"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 9.556235313415527,
+      "tokens": [
+        17384,
+        231263
+      ],
+      "text": " Anne Dunkin",
+      "position": 3,
+      "context_tokens": [
+        2,
+        20806,
+        17384,
+        231263,
+        108,
+        81220,
+        32638,
+        235269,
+        13697,
+        108,
+        9069,
+        17481
+      ],
+      "context_text": "<bos>Mary Anne Dunkin\nLouise Chang, MD\nTwo decades"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 9.297792434692383,
+      "tokens": [
+        235303,
+        23516
+      ],
+      "text": "'Amb",
+      "position": 16,
+      "context_tokens": [
+        9498,
+        108,
+        6798,
+        235265,
+        156625,
+        1925,
+        608,
+        235303,
+        23516,
+        195154,
+        108,
+        2045,
+        3695,
+        1443,
+        476,
+        8717,
+        27753
+      ],
+      "context_text": " Environment\nDr. Marcellino D'Ambrosio\nYou often see a garden statue"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 9.066420555114746,
+      "tokens": [
+        731,
+        7866
+      ],
+      "text": " by Robert",
+      "position": 19,
+      "context_tokens": [
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276,
+        5907,
+        731,
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248
+      ],
+      "context_text": "2 3:00 PM by Robert Preidt\nTUESDAY, Oct. "
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.953573226928711,
+      "tokens": [
+        5132,
+        235253
+      ],
+      "text": " Germano",
+      "position": 17,
+      "context_tokens": [
+        20855,
+        108,
+        142025,
+        235278,
+        235256,
+        1245,
+        6046,
+        5132,
+        235253,
+        235269,
+        6110,
+        68339,
+        235269,
+        28357,
+        8095,
+        235269,
+        19288
+      ],
+      "context_text": " Overview\nContributor(s): David Germano, James Graves, Chelsea Hall, Eric"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.898364067077637,
+      "tokens": [
+        5139,
+        34041
+      ],
+      "text": "zie Boss",
+      "position": 19,
+      "context_tokens": [
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        1420,
+        2021,
+        5139,
+        34041,
+        108,
+        651,
+        2238,
+        576,
+        573,
+        2493,
+        1162,
+        6952
+      ],
+      "context_text": " 2011 | Suzie Boss\nThe start of the school year offers"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.798900604248047,
+      "tokens": [
+        28357,
+        8095
+      ],
+      "text": " Chelsea Hall",
+      "position": 23,
+      "context_tokens": [
+        6046,
+        5132,
+        235253,
+        235269,
+        6110,
+        68339,
+        235269,
+        28357,
+        8095,
+        235269,
+        19288,
+        9943,
+        1684,
+        521,
+        235265,
+        108,
+        2441
+      ],
+      "context_text": " David Germano, James Graves, Chelsea Hall, Eric Woelfel.\nNew"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.744582176208496,
+      "tokens": [
+        1925,
+        608
+      ],
+      "text": "ino D",
+      "position": 14,
+      "context_tokens": [
+        578,
+        573,
+        9498,
+        108,
+        6798,
+        235265,
+        156625,
+        1925,
+        608,
+        235303,
+        23516,
+        195154,
+        108,
+        2045,
+        3695,
+        1443,
+        476
+      ],
+      "context_text": " and the Environment\nDr. Marcellino D'Ambrosio\nYou often see a"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.723005294799805,
+      "tokens": [
+        9943,
+        1684
+      ],
+      "text": " Woelf",
+      "position": 27,
+      "context_tokens": [
+        6110,
+        68339,
+        235269,
+        28357,
+        8095,
+        235269,
+        19288,
+        9943,
+        1684,
+        521,
+        235265,
+        108,
+        2441
+      ],
+      "context_text": " James Graves, Chelsea Hall, Eric Woelfel.\nNew"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.61616039276123,
+      "tokens": [
+        27402,
+        570
+      ],
+      "text": " Christopher S",
+      "position": 9,
+      "context_tokens": [
+        987,
+        35289,
+        578,
+        118256,
+        108,
+        1232,
+        235292,
+        27402,
+        570,
+        235265,
+        108,
+        4385,
+        603,
+        665,
+        674,
+        1185,
+        2611
+      ],
+      "context_text": "Refraction and Acceleration\nName: Christopher S.\nWhy is it that when light"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.173563957214355,
+      "tokens": [
+        70687,
+        481
+      ],
+      "text": "Mallan",
+      "position": 21,
+      "context_tokens": [
+        4061,
+        14847,
+        3069,
+        235349,
+        235256,
+        12339,
+        108,
+        70687,
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269
+      ],
+      "context_text": " early Australian children\u2019s literature\nMallan, Kerry M., Cross, Amy,"
+    },
+    {
+      "feature_idx": 4328,
+      "activation_value": 8.128353118896484,
+      "tokens": [
+        1818,
+        29349
+      ],
+      "text": "By Emma",
+      "position": 14,
+      "context_tokens": [
+        591,
+        235311,
+        55106,
+        50996,
+        74410,
+        235275,
+        108,
+        1818,
+        29349,
+        21045,
+        235269,
+        25368,
+        6809,
+        11289,
+        108,
+        23772,
+        3631
+      ],
+      "context_text": " (Fagus grandifolia)\nBy Emma Dean, CG Science Editor\nThough once"
+    }
+  ]
+}

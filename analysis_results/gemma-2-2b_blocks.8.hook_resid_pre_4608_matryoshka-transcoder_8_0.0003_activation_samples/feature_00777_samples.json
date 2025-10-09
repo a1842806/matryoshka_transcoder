@@ -1,0 +1,594 @@
+{
+  "statistics": {
+    "feature_idx": 777,
+    "num_samples": 50,
+    "max_activation": 27.968955993652344,
+    "mean_activation": 24.97202548980713,
+    "std_activation": 1.000799383184064,
+    "min_activation": 23.96688461303711,
+    "activation_count": 4982,
+    "all_time_max": 27.968955993652344
+  },
+  "top_samples": [
+    {
+      "feature_idx": 777,
+      "activation_value": 27.968955993652344,
+      "tokens": [
+        1277,
+        5115
+      ],
+      "text": " its growth",
+      "position": 14,
+      "context_tokens": [
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979
+      ],
+      "context_text": " New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a Borough"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 27.638626098632812,
+      "tokens": [
+        4445,
+        4192
+      ],
+      "text": " soon added",
+      "position": 11,
+      "context_tokens": [
+        901,
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914
+      ],
+      "context_text": " but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 26.834150314331055,
+      "tokens": [
+        68893,
+        6210
+      ],
+      "text": " Zinc Company",
+      "position": 9,
+      "context_tokens": [
+        235315,
+        235318,
+        901,
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311
+      ],
+      "context_text": "96 but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 26.61279296875,
+      "tokens": [
+        6210,
+        4445
+      ],
+      "text": " Company soon",
+      "position": 10,
+      "context_tokens": [
+        235318,
+        901,
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729
+      ],
+      "context_text": "6 but the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 26.592626571655273,
+      "tokens": [
+        36196,
+        1378
+      ],
+      "text": " possessed two",
+      "position": 20,
+      "context_tokens": [
+        12387,
+        207720,
+        1865,
+        4756,
+        104342,
+        29691,
+        1064,
+        36196,
+        1378,
+        2167,
+        5088,
+        576,
+        62691,
+        87502,
+        98457,
+        235269,
+        2183
+      ],
+      "context_text": " ancient admixture between quite divergent peoples who possessed two different types of phonemic inventories, while"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 26.578779220581055,
+      "tokens": [
+        29691,
+        1064
+      ],
+      "text": " peoples who",
+      "position": 18,
+      "context_tokens": [
+        3402,
+        577,
+        12387,
+        207720,
+        1865,
+        4756,
+        104342,
+        29691,
+        1064,
+        36196,
+        1378,
+        2167,
+        5088,
+        576,
+        62691,
+        87502,
+        98457
+      ],
+      "context_text": " due to ancient admixture between quite divergent peoples who possessed two different types of phonemic inventories"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 26.443769454956055,
+      "tokens": [
+        2183,
+        1546
+      ],
+      "text": " while most",
+      "position": 29,
+      "context_tokens": [
+        2167,
+        5088,
+        576,
+        62691,
+        87502,
+        98457,
+        235269,
+        2183,
+        1546,
+        69221,
+        46442
+      ],
+      "context_text": " different types of phonemic inventories, while most Africans inherited"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 26.119733810424805,
+      "tokens": [
+        577,
+        1277
+      ],
+      "text": " to its",
+      "position": 13,
+      "context_tokens": [
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476
+      ],
+      "context_text": " nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as a"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.85436248779297,
+      "tokens": [
+        675,
+        476
+      ],
+      "text": " with a",
+      "position": 25,
+      "context_tokens": [
+        235276,
+        4416,
+        12075,
+        578,
+        19493,
+        575,
+        5783,
+        675,
+        476,
+        5171,
+        3210,
+        235265,
+        3718,
+        235265,
+        7373
+      ],
+      "context_text": "0 million dogs and cats in America with a weight problem. Dr. George"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.820419311523438,
+      "tokens": [
+        40311,
+        729
+      ],
+      "text": "stown was",
+      "position": 18,
+      "context_tokens": [
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284
+      ],
+      "context_text": " soon added to its growth. Bowmanstown was incorporated as a Borough on November 2"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.719932556152344,
+      "tokens": [
+        573,
+        16990
+      ],
+      "text": " the nearby",
+      "position": 5,
+      "context_tokens": [
+        235321,
+        235315,
+        235318,
+        901,
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277
+      ],
+      "context_text": "896 but the nearby New Jersey Zinc Company soon added to its"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.688907623291016,
+      "tokens": [
+        729,
+        28914
+      ],
+      "text": " was incorporated",
+      "position": 19,
+      "context_tokens": [
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315
+      ],
+      "context_text": " added to its growth. Bowmanstown was incorporated as a Borough on November 29"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.67745590209961,
+      "tokens": [
+        685,
+        476
+      ],
+      "text": " as a",
+      "position": 21,
+      "context_tokens": [
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269,
+        235248
+      ],
+      "context_text": " its growth. Bowmanstown was incorporated as a Borough on November 29, "
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.527578353881836,
+      "tokens": [
+        3402,
+        577
+      ],
+      "text": " due to",
+      "position": 11,
+      "context_tokens": [
+        235269,
+        573,
+        6561,
+        62691,
+        87502,
+        19871,
+        603,
+        3402,
+        577,
+        12387,
+        207720,
+        1865,
+        4756,
+        104342,
+        29691,
+        1064,
+        36196
+      ],
+      "context_text": ", the greater phonemic diversity is due to ancient admixture between quite divergent peoples who possessed"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.386131286621094,
+      "tokens": [
+        28914,
+        685
+      ],
+      "text": " incorporated as",
+      "position": 20,
+      "context_tokens": [
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685,
+        476,
+        65979,
+        611,
+        5516,
+        235248,
+        235284,
+        235315,
+        235269
+      ],
+      "context_text": " to its growth. Bowmanstown was incorporated as a Borough on November 29,"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.37264633178711,
+      "tokens": [
+        16990,
+        1622
+      ],
+      "text": " nearby New",
+      "position": 6,
+      "context_tokens": [
+        235321,
+        235315,
+        235318,
+        901,
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115
+      ],
+      "context_text": "896 but the nearby New Jersey Zinc Company soon added to its growth"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 25.06276512145996,
+      "tokens": [
+        483,
+        235290
+      ],
+      "text": "or-",
+      "position": 21,
+      "context_tokens": [
+        108,
+        235371,
+        52087,
+        903,
+        10979,
+        86788,
+        235290,
+        483,
+        235290,
+        72433,
+        574,
+        235283,
+        1599,
+        5312,
+        235269,
+        22440,
+        8600
+      ],
+      "context_text": "\n|Celebrations||Trick-or-treating/guising, costume parties"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 24.929630279541016,
+      "tokens": [
+        603,
+        476
+      ],
+      "text": " is a",
+      "position": 30,
+      "context_tokens": [
+        85278,
+        6092,
+        235265,
+        1576,
+        741,
+        8206,
+        16690,
+        603,
+        476,
+        11873
+      ],
+      "context_text": " Baja California. Xantusiidae is a relatively"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 24.916715621948242,
+      "tokens": [
+        4192,
+        577
+      ],
+      "text": " added to",
+      "position": 12,
+      "context_tokens": [
+        573,
+        16990,
+        1622,
+        17108,
+        68893,
+        6210,
+        4445,
+        4192,
+        577,
+        1277,
+        5115,
+        235265,
+        89684,
+        40311,
+        729,
+        28914,
+        685
+      ],
+      "context_text": " the nearby New Jersey Zinc Company soon added to its growth. Bowmanstown was incorporated as"
+    },
+    {
+      "feature_idx": 777,
+      "activation_value": 24.909595489501953,
+      "tokens": [
+        1865,
+        4756
+      ],
+      "text": " between quite",
+      "position": 15,
+      "context_tokens": [
+        87502,
+        19871,
+        603,
+        3402,
+        577,
+        12387,
+        207720,
+        1865,
+        4756,
+        104342,
+        29691,
+        1064,
+        36196,
+        1378,
+        2167,
+        5088,
+        576
+      ],
+      "context_text": "emic diversity is due to ancient admixture between quite divergent peoples who possessed two different types of"
+    }
+  ]
+}

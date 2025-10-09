@@ -1,0 +1,361 @@
+{
+  "statistics": {
+    "feature_idx": 4060,
+    "num_samples": 12,
+    "max_activation": 13.40463924407959,
+    "mean_activation": 6.0494517882664995,
+    "std_activation": 3.4222425508038268,
+    "min_activation": 3.0905938148498535,
+    "activation_count": 12,
+    "all_time_max": 13.40463924407959
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4060,
+      "activation_value": 13.40463924407959,
+      "tokens": [
+        591,
+        11655
+      ],
+      "text": " (VD",
+      "position": 10,
+      "context_tokens": [
+        3040,
+        2895,
+        235349,
+        235256,
+        68387,
+        73435,
+        19274,
+        591,
+        11655,
+        235301,
+        235275,
+        696,
+        74896,
+        14652,
+        44867,
+        573,
+        34760
+      ],
+      "context_text": " State University\u2019s Veterinary Diagnostic Laboratory (VDL) at Ames closely monitors the incidence"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 12.029797554016113,
+      "tokens": [
+        591,
+        235277
+      ],
+      "text": " (S",
+      "position": 31,
+      "context_tokens": [
+        3359,
+        1941,
+        8830,
+        731,
+        98620,
+        66968,
+        45371,
+        591,
+        235277
+      ],
+      "context_text": " including those caused by swine influenza viruses (S"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 9.581107139587402,
+      "tokens": [
+        11655,
+        235301
+      ],
+      "text": "VDL",
+      "position": 11,
+      "context_tokens": [
+        2895,
+        235349,
+        235256,
+        68387,
+        73435,
+        19274,
+        591,
+        11655,
+        235301,
+        235275,
+        696,
+        74896,
+        14652,
+        44867,
+        573,
+        34760,
+        576
+      ],
+      "context_text": " University\u2019s Veterinary Diagnostic Laboratory (VDL) at Ames closely monitors the incidence of"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 6.006604194641113,
+      "tokens": [
+        591,
+        1574
+      ],
+      "text": " (den",
+      "position": 16,
+      "context_tokens": [
+        133503,
+        5977,
+        194983,
+        1141,
+        3485,
+        1977,
+        204962,
+        591,
+        1574,
+        235290,
+        5491,
+        1073,
+        235290,
+        1175,
+        235290,
+        534,
+        4497
+      ],
+      "context_text": "Dendranthema x grandiflorum (den-DRAN-the-ma grand"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 5.164190769195557,
+      "tokens": [
+        591,
+        19865
+      ],
+      "text": " (DOM",
+      "position": 6,
+      "context_tokens": [
+        2,
+        66019,
+        576,
+        44546,
+        5031,
+        591,
+        19865,
+        235280,
+        235275,
+        108,
+        83377,
+        575,
+        235248,
+        235274,
+        235315
+      ],
+      "context_text": "<bos>Defense of Marriage Act (DOMA)\nPassed in 19"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 4.425949573516846,
+      "tokens": [
+        235290,
+        5491
+      ],
+      "text": "-DR",
+      "position": 18,
+      "context_tokens": [
+        194983,
+        1141,
+        3485,
+        1977,
+        204962,
+        591,
+        1574,
+        235290,
+        5491,
+        1073,
+        235290,
+        1175,
+        235290,
+        534,
+        4497,
+        235290,
+        235285
+      ],
+      "context_text": "hema x grandiflorum (den-DRAN-the-ma grand-I"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 4.098692417144775,
+      "tokens": [
+        108,
+        3492
+      ],
+      "text": "\nPath",
+      "position": 25,
+      "context_tokens": [
+        611,
+        125958,
+        9867,
+        575,
+        4589,
+        26996,
+        235265,
+        108,
+        3492,
+        36886,
+        747,
+        235290,
+        235321,
+        603,
+        671
+      ],
+      "context_text": " on Pigeon Point in West Seattle.\nPathfinder K-8 is an"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 3.9245316982269287,
+      "tokens": [
+        5491,
+        1073
+      ],
+      "text": "DRAN",
+      "position": 19,
+      "context_tokens": [
+        1141,
+        3485,
+        1977,
+        204962,
+        591,
+        1574,
+        235290,
+        5491,
+        1073,
+        235290,
+        1175,
+        235290,
+        534,
+        4497,
+        235290,
+        235285,
+        235290
+      ],
+      "context_text": " x grandiflorum (den-DRAN-the-ma grand-I-"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 3.761139154434204,
+      "tokens": [
+        108,
+        8024
+      ],
+      "text": "\nSM",
+      "position": 12,
+      "context_tokens": [
+        21599,
+        3061,
+        34631,
+        227531,
+        235269,
+        13108,
+        227531,
+        108,
+        8024,
+        59987,
+        22047,
+        70460,
+        22576,
+        235292,
+        108,
+        11116,
+        1461
+      ],
+      "context_text": " Carbon Monoxide Detectors, Gas Detectors\nSMOKE DETECTOR INFORMATION:\nMost people"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 3.616772413253784,
+      "tokens": [
+        591,
+        19865
+      ],
+      "text": " (DOM",
+      "position": 24,
+      "context_tokens": [
+        235318,
+        235269,
+        714,
+        24874,
+        576,
+        44546,
+        5031,
+        591,
+        19865,
+        235280,
+        235275,
+        68997,
+        10871,
+        16398,
+        576,
+        18104
+      ],
+      "context_text": "6, The Defense of Marriage Act (DOMA) denies federal recognition of gay"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 3.489403486251831,
+      "tokens": [
+        235269,
+        235248
+      ],
+      "text": ", ",
+      "position": 11,
+      "context_tokens": [
+        85411,
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        108,
+        2437,
+        2456,
+        56134
+      ],
+      "context_text": " Blogs\nWednesday, September 7, 2011\nIs There Oxygen"
+    },
+    {
+      "feature_idx": 4060,
+      "activation_value": 3.0905938148498535,
+      "tokens": [
+        591,
+        1967
+      ],
+      "text": " (OL",
+      "position": 18,
+      "context_tokens": [
+        235265,
+        108,
+        651,
+        3428,
+        63054,
+        2399,
+        8072,
+        591,
+        1967,
+        5586,
+        235275,
+        3542,
+        7378,
+        6423,
+        476,
+        888,
+        5688
+      ],
+      "context_text": ".\nThe One Laptop Per Child (OLPC) project recently tried a new approach"
+    }
+  ]
+}

@@ -1,0 +1,434 @@
+{
+  "statistics": {
+    "feature_idx": 2717,
+    "num_samples": 50,
+    "max_activation": 20.807954788208008,
+    "mean_activation": 16.075835723876953,
+    "std_activation": 3.4793015481483343,
+    "min_activation": 10.119573593139648,
+    "activation_count": 94,
+    "all_time_max": 20.807954788208008
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.807954788208008,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        987,
+        35289,
+        578,
+        118256,
+        108,
+        1232,
+        235292,
+        27402
+      ],
+      "context_text": "<bos>Refraction and Acceleration\nName: Christopher"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.799264907836914,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        2495,
+        665,
+        7332,
+        235349,
+        235251,
+        604,
+        79549,
+        235269
+      ],
+      "context_text": "<bos>If it wasn\u2019t for earthquakes,"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.75147819519043,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        126314,
+        577,
+        35464,
+        11313,
+        731,
+        56735,
+        476,
+        124725
+      ],
+      "context_text": "<bos>Attempts to relay mail by issuing a predefined"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.734045028686523,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        7056,
+        576,
+        100974,
+        10653,
+        578,
+        8554,
+        604,
+        747
+      ],
+      "context_text": "<bos>Use of Biomedical Engineering and Music for K"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.62489128112793,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        235280,
+        1872,
+        3285,
+        235349,
+        235256,
+        1503,
+        3695,
+        6156
+      ],
+      "context_text": "<bos>A main character\u2019s name often gives"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.437089920043945,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        2939,
+        14465,
+        67833,
+        235281,
+        2395,
+        627,
+        235284,
+        768
+      ],
+      "context_text": "<bos>color=\"#FFFFFF\" size=\"2\">"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.312938690185547,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        27586,
+        235292,
+        235284,
+        235276,
+        235265,
+        235274,
+        235276,
+        235315
+      ],
+      "context_text": "<bos>Talk:20.109"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 20.035953521728516,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        122005,
+        696,
+        31154,
+        118180,
+        11244,
+        5714,
+        791,
+        1942
+      ],
+      "context_text": "<bos>Researchers at UT Southwestern Medical Center have found"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 19.914278030395508,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        3493,
+        235303,
+        235256,
+        736,
+        8586,
+        1064,
+        6803,
+        123757
+      ],
+      "context_text": "<bos>There's this kid who gets bullied"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 19.874893188476562,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        40128,
+        5552,
+        82576,
+        108,
+        1818,
+        57474,
+        928,
+        9219
+      ],
+      "context_text": "<bos>Taking Play Seriously\nBy ROBIN MAR"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 19.619768142700195,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        36079,
+        42882,
+        728,
+        4029,
+        235248,
+        235274,
+        724,
+        235248
+      ],
+      "context_text": "<bos>Financial Accounting - CH 1 & "
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 19.599395751953125,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        196250,
+        4492,
+        573,
+        3170,
+        708,
+        112809,
+        3434,
+        577
+      ],
+      "context_text": "<bos>Hospitals across the country are diligently working to"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 19.52370262145996,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        886,
+        476,
+        41687,
+        1758,
+        576,
+        14554,
+        578,
+        40354
+      ],
+      "context_text": "<bos>In a countless number of movies and novels"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 19.442869186401367,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        1469,
+        3918,
+        978,
+        1105,
+        45365,
+        235269,
+        46638,
+        1089
+      ],
+      "context_text": "<bos>To learn more about cholesterol, browse any"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 18.986690521240234,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        2720,
+        28087,
+        603,
+        577,
+        3114,
+        1009,
+        14685,
+        611
+      ],
+      "context_text": "<bos>File compression is to perform some algorithm on"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 18.708059310913086,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        3493,
+        1538,
+        614,
+        22033,
+        8121,
+        3165,
+        1009,
+        3576
+      ],
+      "context_text": "<bos>There could be genetic reasons why some women"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 18.662607192993164,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        651,
+        25438,
+        34780,
+        32550,
+        573,
+        23765,
+        9756,
+        578
+      ],
+      "context_text": "<bos>The Operations Layer defines the operational processes and"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 18.422653198242188,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        5331,
+        578,
+        614,
+        1378,
+        141711,
+        7257,
+        235265,
+        1448
+      ],
+      "context_text": "<bos>Let and be two differentiable functions. We"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 18.01055145263672,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        63847,
+        1602,
+        578,
+        40038,
+        77448,
+        3031,
+        2430,
+        2995
+      ],
+      "context_text": "<bos>Ragtime and blues fused \u2018All That"
+    },
+    {
+      "feature_idx": 2717,
+      "activation_value": 17.747739791870117,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        97055,
+        82804,
+        41648,
+        4645,
+        235269,
+        27512,
+        578,
+        13553
+      ],
+      "context_text": "<bos>Marion Levine teaches English, Literature and Film"
+    }
+  ]
+}

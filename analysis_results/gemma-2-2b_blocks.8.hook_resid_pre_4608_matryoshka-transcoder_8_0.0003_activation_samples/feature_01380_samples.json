@@ -1,0 +1,589 @@
+{
+  "statistics": {
+    "feature_idx": 1380,
+    "num_samples": 50,
+    "max_activation": 18.744735717773438,
+    "mean_activation": 8.643284788131714,
+    "std_activation": 4.391360738246188,
+    "min_activation": 2.4799768924713135,
+    "activation_count": 51,
+    "all_time_max": 18.744735717773438
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1380,
+      "activation_value": 18.744735717773438,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 26,
+      "context_tokens": [
+        1024,
+        31454,
+        578,
+        50163,
+        2449,
+        573,
+        2134,
+        235265,
+        108,
+        651,
+        23056,
+        576,
+        4238,
+        11987
+      ],
+      "context_text": " their migrations and settlements around the world.\nThe Jews of Europe arrived"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 16.956573486328125,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 26,
+      "context_tokens": [
+        2613,
+        780,
+        3364,
+        791,
+        3421,
+        577,
+        5291,
+        235265,
+        108,
+        8473,
+        575,
+        573,
+        14753,
+        576
+      ],
+      "context_text": " might not ever have thought to ask.\nHistory in the Heart of"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 16.92975425720215,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 21,
+      "context_tokens": [
+        37246,
+        5075,
+        603,
+        1297,
+        21835,
+        674,
+        3712,
+        235265,
+        108,
+        3179,
+        3205,
+        235269,
+        780,
+        832,
+        3712,
+        54579,
+        708
+      ],
+      "context_text": " monetary policy is only raising that price.\nOf course, not all price reductions are"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 16.739524841308594,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 16,
+      "context_tokens": [
+        573,
+        2403,
+        576,
+        28227,
+        575,
+        573,
+        5330,
+        235265,
+        108,
+        886,
+        21919,
+        964,
+        172579,
+        2285,
+        1104,
+        603,
+        780
+      ],
+      "context_text": " the level of calcium in the blood.\nIn hypoparathyroidism there is not"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 16.42437744140625,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 21,
+      "context_tokens": [
+        37750,
+        2134,
+        984,
+        877,
+        3343,
+        1452,
+        9222,
+        235265,
+        108,
+        235278,
+        785,
+        6706,
+        235290,
+        95177,
+        647,
+        235290,
+        235274
+      ],
+      "context_text": "changing world they will enter after college.\n(one writing-intensive W-1"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 16.044530868530273,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 15,
+      "context_tokens": [
+        578,
+        3890,
+        7161,
+        577,
+        2745,
+        1174,
+        5985,
+        235265,
+        108,
+        235290,
+        3959,
+        27746,
+        3883,
+        79109,
+        235292,
+        114800,
+        731
+      ],
+      "context_text": " and simple steps to keep them safe.\n- Preserving Your Memories: Organized by"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 15.922528266906738,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 20,
+      "context_tokens": [
+        791,
+        38598,
+        3024,
+        696,
+        1024,
+        115096,
+        23868,
+        235265,
+        108,
+        128892,
+        576,
+        573,
+        3838,
+        235349,
+        235256,
+        4473,
+        26952
+      ],
+      "context_text": " have carved away at their fragmented habitat.\nLeaders of the government\u2019s environment ministry"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 14.066041946411133,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 31,
+      "context_tokens": [
+        52722,
+        575,
+        573,
+        4724,
+        576,
+        573,
+        7841,
+        235265,
+        108
+      ],
+      "context_text": " competence in the application of the skills.\n"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 13.41487979888916,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 27,
+      "context_tokens": [
+        10819,
+        235269,
+        13970,
+        235269,
+        578,
+        13103,
+        5640,
+        235265,
+        108,
+        3493,
+        708,
+        7161,
+        692
+      ],
+      "context_text": " appearance, drugs, and sexual activity.\nThere are steps you"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 12.329214096069336,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 8,
+      "context_tokens": [
+        34883,
+        235269,
+        6284,
+        578,
+        1156,
+        55786,
+        7257,
+        235265,
+        108,
+        235280,
+        2611,
+        235290,
+        50623,
+        11287,
+        576,
+        573,
+        9494
+      ],
+      "context_text": " metabolism, sleep and other bodily functions.\nA light-sensitive portion of the brain"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 11.797491073608398,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 22,
+      "context_tokens": [
+        3377,
+        578,
+        235248,
+        235315,
+        235276,
+        235276,
+        8904,
+        235265,
+        108,
+        4508,
+        708,
+        12606,
+        60965,
+        6900,
+        573,
+        14144,
+        17036
+      ],
+      "context_text": " cm and 900 kg.\nThey are caught commercially throughout the Pacific Ocean"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 11.305532455444336,
+      "tokens": [
+        1816,
+        108
+      ],
+      "text": ".\u201d\n",
+      "position": 13,
+      "context_tokens": [
+        30425,
+        578,
+        1459,
+        506,
+        33284,
+        576,
+        11360,
+        1816,
+        108,
+        886,
+        1767,
+        14257,
+        1064,
+        21303,
+        21339,
+        235269,
+        7042
+      ],
+      "context_text": "asia and apraxia of speech.\u201d\nIn many adults who survive stroke, damage"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 11.300167083740234,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 25,
+      "context_tokens": [
+        235269,
+        578,
+        774,
+        4316,
+        8125,
+        577,
+        5928,
+        235265,
+        108,
+        651,
+        1370,
+        7342,
+        82640,
+        577,
+        614
+      ],
+      "context_text": ", and from South Africa to Japan.\nThe first Jerseys to be"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 11.125968933105469,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 13,
+      "context_tokens": [
+        36940,
+        578,
+        212534,
+        708,
+        26033,
+        575,
+        4065,
+        235265,
+        108,
+        5375,
+        235269,
+        476,
+        2970,
+        696,
+        573,
+        21103,
+        7986
+      ],
+      "context_text": " peaks and troughs are precisely in step.\nNow, a team at the Massachusetts Institute"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 11.046384811401367,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 18,
+      "context_tokens": [
+        573,
+        48171,
+        604,
+        26995,
+        7572,
+        578,
+        35889,
+        235265,
+        108,
+        651,
+        1370,
+        3103,
+        4085,
+        14461,
+        576,
+        4975,
+        24345
+      ],
+      "context_text": " the Centers for Disease Control and Prevention.\nThe first multiyear estimate of national HIV"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 10.756770133972168,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 14,
+      "context_tokens": [
+        235269,
+        685,
+        1578,
+        235265,
+        1474,
+        8598,
+        27558,
+        235265,
+        108,
+        31008,
+        1355,
+        577,
+        5424,
+        235248,
+        235274,
+        235315,
+        235315
+      ],
+      "context_text": ", as well. And prepared accordingly.\nThink back to October 199"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 10.158758163452148,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 5,
+      "context_tokens": [
+        603,
+        476,
+        162686,
+        2602,
+        235265,
+        108,
+        2045,
+        708,
+        1508,
+        9319,
+        577,
+        5598,
+        1089,
+        14565
+      ],
+      "context_text": " is a brainstorming page.\nYou are very welcome to write any crazy"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 9.863541603088379,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 14,
+      "context_tokens": [
+        1280,
+        12001,
+        14372,
+        575,
+        573,
+        21429,
+        17481,
+        235265,
+        108,
+        651,
+        27217,
+        6246,
+        1154,
+        30550,
+        33409,
+        578,
+        68128
+      ],
+      "context_text": " into rough waters in the upcoming decades.\nThe Gulf states like Saudi Arabia and Kuwait"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 9.725258827209473,
+      "tokens": [
+        235336,
+        108
+      ],
+      "text": "?\n",
+      "position": 13,
+      "context_tokens": [
+        3476,
+        671,
+        6871,
+        1013,
+        780,
+        4871,
+        5039,
+        235336,
+        108,
+        1596,
+        603,
+        970,
+        3904,
+        235265,
+        108,
+        1718,
+        6343
+      ],
+      "context_text": " least an equal if not higher standard?\nThis is my story.\nIt began"
+    },
+    {
+      "feature_idx": 1380,
+      "activation_value": 9.608952522277832,
+      "tokens": [
+        235265,
+        108
+      ],
+      "text": ".\n",
+      "position": 6,
+      "context_tokens": [
+        4523,
+        577,
+        476,
+        2379,
+        3320,
+        235265,
+        108,
+        235281,
+        1734,
+        832,
+        1230,
+        674,
+        104941,
+        9987,
+        603
+      ],
+      "context_text": " according to a US study.\n\"We all know that aerobic exercise is"
+    }
+  ]
+}

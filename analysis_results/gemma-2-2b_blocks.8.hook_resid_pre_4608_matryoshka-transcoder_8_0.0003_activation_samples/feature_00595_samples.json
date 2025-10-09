@@ -1,0 +1,474 @@
+{
+  "statistics": {
+    "feature_idx": 595,
+    "num_samples": 50,
+    "max_activation": 19.702129364013672,
+    "mean_activation": 13.898054885864259,
+    "std_activation": 3.916231499227185,
+    "min_activation": 8.021077156066895,
+    "activation_count": 68,
+    "all_time_max": 19.702129364013672
+  },
+  "top_samples": [
+    {
+      "feature_idx": 595,
+      "activation_value": 19.702129364013672,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        3974,
+        576,
+        888,
+        24345,
+        27790,
+        575,
+        573,
+        3520
+      ],
+      "context_text": "<bos>The rate of new HIV infections in the United"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 19.634700775146484,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        14944,
+        576,
+        6771,
+        108,
+        14024,
+        235269,
+        3896,
+        235248
+      ],
+      "context_text": "<bos>The Language of Color\nSun, Aug "
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 19.335908889770508,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        12734,
+        74431,
+        108,
+        651,
+        30084,
+        1461,
+        791,
+        2593
+      ],
+      "context_text": "<bos>The Nature Elephant\nThe Karen people have always"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 19.305261611938477,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        755,
+        172579,
+        57483,
+        708,
+        2785,
+        18194,
+        235290,
+        16529
+      ],
+      "context_text": "<bos>The parathyroid glands are four pea-sized"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 19.231996536254883,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        31458,
+        10455,
+        19131,
+        4281,
+        3542,
+        729,
+        22482,
+        696
+      ],
+      "context_text": "<bos>The Getting Word oral history project was begun at"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 18.825782775878906,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        646,
+        1342,
+        5903,
+        12871,
+        877,
+        3658,
+        697,
+        235304
+      ],
+      "context_text": "<bos>The NIDCD award will provide $3"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 18.583181381225586,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565
+      ],
+      "context_text": "<bos>The process of accretion is important in the formation"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 18.46073341369629,
+      "tokens": [
+        2,
+        2169
+      ],
+      "text": "<bos>As",
+      "position": 1,
+      "context_tokens": [
+        2,
+        2169,
+        671,
+        23167,
+        235283,
+        22184,
+        235300,
+        25895,
+        235269,
+        590
+      ],
+      "context_text": "<bos>As an OB/GYN physician, I"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 18.254737854003906,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        68936,
+        605,
+        146280,
+        7165,
+        576,
+        89320,
+        611,
+        10282
+      ],
+      "context_text": "<bos>The lushly forested nation of Guyana on Thursday"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 18.09894561767578,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        28383,
+        696,
+        22540,
+        235292,
+        714,
+        104730,
+        576,
+        6081
+      ],
+      "context_text": "<bos>The Matter at Issue: The Throne of France"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 18.091779708862305,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        33670,
+        4890,
+        49950,
+        576,
+        6809,
+        108,
+        16813,
+        235248
+      ],
+      "context_text": "<bos>The Weekly Newsmagazine of Science\nVolume "
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 17.729629516601562,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        22011,
+        27467,
+        9338,
+        573,
+        1703,
+        9764,
+        604,
+        198472
+      ],
+      "context_text": "<bos>The Oregon Trail opened the way west for intrepid"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 17.708587646484375,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        25438,
+        34780,
+        32550,
+        573,
+        23765,
+        9756,
+        578,
+        12410
+      ],
+      "context_text": "<bos>The Operations Layer defines the operational processes and procedures"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 17.62677574157715,
+      "tokens": [
+        2,
+        1636
+      ],
+      "text": "<bos>For",
+      "position": 1,
+      "context_tokens": [
+        2,
+        1636,
+        573,
+        1370,
+        1069,
+        2754,
+        235248,
+        235274,
+        235310,
+        235274
+      ],
+      "context_text": "<bos>For the first time since 141"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 17.11709976196289,
+      "tokens": [
+        2,
+        651
+      ],
+      "text": "<bos>The",
+      "position": 1,
+      "context_tokens": [
+        2,
+        651,
+        17108,
+        27077,
+        52102,
+        1163,
+        235248,
+        235318,
+        235276,
+        235276
+      ],
+      "context_text": "<bos>The Jersey breed originated over 600"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 16.837512969970703,
+      "tokens": [
+        2,
+        1596
+      ],
+      "text": "<bos>This",
+      "position": 1,
+      "context_tokens": [
+        2,
+        1596,
+        603,
+        573,
+        1069,
+        576,
+        1162,
+        27217,
+        14161,
+        13058
+      ],
+      "context_text": "<bos>This is the time of year Gulf Coast residents"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 16.710330963134766,
+      "tokens": [
+        2,
+        2079
+      ],
+      "text": "<bos>And",
+      "position": 1,
+      "context_tokens": [
+        2,
+        2079,
+        685,
+        1426,
+        685,
+        3646,
+        235303,
+        235256,
+        7489,
+        15731
+      ],
+      "context_text": "<bos>And as good as today's beginning stages"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 16.370018005371094,
+      "tokens": [
+        2,
+        1841
+      ],
+      "text": "<bos>What",
+      "position": 1,
+      "context_tokens": [
+        2,
+        1841,
+        603,
+        14354,
+        9198,
+        235336,
+        108,
+        54234,
+        603,
+        573
+      ],
+      "context_text": "<bos>What is bone cancer?\nBone is the"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 16.18459701538086,
+      "tokens": [
+        2,
+        4038
+      ],
+      "text": "<bos>One",
+      "position": 1,
+      "context_tokens": [
+        2,
+        4038,
+        3077,
+        5685,
+        7435,
+        604,
+        58317,
+        603,
+        19641,
+        235269
+      ],
+      "context_text": "<bos>One possible risk factor for tuberculosis is diabetes,"
+    },
+    {
+      "feature_idx": 595,
+      "activation_value": 15.929834365844727,
+      "tokens": [
+        2,
+        1841
+      ],
+      "text": "<bos>What",
+      "position": 1,
+      "context_tokens": [
+        2,
+        1841,
+        692,
+        877,
+        3918,
+        108,
+        886,
+        736,
+        45432,
+        21061
+      ],
+      "context_text": "<bos>What you will learn\nIn this Maya tutorial"
+    }
+  ]
+}

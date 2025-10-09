@@ -1,0 +1,38 @@
+{
+  "statistics": {
+    "feature_idx": 2064,
+    "num_samples": 1,
+    "max_activation": 20.776784896850586,
+    "mean_activation": 20.776784896850586,
+    "std_activation": 0.0,
+    "min_activation": 20.776784896850586,
+    "activation_count": 1,
+    "all_time_max": 20.776784896850586
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2064,
+      "activation_value": 20.776784896850586,
+      "tokens": [
+        1718,
+        235303
+      ],
+      "text": "It'",
+      "position": 2,
+      "context_tokens": [
+        2,
+        1718,
+        235303,
+        235256,
+        3980,
+        696,
+        1370,
+        30993,
+        577,
+        68384,
+        573
+      ],
+      "context_text": "<bos>It's easy at first glance to envision the"
+    }
+  ]
+}

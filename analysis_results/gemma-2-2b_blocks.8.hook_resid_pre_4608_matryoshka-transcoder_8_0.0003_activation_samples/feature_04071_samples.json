@@ -1,0 +1,410 @@
+{
+  "statistics": {
+    "feature_idx": 4071,
+    "num_samples": 16,
+    "max_activation": 26.96973991394043,
+    "mean_activation": 7.44482646882534,
+    "std_activation": 5.369750812703046,
+    "min_activation": 3.072417974472046,
+    "activation_count": 16,
+    "all_time_max": 26.96973991394043
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4071,
+      "activation_value": 26.96973991394043,
+      "tokens": [
+        2,
+        235371
+      ],
+      "text": "<bos>|",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235371,
+        4883,
+        10979,
+        85890,
+        93732,
+        575,
+        3515,
+        7197,
+        173854
+      ],
+      "context_text": "<bos>|Title||Genetic heterogeneity in human disease.|"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 10.132589340209961,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 12,
+      "context_tokens": [
+        59047,
+        108,
+        31465,
+        576,
+        2333,
+        10172,
+        14473,
+        108,
+        235371,
+        139905,
+        17753,
+        235292,
+        10979,
+        235274,
+        235276,
+        10979,
+        10930
+      ],
+      "context_text": " Genetics\nStatistics of barcoding coverage\n|Specimen Records:||10||Public"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 9.245523452758789,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 11,
+      "context_tokens": [
+        728,
+        4029,
+        235248,
+        235274,
+        724,
+        235248,
+        235284,
+        108,
+        235371,
+        18405,
+        29752,
+        26958,
+        576,
+        7211,
+        114671,
+        235292,
+        10979
+      ],
+      "context_text": " - CH 1 & 2\n|Four Principal Activities of Business Firms:||"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 8.044669151306152,
+      "tokens": [
+        2,
+        235290
+      ],
+      "text": "<bos>-",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235290,
+        41967,
+        40082,
+        108,
+        21175,
+        585,
+        235265,
+        25823,
+        9850
+      ],
+      "context_text": "<bos>- Historic Sites\nGeorge C. Marshall Museum"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 8.001631736755371,
+      "tokens": [
+        2,
+        235290
+      ],
+      "text": "<bos>-",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235290,
+        41967,
+        40082,
+        108,
+        235366,
+        1469,
+        586,
+        208455,
+        1474
+      ],
+      "context_text": "<bos>- Historic Sites\n\u201cTo A Distant And"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 6.8707594871521,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 30,
+      "context_tokens": [
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        235275,
+        108,
+        235371,
+        5539
+      ],
+      "context_text": ", 1999)\n|<<"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 6.132277488708496,
+      "tokens": [
+        2,
+        235278
+      ],
+      "text": "<bos>(",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235278,
+        235274,
+        235275,
+        714,
+        4337,
+        576,
+        476,
+        88428,
+        1865
+      ],
+      "context_text": "<bos>(1) The section of a pedestal between"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 6.017409324645996,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 7,
+      "context_tokens": [
+        2,
+        235265,
+        14350,
+        6215,
+        6307,
+        37533,
+        108,
+        235371,
+        19268,
+        585,
+        235345,
+        135865,
+        235371,
+        108,
+        14254,
+        14350
+      ],
+      "context_text": "<bos>.NET Type Design Guidelines\n|Visual C# Tutorials|\n|.NET"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 5.65378475189209,
+      "tokens": [
+        2,
+        235290
+      ],
+      "text": "<bos>-",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235290,
+        3650,
+        1707,
+        2631,
+        604,
+        5168,
+        108,
+        235274,
+        235265
+      ],
+      "context_text": "<bos>- online helpsearch for term\n1."
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 5.403027534484863,
+      "tokens": [
+        2,
+        235278
+      ],
+      "text": "<bos>(",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235278,
+        235305,
+        5696,
+        235275,
+        728,
+        21540,
+        235269,
+        3359,
+        69627
+      ],
+      "context_text": "<bos>(BPT) - Everyone, including moms"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 5.189154148101807,
+      "tokens": [
+        2,
+        1547
+      ],
+      "text": "<bos>by",
+      "position": 1,
+      "context_tokens": [
+        2,
+        1547,
+        23757,
+        12491,
+        618,
+        235269,
+        108,
+        5906,
+        1812,
+        576
+      ],
+      "context_text": "<bos>by Bruce Boyers,\nOur system of"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 5.023377418518066,
+      "tokens": [
+        2,
+        1547
+      ],
+      "text": "<bos>by",
+      "position": 1,
+      "context_tokens": [
+        2,
+        1547,
+        590,
+        235265,
+        46496,
+        108,
+        68459,
+        671,
+        14814,
+        235269
+      ],
+      "context_text": "<bos>by I. Peterson\nUnlike an ordinary,"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 5.019545078277588,
+      "tokens": [
+        108,
+        235371
+      ],
+      "text": "\n|",
+      "position": 15,
+      "context_tokens": [
+        235269,
+        974,
+        576,
+        573,
+        22013,
+        576,
+        28262,
+        108,
+        235371,
+        6956,
+        3151,
+        10979,
+        2430,
+        640,
+        77480,
+        235303,
+        31350
+      ],
+      "context_text": ", one of the symbols of Halloween\n|Also called||All Hallows' Eve"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 4.4261088371276855,
+      "tokens": [
+        2,
+        235281
+      ],
+      "text": "<bos>\"",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235281,
+        161081,
+        235269,
+        40918,
+        235269,
+        12884,
+        235283,
+        7978,
+        4249
+      ],
+      "context_text": "<bos>\"Caring, Effective, Middle/High School"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 3.915207862854004,
+      "tokens": [
+        2,
+        3154
+      ],
+      "text": "<bos>Source",
+      "position": 1,
+      "context_tokens": [
+        2,
+        3154,
+        235292,
+        23114,
+        49465,
+        235269,
+        235248,
+        235324,
+        235321,
+        235308
+      ],
+      "context_text": "<bos>Source: Steven Maxwell, 785"
+    },
+    {
+      "feature_idx": 4071,
+      "activation_value": 3.072417974472046,
+      "tokens": [
+        17618,
+        1420
+      ],
+      "text": "Elements |",
+      "position": 2,
+      "context_tokens": [
+        2,
+        17618,
+        1420,
+        85411,
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269
+      ],
+      "context_text": "<bos>Elements | Blogs\nWednesday, September 7,"
+    }
+  ]
+}

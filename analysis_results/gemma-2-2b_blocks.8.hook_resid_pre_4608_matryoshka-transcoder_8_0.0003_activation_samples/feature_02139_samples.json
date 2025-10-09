@@ -1,0 +1,590 @@
+{
+  "statistics": {
+    "feature_idx": 2139,
+    "num_samples": 50,
+    "max_activation": 11.949400901794434,
+    "mean_activation": 7.400434684753418,
+    "std_activation": 1.603059221587084,
+    "min_activation": 5.288229942321777,
+    "activation_count": 109,
+    "all_time_max": 11.949400901794434
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2139,
+      "activation_value": 11.949400901794434,
+      "tokens": [
+        26050,
+        731
+      ],
+      "text": " characterized by",
+      "position": 13,
+      "context_tokens": [
+        604,
+        58317,
+        603,
+        19641,
+        235269,
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290,
+        7617
+      ],
+      "context_text": " for tuberculosis is diabetes, a condition characterized by high blood sugar levels and long-term"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 11.746352195739746,
+      "tokens": [
+        603,
+        476
+      ],
+      "text": " is a",
+      "position": 9,
+      "context_tokens": [
+        41261,
+        211263,
+        27808,
+        12019,
+        80825,
+        689,
+        68239,
+        603,
+        476,
+        3818,
+        20790,
+        17999,
+        235265,
+        8317,
+        1064,
+        708,
+        10918
+      ],
+      "context_text": "Attention Deficit Hyperactivity Disorder or ADHD is a common childhood illness. People who are affected"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 11.109627723693848,
+      "tokens": [
+        476,
+        4913
+      ],
+      "text": " a condition",
+      "position": 11,
+      "context_tokens": [
+        5685,
+        7435,
+        604,
+        58317,
+        603,
+        19641,
+        235269,
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497
+      ],
+      "context_text": " risk factor for tuberculosis is diabetes, a condition characterized by high blood sugar levels and long"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 10.353238105773926,
+      "tokens": [
+        68239,
+        603
+      ],
+      "text": " ADHD is",
+      "position": 8,
+      "context_tokens": [
+        2,
+        41261,
+        211263,
+        27808,
+        12019,
+        80825,
+        689,
+        68239,
+        603,
+        476,
+        3818,
+        20790,
+        17999,
+        235265,
+        8317,
+        1064,
+        708
+      ],
+      "context_text": "<bos>Attention Deficit Hyperactivity Disorder or ADHD is a common childhood illness. People who are"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 10.109926223754883,
+      "tokens": [
+        235269,
+        476
+      ],
+      "text": ", a",
+      "position": 10,
+      "context_tokens": [
+        3077,
+        5685,
+        7435,
+        604,
+        58317,
+        603,
+        19641,
+        235269,
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578
+      ],
+      "context_text": " possible risk factor for tuberculosis is diabetes, a condition characterized by high blood sugar levels and"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 9.65023422241211,
+      "tokens": [
+        5902,
+        578
+      ],
+      "text": " levels and",
+      "position": 18,
+      "context_tokens": [
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290,
+        7617,
+        35237,
+        18416,
+        573,
+        25141,
+        235269
+      ],
+      "context_text": " a condition characterized by high blood sugar levels and long-term complications involving the circulation,"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 8.944616317749023,
+      "tokens": [
+        80825,
+        689
+      ],
+      "text": " Disorder or",
+      "position": 6,
+      "context_tokens": [
+        2,
+        41261,
+        211263,
+        27808,
+        12019,
+        80825,
+        689,
+        68239,
+        603,
+        476,
+        3818,
+        20790,
+        17999,
+        235265,
+        8317
+      ],
+      "context_text": "<bos>Attention Deficit Hyperactivity Disorder or ADHD is a common childhood illness. People"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 8.774641990661621,
+      "tokens": [
+        8935,
+        235265
+      ],
+      "text": " neck.",
+      "position": 23,
+      "context_tokens": [
+        2351,
+        577,
+        573,
+        58491,
+        44327,
+        575,
+        573,
+        8935,
+        235265,
+        714,
+        57483,
+        191739,
+        573,
+        755,
+        172579,
+        42696,
+        591
+      ],
+      "context_text": " next to the thyroid gland in the neck. The glands secrete the parathyroid hormone ("
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 8.597806930541992,
+      "tokens": [
+        4913,
+        26050
+      ],
+      "text": " condition characterized",
+      "position": 12,
+      "context_tokens": [
+        7435,
+        604,
+        58317,
+        603,
+        19641,
+        235269,
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290
+      ],
+      "context_text": " factor for tuberculosis is diabetes, a condition characterized by high blood sugar levels and long-"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 8.531098365783691,
+      "tokens": [
+        22241,
+        235265
+      ],
+      "text": " bones.",
+      "position": 30,
+      "context_tokens": [
+        67472,
+        603,
+        573,
+        4072,
+        14976,
+        5580,
+        32752,
+        22241,
+        235265,
+        714
+      ],
+      "context_text": " marrow is the soft tissue inside hollow bones. The"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 8.34935188293457,
+      "tokens": [
+        9198,
+        235336
+      ],
+      "text": " cancer?",
+      "position": 5,
+      "context_tokens": [
+        2,
+        1841,
+        603,
+        14354,
+        9198,
+        235336,
+        108,
+        54234,
+        603,
+        573,
+        15087,
+        674,
+        15093,
+        573
+      ],
+      "context_text": "<bos>What is bone cancer?\nBone is the framework that supports the"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 8.331114768981934,
+      "tokens": [
+        9347,
+        5902
+      ],
+      "text": " sugar levels",
+      "position": 17,
+      "context_tokens": [
+        235269,
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290,
+        7617,
+        35237,
+        18416,
+        573,
+        25141
+      ],
+      "context_text": ", a condition characterized by high blood sugar levels and long-term complications involving the circulation"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.962958335876465,
+      "tokens": [
+        28900,
+        674
+      ],
+      "text": " certification that",
+      "position": 10,
+      "context_tokens": [
+        603,
+        476,
+        1736,
+        576,
+        9560,
+        235269,
+        6790,
+        28900,
+        674,
+        31381,
+        611,
+        7594,
+        578,
+        7658,
+        575,
+        476,
+        3666
+      ],
+      "context_text": " is a form of independent, professional certification that focuses on schools and programs in a particular"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.827254295349121,
+      "tokens": [
+        603,
+        573
+      ],
+      "text": " is the",
+      "position": 24,
+      "context_tokens": [
+        7922,
+        22241,
+        708,
+        32752,
+        235265,
+        41256,
+        67472,
+        603,
+        573,
+        4072,
+        14976,
+        5580,
+        32752,
+        22241,
+        235265,
+        714
+      ],
+      "context_text": " Most bones are hollow. Bone marrow is the soft tissue inside hollow bones. The"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.8181962966918945,
+      "tokens": [
+        87433,
+        235265
+      ],
+      "text": " impulses.",
+      "position": 31,
+      "context_tokens": [
+        6137,
+        235269,
+        10191,
+        2076,
+        578,
+        29088,
+        1024,
+        87433,
+        235265
+      ],
+      "context_text": " attention, sitting still and controlling their impulses."
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.7576985359191895,
+      "tokens": [
+        20790,
+        17999
+      ],
+      "text": " childhood illness",
+      "position": 12,
+      "context_tokens": [
+        12019,
+        80825,
+        689,
+        68239,
+        603,
+        476,
+        3818,
+        20790,
+        17999,
+        235265,
+        8317,
+        1064,
+        708,
+        10918,
+        798,
+        791,
+        10779
+      ],
+      "context_text": "activity Disorder or ADHD is a common childhood illness. People who are affected can have trouble"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.7379865646362305,
+      "tokens": [
+        476,
+        3818
+      ],
+      "text": " a common",
+      "position": 10,
+      "context_tokens": [
+        211263,
+        27808,
+        12019,
+        80825,
+        689,
+        68239,
+        603,
+        476,
+        3818,
+        20790,
+        17999,
+        235265,
+        8317,
+        1064,
+        708,
+        10918,
+        798
+      ],
+      "context_text": " Deficit Hyperactivity Disorder or ADHD is a common childhood illness. People who are affected can"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.521025657653809,
+      "tokens": [
+        731,
+        1536
+      ],
+      "text": " by high",
+      "position": 14,
+      "context_tokens": [
+        58317,
+        603,
+        19641,
+        235269,
+        476,
+        4913,
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290,
+        7617,
+        35237
+      ],
+      "context_text": " tuberculosis is diabetes, a condition characterized by high blood sugar levels and long-term complications"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.516199111938477,
+      "tokens": [
+        25141,
+        235269
+      ],
+      "text": " circulation,",
+      "position": 26,
+      "context_tokens": [
+        578,
+        1497,
+        235290,
+        7617,
+        35237,
+        18416,
+        573,
+        25141,
+        235269,
+        4628,
+        578,
+        77817,
+        235269,
+        578
+      ],
+      "context_text": " and long-term complications involving the circulation, eyes and kidneys, and"
+    },
+    {
+      "feature_idx": 2139,
+      "activation_value": 7.475785732269287,
+      "tokens": [
+        67472,
+        603
+      ],
+      "text": " marrow is",
+      "position": 23,
+      "context_tokens": [
+        235265,
+        7922,
+        22241,
+        708,
+        32752,
+        235265,
+        41256,
+        67472,
+        603,
+        573,
+        4072,
+        14976,
+        5580,
+        32752,
+        22241,
+        235265,
+        714
+      ],
+      "context_text": ". Most bones are hollow. Bone marrow is the soft tissue inside hollow bones. The"
+    }
+  ]
+}

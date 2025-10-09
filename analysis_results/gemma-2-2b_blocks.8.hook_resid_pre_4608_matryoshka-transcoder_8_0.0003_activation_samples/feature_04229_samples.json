@@ -1,0 +1,476 @@
+{
+  "statistics": {
+    "feature_idx": 4229,
+    "num_samples": 19,
+    "max_activation": 21.803152084350586,
+    "mean_activation": 5.544998206590352,
+    "std_activation": 4.087895045287001,
+    "min_activation": 2.717785596847534,
+    "activation_count": 19,
+    "all_time_max": 21.803152084350586
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4229,
+      "activation_value": 21.803152084350586,
+      "tokens": [
+        576
+      ],
+      "text": " of",
+      "position": 0,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577
+      ],
+      "context_text": " of Jerseys can be found from Denmark to"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 7.928019046783447,
+      "tokens": [
+        573
+      ],
+      "text": " the",
+      "position": 0,
+      "context_tokens": [
+        573,
+        2971,
+        235349,
+        235256,
+        7374,
+        577,
+        5900,
+        15618,
+        235265
+      ],
+      "context_text": " the body\u2019s ability to fight infection."
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 6.538217544555664,
+      "tokens": [
+        576,
+        7342
+      ],
+      "text": " of Jer",
+      "position": 1,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 6.472012996673584,
+      "tokens": [
+        573
+      ],
+      "text": " the",
+      "position": 0,
+      "context_tokens": [
+        573,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        29281,
+        235265,
+        108
+      ],
+      "context_text": " the 2011 Census.\n"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 6.063504695892334,
+      "tokens": [
+        798,
+        614
+      ],
+      "text": " can be",
+      "position": 4,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622,
+        15632,
+        235269,
+        774
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New Zealand, from"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 5.874488353729248,
+      "tokens": [
+        614,
+        1942
+      ],
+      "text": " be found",
+      "position": 5,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622,
+        15632,
+        235269,
+        774,
+        6591
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New Zealand, from Canada"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 5.680321216583252,
+      "tokens": [
+        573
+      ],
+      "text": " the",
+      "position": 0,
+      "context_tokens": [
+        573,
+        162022,
+        576,
+        15627,
+        235265,
+        3696,
+        1461,
+        1303,
+        774
+      ],
+      "context_text": " the fatality of smoke. More people die from"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 5.166762828826904,
+      "tokens": [
+        7342,
+        82640
+      ],
+      "text": " Jerseys",
+      "position": 2,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622,
+        15632
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New Zealand"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 4.697706699371338,
+      "tokens": [
+        2134
+      ],
+      "text": " world",
+      "position": 0,
+      "context_tokens": [
+        2134,
+        3895,
+        9122,
+        6325,
+        696,
+        736,
+        2788,
+        235349,
+        235256
+      ],
+      "context_text": " world took centre stage at this week\u2019s"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 4.3335371017456055,
+      "tokens": [
+        82640,
+        798
+      ],
+      "text": "seys can",
+      "position": 3,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622,
+        15632,
+        235269
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New Zealand,"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 4.307164669036865,
+      "tokens": [
+        1942,
+        774
+      ],
+      "text": " found from",
+      "position": 6,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622,
+        15632,
+        235269,
+        774,
+        6591,
+        577
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New Zealand, from Canada to"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 3.7909324169158936,
+      "tokens": [
+        573
+      ],
+      "text": " the",
+      "position": 0,
+      "context_tokens": [
+        573,
+        17745,
+        235265,
+        878,
+        671,
+        157148,
+        9027,
+        235269,
+        573
+      ],
+      "context_text": " the universe. In an accretion disc, the"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 3.7902557849884033,
+      "tokens": [
+        32923,
+        577
+      ],
+      "text": " Denmark to",
+      "position": 8,
+      "context_tokens": [
+        576,
+        7342,
+        82640,
+        798,
+        614,
+        1942,
+        774,
+        32923,
+        577,
+        1622,
+        15632,
+        235269,
+        774,
+        6591,
+        577,
+        4316,
+        5783
+      ],
+      "context_text": " of Jerseys can be found from Denmark to New Zealand, from Canada to South America"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 3.7289397716522217,
+      "tokens": [
+        1134
+      ],
+      "text": " would",
+      "position": 0,
+      "context_tokens": [
+        1134,
+        614,
+        16321,
+        1013,
+        783,
+        16788,
+        235269,
+        685,
+        1578
+      ],
+      "context_text": " would be wise if we watched, as well"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 3.5845916271209717,
+      "tokens": [
+        1758,
+        576
+      ],
+      "text": " number of",
+      "position": 1,
+      "context_tokens": [
+        1758,
+        576,
+        4961,
+        513,
+        105495,
+        1163,
+        573,
+        19184,
+        45071,
+        1688
+      ],
+      "context_text": " number of hands wringing over the fiscal cliff ,"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 3.12333607673645,
+      "tokens": [
+        595,
+        1173
+      ],
+      "text": " M.,",
+      "position": 25,
+      "context_tokens": [
+        235256,
+        12339,
+        108,
+        70687,
+        481,
+        235269,
+        63728,
+        595,
+        1173,
+        10006,
+        235269,
+        27161,
+        235269,
+        724,
+        46688
+      ],
+      "context_text": "s literature\nMallan, Kerry M., Cross, Amy, & Allan"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 2.9411685466766357,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 18,
+      "context_tokens": [
+        235284,
+        235276,
+        235276,
+        235321,
+        235265,
+        108,
+        5393,
+        576,
+        573,
+        25473,
+        674,
+        1249,
+        614,
+        2845,
+        577,
+        4234,
+        90044
+      ],
+      "context_text": "2008.\nSome of the themes that may be important to watch unfolding"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 2.8130688667297363,
+      "tokens": [
+        774
+      ],
+      "text": " from",
+      "position": 0,
+      "context_tokens": [
+        774,
+        573,
+        8776,
+        4337,
+        235265,
+        108,
+        651,
+        11877,
+        576
+      ],
+      "context_text": " from the upper section.\nThe dance of"
+    },
+    {
+      "feature_idx": 4229,
+      "activation_value": 2.717785596847534,
+      "tokens": [
+        5393,
+        576
+      ],
+      "text": "Some of",
+      "position": 17,
+      "context_tokens": [
+        235290,
+        235284,
+        235276,
+        235276,
+        235321,
+        235265,
+        108,
+        5393,
+        576,
+        573,
+        25473,
+        674,
+        1249,
+        614,
+        2845,
+        577,
+        4234
+      ],
+      "context_text": "-2008.\nSome of the themes that may be important to watch"
+    }
+  ]
+}

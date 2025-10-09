@@ -1,0 +1,584 @@
+{
+  "statistics": {
+    "feature_idx": 838,
+    "num_samples": 50,
+    "max_activation": 23.171857833862305,
+    "mean_activation": 13.31893367767334,
+    "std_activation": 3.4517780605493353,
+    "min_activation": 8.914868354797363,
+    "activation_count": 155,
+    "all_time_max": 23.171857833862305
+  },
+  "top_samples": [
+    {
+      "feature_idx": 838,
+      "activation_value": 23.171857833862305,
+      "tokens": [
+        235248,
+        235315
+      ],
+      "text": " 9",
+      "position": 5,
+      "context_tokens": [
+        2,
+        14437,
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248,
+        235304
+      ],
+      "context_text": "<bos>Posted: Oct 9, 2012 3"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 21.276134490966797,
+      "tokens": [
+        235284,
+        235324
+      ],
+      "text": "27",
+      "position": 6,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847,
+        4998
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal computers are fast taking"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 19.608898162841797,
+      "tokens": [
+        235274,
+        235284
+      ],
+      "text": "12",
+      "position": 9,
+      "context_tokens": [
+        74843,
+        31147,
+        604,
+        181800,
+        29381,
+        14808,
+        235248,
+        235274,
+        235284,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        1420,
+        2021
+      ],
+      "context_text": "Twenty Ideas for Engaging ProjectsSeptember 12, 2011 | Su"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 18.11113929748535,
+      "tokens": [
+        235248,
+        235315
+      ],
+      "text": " 9",
+      "position": 28,
+      "context_tokens": [
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315,
+        591,
+        13010,
+        7366
+      ],
+      "context_text": " Preidt\nTUESDAY, Oct. 9 (HealthDay"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 17.708736419677734,
+      "tokens": [
+        235248,
+        235324
+      ],
+      "text": " 7",
+      "position": 9,
+      "context_tokens": [
+        17618,
+        1420,
+        85411,
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        108,
+        2437
+      ],
+      "context_text": "Elements | Blogs\nWednesday, September 7, 2011\nIs"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 17.151626586914062,
+      "tokens": [
+        235248,
+        235315
+      ],
+      "text": " 9",
+      "position": 4,
+      "context_tokens": [
+        2,
+        2122,
+        4826,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        235269,
+        573
+      ],
+      "context_text": "<bos>On August 9, 2011, the"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 17.090232849121094,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 7,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) -- With new oil"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 16.734159469604492,
+      "tokens": [
+        235284,
+        235276
+      ],
+      "text": "20",
+      "position": 8,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888,
+        4684,
+        578
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) -- With new oil and"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 16.548803329467773,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 10,
+      "context_tokens": [
+        14944,
+        576,
+        6771,
+        108,
+        14024,
+        235269,
+        3896,
+        235248,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        6440,
+        44161
+      ],
+      "context_text": " Language of Color\nSun, Aug 1, 2010 ~ Wed"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 16.43236541748047,
+      "tokens": [
+        235274,
+        235315
+      ],
+      "text": "19",
+      "position": 20,
+      "context_tokens": [
+        4890,
+        68881,
+        108,
+        21525,
+        235269,
+        5225,
+        235248,
+        235274,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235321,
+        10391,
+        15480
+      ],
+      "context_text": " News Digest\nSaturday, September 19, 1998 Last modified"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 16.287307739257812,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 5,
+      "context_tokens": [
+        2,
+        19748,
+        235269,
+        4707,
+        235248,
+        235284,
+        235324,
+        591,
+        37057,
+        235275,
+        15103,
+        25175,
+        708,
+        4847
+      ],
+      "context_text": "<bos>London, July 27 (IANS) Personal computers are fast"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 16.20991325378418,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 8,
+      "context_tokens": [
+        2,
+        74843,
+        31147,
+        604,
+        181800,
+        29381,
+        14808,
+        235248,
+        235274,
+        235284,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        1420
+      ],
+      "context_text": "<bos>Twenty Ideas for Engaging ProjectsSeptember 12, 2011 |"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 16.002609252929688,
+      "tokens": [
+        11605,
+        235248
+      ],
+      "text": " Oct ",
+      "position": 4,
+      "context_tokens": [
+        2,
+        14437,
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248
+      ],
+      "context_text": "<bos>Posted: Oct 9, 2012 "
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 15.703710556030273,
+      "tokens": [
+        235274,
+        235324
+      ],
+      "text": "17",
+      "position": 25,
+      "context_tokens": [
+        108,
+        18425,
+        235292,
+        8084,
+        235269,
+        4482,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": "\nPublished: Sunday, March 17, 2013"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 15.607827186584473,
+      "tokens": [
+        235276,
+        235274
+      ],
+      "text": "01",
+      "position": 14,
+      "context_tokens": [
+        235269,
+        5404,
+        235269,
+        3545,
+        108,
+        15339,
+        235248,
+        235276,
+        235274,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        108,
+        651
+      ],
+      "context_text": ", education, services\nDecember 01, 1999\nThe"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 15.322028160095215,
+      "tokens": [
+        235292,
+        11605
+      ],
+      "text": ": Oct",
+      "position": 3,
+      "context_tokens": [
+        2,
+        14437,
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284
+      ],
+      "context_text": "<bos>Posted: Oct 9, 2012"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 15.157812118530273,
+      "tokens": [
+        235324,
+        4826
+      ],
+      "text": "7 August",
+      "position": 14,
+      "context_tokens": [
+        235256,
+        12881,
+        575,
+        24345,
+        24023,
+        108,
+        235284,
+        235324,
+        4826,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        108,
+        651,
+        4731
+      ],
+      "context_text": "s leadership in HIV prevention\n27 August 2010\nThe role"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 15.000267028808594,
+      "tokens": [
+        235248,
+        235321
+      ],
+      "text": " 8",
+      "position": 21,
+      "context_tokens": [
+        235269,
+        6165,
+        235248,
+        235274,
+        235315,
+        591,
+        4914,
+        235248,
+        235321,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        235275,
+        108
+      ],
+      "context_text": ", Number 19 (May 8, 1999)\n"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 14.603787422180176,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 24,
+      "context_tokens": [
+        235252,
+        108,
+        18425,
+        235292,
+        8084,
+        235269,
+        4482,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": "i\nPublished: Sunday, March 17, 2013"
+    },
+    {
+      "feature_idx": 838,
+      "activation_value": 14.46551513671875,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 19,
+      "context_tokens": [
+        16724,
+        4890,
+        68881,
+        108,
+        21525,
+        235269,
+        5225,
+        235248,
+        235274,
+        235315,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235321,
+        10391
+      ],
+      "context_text": " Regional News Digest\nSaturday, September 19, 1998 Last"
+    }
+  ]
+}

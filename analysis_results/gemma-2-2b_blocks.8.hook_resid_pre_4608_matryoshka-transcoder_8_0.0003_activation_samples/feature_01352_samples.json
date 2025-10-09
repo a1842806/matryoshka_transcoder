@@ -1,0 +1,66 @@
+{
+  "statistics": {
+    "feature_idx": 1352,
+    "num_samples": 2,
+    "max_activation": 11.703840255737305,
+    "mean_activation": 7.3157031536102295,
+    "std_activation": 4.388137102127075,
+    "min_activation": 2.9275660514831543,
+    "activation_count": 2,
+    "all_time_max": 11.703840255737305
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1352,
+      "activation_value": 11.703840255737305,
+      "tokens": [
+        1841,
+        603
+      ],
+      "text": "What is",
+      "position": 2,
+      "context_tokens": [
+        2,
+        1841,
+        603,
+        14354,
+        9198,
+        235336,
+        108,
+        54234,
+        603,
+        573,
+        15087
+      ],
+      "context_text": "<bos>What is bone cancer?\nBone is the framework"
+    },
+    {
+      "feature_idx": 1352,
+      "activation_value": 2.9275660514831543,
+      "tokens": [
+        2439,
+        1721
+      ],
+      "text": " What does",
+      "position": 6,
+      "context_tokens": [
+        2,
+        19002,
+        11070,
+        22287,
+        235336,
+        2439,
+        1721,
+        736,
+        2714,
+        235336,
+        56974,
+        798,
+        3707,
+        2775,
+        674
+      ],
+      "context_text": "<bos>Politically incorrect? What does this mean? Definitions can include something that"
+    }
+  ]
+}

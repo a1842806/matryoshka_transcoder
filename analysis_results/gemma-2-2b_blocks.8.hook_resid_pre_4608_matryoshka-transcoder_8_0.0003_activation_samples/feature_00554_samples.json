@@ -1,0 +1,420 @@
+{
+  "statistics": {
+    "feature_idx": 554,
+    "num_samples": 14,
+    "max_activation": 11.11799144744873,
+    "mean_activation": 6.429058909416199,
+    "std_activation": 2.8302403512045475,
+    "min_activation": 3.1039023399353027,
+    "activation_count": 14,
+    "all_time_max": 11.11799144744873
+  },
+  "top_samples": [
+    {
+      "feature_idx": 554,
+      "activation_value": 11.11799144744873,
+      "tokens": [
+        15339,
+        235248
+      ],
+      "text": "December ",
+      "position": 12,
+      "context_tokens": [
+        235292,
+        3911,
+        235269,
+        5404,
+        235269,
+        3545,
+        108,
+        15339,
+        235248,
+        235276,
+        235274,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315
+      ],
+      "context_text": ": age, education, services\nDecember 01, 1999"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 10.647329330444336,
+      "tokens": [
+        21120,
+        235248
+      ],
+      "text": " Jul ",
+      "position": 21,
+      "context_tokens": [
+        235284,
+        235276,
+        235274,
+        235276,
+        6440,
+        44161,
+        235269,
+        21120,
+        235248,
+        235304,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": "2010 ~ Wed, Jul 31, 2013"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 10.426383972167969,
+      "tokens": [
+        3896,
+        235248
+      ],
+      "text": " Aug ",
+      "position": 9,
+      "context_tokens": [
+        651,
+        14944,
+        576,
+        6771,
+        108,
+        14024,
+        235269,
+        3896,
+        235248,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        6440
+      ],
+      "context_text": "The Language of Color\nSun, Aug 1, 2010 ~"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 9.964818000793457,
+      "tokens": [
+        235265,
+        235248
+      ],
+      "text": ". ",
+      "position": 6,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297,
+        3279,
+        888
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) -- With new"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 6.992745876312256,
+      "tokens": [
+        235269,
+        5225
+      ],
+      "text": ", September",
+      "position": 7,
+      "context_tokens": [
+        2,
+        17618,
+        1420,
+        85411,
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274
+      ],
+      "context_text": "<bos>Elements | Blogs\nWednesday, September 7, 2011"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 6.49973726272583,
+      "tokens": [
+        108,
+        15339
+      ],
+      "text": "\nDecember",
+      "position": 11,
+      "context_tokens": [
+        25473,
+        235292,
+        3911,
+        235269,
+        5404,
+        235269,
+        3545,
+        108,
+        15339,
+        235248,
+        235276,
+        235274,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315
+      ],
+      "context_text": " themes: age, education, services\nDecember 01, 199"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 5.939236164093018,
+      "tokens": [
+        4482,
+        235248
+      ],
+      "text": " March ",
+      "position": 9,
+      "context_tokens": [
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256
+      ],
+      "context_text": "World Water Day is on Monday, March 22nd, and it's"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 5.23410701751709,
+      "tokens": [
+        235269,
+        4482
+      ],
+      "text": ", March",
+      "position": 8,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and it'"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 5.000734329223633,
+      "tokens": [
+        4914,
+        235248
+      ],
+      "text": "May ",
+      "position": 20,
+      "context_tokens": [
+        235308,
+        235269,
+        6165,
+        235248,
+        235274,
+        235315,
+        591,
+        4914,
+        235248,
+        235321,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        235275
+      ],
+      "context_text": "5, Number 19 (May 8, 1999)"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 4.3793463706970215,
+      "tokens": [
+        5225,
+        235248
+      ],
+      "text": " September ",
+      "position": 8,
+      "context_tokens": [
+        2,
+        17618,
+        1420,
+        85411,
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        108
+      ],
+      "context_text": "<bos>Elements | Blogs\nWednesday, September 7, 2011\n"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 3.640125274658203,
+      "tokens": [
+        235265,
+        235248
+      ],
+      "text": ". ",
+      "position": 27,
+      "context_tokens": [
+        7866,
+        2769,
+        87967,
+        108,
+        132152,
+        235269,
+        11605,
+        235265,
+        235248,
+        235315,
+        591,
+        13010,
+        7366
+      ],
+      "context_text": " Robert Preidt\nTUESDAY, Oct. 9 (HealthDay"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 3.6000866889953613,
+      "tokens": [
+        108,
+        25880
+      ],
+      "text": "\nWednesday",
+      "position": 5,
+      "context_tokens": [
+        2,
+        17618,
+        1420,
+        85411,
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276
+      ],
+      "context_text": "<bos>Elements | Blogs\nWednesday, September 7, 20"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 3.460280656814575,
+      "tokens": [
+        235269,
+        3417
+      ],
+      "text": ", Jan",
+      "position": 4,
+      "context_tokens": [
+        2,
+        4696,
+        141458,
+        235269,
+        3417,
+        235265,
+        235248,
+        235284,
+        235276,
+        591,
+        145118,
+        235275,
+        3297
+      ],
+      "context_text": "<bos>DUBAI, Jan. 20 (Xinhua) --"
+    },
+    {
+      "feature_idx": 554,
+      "activation_value": 3.1039023399353027,
+      "tokens": [
+        235269,
+        3896
+      ],
+      "text": ", Aug",
+      "position": 8,
+      "context_tokens": [
+        2,
+        651,
+        14944,
+        576,
+        6771,
+        108,
+        14024,
+        235269,
+        3896,
+        235248,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276
+      ],
+      "context_text": "<bos>The Language of Color\nSun, Aug 1, 2010"
+    }
+  ]
+}

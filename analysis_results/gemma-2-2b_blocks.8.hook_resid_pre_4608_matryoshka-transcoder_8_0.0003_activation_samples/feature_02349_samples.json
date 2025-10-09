@@ -1,0 +1,594 @@
+{
+  "statistics": {
+    "feature_idx": 2349,
+    "num_samples": 27,
+    "max_activation": 17.724599838256836,
+    "mean_activation": 8.108719755102086,
+    "std_activation": 4.267906684937519,
+    "min_activation": 2.6060004234313965,
+    "activation_count": 27,
+    "all_time_max": 17.724599838256836
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2349,
+      "activation_value": 17.724599838256836,
+      "tokens": [
+        1872,
+        5255
+      ],
+      "text": " main language",
+      "position": 14,
+      "context_tokens": [
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933
+      ],
+      "context_text": "\nPolish is the second most common main language in England and Wales with more than half"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 15.263043403625488,
+      "tokens": [
+        22230,
+        5255
+      ],
+      "text": " spoken language",
+      "position": 5,
+      "context_tokens": [
+        2,
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872
+      ],
+      "context_text": "<bos>Polish second most spoken language\nPolish is the second most common main"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 14.360201835632324,
+      "tokens": [
+        603,
+        573
+      ],
+      "text": " is the",
+      "position": 9,
+      "context_tokens": [
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578
+      ],
+      "context_text": "Polish second most spoken language\nPolish is the second most common main language in England and"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 13.856636047363281,
+      "tokens": [
+        1546,
+        3818
+      ],
+      "text": " most common",
+      "position": 12,
+      "context_tokens": [
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978
+      ],
+      "context_text": " spoken language\nPolish is the second most common main language in England and Wales with more"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 13.361403465270996,
+      "tokens": [
+        111206,
+        603
+      ],
+      "text": "Polish is",
+      "position": 8,
+      "context_tokens": [
+        2,
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879
+      ],
+      "context_text": "<bos>Polish second most spoken language\nPolish is the second most common main language in England"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 13.17035961151123,
+      "tokens": [
+        1546,
+        22230
+      ],
+      "text": " most spoken",
+      "position": 4,
+      "context_tokens": [
+        2,
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818
+      ],
+      "context_text": "<bos>Polish second most spoken language\nPolish is the second most common"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 12.680108070373535,
+      "tokens": [
+        4416,
+        22660
+      ],
+      "text": " million speakers",
+      "position": 25,
+      "context_tokens": [
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577,
+        888,
+        10511,
+        774
+      ],
+      "context_text": " and Wales with more than half a million speakers, according to new figures from"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 11.690640449523926,
+      "tokens": [
+        5255,
+        575
+      ],
+      "text": " language in",
+      "position": 15,
+      "context_tokens": [
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476
+      ],
+      "context_text": "Polish is the second most common main language in England and Wales with more than half a"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 9.295823097229004,
+      "tokens": [
+        3818,
+        1872
+      ],
+      "text": " common main",
+      "position": 13,
+      "context_tokens": [
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178
+      ],
+      "context_text": " language\nPolish is the second most common main language in England and Wales with more than"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 8.257495880126953,
+      "tokens": [
+        235269,
+        4523
+      ],
+      "text": ", according",
+      "position": 27,
+      "context_tokens": [
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577,
+        888,
+        10511,
+        774
+      ],
+      "context_text": " with more than half a million speakers, according to new figures from"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 8.226264953613281,
+      "tokens": [
+        108,
+        111206
+      ],
+      "text": "\nPolish",
+      "position": 7,
+      "context_tokens": [
+        2,
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575
+      ],
+      "context_text": "<bos>Polish second most spoken language\nPolish is the second most common main language in"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 8.181949615478516,
+      "tokens": [
+        20289,
+        675
+      ],
+      "text": " Wales with",
+      "position": 19,
+      "context_tokens": [
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523
+      ],
+      "context_text": " most common main language in England and Wales with more than half a million speakers, according"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 7.249258041381836,
+      "tokens": [
+        2257,
+        1546
+      ],
+      "text": " second most",
+      "position": 11,
+      "context_tokens": [
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675
+      ],
+      "context_text": " most spoken language\nPolish is the second most common main language in England and Wales with"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 6.475490570068359,
+      "tokens": [
+        573,
+        2257
+      ],
+      "text": " the second",
+      "position": 10,
+      "context_tokens": [
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289
+      ],
+      "context_text": " second most spoken language\nPolish is the second most common main language in England and Wales"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 6.367922782897949,
+      "tokens": [
+        6879,
+        578
+      ],
+      "text": " England and",
+      "position": 17,
+      "context_tokens": [
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660
+      ],
+      "context_text": " the second most common main language in England and Wales with more than half a million speakers"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 5.970547199249268,
+      "tokens": [
+        675,
+        978
+      ],
+      "text": " with more",
+      "position": 20,
+      "context_tokens": [
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577
+      ],
+      "context_text": " common main language in England and Wales with more than half a million speakers, according to"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 5.947249412536621,
+      "tokens": [
+        476,
+        4416
+      ],
+      "text": " a million",
+      "position": 24,
+      "context_tokens": [
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577,
+        888,
+        10511,
+        774
+      ],
+      "context_text": " England and Wales with more than half a million speakers, according to new figures from"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 5.373055458068848,
+      "tokens": [
+        5255,
+        108
+      ],
+      "text": " language\n",
+      "position": 6,
+      "context_tokens": [
+        2,
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255
+      ],
+      "context_text": "<bos>Polish second most spoken language\nPolish is the second most common main language"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 5.3669915199279785,
+      "tokens": [
+        978,
+        1178
+      ],
+      "text": " more than",
+      "position": 21,
+      "context_tokens": [
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577,
+        888
+      ],
+      "context_text": " main language in England and Wales with more than half a million speakers, according to new"
+    },
+    {
+      "feature_idx": 2349,
+      "activation_value": 4.9745588302612305,
+      "tokens": [
+        22660,
+        235269
+      ],
+      "text": " speakers,",
+      "position": 26,
+      "context_tokens": [
+        20289,
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577,
+        888,
+        10511,
+        774
+      ],
+      "context_text": " Wales with more than half a million speakers, according to new figures from"
+    }
+  ]
+}

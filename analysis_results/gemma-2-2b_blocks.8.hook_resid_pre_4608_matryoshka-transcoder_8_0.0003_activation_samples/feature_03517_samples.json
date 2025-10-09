@@ -1,0 +1,138 @@
+{
+  "statistics": {
+    "feature_idx": 3517,
+    "num_samples": 5,
+    "max_activation": 12.189160346984863,
+    "mean_activation": 7.232511520385742,
+    "std_activation": 2.545999434530867,
+    "min_activation": 5.080020427703857,
+    "activation_count": 5,
+    "all_time_max": 12.189160346984863
+  },
+  "top_samples": [
+    {
+      "feature_idx": 3517,
+      "activation_value": 12.189160346984863,
+      "tokens": [
+        2177,
+        573
+      ],
+      "text": " using the",
+      "position": 30,
+      "context_tokens": [
+        235336,
+        108,
+        3553,
+        235269,
+        736,
+        6186,
+        161435,
+        2177,
+        573,
+        178147
+      ],
+      "context_text": "?\nYes, this summer astronomers using the Herschel"
+    },
+    {
+      "feature_idx": 3517,
+      "activation_value": 6.912057876586914,
+      "tokens": [
+        161435,
+        2177
+      ],
+      "text": " astronomers using",
+      "position": 29,
+      "context_tokens": [
+        11678,
+        235336,
+        108,
+        3553,
+        235269,
+        736,
+        6186,
+        161435,
+        2177,
+        573,
+        178147
+      ],
+      "context_text": " Space?\nYes, this summer astronomers using the Herschel"
+    },
+    {
+      "feature_idx": 3517,
+      "activation_value": 6.0952935218811035,
+      "tokens": [
+        573,
+        178147
+      ],
+      "text": " the Herschel",
+      "position": 31,
+      "context_tokens": [
+        108,
+        3553,
+        235269,
+        736,
+        6186,
+        161435,
+        2177,
+        573,
+        178147
+      ],
+      "context_text": "\nYes, this summer astronomers using the Herschel"
+    },
+    {
+      "feature_idx": 3517,
+      "activation_value": 5.886025428771973,
+      "tokens": [
+        6186,
+        161435
+      ],
+      "text": " summer astronomers",
+      "position": 28,
+      "context_tokens": [
+        575,
+        11678,
+        235336,
+        108,
+        3553,
+        235269,
+        736,
+        6186,
+        161435,
+        2177,
+        573,
+        178147
+      ],
+      "context_text": " in Space?\nYes, this summer astronomers using the Herschel"
+    },
+    {
+      "feature_idx": 3517,
+      "activation_value": 5.080020427703857,
+      "tokens": [
+        575,
+        11678
+      ],
+      "text": " in Space",
+      "position": 21,
+      "context_tokens": [
+        235276,
+        235274,
+        235274,
+        108,
+        2437,
+        2456,
+        56134,
+        575,
+        11678,
+        235336,
+        108,
+        3553,
+        235269,
+        736,
+        6186,
+        161435,
+        2177
+      ],
+      "context_text": "011\nIs There Oxygen in Space?\nYes, this summer astronomers using"
+    }
+  ]
+}

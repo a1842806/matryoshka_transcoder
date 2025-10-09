@@ -1,0 +1,295 @@
+{
+  "statistics": {
+    "feature_idx": 1825,
+    "num_samples": 10,
+    "max_activation": 11.507739067077637,
+    "mean_activation": 5.083556723594666,
+    "std_activation": 2.709345160904029,
+    "min_activation": 2.333789348602295,
+    "activation_count": 10,
+    "all_time_max": 11.507739067077637
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1825,
+      "activation_value": 11.507739067077637,
+      "tokens": [
+        235269,
+        901
+      ],
+      "text": ", but",
+      "position": 24,
+      "context_tokens": [
+        573,
+        1809,
+        30619,
+        235269,
+        36707,
+        19835,
+        42333,
+        235269,
+        901,
+        984,
+        708,
+        2167,
+        575,
+        685,
+        1767,
+        5742
+      ],
+      "context_text": " the same sunny, sandy vacation destinations, but they are different in as many ways"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 7.544078350067139,
+      "tokens": [
+        235265,
+        2005
+      ],
+      "text": ". But",
+      "position": 30,
+      "context_tokens": [
+        11621,
+        675,
+        793,
+        27179,
+        577,
+        77149,
+        67726,
+        235265,
+        2005,
+        573
+      ],
+      "context_text": " election with no Pope to bury beforehand. But the"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 6.363470077514648,
+      "tokens": [
+        3967,
+        901
+      ],
+      "text": " fire but",
+      "position": 28,
+      "context_tokens": [
+        1461,
+        708,
+        8105,
+        576,
+        573,
+        8416,
+        576,
+        3967,
+        901,
+        708,
+        59912,
+        576
+      ],
+      "context_text": " people are aware of the danger of fire but are unaware of"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 6.183097839355469,
+      "tokens": [
+        235269,
+        901
+      ],
+      "text": ", but",
+      "position": 25,
+      "context_tokens": [
+        603,
+        1317,
+        978,
+        6016,
+        674,
+        603,
+        4880,
+        235269,
+        901,
+        575,
+        1089,
+        2270,
+        665,
+        603,
+        1508
+      ],
+      "context_text": " is just more practice that is needed, but in any case it is very"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 4.312355041503906,
+      "tokens": [
+        235269,
+        7546
+      ],
+      "text": ", although",
+      "position": 25,
+      "context_tokens": [
+        908,
+        577,
+        1105,
+        235248,
+        235274,
+        235310,
+        9828,
+        235269,
+        7546,
+        665,
+        1249,
+        3831,
+        4756,
+        2910,
+        575
+      ],
+      "context_text": " up to about 14 inches, although it may become quite large in"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 3.378732204437256,
+      "tokens": [
+        235315,
+        2862
+      ],
+      "text": "9 though",
+      "position": 25,
+      "context_tokens": [
+        235276,
+        235318,
+        578,
+        235248,
+        235284,
+        235276,
+        235276,
+        235315,
+        2862,
+        27790,
+        6629,
+        3932,
+        3486,
+        2656,
+        18104
+      ],
+      "context_text": "06 and 2009 though infections increased among young black gay"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 3.162187337875366,
+      "tokens": [
+        2375,
+        235269
+      ],
+      "text": " feel,",
+      "position": 14,
+      "context_tokens": [
+        235303,
+        235256,
+        7489,
+        15731,
+        576,
+        199233,
+        1249,
+        2375,
+        235269,
+        5199,
+        1185,
+        20585,
+        908,
+        696,
+        476,
+        2566,
+        7148
+      ],
+      "context_text": "'s beginning stages of deflation may feel, especially when filling up at a service station"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 3.0759127140045166,
+      "tokens": [
+        591,
+        5972
+      ],
+      "text": " (Just",
+      "position": 21,
+      "context_tokens": [
+        235251,
+        3685,
+        2346,
+        12150,
+        3031,
+        565,
+        235265,
+        591,
+        5972,
+        50853,
+        235269,
+        196345,
+        13420,
+        108,
+        36049,
+        689,
+        780
+      ],
+      "context_text": "t live without eating \u2018em. (Just kidding, vegans!)\nWhether or not"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 2.974205255508423,
+      "tokens": [
+        235265,
+        4414
+      ],
+      "text": ". Now",
+      "position": 20,
+      "context_tokens": [
+        476,
+        24501,
+        235290,
+        6111,
+        235269,
+        984,
+        1931,
+        235265,
+        4414,
+        693,
+        1180,
+        577,
+        573,
+        26798,
+        1628,
+        1461,
+        235269
+      ],
+      "context_text": " a sweat-house, they say. Now he said to the Cottontail people,"
+    },
+    {
+      "feature_idx": 1825,
+      "activation_value": 2.333789348602295,
+      "tokens": [
+        42333,
+        235269
+      ],
+      "text": " destinations,",
+      "position": 23,
+      "context_tokens": [
+        1855,
+        573,
+        1809,
+        30619,
+        235269,
+        36707,
+        19835,
+        42333,
+        235269,
+        901,
+        984,
+        708,
+        2167,
+        575,
+        685,
+        1767,
+        5742
+      ],
+      "context_text": " being the same sunny, sandy vacation destinations, but they are different in as many ways"
+    }
+  ]
+}

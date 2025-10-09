@@ -366,15 +366,14 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         # Collect activation samples periodically for transcoders
         if sample_collector is not None and i % cfg.get("sample_collection_freq", 1000) == 0:
             with torch.no_grad():
-                # Get batch with tokens from source activation store
-                if hasattr(activation_store, 'source_store'):
-                    sample_batch, sample_tokens = activation_store.source_store.get_batch_with_tokens()
-                    sample_acts = transcoder.encode(sample_batch)
-                    sample_collector.collect_batch_samples(
-                        sample_acts,
-                        sample_tokens,
-                        model.tokenizer
-                    )
+                # Get batch with tokens from activation store
+                sample_batch, sample_tokens = activation_store.get_batch_with_tokens()
+                sample_acts = transcoder.encode(sample_batch)
+                sample_collector.collect_batch_samples(
+                    sample_acts,
+                    sample_tokens,
+                    model.tokenizer
+                )
 
         loss = transcoder_output["loss"]
         

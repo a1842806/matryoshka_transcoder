@@ -1,0 +1,581 @@
+{
+  "statistics": {
+    "feature_idx": 2234,
+    "num_samples": 22,
+    "max_activation": 13.427349090576172,
+    "mean_activation": 6.45778564973311,
+    "std_activation": 2.606544196108637,
+    "min_activation": 2.6529242992401123,
+    "activation_count": 22,
+    "all_time_max": 13.427349090576172
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2234,
+      "activation_value": 13.427349090576172,
+      "tokens": [
+        235269,
+        8995
+      ],
+      "text": ", stars",
+      "position": 13,
+      "context_tokens": [
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170
+      ],
+      "context_text": " is important in the formation of planets, stars, and black holes; it is also"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 10.691518783569336,
+      "tokens": [
+        2656,
+        18072
+      ],
+      "text": " black holes",
+      "position": 17,
+      "context_tokens": [
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009
+      ],
+      "context_text": " formation of planets, stars, and black holes; it is also believed to power some"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 10.179389953613281,
+      "tokens": [
+        578,
+        2656
+      ],
+      "text": " and black",
+      "position": 16,
+      "context_tokens": [
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384
+      ],
+      "context_text": " the formation of planets, stars, and black holes; it is also believed to power"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 8.626269340515137,
+      "tokens": [
+        576,
+        157148
+      ],
+      "text": " of accretion",
+      "position": 4,
+      "context_tokens": [
+        2,
+        651,
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269
+      ],
+      "context_text": "<bos>The process of accretion is important in the formation of planets,"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 8.256330490112305,
+      "tokens": [
+        573,
+        10565
+      ],
+      "text": " the formation",
+      "position": 9,
+      "context_tokens": [
+        651,
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072
+      ],
+      "context_text": "The process of accretion is important in the formation of planets, stars, and black holes"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 7.589147567749023,
+      "tokens": [
+        1546,
+        53254
+      ],
+      "text": " most energetic",
+      "position": 29,
+      "context_tokens": [
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " also believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 7.46053409576416,
+      "tokens": [
+        575,
+        573
+      ],
+      "text": " in the",
+      "position": 8,
+      "context_tokens": [
+        2,
+        651,
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656
+      ],
+      "context_text": "<bos>The process of accretion is important in the formation of planets, stars, and black"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 7.0827131271362305,
+      "tokens": [
+        577,
+        2384
+      ],
+      "text": " to power",
+      "position": 24,
+      "context_tokens": [
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " black holes; it is also believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 6.519268035888672,
+      "tokens": [
+        10565,
+        576
+      ],
+      "text": " formation of",
+      "position": 10,
+      "context_tokens": [
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289
+      ],
+      "context_text": " process of accretion is important in the formation of planets, stars, and black holes;"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 6.468801498413086,
+      "tokens": [
+        576,
+        44797
+      ],
+      "text": " of planets",
+      "position": 11,
+      "context_tokens": [
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665
+      ],
+      "context_text": " of accretion is important in the formation of planets, stars, and black holes; it"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 6.347537994384766,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 27,
+      "context_tokens": [
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " it is also believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 6.195364475250244,
+      "tokens": [
+        13277,
+        577
+      ],
+      "text": " believed to",
+      "position": 23,
+      "context_tokens": [
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " and black holes; it is also believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 6.1000657081604,
+      "tokens": [
+        8995,
+        235269
+      ],
+      "text": " stars,",
+      "position": 14,
+      "context_tokens": [
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277
+      ],
+      "context_text": " important in the formation of planets, stars, and black holes; it is also believed"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 5.636176109313965,
+      "tokens": [
+        53254,
+        32355
+      ],
+      "text": " energetic phenomena",
+      "position": 30,
+      "context_tokens": [
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 5.28630256652832,
+      "tokens": [
+        44797,
+        235269
+      ],
+      "text": " planets,",
+      "position": 12,
+      "context_tokens": [
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603
+      ],
+      "context_text": " accretion is important in the formation of planets, stars, and black holes; it is"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 4.9457783699035645,
+      "tokens": [
+        235289,
+        665
+      ],
+      "text": "; it",
+      "position": 19,
+      "context_tokens": [
+        44797,
+        235269,
+        8995,
+        235269,
+        578,
+        2656,
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573
+      ],
+      "context_text": " planets, stars, and black holes; it is also believed to power some of the"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 4.743908405303955,
+      "tokens": [
+        157148,
+        603
+      ],
+      "text": " accretion is",
+      "position": 5,
+      "context_tokens": [
+        2,
+        651,
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995
+      ],
+      "context_text": "<bos>The process of accretion is important in the formation of planets, stars"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 4.2039794921875,
+      "tokens": [
+        573,
+        1546
+      ],
+      "text": " the most",
+      "position": 28,
+      "context_tokens": [
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " is also believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 3.2649829387664795,
+      "tokens": [
+        2384,
+        1009
+      ],
+      "text": " power some",
+      "position": 25,
+      "context_tokens": [
+        18072,
+        235289,
+        665,
+        603,
+        1170,
+        13277,
+        577,
+        2384,
+        1009,
+        576,
+        573,
+        1546,
+        53254,
+        32355,
+        575
+      ],
+      "context_text": " holes; it is also believed to power some of the most energetic phenomena in"
+    },
+    {
+      "feature_idx": 2234,
+      "activation_value": 3.2017927169799805,
+      "tokens": [
+        2845,
+        575
+      ],
+      "text": " important in",
+      "position": 7,
+      "context_tokens": [
+        2,
+        651,
+        2185,
+        576,
+        157148,
+        603,
+        2845,
+        575,
+        573,
+        10565,
+        576,
+        44797,
+        235269,
+        8995,
+        235269,
+        578
+      ],
+      "context_text": "<bos>The process of accretion is important in the formation of planets, stars, and"
+    }
+  ]
+}

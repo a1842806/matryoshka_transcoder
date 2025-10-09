@@ -1,0 +1,434 @@
+{
+  "statistics": {
+    "feature_idx": 2177,
+    "num_samples": 50,
+    "max_activation": 34.145450592041016,
+    "mean_activation": 33.68010513305664,
+    "std_activation": 0.1643358867214252,
+    "min_activation": 33.43459701538086,
+    "activation_count": 116,
+    "all_time_max": 34.145450592041016
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2177,
+      "activation_value": 34.145450592041016,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        235281,
+        161081,
+        235269,
+        40918,
+        235269,
+        12884,
+        235283,
+        7978
+      ],
+      "context_text": "<bos>\"Caring, Effective, Middle/High"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 34.12611389160156,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        55803,
+        15950,
+        575,
+        573,
+        7640,
+        30871,
+        108,
+        36049
+      ],
+      "context_text": "<bos>African Americans in the Bluegrass\nWhether"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 34.10478973388672,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        57379,
+        171953,
+        3486,
+        1461,
+        235349,
+        235256,
+        12881,
+        575
+      ],
+      "context_text": "<bos>Conference underscores young people\u2019s leadership in"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 34.09971618652344,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        201561,
+        5649,
+        578,
+        58212,
+        42535,
+        235292,
+        108,
+        133503
+      ],
+      "context_text": "<bos>Botanical Name and Pronunciation:\nDend"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.89094924926758,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        111206,
+        2257,
+        1546,
+        22230,
+        5255,
+        108,
+        111206,
+        603
+      ],
+      "context_text": "<bos>Polish second most spoken language\nPolish is"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.851436614990234,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        651,
+        68936,
+        605,
+        146280,
+        7165,
+        576,
+        89320,
+        611
+      ],
+      "context_text": "<bos>The lushly forested nation of Guyana on"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.81010055541992,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        1547,
+        23757,
+        12491,
+        618,
+        235269,
+        108,
+        5906,
+        1812
+      ],
+      "context_text": "<bos>by Bruce Boyers,\nOur system"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.79977798461914,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        235278,
+        235274,
+        235275,
+        714,
+        4337,
+        576,
+        476,
+        88428
+      ],
+      "context_text": "<bos>(1) The section of a pedestal"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.771602630615234,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        1547,
+        590,
+        235265,
+        46496,
+        108,
+        68459,
+        671,
+        14814
+      ],
+      "context_text": "<bos>by I. Peterson\nUnlike an ordinary"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.76511764526367,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        651,
+        22011,
+        27467,
+        9338,
+        573,
+        1703,
+        9764,
+        604
+      ],
+      "context_text": "<bos>The Oregon Trail opened the way west for"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.73598098754883,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        2956,
+        235301,
+        149150,
+        1562,
+        16086,
+        235290,
+        8574,
+        1562
+      ],
+      "context_text": "<bos>THL Toolbox > Audio-Video >"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.729095458984375,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        52803,
+        4094,
+        134879,
+        33188,
+        108,
+        235280,
+        18738,
+        3905
+      ],
+      "context_text": "<bos>Australian National Botanic Gardens\nA weekly news"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.712711334228516,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        48633,
+        235265,
+        2551,
+        235349,
+        235251,
+        3685,
+        675,
+        3031
+      ],
+      "context_text": "<bos>Animals. Can\u2019t live with \u2018"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.70576858520508,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        1718,
+        235303,
+        235256,
+        3980,
+        696,
+        1370,
+        30993,
+        577
+      ],
+      "context_text": "<bos>It's easy at first glance to"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.69858932495117,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        235299,
+        26544,
+        603,
+        47024,
+        577,
+        31073,
+        15768,
+        235269
+      ],
+      "context_text": "<bos>DWC is prone to Root Rot,"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.6978874206543,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        651,
+        755,
+        172579,
+        57483,
+        708,
+        2785,
+        18194,
+        235290
+      ],
+      "context_text": "<bos>The parathyroid glands are four pea-"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.69407272338867,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        76890,
+        227531,
+        235269,
+        21599,
+        3061,
+        34631,
+        227531,
+        235269
+      ],
+      "context_text": "<bos>Smoke Detectors, Carbon Monoxide Detectors,"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.68827438354492,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        34144,
+        6213,
+        44351,
+        728,
+        591,
+        7771,
+        545,
+        14375
+      ],
+      "context_text": "<bos>Freshwater Drum - (Aplodin"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.687129974365234,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818
+      ],
+      "context_text": "<bos>Breast cancer represents one of the most common"
+    },
+    {
+      "feature_idx": 2177,
+      "activation_value": 33.686622619628906,
+      "tokens": [
+        2
+      ],
+      "text": "<bos>",
+      "position": 0,
+      "context_tokens": [
+        2,
+        6604,
+        3958,
+        27875,
+        235290,
+        2397,
+        11012,
+        675,
+        926
+      ],
+      "context_text": "<bos>Long ago Fisher-Man lived with his"
+    }
+  ]
+}

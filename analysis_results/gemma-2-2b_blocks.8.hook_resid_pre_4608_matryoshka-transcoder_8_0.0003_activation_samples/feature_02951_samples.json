@@ -1,0 +1,577 @@
+{
+  "statistics": {
+    "feature_idx": 2951,
+    "num_samples": 50,
+    "max_activation": 14.11204719543457,
+    "mean_activation": 10.720772571563721,
+    "std_activation": 1.3265951485604632,
+    "min_activation": 9.219497680664062,
+    "activation_count": 478,
+    "all_time_max": 14.11204719543457
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2951,
+      "activation_value": 14.11204719543457,
+      "tokens": [
+        675,
+        30509
+      ],
+      "text": " with engaging",
+      "position": 11,
+      "context_tokens": [
+        3542,
+        235290,
+        6576,
+        6044,
+        235265,
+        3339,
+        8035,
+        675,
+        30509,
+        7340,
+        235269,
+        692,
+        235303,
+        529,
+        15476,
+        1024,
+        3273
+      ],
+      "context_text": " project-based learning. By starting with engaging projects, you'll grab their interest"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 13.779640197753906,
+      "tokens": [
+        731,
+        2893
+      ],
+      "text": " by material",
+      "position": 24,
+      "context_tokens": [
+        235290,
+        3959,
+        27746,
+        3883,
+        79109,
+        235292,
+        114800,
+        731,
+        2893,
+        1916,
+        235269,
+        1450,
+        2744,
+        8396,
+        235269,
+        6142
+      ],
+      "context_text": "- Preserving Your Memories: Organized by material type, these web sites, books"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 13.406615257263184,
+      "tokens": [
+        2893,
+        1916
+      ],
+      "text": " material type",
+      "position": 25,
+      "context_tokens": [
+        3959,
+        27746,
+        3883,
+        79109,
+        235292,
+        114800,
+        731,
+        2893,
+        1916,
+        235269,
+        1450,
+        2744,
+        8396,
+        235269,
+        6142
+      ],
+      "context_text": " Preserving Your Memories: Organized by material type, these web sites, books"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 13.005760192871094,
+      "tokens": [
+        235269,
+        36351
+      ],
+      "text": ", humidity",
+      "position": 19,
+      "context_tokens": [
+        8957,
+        3707,
+        2681,
+        5809,
+        235269,
+        2681,
+        5601,
+        235269,
+        36351,
+        235269,
+        6785,
+        235269,
+        578,
+        39699,
+        235265,
+        714,
+        13795
+      ],
+      "context_text": " weather include air temperature, air pressure, humidity, wind, and precipitation. The atmosphere"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.881904602050781,
+      "tokens": [
+        2550,
+        37230
+      ],
+      "text": " another formulation",
+      "position": 12,
+      "context_tokens": [
+        577,
+        28969,
+        476,
+        23901,
+        7837,
+        235265,
+        878,
+        2550,
+        37230,
+        235269,
+        665,
+        603,
+        573,
+        25219,
+        1865,
+        1212,
+        603
+      ],
+      "context_text": " to describing a collective opinion. In another formulation, it is the distinction between what is"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.568467140197754,
+      "tokens": [
+        1492,
+        76551
+      ],
+      "text": " then exits",
+      "position": 26,
+      "context_tokens": [
+        22393,
+        235290,
+        49516,
+        3335,
+        235290,
+        26208,
+        235269,
+        1492,
+        76551,
+        573,
+        637,
+        121462,
+        2185,
+        578
+      ],
+      "context_text": "kill-emacs-hook, then exits the Emacs process and"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.565945625305176,
+      "tokens": [
+        3339,
+        8035
+      ],
+      "text": " By starting",
+      "position": 9,
+      "context_tokens": [
+        3787,
+        577,
+        3542,
+        235290,
+        6576,
+        6044,
+        235265,
+        3339,
+        8035,
+        675,
+        30509,
+        7340,
+        235269,
+        692,
+        235303,
+        529,
+        15476
+      ],
+      "context_text": " students to project-based learning. By starting with engaging projects, you'll grab"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.380374908447266,
+      "tokens": [
+        577,
+        18391
+      ],
+      "text": " to react",
+      "position": 30,
+      "context_tokens": [
+        573,
+        3403,
+        578,
+        2971,
+        235349,
+        235256,
+        7374,
+        577,
+        18391,
+        47258
+      ],
+      "context_text": " the mind and body\u2019s ability to react appropriately"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.29755973815918,
+      "tokens": [
+        8035,
+        675
+      ],
+      "text": " starting with",
+      "position": 10,
+      "context_tokens": [
+        577,
+        3542,
+        235290,
+        6576,
+        6044,
+        235265,
+        3339,
+        8035,
+        675,
+        30509,
+        7340,
+        235269,
+        692,
+        235303,
+        529,
+        15476,
+        1024
+      ],
+      "context_text": " to project-based learning. By starting with engaging projects, you'll grab their"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.25877857208252,
+      "tokens": [
+        18391,
+        47258
+      ],
+      "text": " react appropriately",
+      "position": 31,
+      "context_tokens": [
+        3403,
+        578,
+        2971,
+        235349,
+        235256,
+        7374,
+        577,
+        18391,
+        47258
+      ],
+      "context_text": " mind and body\u2019s ability to react appropriately"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 12.040803909301758,
+      "tokens": [
+        235269,
+        1450
+      ],
+      "text": ", these",
+      "position": 27,
+      "context_tokens": [
+        3883,
+        79109,
+        235292,
+        114800,
+        731,
+        2893,
+        1916,
+        235269,
+        1450,
+        2744,
+        8396,
+        235269,
+        6142
+      ],
+      "context_text": " Your Memories: Organized by material type, these web sites, books"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 11.753459930419922,
+      "tokens": [
+        578,
+        39699
+      ],
+      "text": " and precipitation",
+      "position": 24,
+      "context_tokens": [
+        2681,
+        5601,
+        235269,
+        36351,
+        235269,
+        6785,
+        235269,
+        578,
+        39699,
+        235265,
+        714,
+        13795,
+        1170,
+        7744,
+        16010,
+        32355
+      ],
+      "context_text": " air pressure, humidity, wind, and precipitation. The atmosphere also contains organized phenomena"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 11.53246021270752,
+      "tokens": [
+        3818,
+        1916
+      ],
+      "text": " common type",
+      "position": 10,
+      "context_tokens": [
+        2149,
+        5088,
+        576,
+        68239,
+        235265,
+        714,
+        1546,
+        3818,
+        1916,
+        576,
+        68239,
+        603,
+        1185,
+        1461,
+        791,
+        19086,
+        675
+      ],
+      "context_text": " three types of ADHD. The most common type of ADHD is when people have difficulties with"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 11.525959014892578,
+      "tokens": [
+        2681,
+        5601
+      ],
+      "text": " air pressure",
+      "position": 17,
+      "context_tokens": [
+        7059,
+        675,
+        8957,
+        3707,
+        2681,
+        5809,
+        235269,
+        2681,
+        5601,
+        235269,
+        36351,
+        235269,
+        6785,
+        235269,
+        578,
+        39699,
+        235265
+      ],
+      "context_text": " associated with weather include air temperature, air pressure, humidity, wind, and precipitation."
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 11.408470153808594,
+      "tokens": [
+        235290,
+        37750
+      ],
+      "text": "-changing",
+      "position": 13,
+      "context_tokens": [
+        1024,
+        48639,
+        7460,
+        578,
+        575,
+        573,
+        16896,
+        235290,
+        37750,
+        2134,
+        984,
+        877,
+        3343,
+        1452,
+        9222,
+        235265,
+        108
+      ],
+      "context_text": " their undergraduate career and in the rapidly-changing world they will enter after college.\n"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 11.408454895019531,
+      "tokens": [
+        1593,
+        40954
+      ],
+      "text": " through exhibits",
+      "position": 22,
+      "context_tokens": [
+        235303,
+        235256,
+        11518,
+        8403,
+        578,
+        49124,
+        10541,
+        1593,
+        40954,
+        5678,
+        577,
+        573,
+        25823,
+        26848,
+        591,
+        235274,
+        235321
+      ],
+      "context_text": "'s greatest military and diplomatic leaders through exhibits related to the Marshall Era (18"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 11.225104331970215,
+      "tokens": [
+        235281,
+        28087
+      ],
+      "text": "\" compression",
+      "position": 31,
+      "context_tokens": [
+        1281,
+        1212,
+        708,
+        3151,
+        664,
+        6381,
+        235267,
+        235281,
+        28087
+      ],
+      "context_text": " use what are called \"lossy\" compression"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 10.700244903564453,
+      "tokens": [
+        1916,
+        235269
+      ],
+      "text": " type,",
+      "position": 26,
+      "context_tokens": [
+        27746,
+        3883,
+        79109,
+        235292,
+        114800,
+        731,
+        2893,
+        1916,
+        235269,
+        1450,
+        2744,
+        8396,
+        235269,
+        6142
+      ],
+      "context_text": "erving Your Memories: Organized by material type, these web sites, books"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 10.639829635620117,
+      "tokens": [
+        8957,
+        3707
+      ],
+      "text": " weather include",
+      "position": 12,
+      "context_tokens": [
+        8957,
+        235265,
+        4213,
+        71402,
+        9404,
+        7059,
+        675,
+        8957,
+        3707,
+        2681,
+        5809,
+        235269,
+        2681,
+        5601,
+        235269,
+        36351,
+        235269
+      ],
+      "context_text": " weather. Some measurable variables associated with weather include air temperature, air pressure, humidity,"
+    },
+    {
+      "feature_idx": 2951,
+      "activation_value": 10.582611083984375,
+      "tokens": [
+        791,
+        1942
+      ],
+      "text": " have found",
+      "position": 8,
+      "context_tokens": [
+        7149,
+        3320,
+        919,
+        1942,
+        235265,
+        108,
+        122005,
+        791,
+        1942,
+        1317,
+        4442,
+        5243,
+        576,
+        917,
+        4564,
+        674,
+        1080
+      ],
+      "context_text": " British study has found.\nResearchers have found just six percent of us believe that \u201c"
+    }
+  ]
+}

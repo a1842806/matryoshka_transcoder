@@ -1,0 +1,309 @@
+{
+  "statistics": {
+    "feature_idx": 1754,
+    "num_samples": 11,
+    "max_activation": 11.861480712890625,
+    "mean_activation": 6.6336237300526015,
+    "std_activation": 2.957021407306274,
+    "min_activation": 3.1607041358947754,
+    "activation_count": 11,
+    "all_time_max": 11.861480712890625
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1754,
+      "activation_value": 11.861480712890625,
+      "tokens": [
+        2,
+        235366
+      ],
+      "text": "<bos>\u201c",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235366,
+        235285,
+        1742,
+        1535,
+        8586,
+        919,
+        15532,
+        908,
+        671
+      ],
+      "context_text": "<bos>\u201cI think every kid has picked up an"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 10.461983680725098,
+      "tokens": [
+        6403,
+        3031
+      ],
+      "text": " digital \u2018",
+      "position": 9,
+      "context_tokens": [
+        235280,
+        8447,
+        577,
+        573,
+        3936,
+        865,
+        476,
+        6403,
+        3031,
+        8724,
+        235349,
+        576,
+        4061,
+        14847,
+        3069,
+        235349,
+        235256
+      ],
+      "context_text": "A token to the future : a digital \u2018archive\u2019 of early Australian children\u2019s"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 9.804162979125977,
+      "tokens": [
+        675,
+        3031
+      ],
+      "text": " with \u2018",
+      "position": 8,
+      "context_tokens": [
+        2,
+        48633,
+        235265,
+        2551,
+        235349,
+        235251,
+        3685,
+        675,
+        3031,
+        565,
+        235269,
+        798,
+        235349,
+        235251,
+        3685,
+        2346,
+        12150
+      ],
+      "context_text": "<bos>Animals. Can\u2019t live with \u2018em, can\u2019t live without eating"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 9.277886390686035,
+      "tokens": [
+        2,
+        235281
+      ],
+      "text": "<bos>\"",
+      "position": 1,
+      "context_tokens": [
+        2,
+        235281,
+        161081,
+        235269,
+        40918,
+        235269,
+        12884,
+        235283,
+        7978,
+        4249
+      ],
+      "context_text": "<bos>\"Caring, Effective, Middle/High School"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 6.203787803649902,
+      "tokens": [
+        235269,
+        777
+      ],
+      "text": ", '",
+      "position": 25,
+      "context_tokens": [
+        1066,
+        235269,
+        729,
+        3631,
+        24980,
+        685,
+        6508,
+        235269,
+        777,
+        235285,
+        11032,
+        235303,
+        235251,
+        2447,
+        1125
+      ],
+      "context_text": "man, was once quoted as saying, 'I ain't never been"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 5.024892330169678,
+      "tokens": [
+        108,
+        235366
+      ],
+      "text": "\n\u201c",
+      "position": 5,
+      "context_tokens": [
+        2,
+        235290,
+        41967,
+        40082,
+        108,
+        235366,
+        1469,
+        586,
+        208455,
+        1474,
+        2399,
+        540,
+        819,
+        5138
+      ],
+      "context_text": "<bos>- Historic Sites\n\u201cTo A Distant And Perilous Service"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 4.594726085662842,
+      "tokens": [
+        235269,
+        664
+      ],
+      "text": ", \"",
+      "position": 29,
+      "context_tokens": [
+        693,
+        1180,
+        577,
+        573,
+        26798,
+        1628,
+        1461,
+        235269,
+        664,
+        31865,
+        2004
+      ],
+      "context_text": " he said to the Cottontail people, \"Ye must"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 4.511050701141357,
+      "tokens": [
+        235265,
+        1080
+      ],
+      "text": ". \u201c",
+      "position": 16,
+      "context_tokens": [
+        908,
+        671,
+        7103,
+        7095,
+        2316,
+        1284,
+        1180,
+        235265,
+        1080,
+        9374,
+        692,
+        3364,
+        15532,
+        908,
+        476,
+        7095,
+        674
+      ],
+      "context_text": " up an interesting rock,\u201d she said. \u201cHave you ever picked up a rock that"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 4.304937839508057,
+      "tokens": [
+        12150,
+        3031
+      ],
+      "text": " eating \u2018",
+      "position": 17,
+      "context_tokens": [
+        565,
+        235269,
+        798,
+        235349,
+        235251,
+        3685,
+        2346,
+        12150,
+        3031,
+        565,
+        235265,
+        591,
+        5972,
+        50853,
+        235269,
+        196345,
+        13420
+      ],
+      "context_text": "em, can\u2019t live without eating \u2018em. (Just kidding, vegans!)"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 3.7642483711242676,
+      "tokens": [
+        22368,
+        1080
+      ],
+      "text": " titled \u201c",
+      "position": 27,
+      "context_tokens": [
+        2149,
+        1658,
+        577,
+        3466,
+        573,
+        3542,
+        235269,
+        22368,
+        1080,
+        29009,
+        13727,
+        93294,
+        5701
+      ],
+      "context_text": " three years to fund the project, titled \u201cAuditory masking effects"
+    },
+    {
+      "feature_idx": 1754,
+      "activation_value": 3.1607041358947754,
+      "tokens": [
+        235366,
+        235285
+      ],
+      "text": "\u201cI",
+      "position": 2,
+      "context_tokens": [
+        2,
+        235366,
+        235285,
+        1742,
+        1535,
+        8586,
+        919,
+        15532,
+        908,
+        671,
+        7103
+      ],
+      "context_text": "<bos>\u201cI think every kid has picked up an interesting"
+    }
+  ]
+}

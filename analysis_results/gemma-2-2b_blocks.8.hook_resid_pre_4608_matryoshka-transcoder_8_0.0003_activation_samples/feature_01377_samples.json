@@ -1,0 +1,593 @@
+{
+  "statistics": {
+    "feature_idx": 1377,
+    "num_samples": 50,
+    "max_activation": 12.445662498474121,
+    "mean_activation": 8.693302879333496,
+    "std_activation": 0.9581684171155564,
+    "min_activation": 7.699779033660889,
+    "activation_count": 459,
+    "all_time_max": 12.445662498474121
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1377,
+      "activation_value": 12.445662498474121,
+      "tokens": [
+        21444,
+        30038
+      ],
+      "text": " Atlantic salmon",
+      "position": 26,
+      "context_tokens": [
+        5470,
+        1009,
+        21194,
+        235269,
+        12363,
+        79278,
+        575,
+        21444,
+        30038,
+        235265,
+        714,
+        20010,
+        1717,
+        674
+      ],
+      "context_text": " behind some historic, regional declines in Atlantic salmon. The researchers find that"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 11.373888969421387,
+      "tokens": [
+        577,
+        126092
+      ],
+      "text": " to alcoholism",
+      "position": 16,
+      "context_tokens": [
+        235269,
+        6947,
+        984,
+        708,
+        1170,
+        28515,
+        3402,
+        577,
+        126092,
+        235269,
+        89971,
+        689,
+        4168,
+        235265,
+        2250,
+        749,
+        1167
+      ],
+      "context_text": ", sometimes they are also absent due to alcoholism, abandonment or death. How do our"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 10.71316146850586,
+      "tokens": [
+        604,
+        172501
+      ],
+      "text": " for Crohn",
+      "position": 21,
+      "context_tokens": [
+        476,
+        888,
+        1062,
+        576,
+        5158,
+        4561,
+        31034,
+        604,
+        172501,
+        235303,
+        235256,
+        7197,
+        235265,
+        1027,
+        14015,
+        577,
+        685
+      ],
+      "context_text": " a new class of treatment options emerged for Crohn's disease. Referred to as"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 10.535778045654297,
+      "tokens": [
+        578,
+        158663
+      ],
+      "text": " and playgrounds",
+      "position": 18,
+      "context_tokens": [
+        1154,
+        15185,
+        45619,
+        5993,
+        235269,
+        38489,
+        7969,
+        578,
+        158663,
+        235265,
+        714,
+        7819,
+        603,
+        3890,
+        235292,
+        4638,
+        6336
+      ],
+      "context_text": " like gymnasiums, athletic fields and playgrounds. The concept is simple: share resources"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.69783878326416,
+      "tokens": [
+        18104,
+        69246
+      ],
+      "text": " gay marriages",
+      "position": 30,
+      "context_tokens": [
+        2027,
+        1721,
+        780,
+        56211,
+        6246,
+        774,
+        15267,
+        18104,
+        69246,
+        235269
+      ],
+      "context_text": " act does not prohibit states from allowing gay marriages,"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.502090454101562,
+      "tokens": [
+        235269,
+        7182
+      ],
+      "text": ", drink",
+      "position": 17,
+      "context_tokens": [
+        577,
+        4180,
+        675,
+        33786,
+        5678,
+        577,
+        2960,
+        235269,
+        7182,
+        235269,
+        10819,
+        235269,
+        13970,
+        235269,
+        578,
+        13103,
+        5640
+      ],
+      "context_text": " to deal with pressures related to food, drink, appearance, drugs, and sexual activity"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.434828758239746,
+      "tokens": [
+        235269,
+        106630
+      ],
+      "text": ", decimals",
+      "position": 9,
+      "context_tokens": [
+        674,
+        3787,
+        1230,
+        10849,
+        10275,
+        235269,
+        8582,
+        235269,
+        106630,
+        235269,
+        44230,
+        235269,
+        33177,
+        235269,
+        842,
+        37540,
+        235269
+      ],
+      "context_text": " that students know math facts, operations, decimals, fractions, ratios, percents,"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.430594444274902,
+      "tokens": [
+        14665,
+        9198
+      ],
+      "text": " breast cancer",
+      "position": 5,
+      "context_tokens": [
+        4956,
+        476,
+        19491,
+        576,
+        14665,
+        9198,
+        575,
+        235248,
+        235284,
+        235276,
+        235276,
+        235315,
+        235265,
+        714
+      ],
+      "context_text": " received a diagnosis of breast cancer in 2009. The"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.265569686889648,
+      "tokens": [
+        15185,
+        45619
+      ],
+      "text": " gymnasi",
+      "position": 12,
+      "context_tokens": [
+        2062,
+        11766,
+        24286,
+        578,
+        13231,
+        14130,
+        1154,
+        15185,
+        45619,
+        5993,
+        235269,
+        38489,
+        7969,
+        578,
+        158663,
+        235265,
+        714
+      ],
+      "context_text": " \u2014 sharing indoor and outdoor spaces like gymnasiums, athletic fields and playgrounds. The"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.234867095947266,
+      "tokens": [
+        4061,
+        14847
+      ],
+      "text": " early Australian",
+      "position": 22,
+      "context_tokens": [
+        865,
+        476,
+        6403,
+        3031,
+        8724,
+        235349,
+        576,
+        4061,
+        14847,
+        3069,
+        235349,
+        235256,
+        12339,
+        235265,
+        18674,
+        235292,
+        21511
+      ],
+      "context_text": " : a digital \u2018archive\u2019 of early Australian children\u2019s literature. Papers: Expl"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.21245288848877,
+      "tokens": [
+        1154,
+        15185
+      ],
+      "text": " like gym",
+      "position": 11,
+      "context_tokens": [
+        8344,
+        2062,
+        11766,
+        24286,
+        578,
+        13231,
+        14130,
+        1154,
+        15185,
+        45619,
+        5993,
+        235269,
+        38489,
+        7969,
+        578,
+        158663,
+        235265
+      ],
+      "context_text": " organization \u2014 sharing indoor and outdoor spaces like gymnasiums, athletic fields and playgrounds."
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.074151039123535,
+      "tokens": [
+        235269,
+        10436
+      ],
+      "text": ", orange",
+      "position": 7,
+      "context_tokens": [
+        108,
+        191472,
+        576,
+        3118,
+        235269,
+        9010,
+        235269,
+        10436,
+        235269,
+        19634,
+        235269,
+        8123,
+        235269,
+        2674,
+        108,
+        4030
+      ],
+      "context_text": "\nshades of red, pink, orange, bronze, yellow, white\nForm"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.051326751708984,
+      "tokens": [
+        578,
+        20289
+      ],
+      "text": " and Wales",
+      "position": 19,
+      "context_tokens": [
+        575,
+        235248,
+        235274,
+        235276,
+        1461,
+        575,
+        6879,
+        578,
+        20289,
+        728,
+        235248,
+        235321,
+        235358,
+        728,
+        5504,
+        13041,
+        476
+      ],
+      "context_text": " in 10 people in England and Wales - 8% - reported speaking a"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 9.02945327758789,
+      "tokens": [
+        19380,
+        58317
+      ],
+      "text": " Active tuberculosis",
+      "position": 10,
+      "context_tokens": [
+        235349,
+        235256,
+        7374,
+        577,
+        5900,
+        15618,
+        235265,
+        19380,
+        58317,
+        798,
+        614,
+        56399,
+        731,
+        4998,
+        476,
+        11137,
+        576
+      ],
+      "context_text": "\u2019s ability to fight infection. Active tuberculosis can be cured by taking a combination of"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 8.976977348327637,
+      "tokens": [
+        5245,
+        32901
+      ],
+      "text": " late medieval",
+      "position": 14,
+      "context_tokens": [
+        651,
+        11877,
+        576,
+        4168,
+        235269,
+        476,
+        7827,
+        5245,
+        32901,
+        5642,
+        5091,
+        235265,
+        1165,
+        7783,
+        4918,
+        115457,
+        39353
+      ],
+      "context_text": "The dance of death, a favorite late medieval picture subject. It generally shows skeletons forcing"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 8.975207328796387,
+      "tokens": [
+        3725,
+        116346
+      ],
+      "text": " American beech",
+      "position": 11,
+      "context_tokens": [
+        3520,
+        3858,
+        3274,
+        573,
+        81750,
+        4037,
+        235269,
+        3725,
+        116346,
+        7094,
+        40938,
+        476,
+        9677,
+        36451,
+        11634,
+        46899,
+        23868
+      ],
+      "context_text": " United States until the glacial period, American beech currently maintains a slightly lesser native geographic habitat"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 8.868573188781738,
+      "tokens": [
+        235269,
+        19634
+      ],
+      "text": ", bronze",
+      "position": 9,
+      "context_tokens": [
+        191472,
+        576,
+        3118,
+        235269,
+        9010,
+        235269,
+        10436,
+        235269,
+        19634,
+        235269,
+        8123,
+        235269,
+        2674,
+        108,
+        4030,
+        578,
+        11045
+      ],
+      "context_text": "shades of red, pink, orange, bronze, yellow, white\nForm and Size"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 8.834977149963379,
+      "tokens": [
+        476,
+        191222
+      ],
+      "text": " a Papal",
+      "position": 24,
+      "context_tokens": [
+        3307,
+        671,
+        25081,
+        4303,
+        604,
+        2113,
+        611,
+        476,
+        191222,
+        11621,
+        901,
+        573,
+        11352,
+        5966,
+        575,
+        45752
+      ],
+      "context_text": " seem an unlikely source for information on a Papal election but the detailed description in Angels"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 8.832826614379883,
+      "tokens": [
+        235269,
+        80511
+      ],
+      "text": ", oyster",
+      "position": 20,
+      "context_tokens": [
+        1622,
+        3459,
+        235349,
+        235256,
+        13346,
+        13425,
+        74708,
+        235269,
+        80511,
+        206449,
+        235269,
+        578,
+        31747,
+        49571,
+        235403,
+        1175,
+        3936
+      ],
+      "context_text": " New York\u2019s Tammany wards, oyster cellars, and gin mills\u2014the future"
+    },
+    {
+      "feature_idx": 1377,
+      "activation_value": 8.82834243774414,
+      "tokens": [
+        637,
+        121462
+      ],
+      "text": " Emacs",
+      "position": 29,
+      "context_tokens": [
+        3335,
+        235290,
+        26208,
+        235269,
+        1492,
+        76551,
+        573,
+        637,
+        121462,
+        2185,
+        578
+      ],
+      "context_text": "cs-hook, then exits the Emacs process and"
+    }
+  ]
+}

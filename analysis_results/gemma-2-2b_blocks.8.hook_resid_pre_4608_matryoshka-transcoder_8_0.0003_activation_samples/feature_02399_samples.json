@@ -1,0 +1,142 @@
+{
+  "statistics": {
+    "feature_idx": 2399,
+    "num_samples": 5,
+    "max_activation": 10.969498634338379,
+    "mean_activation": 5.119328784942627,
+    "std_activation": 3.00122184457224,
+    "min_activation": 2.5459842681884766,
+    "activation_count": 5,
+    "all_time_max": 10.969498634338379
+  },
+  "top_samples": [
+    {
+      "feature_idx": 2399,
+      "activation_value": 10.969498634338379,
+      "tokens": [
+        235269,
+        901
+      ],
+      "text": ", but",
+      "position": 29,
+      "context_tokens": [
+        578,
+        68128,
+        708,
+        3646,
+        120352,
+        604,
+        4684,
+        235269,
+        901,
+        674,
+        1538
+      ],
+      "context_text": " and Kuwait are today synonyms for oil, but that could"
+    },
+    {
+      "feature_idx": 2399,
+      "activation_value": 4.6640729904174805,
+      "tokens": [
+        235269,
+        7546
+      ],
+      "text": ", although",
+      "position": 25,
+      "context_tokens": [
+        908,
+        577,
+        1105,
+        235248,
+        235274,
+        235310,
+        9828,
+        235269,
+        7546,
+        665,
+        1249,
+        3831,
+        4756,
+        2910,
+        575
+      ],
+      "context_text": " up to about 14 inches, although it may become quite large in"
+    },
+    {
+      "feature_idx": 2399,
+      "activation_value": 3.7416224479675293,
+      "tokens": [
+        235269,
+        901
+      ],
+      "text": ", but",
+      "position": 25,
+      "context_tokens": [
+        603,
+        1317,
+        978,
+        6016,
+        674,
+        603,
+        4880,
+        235269,
+        901,
+        575,
+        1089,
+        2270,
+        665,
+        603,
+        1508
+      ],
+      "context_text": " is just more practice that is needed, but in any case it is very"
+    },
+    {
+      "feature_idx": 2399,
+      "activation_value": 3.6754655838012695,
+      "tokens": [
+        3967,
+        901
+      ],
+      "text": " fire but",
+      "position": 28,
+      "context_tokens": [
+        1461,
+        708,
+        8105,
+        576,
+        573,
+        8416,
+        576,
+        3967,
+        901,
+        708,
+        59912,
+        576
+      ],
+      "context_text": " people are aware of the danger of fire but are unaware of"
+    },
+    {
+      "feature_idx": 2399,
+      "activation_value": 2.5459842681884766,
+      "tokens": [
+        901,
+        674
+      ],
+      "text": " but that",
+      "position": 30,
+      "context_tokens": [
+        68128,
+        708,
+        3646,
+        120352,
+        604,
+        4684,
+        235269,
+        901,
+        674,
+        1538
+      ],
+      "context_text": " Kuwait are today synonyms for oil, but that could"
+    }
+  ]
+}

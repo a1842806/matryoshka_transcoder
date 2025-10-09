@@ -1,0 +1,592 @@
+{
+  "statistics": {
+    "feature_idx": 4290,
+    "num_samples": 50,
+    "max_activation": 11.134276390075684,
+    "mean_activation": 8.083013439178467,
+    "std_activation": 1.1609524304170575,
+    "min_activation": 6.549319267272949,
+    "activation_count": 144,
+    "all_time_max": 11.134276390075684
+  },
+  "top_samples": [
+    {
+      "feature_idx": 4290,
+      "activation_value": 11.134276390075684,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 28,
+      "context_tokens": [
+        8084,
+        235269,
+        4482,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304
+      ],
+      "context_text": " Sunday, March 17, 2013"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 10.762184143066406,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 13,
+      "context_tokens": [
+        108,
+        14024,
+        235269,
+        3896,
+        235248,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        6440,
+        44161,
+        235269,
+        21120,
+        235248
+      ],
+      "context_text": "\nSun, Aug 1, 2010 ~ Wed, Jul "
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 10.391616821289062,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 26,
+      "context_tokens": [
+        44161,
+        235269,
+        21120,
+        235248,
+        235304,
+        235274,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235304,
+        13737,
+        235292
+      ],
+      "context_text": " Wed, Jul 31, 2013Times:"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 10.310491561889648,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 13,
+      "context_tokens": [
+        4281,
+        3542,
+        729,
+        22482,
+        696,
+        220730,
+        575,
+        235248,
+        235274,
+        235315,
+        235315,
+        235304,
+        577,
+        26271,
+        573,
+        61144,
+        576
+      ],
+      "context_text": " history project was begun at Monticello in 1993 to preserve the histories of"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 10.01138687133789,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 22,
+      "context_tokens": [
+        18425,
+        235292,
+        6363,
+        235248,
+        235274,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235276,
+        235321,
+        108,
+        2122,
+        476,
+        2354,
+        73265
+      ],
+      "context_text": "Published: February 17, 2008\nOn a drizzly"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 9.671578407287598,
+      "tokens": [
+        590,
+        235349
+      ],
+      "text": " I\u2019",
+      "position": 19,
+      "context_tokens": [
+        99063,
+        573,
+        41117,
+        576,
+        206303,
+        6379,
+        235265,
+        590,
+        235349,
+        524,
+        4600,
+        575,
+        970,
+        10246,
+        573,
+        5290,
+        1064
+      ],
+      "context_text": " intimately the dangers of preterm labor. I\u2019ve held in my arms the mother who"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 9.401605606079102,
+      "tokens": [
+        1497,
+        235290
+      ],
+      "text": " long-",
+      "position": 20,
+      "context_tokens": [
+        26050,
+        731,
+        1536,
+        5330,
+        9347,
+        5902,
+        578,
+        1497,
+        235290,
+        7617,
+        35237,
+        18416,
+        573,
+        25141,
+        235269,
+        4628,
+        578
+      ],
+      "context_text": " characterized by high blood sugar levels and long-term complications involving the circulation, eyes and"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 9.329057693481445,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 15,
+      "context_tokens": [
+        575,
+        573,
+        3520,
+        3858,
+        13484,
+        13440,
+        1865,
+        235248,
+        235284,
+        235276,
+        235276,
+        235318,
+        578,
+        235248,
+        235284,
+        235276,
+        235276
+      ],
+      "context_text": " in the United States remained stable between 2006 and 200"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 9.270116806030273,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 16,
+      "context_tokens": [
+        575,
+        24345,
+        24023,
+        108,
+        235284,
+        235324,
+        4826,
+        235248,
+        235284,
+        235276,
+        235274,
+        235276,
+        108,
+        651,
+        4731,
+        576,
+        3486
+      ],
+      "context_text": " in HIV prevention\n27 August 2010\nThe role of young"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 9.175607681274414,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 8,
+      "context_tokens": [
+        2,
+        14437,
+        235292,
+        11605,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235284,
+        235248,
+        235304,
+        235292,
+        235276,
+        235276
+      ],
+      "context_text": "<bos>Posted: Oct 9, 2012 3:00"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.896662712097168,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 12,
+      "context_tokens": [
+        108,
+        25880,
+        235269,
+        5225,
+        235248,
+        235324,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        108,
+        2437,
+        2456,
+        56134,
+        575
+      ],
+      "context_text": "\nWednesday, September 7, 2011\nIs There Oxygen in"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.83993911743164,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 24,
+      "context_tokens": [
+        235274,
+        235315,
+        591,
+        4914,
+        235248,
+        235321,
+        235269,
+        235248,
+        235274,
+        235315,
+        235315,
+        235315,
+        235275,
+        108,
+        235371,
+        5539
+      ],
+      "context_text": "19 (May 8, 1999)\n|<<"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.73599624633789,
+      "tokens": [
+        674,
+        235349
+      ],
+      "text": " that\u2019",
+      "position": 25,
+      "context_tokens": [
+        9374,
+        692,
+        3364,
+        15532,
+        908,
+        476,
+        7095,
+        674,
+        235349,
+        235256,
+        24048,
+        1154,
+        476,
+        3760,
+        235336
+      ],
+      "context_text": "Have you ever picked up a rock that\u2019s shaped like a heart?"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.732878684997559,
+      "tokens": [
+        6165,
+        235248
+      ],
+      "text": " Number ",
+      "position": 15,
+      "context_tokens": [
+        108,
+        16813,
+        235248,
+        235274,
+        235308,
+        235308,
+        235269,
+        6165,
+        235248,
+        235274,
+        235315,
+        591,
+        4914,
+        235248,
+        235321,
+        235269,
+        235248
+      ],
+      "context_text": "\nVolume 155, Number 19 (May 8, "
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.634572982788086,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 13,
+      "context_tokens": [
+        591,
+        19865,
+        235280,
+        235275,
+        108,
+        83377,
+        575,
+        235248,
+        235274,
+        235315,
+        235315,
+        235318,
+        235269,
+        714,
+        24874,
+        576,
+        44546
+      ],
+      "context_text": " (DOMA)\nPassed in 1996, The Defense of Marriage"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.590302467346191,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 7,
+      "context_tokens": [
+        2,
+        2122,
+        4826,
+        235248,
+        235315,
+        235269,
+        235248,
+        235284,
+        235276,
+        235274,
+        235274,
+        235269,
+        573,
+        14216,
+        19985,
+        5138
+      ],
+      "context_text": "<bos>On August 9, 2011, the Canadian Ice Service"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.395318984985352,
+      "tokens": [
+        235269,
+        4523
+      ],
+      "text": ", according",
+      "position": 27,
+      "context_tokens": [
+        675,
+        978,
+        1178,
+        3933,
+        476,
+        4416,
+        22660,
+        235269,
+        4523,
+        577,
+        888,
+        10511,
+        774
+      ],
+      "context_text": " with more than half a million speakers, according to new figures from"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.343912124633789,
+      "tokens": [
+        747,
+        235290
+      ],
+      "text": " K-",
+      "position": 28,
+      "context_tokens": [
+        575,
+        4589,
+        26996,
+        235265,
+        108,
+        3492,
+        36886,
+        747,
+        235290,
+        235321,
+        603,
+        671
+      ],
+      "context_text": " in West Seattle.\nPathfinder K-8 is an"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.19651985168457,
+      "tokens": [
+        573,
+        3520
+      ],
+      "text": " the United",
+      "position": 9,
+      "context_tokens": [
+        651,
+        3974,
+        576,
+        888,
+        24345,
+        27790,
+        575,
+        573,
+        3520,
+        3858,
+        13484,
+        13440,
+        1865,
+        235248,
+        235284,
+        235276,
+        235276
+      ],
+      "context_text": "The rate of new HIV infections in the United States remained stable between 200"
+    },
+    {
+      "feature_idx": 4290,
+      "activation_value": 8.17653751373291,
+      "tokens": [
+        235248,
+        235274
+      ],
+      "text": " 1",
+      "position": 7,
+      "context_tokens": [
+        2,
+        1636,
+        573,
+        1370,
+        1069,
+        2754,
+        235248,
+        235274,
+        235310,
+        235274,
+        235308,
+        235269,
+        783,
+        708,
+        2319,
+        577
+      ],
+      "context_text": "<bos>For the first time since 1415, we are going to"
+    }
+  ]
+}

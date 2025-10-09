@@ -1,0 +1,596 @@
+{
+  "statistics": {
+    "feature_idx": 1440,
+    "num_samples": 23,
+    "max_activation": 12.88320255279541,
+    "mean_activation": 6.640291379845661,
+    "std_activation": 3.1424155728562764,
+    "min_activation": 2.7207112312316895,
+    "activation_count": 23,
+    "all_time_max": 12.88320255279541
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1440,
+      "activation_value": 12.88320255279541,
+      "tokens": [
+        603,
+        611
+      ],
+      "text": " is on",
+      "position": 5,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd,"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 11.67424488067627,
+      "tokens": [
+        578,
+        665
+      ],
+      "text": " and it",
+      "position": 15,
+      "context_tokens": [
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900
+      ],
+      "context_text": ", March 22nd, and it's a crucial moment in the fight"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 11.419589042663574,
+      "tokens": [
+        5061,
+        603
+      ],
+      "text": " Day is",
+      "position": 4,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 11.31084156036377,
+      "tokens": [
+        8778,
+        235269
+      ],
+      "text": " Monday,",
+      "position": 7,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and it"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 10.432823181152344,
+      "tokens": [
+        491,
+        235269
+      ],
+      "text": "nd,",
+      "position": 13,
+      "context_tokens": [
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575
+      ],
+      "context_text": " on Monday, March 22nd, and it's a crucial moment in"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 9.025467872619629,
+      "tokens": [
+        611,
+        8778
+      ],
+      "text": " on Monday",
+      "position": 6,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 8.450905799865723,
+      "tokens": [
+        5794,
+        5061
+      ],
+      "text": " Water Day",
+      "position": 3,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 7.825564861297607,
+      "tokens": [
+        235269,
+        4482
+      ],
+      "text": ", March",
+      "position": 8,
+      "context_tokens": [
+        2,
+        10772,
+        5794,
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303
+      ],
+      "context_text": "<bos>World Water Day is on Monday, March 22nd, and it'"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 7.640601634979248,
+      "tokens": [
+        235269,
+        578
+      ],
+      "text": ", and",
+      "position": 14,
+      "context_tokens": [
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573
+      ],
+      "context_text": " Monday, March 22nd, and it's a crucial moment in the"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 6.617423057556152,
+      "tokens": [
+        476,
+        2788
+      ],
+      "text": " a week",
+      "position": 16,
+      "context_tokens": [
+        36049,
+        692,
+        708,
+        15271,
+        476,
+        1744,
+        235269,
+        476,
+        2788,
+        689,
+        5543,
+        575,
+        573,
+        7640,
+        30871,
+        15306,
+        235269
+      ],
+      "context_text": "Whether you are spending a day, a week or longer in the Bluegrass Region,"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 6.521786689758301,
+      "tokens": [
+        235284,
+        491
+      ],
+      "text": "2nd",
+      "position": 12,
+      "context_tokens": [
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318
+      ],
+      "context_text": " is on Monday, March 22nd, and it's a crucial moment"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 6.421056747436523,
+      "tokens": [
+        3821,
+        35571
+      ],
+      "text": " single wavelength",
+      "position": 20,
+      "context_tokens": [
+        235269,
+        476,
+        16503,
+        20995,
+        2611,
+        576,
+        476,
+        3821,
+        35571,
+        235265,
+        18643,
+        235269,
+        573,
+        68179,
+        2611,
+        15336,
+        708
+      ],
+      "context_text": ", a laser produces light of a single wavelength. Moreover, the emitted light waves are"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 5.776650905609131,
+      "tokens": [
+        235256,
+        476
+      ],
+      "text": "s a",
+      "position": 18,
+      "context_tokens": [
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900,
+        2691,
+        573,
+        5228
+      ],
+      "context_text": "22nd, and it's a crucial moment in the fight against the global"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 4.847320079803467,
+      "tokens": [
+        20305,
+        4318
+      ],
+      "text": " crucial moment",
+      "position": 20,
+      "context_tokens": [
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900,
+        2691,
+        573,
+        5228,
+        70000,
+        578
+      ],
+      "context_text": "nd, and it's a crucial moment in the fight against the global sanitation and"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 4.206333160400391,
+      "tokens": [
+        235284,
+        235284
+      ],
+      "text": "22",
+      "position": 11,
+      "context_tokens": [
+        5061,
+        603,
+        611,
+        8778,
+        235269,
+        4482,
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305
+      ],
+      "context_text": " Day is on Monday, March 22nd, and it's a crucial"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 4.1958231925964355,
+      "tokens": [
+        20995,
+        2611
+      ],
+      "text": " produces light",
+      "position": 16,
+      "context_tokens": [
+        14814,
+        235269,
+        169688,
+        35386,
+        235269,
+        476,
+        16503,
+        20995,
+        2611,
+        576,
+        476,
+        3821,
+        35571,
+        235265,
+        18643,
+        235269,
+        573
+      ],
+      "context_text": " ordinary, incandescent bulb, a laser produces light of a single wavelength. Moreover, the"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 3.8087382316589355,
+      "tokens": [
+        2611,
+        576
+      ],
+      "text": " light of",
+      "position": 17,
+      "context_tokens": [
+        235269,
+        169688,
+        35386,
+        235269,
+        476,
+        16503,
+        20995,
+        2611,
+        576,
+        476,
+        3821,
+        35571,
+        235265,
+        18643,
+        235269,
+        573,
+        68179
+      ],
+      "context_text": ", incandescent bulb, a laser produces light of a single wavelength. Moreover, the emitted"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 3.6235544681549072,
+      "tokens": [
+        235303,
+        235256
+      ],
+      "text": "'s",
+      "position": 17,
+      "context_tokens": [
+        235248,
+        235284,
+        235284,
+        491,
+        235269,
+        578,
+        665,
+        235303,
+        235256,
+        476,
+        20305,
+        4318,
+        575,
+        573,
+        5900,
+        2691,
+        573
+      ],
+      "context_text": " 22nd, and it's a crucial moment in the fight against the"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 3.617952346801758,
+      "tokens": [
+        68179,
+        2611
+      ],
+      "text": " emitted light",
+      "position": 26,
+      "context_tokens": [
+        476,
+        3821,
+        35571,
+        235265,
+        18643,
+        235269,
+        573,
+        68179,
+        2611,
+        15336,
+        708,
+        63269,
+        235269,
+        6996
+      ],
+      "context_text": " a single wavelength. Moreover, the emitted light waves are coherent, meaning"
+    },
+    {
+      "feature_idx": 1440,
+      "activation_value": 3.4571332931518555,
+      "tokens": [
+        576,
+        476
+      ],
+      "text": " of a",
+      "position": 18,
+      "context_tokens": [
+        169688,
+        35386,
+        235269,
+        476,
+        16503,
+        20995,
+        2611,
+        576,
+        476,
+        3821,
+        35571,
+        235265,
+        18643,
+        235269,
+        573,
+        68179,
+        2611
+      ],
+      "context_text": " incandescent bulb, a laser produces light of a single wavelength. Moreover, the emitted light"
+    }
+  ]
+}

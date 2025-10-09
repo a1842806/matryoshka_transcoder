@@ -1,0 +1,551 @@
+{
+  "statistics": {
+    "feature_idx": 3117,
+    "num_samples": 19,
+    "max_activation": 13.0162935256958,
+    "mean_activation": 5.976467872920789,
+    "std_activation": 2.4332249711038267,
+    "min_activation": 3.011593818664551,
+    "activation_count": 19,
+    "all_time_max": 13.0162935256958
+  },
+  "top_samples": [
+    {
+      "feature_idx": 3117,
+      "activation_value": 13.0162935256958,
+      "tokens": [
+        1546,
+        3818
+      ],
+      "text": " most common",
+      "position": 8,
+      "context_tokens": [
+        2,
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265
+      ],
+      "context_text": "<bos>Breast cancer represents one of the most common cancers among women in the United States."
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 10.047181129455566,
+      "tokens": [
+        3818,
+        66251
+      ],
+      "text": " common cancers",
+      "position": 9,
+      "context_tokens": [
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145
+      ],
+      "context_text": "Breast cancer represents one of the most common cancers among women in the United States. Data"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 8.38843822479248,
+      "tokens": [
+        1178,
+        235248
+      ],
+      "text": " than ",
+      "position": 22,
+      "context_tokens": [
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276,
+        235276,
+        3725
+      ],
+      "context_text": " United States. Data indicates that more than 180,000 American"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 7.820347785949707,
+      "tokens": [
+        576,
+        573
+      ],
+      "text": " of the",
+      "position": 6,
+      "context_tokens": [
+        2,
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520
+      ],
+      "context_text": "<bos>Breast cancer represents one of the most common cancers among women in the United"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 6.754948139190674,
+      "tokens": [
+        66251,
+        3932
+      ],
+      "text": " cancers among",
+      "position": 10,
+      "context_tokens": [
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939
+      ],
+      "context_text": " cancer represents one of the most common cancers among women in the United States. Data indicates"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 6.590084075927734,
+      "tokens": [
+        235276,
+        235276
+      ],
+      "text": "00",
+      "position": 29,
+      "context_tokens": [
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276,
+        235276,
+        3725,
+        3576
+      ],
+      "context_text": " than 180,000 American women"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 6.311281204223633,
+      "tokens": [
+        573,
+        1546
+      ],
+      "text": " the most",
+      "position": 7,
+      "context_tokens": [
+        2,
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858
+      ],
+      "context_text": "<bos>Breast cancer represents one of the most common cancers among women in the United States"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 5.995874881744385,
+      "tokens": [
+        117039,
+        9198
+      ],
+      "text": "Breast cancer",
+      "position": 2,
+      "context_tokens": [
+        2,
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932
+      ],
+      "context_text": "<bos>Breast cancer represents one of the most common cancers among"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 5.889477252960205,
+      "tokens": [
+        235276,
+        235269
+      ],
+      "text": "0,",
+      "position": 26,
+      "context_tokens": [
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276,
+        235276,
+        3725,
+        3576
+      ],
+      "context_text": " indicates that more than 180,000 American women"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 5.414437770843506,
+      "tokens": [
+        3932,
+        3576
+      ],
+      "text": " among women",
+      "position": 11,
+      "context_tokens": [
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674
+      ],
+      "context_text": " represents one of the most common cancers among women in the United States. Data indicates that"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 5.288552284240723,
+      "tokens": [
+        9198,
+        12786
+      ],
+      "text": " cancer represents",
+      "position": 3,
+      "context_tokens": [
+        2,
+        117039,
+        9198,
+        12786,
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576
+      ],
+      "context_text": "<bos>Breast cancer represents one of the most common cancers among women"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 5.051279544830322,
+      "tokens": [
+        1546,
+        3818
+      ],
+      "text": " most common",
+      "position": 12,
+      "context_tokens": [
+        22230,
+        5255,
+        108,
+        111206,
+        603,
+        573,
+        2257,
+        1546,
+        3818,
+        1872,
+        5255,
+        575,
+        6879,
+        578,
+        20289,
+        675,
+        978
+      ],
+      "context_text": " spoken language\nPolish is the second most common main language in England and Wales with more"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 4.996896743774414,
+      "tokens": [
+        3725,
+        3576
+      ],
+      "text": " American women",
+      "position": 31,
+      "context_tokens": [
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276,
+        235276,
+        3725,
+        3576
+      ],
+      "context_text": "180,000 American women"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 4.590159893035889,
+      "tokens": [
+        3858,
+        235265
+      ],
+      "text": " States.",
+      "position": 16,
+      "context_tokens": [
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321
+      ],
+      "context_text": " common cancers among women in the United States. Data indicates that more than 18"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 3.8046319484710693,
+      "tokens": [
+        978,
+        1178
+      ],
+      "text": " more than",
+      "position": 21,
+      "context_tokens": [
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276,
+        235276
+      ],
+      "context_text": " the United States. Data indicates that more than 180,000"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 3.5787928104400635,
+      "tokens": [
+        14939,
+        674
+      ],
+      "text": " indicates that",
+      "position": 19,
+      "context_tokens": [
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276
+      ],
+      "context_text": " women in the United States. Data indicates that more than 180,0"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 3.554419994354248,
+      "tokens": [
+        3576,
+        575
+      ],
+      "text": " women in",
+      "position": 12,
+      "context_tokens": [
+        974,
+        576,
+        573,
+        1546,
+        3818,
+        66251,
+        3932,
+        3576,
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674,
+        978
+      ],
+      "context_text": " one of the most common cancers among women in the United States. Data indicates that more"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 3.4481985569000244,
+      "tokens": [
+        674,
+        978
+      ],
+      "text": " that more",
+      "position": 20,
+      "context_tokens": [
+        575,
+        573,
+        3520,
+        3858,
+        235265,
+        4145,
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276
+      ],
+      "context_text": " in the United States. Data indicates that more than 180,00"
+    },
+    {
+      "feature_idx": 3117,
+      "activation_value": 3.011593818664551,
+      "tokens": [
+        235321,
+        235276
+      ],
+      "text": "80",
+      "position": 25,
+      "context_tokens": [
+        4145,
+        14939,
+        674,
+        978,
+        1178,
+        235248,
+        235274,
+        235321,
+        235276,
+        235269,
+        235276,
+        235276,
+        235276,
+        3725,
+        3576
+      ],
+      "context_text": " Data indicates that more than 180,000 American women"
+    }
+  ]
+}

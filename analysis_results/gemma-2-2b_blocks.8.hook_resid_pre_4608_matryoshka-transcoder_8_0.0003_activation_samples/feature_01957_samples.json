@@ -1,0 +1,525 @@
+{
+  "statistics": {
+    "feature_idx": 1957,
+    "num_samples": 50,
+    "max_activation": 17.264720916748047,
+    "mean_activation": 12.788969039916992,
+    "std_activation": 1.0887548662386373,
+    "min_activation": 11.492164611816406,
+    "activation_count": 822,
+    "all_time_max": 17.264720916748047
+  },
+  "top_samples": [
+    {
+      "feature_idx": 1957,
+      "activation_value": 17.264720916748047,
+      "tokens": [
+        573,
+        8199
+      ],
+      "text": " the zero",
+      "position": 2,
+      "context_tokens": [
+        577,
+        573,
+        8199,
+        235290,
+        1929,
+        235265,
+        1927,
+        573,
+        6221,
+        585,
+        603
+      ],
+      "context_text": " to the zero-function. If the constant C is"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 15.100702285766602,
+      "tokens": [
+        235248,
+        235284
+      ],
+      "text": " 2",
+      "position": 2,
+      "context_tokens": [
+        573,
+        235248,
+        235284,
+        8269,
+        79289,
+        4549,
+        774,
+        235336,
+        10979,
+        235248,
+        235274
+      ],
+      "context_text": " the 2 sources Financing comes from?|| 1"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 14.452668190002441,
+      "tokens": [
+        8199,
+        235290
+      ],
+      "text": " zero-",
+      "position": 3,
+      "context_tokens": [
+        577,
+        573,
+        8199,
+        235290,
+        1929,
+        235265,
+        1927,
+        573,
+        6221,
+        585,
+        603,
+        780
+      ],
+      "context_text": " to the zero-function. If the constant C is not"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 14.41501522064209,
+      "tokens": [
+        752,
+        235265
+      ],
+      "text": " U.",
+      "position": 4,
+      "context_tokens": [
+        90299,
+        26184,
+        16851,
+        752,
+        235265,
+        235277,
+        235265,
+        122222,
+        675,
+        9066,
+        235265,
+        108,
+        651
+      ],
+      "context_text": " proclamation officially ending U.S. hostilities with Germany.\nThe"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 14.233159065246582,
+      "tokens": [
+        665,
+        1157
+      ],
+      "text": " it \u2013",
+      "position": 9,
+      "context_tokens": [
+        3210,
+        603,
+        674,
+        783,
+        2371,
+        1426,
+        696,
+        665,
+        1157,
+        1426,
+        577,
+        573,
+        3782,
+        1167,
+        11407,
+        2792,
+        235349
+      ],
+      "context_text": " problem is that we got good at it \u2013 good to the points our homes won\u2019"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.959787368774414,
+      "tokens": [
+        478,
+        832
+      ],
+      "text": "re all",
+      "position": 2,
+      "context_tokens": [
+        235349,
+        478,
+        832,
+        201568,
+        7074,
+        675,
+        11922,
+        698,
+        511,
+        2117,
+        573
+      ],
+      "context_text": "\u2019re all bombarded daily with messages extoling the"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.952466011047363,
+      "tokens": [
+        984,
+        791
+      ],
+      "text": " they have",
+      "position": 7,
+      "context_tokens": [
+        573,
+        10845,
+        8923,
+        3381,
+        576,
+        16512,
+        984,
+        791,
+        34055,
+        235265,
+        5626,
+        1160,
+        7177,
+        9723,
+        49598,
+        577
+      ],
+      "context_text": " the nutrional content of foods they have eaten. Our work uses shopping receipts to"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.913352012634277,
+      "tokens": [
+        708,
+        3968
+      ],
+      "text": " are similar",
+      "position": 3,
+      "context_tokens": [
+        685,
+        984,
+        708,
+        3968,
+        235265,
+        6372,
+        685,
+        6269,
+        578,
+        6578,
+        7549,
+        8363
+      ],
+      "context_text": " as they are similar. Just as political and economic factors determine"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.801534652709961,
+      "tokens": [
+        13266,
+        235265
+      ],
+      "text": " bodies.",
+      "position": 6,
+      "context_tokens": [
+        235290,
+        5023,
+        16089,
+        575,
+        1167,
+        13266,
+        235265,
+        17090,
+        1105,
+        573,
+        712,
+        235290,
+        16430,
+        664,
+        8311
+      ],
+      "context_text": "-like substance in our bodies. Learn about the so-called \"good"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.693683624267578,
+      "tokens": [
+        235265,
+        586
+      ],
+      "text": ". A",
+      "position": 1,
+      "context_tokens": [
+        235265,
+        586,
+        1426,
+        3287,
+        12722,
+        908,
+        575,
+        35097,
+        11533,
+        610
+      ],
+      "context_text": ". A good example turns up in Olive Kitter"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.64074420928955,
+      "tokens": [
+        685,
+        476
+      ],
+      "text": " as a",
+      "position": 3,
+      "context_tokens": [
+        235269,
+        689,
+        685,
+        476,
+        18983,
+        235265,
+        1165,
+        603,
+        780,
+        476,
+        151505,
+        1671
+      ],
+      "context_text": ", or as a joke. It is not a trope used"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.596511840820312,
+      "tokens": [
+        731,
+        10979
+      ],
+      "text": " by||",
+      "position": 1,
+      "context_tokens": [
+        731,
+        10979,
+        31563,
+        26521,
+        724,
+        1767,
+        2173,
+        235290,
+        184259,
+        2449
+      ],
+      "context_text": " by||Western Christians & many non-Christians around"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.448729515075684,
+      "tokens": [
+        235290,
+        1929
+      ],
+      "text": "-function",
+      "position": 4,
+      "context_tokens": [
+        577,
+        573,
+        8199,
+        235290,
+        1929,
+        235265,
+        1927,
+        573,
+        6221,
+        585,
+        603,
+        780,
+        2845
+      ],
+      "context_text": " to the zero-function. If the constant C is not important"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.410810470581055,
+      "tokens": [
+        235269,
+        4523
+      ],
+      "text": ", according",
+      "position": 4,
+      "context_tokens": [
+        578,
+        141749,
+        1359,
+        235269,
+        4523,
+        577,
+        476,
+        888,
+        3484,
+        774,
+        573,
+        48171,
+        604
+      ],
+      "context_text": " and bisexual men, according to a new report from the Centers for"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.190767288208008,
+      "tokens": [
+        577,
+        573
+      ],
+      "text": " to the",
+      "position": 1,
+      "context_tokens": [
+        577,
+        573,
+        8199,
+        235290,
+        1929,
+        235265,
+        1927,
+        573,
+        6221,
+        585
+      ],
+      "context_text": " to the zero-function. If the constant C"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 13.047093391418457,
+      "tokens": [
+        6178,
+        2754
+      ],
+      "text": " technology since",
+      "position": 5,
+      "context_tokens": [
+        524,
+        1125,
+        2412,
+        736,
+        6178,
+        2754,
+        573,
+        7489,
+        235265,
+        714,
+        58934,
+        603,
+        6815,
+        674
+      ],
+      "context_text": "ve been following this technology since the beginning. The breakthrough is software that"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 12.879709243774414,
+      "tokens": [
+        1929,
+        235265
+      ],
+      "text": "function.",
+      "position": 5,
+      "context_tokens": [
+        577,
+        573,
+        8199,
+        235290,
+        1929,
+        235265,
+        1927,
+        573,
+        6221,
+        585,
+        603,
+        780,
+        2845,
+        575
+      ],
+      "context_text": " to the zero-function. If the constant C is not important in"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 12.86906909942627,
+      "tokens": [
+        584,
+        235265
+      ],
+      "text": " T.",
+      "position": 1,
+      "context_tokens": [
+        584,
+        235265,
+        235296,
+        1173,
+        20845,
+        2117,
+        235269,
+        625,
+        235265,
+        235296
+      ],
+      "context_text": " T.M., Cowling, R.M"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 12.801307678222656,
+      "tokens": [
+        235269,
+        665
+      ],
+      "text": ", it",
+      "position": 5,
+      "context_tokens": [
+        575,
+        832,
+        2970,
+        9028,
+        235269,
+        665,
+        729,
+        1942,
+        674,
+        2003,
+        19636,
+        729,
+        974,
+        576
+      ],
+      "context_text": " in all team sports, it was found that water polo was one of"
+    },
+    {
+      "feature_idx": 1957,
+      "activation_value": 12.771050453186035,
+      "tokens": [
+        476,
+        2940
+      ],
+      "text": " a lot",
+      "position": 4,
+      "context_tokens": [
+        235341,
+        2456,
+        708,
+        476,
+        2940,
+        978,
+        5982,
+        1064,
+        13229,
+        62917,
+        1178,
+        1104,
+        708
+      ],
+      "context_text": "! There are a lot more kids who witness bullying than there are"
+    }
+  ]
+}
