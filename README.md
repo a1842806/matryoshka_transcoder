@@ -1,13 +1,13 @@
 # Matryoshka Transcoder
 
-Matryoshka SAEs are a new variant of sparse autoencoders that learn features at multiple levels of abstraction by splitting the dictionary into groups of latents of increasing size. Earlier groups are regularized to reconstruct well without access to later groups, forcing the SAE to learn both high-level concepts and low-level concepts, rather than absorbing them in specific low-level features.
+Matryoshka Transcoders are cross-layer feature transformers that learn hierarchical feature representations by mapping activations between different layers of transformer models. They use a multi-level dictionary structure where earlier groups learn high-level concepts and later groups learn low-level details, enabling interpretable cross-layer feature transformations.
 
 ## Key Features
 
 ### FVU Metrics
-All models now track **FVU (Fraction of Variance Unexplained)** - a scale-independent measure of reconstruction quality:
-- FVU = 0: Perfect reconstruction
-- FVU < 0.1: Good reconstruction
+All transcoders track **FVU (Fraction of Variance Unexplained)** - a scale-independent measure of cross-layer reconstruction quality:
+- FVU = 0: Perfect cross-layer mapping
+- FVU < 0.1: Good cross-layer reconstruction
 - FVU shown in progress bar and W&B logs
 
 ### Gemma-2 Support
@@ -39,12 +39,6 @@ pip install transformer_lens wandb datasets torch
 
 ## Quick Start
 
-### Training Matryoshka SAEs
-
-```bash
-python src/scripts/main.py
-```
-
 ### Training Matryoshka Transcoders
 
 ```bash
@@ -75,32 +69,6 @@ python train_gemma_example.py transcoder
 ```
 
 ## Usage Examples
-
-### Basic SAE Training
-
-```python
-from transformer_lens import HookedTransformer
-from sae import GlobalBatchTopKMatryoshkaSAE
-from activation_store import ActivationsStore
-from training import train_sae
-from config import get_default_cfg, post_init_cfg
-
-# Configure for GPT-2
-cfg = get_default_cfg()
-cfg["model_name"] = "gpt2-small"
-cfg["layer"] = 8
-cfg["site"] = "resid_pre"
-cfg["dict_size"] = 12288
-cfg["group_sizes"] = [768, 1536, 3072, 6912]
-cfg["top_k"] = 64
-cfg = post_init_cfg(cfg)
-
-# Load model and train
-model = HookedTransformer.from_pretrained_no_processing("gpt2-small").to("cuda")
-activation_store = ActivationsStore(model, cfg)
-sae = GlobalBatchTopKMatryoshkaSAE(cfg)
-train_sae(sae, activation_store, model, cfg)
-```
 
 ### Transcoder Training
 
@@ -291,11 +259,19 @@ cfg["num_tokens"] = int(5e7)
 
 ## Documentation
 
-- **[docs/FVU_AND_GEMMA_GUIDE.md](docs/FVU_AND_GEMMA_GUIDE.md)**: FVU metrics and Gemma-2 support guide
-- **[docs/IMPLEMENTATION_SUMMARY.md](docs/IMPLEMENTATION_SUMMARY.md)**: Transcoder implementation details
-- **[docs/MATRYOSHKA_TRANSCODER.md](docs/MATRYOSHKA_TRANSCODER.md)**: Full transcoder documentation
-- **[docs/TRANSCODER_QUICKSTART.md](docs/TRANSCODER_QUICKSTART.md)**: Quick start guide for transcoders
-- **[docs/FEATURE_EVALUATION_GUIDE.md](docs/FEATURE_EVALUATION_GUIDE.md)**: Feature evaluation and analysis
+### Core Guides
+- **[docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)**: Navigation guide and project organization
+- **[docs/TRANSCODER_QUICKSTART.md](docs/TRANSCODER_QUICKSTART.md)**: 5-minute quick start guide
+- **[docs/MATRYOSHKA_TRANSCODER.md](docs/MATRYOSHKA_TRANSCODER.md)**: Comprehensive transcoder documentation
+
+### Research & Analysis
+- **[docs/FEATURE_EVALUATION_GUIDE.md](docs/FEATURE_EVALUATION_GUIDE.md)**: Feature quality metrics and evaluation
+- **[docs/ACTIVATION_SAMPLE_COLLECTION.md](docs/ACTIVATION_SAMPLE_COLLECTION.md)**: Interpretability and sample collection
+
+### Technical References
+- **[docs/GEMMA_GUIDE.md](docs/GEMMA_GUIDE.md)**: FVU metrics, Gemma-2 support, hook correction, multi-GPU setup
+- **[docs/GPU_MEMORY_GUIDE.md](docs/GPU_MEMORY_GUIDE.md)**: Memory management and troubleshooting
+- **[docs/IMPLEMENTATION_NOTES.md](docs/IMPLEMENTATION_NOTES.md)**: Historical implementation details and migration info
 
 ## File Structure
 

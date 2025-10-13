@@ -45,7 +45,7 @@ def main():
     cfg["layer"] = 8  # Target layer 8 as requested
     
     # Training settings - optimized for interpretability research
-    cfg["num_tokens"] = int(5e6)   # 5M tokens for faster demo
+    cfg["num_tokens"] = int(1e6)  # 1M tokens for longer training and better samples
     cfg["model_batch_size"] = 4    # Smaller for Gemma's larger size
     cfg["batch_size"] = 1024       # Reasonable batch size
     cfg["seq_len"] = 64            # Sequence length
@@ -71,32 +71,17 @@ def main():
     
     # *** ACTIVATION SAMPLE COLLECTION - ANTHROPIC STYLE ***
     cfg["save_activation_samples"] = True        # Enable sample collection
-    cfg["sample_collection_freq"] = 100          # Collect every 100 steps (more frequent for demo)
-    cfg["max_samples_per_feature"] = 100         # Store top 100 samples per feature
+    cfg["sample_collection_freq"] = 100          # Collect every 100 steps for longer training
+    cfg["max_samples_per_feature"] = 200         # Store top 200 samples per feature for longer training
     cfg["sample_context_size"] = 20              # 20 tokens of context
     cfg["sample_activation_threshold"] = 0.1     # Only activations > 0.1
     
-    # *** ANTI-DUPLICATION FEATURES ***
-    cfg["use_diversity_regularization"] = True
-    cfg["diversity_regularizer_type"] = "adaptive"
-    cfg["orthogonality_weight"] = 0.01
-    cfg["correlation_weight"] = 0.005
-    cfg["position_diversity_weight"] = 0.01
-    
-    cfg["use_position_stratified_sampling"] = True
-    cfg["position_sampler_type"] = "adaptive"
-    cfg["position_bins"] = 10
-    cfg["min_samples_per_bin"] = 2
-    cfg["bos_penalty_factor"] = 0.3
-    cfg["max_bos_ratio"] = 0.2
-    
-    cfg["use_correlation_monitoring"] = True
-    cfg["correlation_threshold"] = 0.8
-    cfg["correlation_window_size"] = 50
-    cfg["correlation_save_frequency"] = 100
-    cfg["correlation_output_dir"] = "anti_duplication_logs"
-    cfg["top_features_to_save"] = 100            # Save top 100 most active features
-    cfg["samples_per_feature_to_save"] = 10      # Save 10 examples per feature
+    # *** ANTI-DUPLICATION FEATURES - SIMPLE VERSION ***
+    cfg["use_diversity_regularization"] = False     # Disable for now - too complex
+    cfg["use_position_stratified_sampling"] = False # Disable for now - too complex
+    cfg["use_correlation_monitoring"] = False       # Disable for now - too complex
+    cfg["top_features_to_save"] = 500            # Save top 500 most active features for longer training
+    cfg["samples_per_feature_to_save"] = 20      # Save 20 examples per feature for longer training
     
     # Configure cross-layer mapping: resid_mid -> mlp_out on layer 8
     # This learns how the MLP transforms features at layer 8
@@ -115,7 +100,7 @@ def main():
     
     # W&B settings
     cfg["wandb_project"] = "gemma-2-2b-layer8-interpretability"
-    cfg["checkpoint_freq"] = 1000   # Save every 1000 steps (less frequent to save space)
+    cfg["checkpoint_freq"] = 500    # Save every 500 steps for longer training
     cfg["perf_log_freq"] = 100      # Log performance every 100 steps
     
     # Print configuration

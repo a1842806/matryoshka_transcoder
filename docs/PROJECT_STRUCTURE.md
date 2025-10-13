@@ -70,15 +70,13 @@ matryoshka_sae/
 
 | File | Purpose |
 |------|---------|
-| `sae.py` | All SAE architectures: `VanillaSAE`, `TopKSAE`, `BatchTopKSAE`, `GlobalBatchTopKMatryoshkaSAE`, `MatryoshkaTranscoder` |
-| `activation_store.py` | Collects single-layer activations for SAE training |
+| `sae.py` | Transcoder model definitions: `BaseAutoencoder`, `MatryoshkaTranscoder` |
 | `transcoder_activation_store.py` | Collects paired activations (source→target) for transcoder training |
 
 ### Training Scripts (`src/scripts/`)
 
 | File | Purpose | When to Use |
 |------|---------|-------------|
-| `main.py` | Train standard SAEs | General SAE training |
 | `train_gpt2_simple.py` | Simple GPT-2 transcoder | Quick testing, learning |
 | `train_gpt2_transcoder.py` | Full GPT-2 transcoder | Production training |
 | `train_gemma_example.py` | Gemma-2 examples | Training on Gemma models |
@@ -90,7 +88,7 @@ matryoshka_sae/
 
 | File | Purpose |
 |------|---------|
-| `training.py` | Core training loops: `train_sae()`, `train_transcoder()`, `train_sae_group_seperate_wandb()`, etc. |
+| `training.py` | Core training loops: `train_transcoder()`, `train_transcoder_group_seperate_wandb()`, etc. |
 
 ### Utilities (`src/utils/`)
 
