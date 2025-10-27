@@ -54,6 +54,17 @@ def main():
     cfg["dtype"] = torch.bfloat16
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
     
+    # Print device information
+    print(f"🖥️  Device Configuration:")
+    print(f"   CUDA available: {torch.cuda.is_available()}")
+    if torch.cuda.is_available():
+        print(f"   GPU count: {torch.cuda.device_count()}")
+        print(f"   Using device: {cfg['device']}")
+        print(f"   GPU name: {torch.cuda.get_device_name(0)}")
+        print(f"   GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
+    else:
+        print(f"   Using device: {cfg['device']} (CPU)")
+    
     # *** LEARNING RATE SCHEDULING - WARMUP + DECAY ***
     cfg["scheduler_type"] = "warmup_decay"  # Enable warmup + decay
     cfg["warmup_steps"] = 200               # 200 steps of warmup
