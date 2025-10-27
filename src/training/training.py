@@ -136,6 +136,15 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         
         # Log metrics
         log_wandb(transcoder_output, i, wandb_run)
+        # Log dead-feature percentage to W&B
+        n_to_dead = cfg.get("n_batches_to_dead", 20)
+        dead_mask_log = transcoder.num_batches_not_active >= n_to_dead
+        dead_count_log = int(dead_mask_log.sum().item())
+        total_features_log = int(transcoder.num_batches_not_active.numel())
+        percent_dead_log = (dead_count_log / max(1, total_features_log)) * 100.0
+        wandb_run.log({
+            "percentage_dead_features": percent_dead_log,
+        }, step=i)
         
         # Log learning rate if scheduler is used
         if scheduler is not None:
@@ -151,7 +160,7 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         # Collect activation samples if enabled
         if sample_collector and i % cfg.get("sample_collection_freq", 1000) == 0:
             # Get a batch with tokens for sample collection
-            source_batch_with_tokens, target_batch_with_tokens, batch_tokens = activation_store.get_batch_with_tokens()
+            source_batch_with_tokens, batch_tokens = activation_store.get_batch_with_tokens()
             
             # Encode to get sparse features
             with torch.no_grad():
@@ -159,23 +168,30 @@ def train_transcoder(transcoder, activation_store, model, cfg):
             
             # Collect samples (using source batch tokens as context)
             sample_collector.collect_batch_samples(
-                sparse_features, 
-                batch_tokens, 
+                sparse_features,
+                batch_tokens,
                 activation_store.tokenizer
             )
         
         # Update progress bar with key metrics
+        # Convert scalars to Python floats to avoid autograd references in formatting
+        loss_val = float(transcoder_output['loss'].detach().cpu())
+        l0_val = float(transcoder_output['l0_norm'].detach().cpu())
+        l2_val = float(transcoder_output['l2_loss'].detach().cpu())
+        fvu_val = float(transcoder_output['fvu'].detach().cpu())
+        dead_val = float(transcoder.num_batches_not_active.sum().item())
         pbar.set_description(
             f"Training: {i/num_batches*100:.0f}%, "
-            f"Loss: {transcoder_output['loss']:.3f}, "
-            f"L0: {transcoder_output['l0_norm']:.0f}, "
-            f"L2: {transcoder_output['l2_loss']:.3f}, "
-            f"FVU: {transcoder_output['fvu']:.3f}, "
-            f"Dead: {transcoder.num_batches_not_active.sum().item():.0f}"
+            f"Loss: {loss_val:.3f}, "
+            f"L0: {l0_val:.0f}, "
+            f"L2: {l2_val:.3f}, "
+            f"FVU: {fvu_val:.3f}, "
+            f"Dead: {dead_val:.0f}"
         )
         
         # Backward pass
-        transcoder_output["loss"].backward()
+        # Backward pass; retain graph to avoid edge cases with reused tensors
+        transcoder_output["loss"].backward(retain_graph=True)
         
         # Update decoder weights to maintain unit norm
         transcoder.make_decoder_weights_and_grad_unit_norm()

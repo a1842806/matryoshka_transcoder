@@ -43,14 +43,14 @@ def main():
     cfg["layer"] = 17  # Target layer 17 for deeper analysis
     
     # Training settings - 15k steps configuration
-    cfg["num_tokens"] = int(15e6)  # 15M tokens for ~15k steps (1024 batch size)
+    cfg["num_tokens"] = int(3e6)  # 15M tokens for ~15k steps (1024 batch size)
     cfg["model_batch_size"] = 4    # Smaller for Gemma's larger size
     cfg["batch_size"] = 1024       # Batch size
     cfg["seq_len"] = 64            # Sequence length
     cfg["lr"] = 3e-4               # Initial learning rate
     cfg["model_dtype"] = torch.bfloat16  # Use bfloat16 for Gemma
     cfg["dtype"] = torch.bfloat16
-    cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
+    cfg["device"] = "cuda:1"  # Force GPU 1
     
     # *** LEARNING RATE SCHEDULING - WARMUP + DECAY ***
     cfg["scheduler_type"] = "warmup_decay"  # Enable warmup + decay
@@ -58,8 +58,8 @@ def main():
     cfg["min_lr"] = cfg["lr"] * 0.01        # Decay to 1% of initial LR
     
     # *** MATRYOSHKA TRANSCODER CONFIGURATION ***
-    cfg["dict_size"] = 4608        # 2x activation size for good reconstruction
-    cfg["group_sizes"] = [1152, 2304, 1152]  # Matryoshka groups: 0.5x, 1x, 0.5x
+    cfg["dict_size"] = 18432      # 8x expansion (2304 * 8) for Gemma - halved from original
+    cfg["group_sizes"] = [1152, 2304, 4608, 10368]  # 0.5x, 1x, 2x, 4.5x for Gemma - halved from original
     cfg["top_k"] = 48              # Active features per group
     cfg["aux_penalty"] = 1/32      # Auxiliary loss weight
     
@@ -77,20 +77,20 @@ def main():
     cfg["checkpoint_freq"] = 500   # Save checkpoint every 500 steps
     cfg["wandb_project"] = "gemma-2-2b-layer17-interpretability"
     
-    # *** TRANSCODER MAPPING - LAYER 17 ***
-    # Source: resid_mid (after attention, before MLP)
-    # Target: mlp_out (after MLP)
+    # *** TRANSCODER MAPPING - LAYER 17 (mlp_in → mlp_out) ***
+    # Align with Google's interface and avoid double-normalizing.
     cfg = create_transcoder_config(
         cfg,
         source_layer=17,
         target_layer=17,
-        source_site="resid_mid",  # After attention, before MLP
-        target_site="mlp_out"     # After MLP
+        source_site="mlp_in",   # Input to MLP (post-RMSNorm)
+        target_site="mlp_out"   # Output of MLP
     )
     
     # Set correct activation sizes for transcoder
     cfg["source_act_size"] = 2304  # Gemma-2-2B d_model
     cfg["target_act_size"] = 2304  # Gemma-2-2B d_model
+    cfg["input_unit_norm"] = False  # mlp_in is already normalized via RMSNorm
     
     # Post-process configuration
     cfg = post_init_cfg(cfg)

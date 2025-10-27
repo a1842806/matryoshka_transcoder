@@ -1,0 +1,16 @@
+model: gemma-2-2b
+layer: 17
+dataset: HuggingFaceFW/fineweb-edu
+device: cuda
+dtype: bfloat16
+batches: 500
+
+ours:
+  checkpoint: checkpoints/gemma-2-2b_blocks.17.hook_resid_pre_4608_topk_48_0.0003_3500
+
+google:
+  repo_dir: gemma-scope-2b-pt-transcoders
+
+output_dir: analysis_results/sae_bench/gemma-2-2b/l17
+
+

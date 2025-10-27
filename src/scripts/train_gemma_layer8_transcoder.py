@@ -59,9 +59,9 @@ def main():
     cfg["sae_type"] = "matryoshka-transcoder"
     cfg["dict_size"] = 36864      # 16x expansion (2304 * 16) for Gemma
     cfg["group_sizes"] = [1152, 2304, 4608, 9216, 19584]  # 0.5x, 1x, 2x, 4x, 8.5x for Gemma (5 groups)
-    cfg["top_k"] = 96             # Higher for larger model
+    cfg["top_k"] = 40             # Higher for larger model
     cfg["l1_coeff"] = 0.0         # Using TopK, not L1
-    cfg["aux_penalty"] = 1/32
+    cfg["aux_penalty"] = 1/64
     cfg["n_batches_to_dead"] = 20
     cfg["top_k_aux"] = 512
     

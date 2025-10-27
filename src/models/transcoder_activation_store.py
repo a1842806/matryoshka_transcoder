@@ -101,16 +101,57 @@ class TranscoderActivationsStore:
         Returns:
             Tuple of (source_acts, target_acts)
         """
+        # Prepare names to cache, with optional fallback for mlp_in
+        names = [self.target_hook_point, self.source_hook_point]
+        fallback_ln2_name = None
+        layer_for_fallback = None
+        if "hook_mlp_in" in self.source_hook_point:
+            try:
+                parts = self.source_hook_point.split(".")
+                layer_for_fallback = int(parts[1])
+                fallback_ln2_name = f"blocks.{layer_for_fallback}.ln2.hook_normalized"
+                names.append(fallback_ln2_name)
+            except Exception:
+                pass
+
         with torch.no_grad():
             _, cache = self.model.run_with_cache(
                 batch_tokens,
-                names_filter=[self.source_hook_point, self.target_hook_point],
+                names_filter=names,
                 stop_at_layer=self.stop_at_layer,
             )
-        
-        source_acts = cache[self.source_hook_point]
+
+        # Try direct mlp_in; if not present, reconstruct from ln2 normalized * ln2.w
+        try:
+            source_acts = cache[self.source_hook_point]
+        except KeyError:
+            if fallback_ln2_name is None or layer_for_fallback is None:
+                raise
+            ln2_norm = cache[fallback_ln2_name]
+            # Try multiple common attribute names for RMSNorm scale
+            scale_param = None
+            ln2_mod = self.model.blocks[layer_for_fallback].ln2
+            for attr in ["w", "weight", "scale", "g"]:
+                if hasattr(ln2_mod, attr):
+                    scale_param = getattr(ln2_mod, attr)
+                    break
+            # If no explicit scale parameter found, fall back to normalized activations
+            if scale_param is None:
+                source_acts = ln2_norm
+            else:
+                source_acts = ln2_norm * scale_param
+
         target_acts = cache[self.target_hook_point]
-        
+
+        # Ensure dtypes match training dtype (e.g., bfloat16) to avoid matmul errors
+        desired_dtype = self.config.get("dtype", None)
+        if desired_dtype is not None:
+            try:
+                source_acts = source_acts.to(dtype=desired_dtype)
+                target_acts = target_acts.to(dtype=desired_dtype)
+            except Exception:
+                pass
+
         return source_acts, target_acts
 
     def _fill_buffer(self):
