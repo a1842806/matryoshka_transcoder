@@ -27,7 +27,6 @@ from sklearn.metrics import mutual_info_score
 import json
 import os
 
-
 class FeatureEvaluator:
     """
     Evaluates feature quality, absorption, and splitting in Matryoshka Transcoders.
@@ -45,20 +44,17 @@ class FeatureEvaluator:
         self.model = model
         self.cfg = cfg
         self.device = cfg["device"]
-        
-        # Memory-safe evaluation settings
+
         self.eval_compute_on_cpu = bool(cfg.get("eval_compute_on_cpu", True))
         self.eval_chunk_size = int(cfg.get("eval_chunk_size", 2048))
         self.eval_max_pairs_reported = int(cfg.get("eval_max_pairs_reported", 10))
-        # If > 0, randomly sample this many features for pairwise stats to reduce memory pressure
+      
         self.eval_feature_subset = int(cfg.get("eval_feature_subset", 0))
-        
-        # Storage for analysis
+
         self.feature_acts_history = []
         self.feature_weights = transcoder.W_dec.detach()  # (dict_size, act_size)
         self.dict_size = cfg["dict_size"]
-        
-        # Group indices for Matryoshka analysis
+
         if hasattr(transcoder, 'group_indices'):
             self.group_indices = transcoder.group_indices
             self.is_matryoshka = True
@@ -76,15 +72,13 @@ class FeatureEvaluator:
             for i in tqdm(range(num_batches)):
                 try:
                     source_batch, target_batch = self.activation_store.next_batch()
-                    
-                    # Get feature activations
+
                     sparse_features = self.transcoder.encode(source_batch)
                     activation_patterns.append(sparse_features.cpu())
                     
                 except StopIteration:
                     break
-        
-        # Concatenate all activations
+
         self.feature_acts_history = torch.cat(activation_patterns, dim=0)
         print(f"Collected {self.feature_acts_history.shape[0]} activation samples")
         
@@ -104,16 +98,14 @@ class FeatureEvaluator:
         print("\n" + "=" * 70)
         print("Computing Feature Absorption (Cosine Similarity)")
         print("=" * 70)
-        
-        # Normalize feature vectors and move to target device (CPU for safety by default)
+
         feature_vecs_norm = F.normalize(self.feature_weights, p=2, dim=1).detach()
         if self.eval_compute_on_cpu:
             feature_vecs_norm = feature_vecs_norm.float().cpu()
             eye_device = "cpu"
         else:
             eye_device = feature_vecs_norm.device
-        
-        # Optionally sample a subset of features for pairwise computation
+
         num_features = feature_vecs_norm.shape[0]
         if 0 < self.eval_feature_subset < num_features:
             idx_perm = torch.randperm(num_features)[: self.eval_feature_subset]
@@ -123,58 +115,55 @@ class FeatureEvaluator:
             fv = feature_vecs_norm
             index_map = torch.arange(num_features)
         m = fv.shape[0]
-        
-        # Chunked pairwise cosine similarity to avoid OOM
+
         import heapq
         chunk = max(256, min(self.eval_chunk_size, m))
         total_pairs = (m * (m - 1)) // 2
         absorbed_pairs = 0
-        # Min-heap for top pairs (keep size <= eval_max_pairs_reported)
+      
         top_heap = []  # (sim, i_idx, j_idx)
         
         for i_start in range(0, m, chunk):
             i_end = min(m, i_start + chunk)
             A = fv[i_start:i_end]  # (ci, d)
-            # Precompute A @ B^T in chunks over B
+          
             for j_start in range(i_start, m, chunk):
                 j_end = min(m, j_start + chunk)
                 B = fv[j_start:j_end]
                 # (ci, cj)
                 S = A @ B.T
                 if i_start == j_start:
-                    # mask diagonal and lower triangle
+                  
                     diag_len = S.shape[0]
                     S = S.to(torch.float32)
                     tri_mask = torch.triu(torch.ones_like(S, dtype=torch.bool), diagonal=1)
-                    # Count above threshold only on upper triangle
+                  
                     block_count = (S[tri_mask] > threshold).sum().item()
                 else:
                     block_count = (S > threshold).sum().item()
                 absorbed_pairs += block_count
-                
-                # Track top similar pairs within this block (small k for efficiency)
+
                 k_block = min(max(self.eval_max_pairs_reported * 2, 10), S.numel())
-                # Flatten and get top-k values and their indices
+              
                 vals, flat_idx = torch.topk(S.flatten(), k_block)
-                # Map flat indices to (ii, jj)
+              
                 jj = (flat_idx % S.shape[1]).tolist()
                 ii = (flat_idx // S.shape[1]).tolist()
                 for vv, li, lj in zip(vals.tolist(), ii, jj):
-                    # Skip diagonal and lower triangle within same block
+                  
                     gi = i_start + li
                     gj = j_start + lj
                     if gi == gj or (gi > gj):
                         continue
-                    # Push to heap
+                  
                     heapq.heappush(top_heap, (vv, index_map[gi].item(), index_map[gj].item()))
                     if len(top_heap) > self.eval_max_pairs_reported:
                         heapq.heappop(top_heap)
-                
-                # Free block memory
+
                 del S
         
         absorption_score = absorbed_pairs / max(1, total_pairs)
-        # Convert heap to sorted list (descending by similarity)
+      
         top_heap.sort(key=lambda x: x[0], reverse=True)
         similar_pairs = [(i_idx, j_idx, sim) for (sim, i_idx, j_idx) in top_heap]
         
@@ -190,7 +179,7 @@ class FeatureEvaluator:
             "absorption_score": absorption_score,
             "absorbed_pairs": absorbed_pairs,
             "similar_pairs": similar_pairs,
-            # similarity_matrix omitted for memory safety in chunked mode
+          
         }
     
     def compute_feature_splitting(self, threshold=0.5):
@@ -211,12 +200,10 @@ class FeatureEvaluator:
         if self.feature_acts_history is None or len(self.feature_acts_history) == 0:
             print("No activations collected. Run collect_activations() first.")
             return None
-        
-        # Binarize activations (on CPU for safety)
+
         active_features = (self.feature_acts_history > 0).float().cpu()  # (n_samples, dict_size)
         n_samples, n_features = active_features.shape
-        
-        # Optionally sample a subset of features to reduce memory
+
         if 0 < self.eval_feature_subset < n_features:
             idx_perm = torch.randperm(n_features)[: self.eval_feature_subset]
             AF = active_features[:, idx_perm]
@@ -231,8 +218,7 @@ class FeatureEvaluator:
         total_pairs = (m * (m - 1)) // 2
         split_pairs_count_int = 0
         top_heap = []  # (rate, i_idx, j_idx)
-        
-        # Compute co-activation matrix in chunks: (AF^T @ AF) / n_samples
+
         for i_start in range(0, m, chunk):
             i_end = min(m, i_start + chunk)
             A = AF[:, i_start:i_end]  # (n, ci)
@@ -247,8 +233,7 @@ class FeatureEvaluator:
                 else:
                     block_count = (C > threshold).sum().item()
                 split_pairs_count_int += block_count
-                
-                # Track top co-activating pairs in this block
+
                 k_block = min(max(self.eval_max_pairs_reported * 2, 10), C.numel())
                 vals, flat_idx = torch.topk(C.flatten(), k_block)
                 jj = (flat_idx % C.shape[1]).tolist()
@@ -299,47 +284,37 @@ class FeatureEvaluator:
         if self.feature_acts_history is None or len(self.feature_acts_history) == 0:
             print("No activations collected. Run collect_activations() first.")
             return None
-        
-        # For each feature, compute:
-        # 1. Sparsity (how often it activates)
-        # 2. Activation entropy (how consistent its activation magnitude is)
-        
+
         activation_freq = (self.feature_acts_history > 0).float().mean(dim=0)  # (dict_size,)
-        
-        # Compute activation entropy for each feature
-        # Lower entropy = more consistent = more monosemantic
+
         entropies = []
         for i in range(self.dict_size):
             acts = self.feature_acts_history[:, i]
             active_acts = acts[acts > 0]
             
             if len(active_acts) > 10:
-                # Discretize activations into bins (cast to float32 for numpy)
+              
                 active_np = active_acts.float().cpu().numpy()
                 hist, _ = np.histogram(active_np, bins=50, density=True)
-                hist = hist + 1e-10  # Avoid log(0)
+                hist = hist + 1e-10
                 ent = entropy(hist)
                 entropies.append(ent)
             else:
-                entropies.append(0.0)  # Too few activations
+                entropies.append(0.0)
         
         entropies = torch.tensor(entropies)
-        
-        # Monosemanticity score: balance between sparsity and consistency
-        # High sparsity + low entropy = high monosemanticity
-        sparsity_score = 1 - activation_freq  # Reward sparsity
-        entropy_score = 1 / (1 + entropies)    # Reward low entropy
+
+        sparsity_score = 1 - activation_freq
+        entropy_score = 1 / (1 + entropies)  
         
         monosemanticity = (sparsity_score + entropy_score) / 2
-        
-        # Statistics
+
         mean_mono = monosemanticity.mean().item()
         median_mono = monosemanticity.median().item()
         
         print(f"Mean Monosemanticity: {mean_mono:.4f}")
         print(f"Median Monosemanticity: {median_mono:.4f}")
-        
-        # Most and least monosemantic features
+
         top_k = min(5, self.dict_size)
         most_mono_values, most_mono_idx = torch.topk(monosemanticity, top_k)
         least_mono_values, least_mono_idx = torch.topk(monosemanticity, top_k, largest=False)
@@ -379,21 +354,18 @@ class FeatureEvaluator:
         print("=" * 70)
         
         feature_vecs_norm = F.normalize(self.feature_weights, p=2, dim=1)
-        
-        # Compute within-group and between-group similarities
+
         group_stats = []
         
         for g in range(len(self.group_indices) - 1):
             start_idx = self.group_indices[g]
             end_idx = self.group_indices[g + 1]
-            
-            # Within-group similarity
+
             group_features = feature_vecs_norm[start_idx:end_idx]
             within_sim = (group_features @ group_features.T)
             within_sim = within_sim - torch.eye(end_idx - start_idx, device=self.device)
             within_sim_mean = within_sim.abs().mean().item()
-            
-            # Between-group similarity (with next group if exists)
+
             if g < len(self.group_indices) - 2:
                 next_start = self.group_indices[g + 1]
                 next_end = self.group_indices[g + 2]
@@ -427,15 +399,13 @@ class FeatureEvaluator:
         if self.feature_acts_history is None or len(self.feature_acts_history) == 0:
             print("No activations collected. Run collect_activations() first.")
             return None
-        
-        # Count features that never activate
+
         activation_counts = (self.feature_acts_history > 0).sum(dim=0)
         dead_features = (activation_counts == 0).sum().item()
         dead_fraction = dead_features / self.dict_size
         
         print(f"Dead features: {dead_features} / {self.dict_size} ({dead_fraction:.2%})")
-        
-        # Per-group analysis for Matryoshka
+
         if self.is_matryoshka:
             print(f"\nDead features per group:")
             for g in range(len(self.group_indices) - 1):
@@ -468,11 +438,11 @@ class FeatureEvaluator:
         def convert_to_serializable(obj):
             """Recursively convert tensors and numpy arrays to serializable types."""
             if isinstance(obj, torch.Tensor):
-                # Convert tensors to lists if small, otherwise skip
+              
                 if obj.numel() < 10000:
                     return obj.cpu().tolist() if obj.numel() > 1 else obj.item()
                 else:
-                    return None  # Skip large tensors
+                    return None
             elif isinstance(obj, np.ndarray):
                 if obj.size < 10000:
                     return obj.tolist()
@@ -489,8 +459,7 @@ class FeatureEvaluator:
                 return obj
             else:
                 return None
-        
-        # Convert results to serializable format
+
         save_dict = convert_to_serializable(results)
         
         with open(f"{save_dir}/results.json", "w") as f:
@@ -503,11 +472,9 @@ class FeatureEvaluator:
         print("\n" + "=" * 70)
         print("FULL FEATURE EVALUATION")
         print("=" * 70)
-        
-        # Collect activations
+
         self.collect_activations(num_batches)
-        
-        # Run all evaluations
+
         results = {}
         results["absorption"] = self.compute_feature_absorption()
         results["splitting"] = self.compute_feature_splitting()
@@ -516,8 +483,7 @@ class FeatureEvaluator:
         
         if self.is_matryoshka:
             results["hierarchical"] = self.analyze_hierarchical_structure()
-        
-        # Summary
+
         print("\n" + "=" * 70)
         print("EVALUATION SUMMARY")
         print("=" * 70)
@@ -526,12 +492,10 @@ class FeatureEvaluator:
         print(f"Mean Monosemanticity: {results['monosemanticity']['mean']:.4f} (higher is better)")
         print(f"Dead Features: {results['dead_features']['dead_fraction']:.2%} (lower is better)")
         print("=" * 70)
-        
-        # Save results
+
         self.save_results(results, save_dir)
         
         return results
-
 
 def evaluate_trained_transcoder(checkpoint_path, activation_store, model, cfg, num_batches=100):
     """
@@ -549,22 +513,19 @@ def evaluate_trained_transcoder(checkpoint_path, activation_store, model, cfg, n
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
     
     from models.sae import MatryoshkaTranscoder
-    
-    # Load transcoder
+
     print(f"Loading transcoder from {checkpoint_path}...")
     transcoder = MatryoshkaTranscoder(cfg)
     transcoder.load_state_dict(torch.load(f"{checkpoint_path}/sae.pt", map_location=cfg["device"]))
     transcoder.eval()
-    
-    # Run evaluation
+
     evaluator = FeatureEvaluator(transcoder, activation_store, model, cfg)
     results = evaluator.run_full_evaluation(num_batches, save_dir=f"{checkpoint_path}/evaluation")
     
     return results
 
-
 if __name__ == "__main__":
-    # Example usage
+  
     print("Feature Evaluation Script")
     print("This script should be imported and used with a trained transcoder.")
     print("\nExample usage:")

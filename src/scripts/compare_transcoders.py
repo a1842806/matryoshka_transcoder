@@ -16,13 +16,11 @@ from models.sae import MatryoshkaTranscoder
 from models.transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
 from adapters.gemma_scope_transcoder import GemmaScopeTranscoderAdapter, time_forward
 
-
 def make_output_dir(base_dir: str) -> str:
     ts = time.strftime("%Y%m%d_%H%M%S")
     out_dir = os.path.join(base_dir, f"compare_layer17_{ts}")
     os.makedirs(out_dir, exist_ok=True)
     return out_dir
-
 
 def load_matryoshka(checkpoint_dir: str, device: torch.device, dtype: torch.dtype) -> Tuple[MatryoshkaTranscoder, Dict[str, Any]]:
     ckpt_dir = Path(checkpoint_dir)
@@ -31,59 +29,51 @@ def load_matryoshka(checkpoint_dir: str, device: torch.device, dtype: torch.dtyp
     if not state_path.exists():
         raise FileNotFoundError(f"Missing sae.pt under {checkpoint_dir}")
 
-    # Build cfg: prefer checkpoint config.json; fallback to defaults
     if cfg_path.exists():
         with open(cfg_path, "r") as f:
             cfg = json.load(f)
     else:
         cfg = get_default_cfg()
 
-    # Ensure essential fields
     cfg.setdefault("model_name", "gemma-2-2b")
     cfg.setdefault("device", str(device))
     cfg["device"] = device
     cfg.setdefault("dtype", dtype)
     cfg["dtype"] = dtype
 
-    # Hook points for layer 17 resid_mid → mlp_out if not present
     layer = int(cfg.get("layer", 17))
     src_site = cfg.get("source_site", "resid_mid")
     tgt_site = cfg.get("target_site", "mlp_out")
     cfg["source_hook_point"] = cfg.get("source_hook_point", get_hook_name(src_site, layer, cfg["model_name"]))
     cfg["target_hook_point"] = cfg.get("target_hook_point", get_hook_name(tgt_site, layer, cfg["model_name"]))
 
-    # Instantiate and load
     model = MatryoshkaTranscoder(cfg).to(device=device, dtype=dtype)
     model.load_state_dict(torch.load(str(state_path), map_location=device))
     model.eval()
     return model, cfg
 
-
 @torch.no_grad()
 def batch_metrics(y_true: torch.Tensor, y_pred: torch.Tensor) -> Dict[str, float]:
-    # Flatten to (N, D)
+  
     Y = y_true.reshape(-1, y_true.shape[-1]).float()
     Yh = y_pred.reshape(-1, y_pred.shape[-1]).float()
 
     mse = F.mse_loss(Yh, Y).item()
     mae = (Yh - Y).abs().mean().item()
 
-    # FVU and R2-like
     var_res = (Yh - Y).pow(2).mean().item()
     var_orig = Y.var().item() + 1e-8
     fvu = var_res / var_orig
     r2 = 1.0 - fvu
 
-    # Cosine similarity averaged over samples
     Yn = F.normalize(Y, p=2, dim=-1)
     Yhn = F.normalize(Yh, p=2, dim=-1)
     cos = (Yn * Yhn).sum(dim=-1).mean().item()
 
     return {"mse": mse, "mae": mae, "fvu": fvu, "r2": r2, "cos": cos}
 
-
 def aggregate_metrics(running: Dict[str, float], new: Dict[str, float], n: int) -> Dict[str, float]:
-    # Weighted running mean by sample count n
+  
     for k, v in new.items():
         if k not in running:
             running[k] = 0.0
@@ -91,7 +81,6 @@ def aggregate_metrics(running: Dict[str, float], new: Dict[str, float], n: int) 
         running[k] += v * n
         running[f"count_{k}"] += n
     return running
-
 
 def finalize_metrics(running: Dict[str, float]) -> Dict[str, float]:
     out = {}
@@ -101,7 +90,6 @@ def finalize_metrics(running: Dict[str, float]) -> Dict[str, float]:
         cnt = running.get(f"count_{k}", 1)
         out[k] = v / max(1, cnt)
     return out
-
 
 def evaluate_models(
     model: HookedTransformer,
@@ -128,18 +116,15 @@ def evaluate_models(
         src = src.to(device=device, dtype=dtype)
         tgt = tgt.to(device=device, dtype=dtype)
 
-        # Matryoshka: encode/decode
         acts = matryoshka.encode(src)
         pred_m = matryoshka.decode(acts)
         bm = batch_metrics(tgt, pred_m)
         run_m = aggregate_metrics(run_m, bm, n=src.shape[0])
 
-        # Sparsity for Matryoshka (average L0 per sample)
         l0 = (acts > 0).sum(dim=-1).float().mean().item()
         l0_sum += l0 * src.shape[0]
         l0_count += src.shape[0]
 
-        # Gemma Scope adapter: direct forward
         pred_g = scope_adapter(src)
         bg = batch_metrics(tgt, pred_g)
         run_g = aggregate_metrics(run_g, bg, n=src.shape[0])
@@ -149,22 +134,20 @@ def evaluate_models(
     results["gemma_scope"]["metrics"] = finalize_metrics(run_g)
     results["gemma_scope"]["sparsity"] = {"avg_l0": None}
 
-    # Efficiency measurements on a single batch
     with torch.no_grad():
         src, _ = store.next_batch()
         src = src.to(device=device, dtype=dtype)
-        # Matryoshka timing
+      
         def fn_m(x):
             a = matryoshka.encode(x)
             return matryoshka.decode(a)
         tm = time_forward(type("F", (), {"__call__": lambda self, x: fn_m(x)})(), src, repeat=5)
-        # Gemma Scope timing
+      
         tg = time_forward(scope_adapter, src, repeat=5)
     results["matryoshka"]["efficiency"] = {"sec_per_forward": tm}
     results["gemma_scope"]["efficiency"] = {"sec_per_forward": tg}
 
     return results
-
 
 @torch.no_grad()
 def compute_behavioral_perplexity(
@@ -185,7 +168,7 @@ def compute_behavioral_perplexity(
     tgt_hook = f"blocks.{layer}.hook_mlp_out"
 
     def ce_loss(logits: torch.Tensor, tokens: torch.Tensor) -> float:
-        # Shift for next-token prediction
+      
         shift_logits = logits[:, :-1].contiguous()
         shift_labels = tokens[:, 1:].contiguous()
         return F.cross_entropy(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1)).item()
@@ -200,13 +183,11 @@ def compute_behavioral_perplexity(
         tokens = store.get_batch_tokens()  # (B, T)
         tokens = tokens.to(device=device)
 
-        # Baseline
         logits = model(tokens)
         bl = ce_loss(logits, tokens)
         agg["baseline"]["loss_sum"] += bl * tokens.size(0)
         agg["baseline"]["count"] += tokens.size(0)
 
-        # Replacement with Matryoshka
         resid_mid_cache = {"val": None}
 
         def hook_resid_mid(act, hook):
@@ -227,7 +208,6 @@ def compute_behavioral_perplexity(
         agg["matryoshka"]["loss_sum"] += lm * tokens.size(0)
         agg["matryoshka"]["count"] += tokens.size(0)
 
-        # Replacement with Gemma Scope adapter
         resid_mid_cache = {"val": None}
 
         def hook_resid_mid2(act, hook):
@@ -249,7 +229,6 @@ def compute_behavioral_perplexity(
         agg["gemma_scope"]["loss_sum"] += lg * tokens.size(0)
         agg["gemma_scope"]["count"] += tokens.size(0)
 
-    # Finalize: perplexity = exp(loss)
     out = {}
     base_loss = agg["baseline"]["loss_sum"] / max(1, agg["baseline"]["count"])
     base_ppl = float(torch.exp(torch.tensor(base_loss)))
@@ -261,13 +240,11 @@ def compute_behavioral_perplexity(
 
     return out
 
-
 def save_metrics(out_dir: str, results: Dict[str, Any]) -> None:
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "results.json"), "w") as f:
         json.dump(results, f, indent=2)
 
-    # Also write a compact CSV for reconstruction metrics
     import csv
     csv_path = os.path.join(out_dir, "reconstruction.csv")
     with open(csv_path, "w", newline="") as f:
@@ -277,7 +254,6 @@ def save_metrics(out_dir: str, results: Dict[str, Any]) -> None:
             m = results[name]["metrics"]
             writer.writerow([name, m.get("mse"), m.get("mae"), m.get("fvu"), m.get("r2"), m.get("cos")])
 
-    # Sparsity CSV (if present)
     csv_path = os.path.join(out_dir, "sparsity.csv")
     with open(csv_path, "w", newline="") as f:
         writer = csv.writer(f)
@@ -286,7 +262,6 @@ def save_metrics(out_dir: str, results: Dict[str, Any]) -> None:
             s = results[name].get("sparsity", {})
             writer.writerow([name, s.get("avg_l0")])
 
-    # Behavioral CSV (if present)
     beh = results.get("behavioral")
     if beh is not None:
         csv_path = os.path.join(out_dir, "behavioral.csv")
@@ -296,7 +271,6 @@ def save_metrics(out_dir: str, results: Dict[str, Any]) -> None:
             for name in ["matryoshka", "gemma_scope"]:
                 b = beh.get(name, {})
                 writer.writerow([name, b.get("ppl"), b.get("delta_vs_baseline"), b.get("baseline_ppl")])
-
 
 def main():
     parser = argparse.ArgumentParser(description="Compare Matryoshka vs Gemma Scope transcoders at layer 17 on FineWeb-EDU")
@@ -316,10 +290,8 @@ def main():
     device = torch.device(args.device)
     dtype = dtype_map[args.dtype]
 
-    # Load base model
     model = HookedTransformer.from_pretrained("gemma-2-2b", device=device, dtype=dtype)
 
-    # Build cfg for activation store (use mlp_in -> mlp_out at layer 17)
     cfg = get_default_cfg()
     cfg["model_name"] = "gemma-2-2b"
     cfg["device"] = device
@@ -327,7 +299,7 @@ def main():
     cfg["seq_len"] = args.seq_len
     cfg["model_batch_size"] = args.model_batch_size
     cfg["dataset_path"] = args.dataset
-    cfg["batch_size"] = 1024  # buffer batching for DataLoader
+    cfg["batch_size"] = 1024
     cfg = create_transcoder_config(
         cfg,
         source_layer=17,
@@ -336,18 +308,12 @@ def main():
         target_site="mlp_out",
     )
 
-    # Activation store
     store = TranscoderActivationsStore(model, cfg)
 
-    # Load Matryoshka
     matryoshka, mat_cfg = load_matryoshka(args.matryoshka_checkpoint, device, dtype)
 
-    # Load Gemma Scope adapter (expect local snapshot) for layer 17
     scope_adapter = GemmaScopeTranscoderAdapter(layer=17, repo_dir=args.gemma_scope_dir, device=device, dtype=dtype)
 
-    # Decide number of batches
-    # Rough estimate: each batch call returns DataLoader batches of size cfg["batch_size"],
-    # but we operate at TranscoderActivationsStore.next_batch granularity which yields (cfg["batch_size"], act_size)
     if args.batches:
         total_batches = args.batches
     else:
@@ -355,7 +321,6 @@ def main():
 
     results = evaluate_models(model, store, matryoshka, scope_adapter, total_batches, device, dtype)
 
-    # Behavioral perplexity replacement (layer 17)
     behavioral = compute_behavioral_perplexity(
         model, store, matryoshka, scope_adapter, args.behavioral_batches, device, dtype
     )
@@ -365,8 +330,6 @@ def main():
     save_metrics(out_dir, results)
     print(f"Saved comparison to {out_dir}")
 
-
 if __name__ == "__main__":
     main()
-
 

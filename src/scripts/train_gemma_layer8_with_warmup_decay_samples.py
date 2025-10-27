@@ -1,14 +1,5 @@
 """
-Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with:
-- Learning rate warmup + decay scheduling
-- Activation sample collection for interpretability
-- Demonstration that features store activation samples from training data
-
-This script demonstrates the complete interpretability pipeline:
-1. Train transcoder with proper learning rate scheduling
-2. Collect activation samples during training
-3. Show that features do store activation samples from training data
-4. Enable analysis of learned features
+Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with warmup+decay and sample collection.
 
 Usage:
     python train_gemma_layer8_with_warmup_decay_samples.py
@@ -27,7 +18,6 @@ from src.models.transcoder_activation_store import TranscoderActivationsStore, c
 from src.training.training import train_transcoder
 from src.utils.config import get_default_cfg, post_init_cfg
 
-
 def main():
     """Train Gemma-2-2B Matryoshka Transcoder on Layer 8 with warmup+decay and sample collection."""
     
@@ -35,86 +25,63 @@ def main():
     print("Gemma-2-2B Matryoshka Transcoder Training - Layer 8")
     print("Features: Warmup+Decay LR + Activation Sample Collection")
     print("=" * 80)
-    
-    # Base configuration
+
     cfg = get_default_cfg()
-    
-    # Model settings - Gemma-2-2B specific
+
     cfg["model_name"] = "gemma-2-2b"
-    cfg["dataset_path"] = "HuggingFaceFW/fineweb-edu"  # High-quality alternative to OpenWebText
-    cfg["layer"] = 8  # Target layer 8 as requested
-    
-    # Training settings - optimized for interpretability research
-    cfg["num_tokens"] = int(1e6)  # 1M tokens for longer training and better samples
-    cfg["model_batch_size"] = 4    # Smaller for Gemma's larger size
-    cfg["batch_size"] = 1024       # Reasonable batch size
-    cfg["seq_len"] = 64            # Sequence length
-    cfg["lr"] = 3e-4               # Initial learning rate
-    cfg["model_dtype"] = torch.bfloat16  # Use bfloat16 for Gemma
+    cfg["dataset_path"] = "HuggingFaceFW/fineweb-edu"
+    cfg["layer"] = 8
+
+    cfg["num_tokens"] = int(1e6)
+    cfg["model_batch_size"] = 4  
+    cfg["batch_size"] = 1024     
+    cfg["seq_len"] = 64          
+    cfg["lr"] = 3e-4             
+    cfg["model_dtype"] = torch.bfloat16
     cfg["dtype"] = torch.bfloat16
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
-    
-    # Print device information
-    print(f"🖥️  Device Configuration:")
-    print(f"   CUDA available: {torch.cuda.is_available()}")
-    if torch.cuda.is_available():
-        print(f"   GPU count: {torch.cuda.device_count()}")
-        print(f"   Using device: {cfg['device']}")
-        print(f"   GPU name: {torch.cuda.get_device_name(0)}")
-        print(f"   GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
-    else:
-        print(f"   Using device: {cfg['device']} (CPU)")
-    
-    # *** LEARNING RATE SCHEDULING - WARMUP + DECAY ***
-    cfg["scheduler_type"] = "warmup_decay"  # Enable warmup + decay
-    cfg["warmup_steps"] = 200               # 200 steps of warmup
-    cfg["min_lr"] = cfg["lr"] * 0.01        # Decay to 1% of initial LR
-    
-    # Matryoshka Transcoder architecture - optimized for Gemma-2-2B
+
+    cfg["scheduler_type"] = "warmup_decay"
+    cfg["warmup_steps"] = 200             
+    cfg["min_lr"] = cfg["lr"] * 0.01      
+
     cfg["sae_type"] = "matryoshka-transcoder"
-    cfg["dict_size"] = 18432      # 8x expansion (2304 * 8) for Gemma
-    cfg["group_sizes"] = [2304, 4608, 9216, 2304]  # 1x, 2x, 4x, 1x for Gemma
-    cfg["top_k"] = 48             # Moderate for layer 8
-    cfg["l1_coeff"] = 0.0         # Using TopK, not L1
+    cfg["dict_size"] = 18432    
+    cfg["group_sizes"] = [2304, 4608, 9216, 2304]
+    cfg["top_k"] = 48           
+    cfg["l1_coeff"] = 0.0       
     cfg["aux_penalty"] = 1/32
     cfg["n_batches_to_dead"] = 20
     cfg["top_k_aux"] = 256
-    
-    # *** ACTIVATION SAMPLE COLLECTION - ANTHROPIC STYLE ***
-    cfg["save_activation_samples"] = True        # Enable sample collection
-    cfg["sample_collection_freq"] = 100          # Collect every 100 steps for longer training
-    cfg["max_samples_per_feature"] = 200         # Store top 200 samples per feature for longer training
-    cfg["sample_context_size"] = 20              # 20 tokens of context
-    cfg["sample_activation_threshold"] = 0.1     # Only activations > 0.1
-    
-    # *** ANTI-DUPLICATION FEATURES - SIMPLE VERSION ***
-    cfg["use_diversity_regularization"] = False     # Disable for now - too complex
-    cfg["use_position_stratified_sampling"] = False # Disable for now - too complex
-    cfg["use_correlation_monitoring"] = False       # Disable for now - too complex
-    cfg["top_features_to_save"] = 500            # Save top 500 most active features for longer training
-    cfg["samples_per_feature_to_save"] = 20      # Save 20 examples per feature for longer training
-    
-    # Configure cross-layer mapping: resid_mid -> mlp_out on layer 8
-    # This learns how the MLP transforms features at layer 8
+
+    cfg["save_activation_samples"] = True      
+    cfg["sample_collection_freq"] = 100        
+    cfg["max_samples_per_feature"] = 200       
+    cfg["sample_context_size"] = 20            
+    cfg["sample_activation_threshold"] = 0.1   
+
+    cfg["use_diversity_regularization"] = False   
+    cfg["use_position_stratified_sampling"] = False
+    cfg["use_correlation_monitoring"] = False     
+    cfg["top_features_to_save"] = 500          
+    cfg["samples_per_feature_to_save"] = 20    
+
     cfg = create_transcoder_config(
         cfg,
-        source_layer=8,          # Layer 8 as requested
-        target_layer=8,          # Same layer
-        source_site="resid_mid", # After attention, before MLP
-        target_site="mlp_out"    # Output of MLP
+        source_layer=8,        
+        target_layer=8,        
+        source_site="resid_mid",
+        target_site="mlp_out"  
     )
-    
-    # Fix dimensions for Gemma-2-2B
-    cfg["source_act_size"] = 2304  # Gemma-2-2B d_model
-    cfg["target_act_size"] = 2304  # Gemma-2-2B d_model
-    cfg["act_size"] = 2304         # For transcoder
-    
-    # W&B settings
+
+    cfg["source_act_size"] = 2304
+    cfg["target_act_size"] = 2304
+    cfg["act_size"] = 2304       
+
     cfg["wandb_project"] = "gemma-2-2b-layer8-interpretability"
-    cfg["checkpoint_freq"] = 500    # Save every 500 steps for longer training
-    cfg["perf_log_freq"] = 100      # Log performance every 100 steps
-    
-    # Print configuration
+    cfg["checkpoint_freq"] = 500  
+    cfg["perf_log_freq"] = 100    
+
     print("\n" + "=" * 80)
     print("Configuration:")
     print("=" * 80)
@@ -148,8 +115,7 @@ def main():
     print(f"Top features to save: {cfg['top_features_to_save']}")
     print(f"Samples per feature to save: {cfg['samples_per_feature_to_save']}")
     print("=" * 80)
-    
-    # Load model
+
     print(f"\n📥 Loading {cfg['model_name']}...")
     try:
         model = HookedTransformer.from_pretrained_no_processing(
@@ -164,8 +130,7 @@ def main():
         print(f"❌ Failed to load model: {e}")
         print("Make sure you have access to Gemma-2-2B model")
         return
-    
-    # Create transcoder activation store
+
     print(f"\n📊 Creating transcoder activation store...")
     try:
         activation_store = TranscoderActivationsStore(model, cfg)
@@ -176,13 +141,11 @@ def main():
     except Exception as e:
         print(f"❌ Failed to create activation store: {e}")
         return
-    
-    # Create Matryoshka Transcoder
+
     print(f"\n🏗️  Initializing Matryoshka Transcoder...")
     try:
         transcoder = MatryoshkaTranscoder(cfg)
-        
-        # Count parameters
+
         total_params = sum(p.numel() for p in transcoder.parameters())
         trainable_params = sum(p.numel() for p in transcoder.parameters() if p.requires_grad)
         
@@ -196,8 +159,7 @@ def main():
     except Exception as e:
         print(f"❌ Failed to initialize transcoder: {e}")
         return
-    
-    # Training
+
     print("\n" + "=" * 80)
     print("🚀 Starting training with interpretability features...")
     print("=" * 80)
@@ -255,12 +217,10 @@ def main():
         traceback.print_exc()
         raise
 
-
 if __name__ == "__main__":
-    # Check dependencies
+  
     print("Checking dependencies...")
-    
-    # Check if wandb is installed
+
     try:
         import wandb
         print("✓ Weights & Biases is installed")
@@ -269,8 +229,7 @@ if __name__ == "__main__":
         print("Install it with: pip install wandb")
         print("Then login with: wandb login")
         exit(1)
-    
-    # Check if transformer_lens is installed
+
     try:
         from transformer_lens import HookedTransformer
         print("✓ TransformerLens is installed")
@@ -278,8 +237,7 @@ if __name__ == "__main__":
         print("❌ TransformerLens not found!")
         print("Install it with: pip install transformer_lens")
         exit(1)
-    
-    # Check if torch is available
+
     try:
         import torch
         print(f"✓ PyTorch is installed (version: {torch.__version__})")
