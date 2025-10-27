@@ -136,14 +136,20 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         
         # Log metrics
         log_wandb(transcoder_output, i, wandb_run)
-        # Log dead-feature percentage to W&B
+        
+        # Log dead-feature metrics (count and percentage) with proper visualization
         n_to_dead = cfg.get("n_batches_to_dead", 20)
         dead_mask_log = transcoder.num_batches_not_active >= n_to_dead
         dead_count_log = int(dead_mask_log.sum().item())
         total_features_log = int(transcoder.num_batches_not_active.numel())
         percent_dead_log = (dead_count_log / max(1, total_features_log)) * 100.0
+        
+        # Log both count and percentage for comprehensive tracking
+        # This creates separate plots in W&B: one for absolute counts, one for percentages
         wandb_run.log({
-            "percentage_dead_features": percent_dead_log,
+            "dead_features_count": dead_count_log,        # Total number of dead features
+            "dead_features_percentage": percent_dead_log,  # Percentage of dead features
+            "dead_features_alive": total_features_log - dead_count_log,  # Active features
         }, step=i)
         
         # Log learning rate if scheduler is used
