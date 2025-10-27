@@ -48,6 +48,9 @@ def main():
     parser.add_argument("--device", type=str, default=("cuda" if torch.cuda.is_available() else "cpu"))
     parser.add_argument("--dtype", type=str, default="bfloat16", choices=["float16", "bfloat16", "float32"])
     parser.add_argument("--batches", type=int, default=500)
+    parser.add_argument("--seq_len", type=int, default=64)
+    parser.add_argument("--model_batch_size", type=int, default=2)
+    parser.add_argument("--batch_size", type=int, default=256)
     args = parser.parse_args()
 
     dtype_map = {"float16": torch.float16, "bfloat16": torch.bfloat16, "float32": torch.float32}
@@ -63,10 +66,15 @@ def main():
     cfg["device"] = device
     cfg["dtype"] = dtype
     cfg["dataset_path"] = args.dataset
-    cfg["batch_size"] = 1024
-    cfg["seq_len"] = 128
-    cfg["model_batch_size"] = 256
+    cfg["batch_size"] = int(args.batch_size)
+    cfg["seq_len"] = int(args.seq_len)
+    cfg["model_batch_size"] = int(args.model_batch_size)
+    cfg["num_batches_in_buffer"] = 1
     cfg = create_transcoder_config(cfg, source_layer=17, target_layer=17, source_site="mlp_in", target_site="mlp_out")
+    # Ensure correct activation sizes for Gemma-2-2B
+    cfg["source_act_size"] = 2304
+    cfg["target_act_size"] = 2304
+    cfg["act_size"] = 2304
 
     store = TranscoderActivationsStore(model, cfg)
 
