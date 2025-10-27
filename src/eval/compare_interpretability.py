@@ -72,13 +72,13 @@ def load_our_transcoder(
         except:
             cfg["model_dtype"] = dtype
     
-    # Fix group_sizes if it's a string
-    if isinstance(cfg.get("group_sizes"), str):
+    # Fix prefix_sizes if it's a string
+    if isinstance(cfg.get("prefix_sizes"), str):
         try:
-            cfg["group_sizes"] = json.loads(cfg["group_sizes"])
+            cfg["prefix_sizes"] = json.loads(cfg["prefix_sizes"])
         except:
             import ast
-            cfg["group_sizes"] = ast.literal_eval(cfg["group_sizes"])
+            cfg["prefix_sizes"] = ast.literal_eval(cfg["prefix_sizes"])
     
     # Ensure numeric fields are correct type
     for key in ["dict_size", "top_k", "top_k_aux", "n_batches_to_dead"]:
@@ -105,7 +105,7 @@ def load_our_transcoder(
     
     print(f"✓ Transcoder loaded successfully")
     print(f"  - Dictionary size: {cfg['dict_size']:,}")
-    print(f"  - Group sizes: {cfg['group_sizes']}")
+    print(f"  - Prefix sizes: {cfg['prefix_sizes']}")
     print(f"  - Top-k: {cfg['top_k']}")
     
     return transcoder

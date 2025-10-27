@@ -47,7 +47,7 @@ def main():
     cfg["min_lr"] = cfg["lr"] * 0.01
     
     cfg["dict_size"] = 18432
-    cfg["group_sizes"] = [1152, 2304, 4608, 10368]
+    cfg["prefix_sizes"] = [1152, 2304, 4608, 10368]
     cfg["top_k"] = 96
     cfg["aux_penalty"] = 1/64
     
@@ -110,8 +110,8 @@ def main():
     
     print(f"Transcoder created:")
     print(f"  Dictionary size: {cfg['dict_size']}")
-    print(f"  Group sizes: {cfg['group_sizes']}")
-    print(f"  Top-k per group: {cfg['top_k']}")
+    print(f"  Prefix sizes: {cfg['prefix_sizes']}")
+    print(f"  Top-k per prefix: {cfg['top_k']}")
     print(f"  Total parameters: {sum(p.numel() for p in transcoder.parameters()):,}")
 
     expected_steps = int(cfg["num_tokens"] // cfg["batch_size"])

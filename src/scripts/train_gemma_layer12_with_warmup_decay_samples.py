@@ -47,7 +47,7 @@ def main():
     
     cfg["sae_type"] = "matryoshka-transcoder"
     cfg["dict_size"] = 36864
-    cfg["group_sizes"] = [2304, 4608, 9216, 20736]
+    cfg["prefix_sizes"] = [2304, 4608, 9216, 20736]
     cfg["top_k"] = 96
     cfg["l1_coeff"] = 0.0
     cfg["aux_penalty"] = 1/32
@@ -84,7 +84,7 @@ def main():
     print(f"Source: {cfg['source_hook_point']}")
     print(f"Target: {cfg['target_hook_point']}")
     print(f"Dictionary size: {cfg['dict_size']:,}")
-    print(f"Group sizes: {cfg['group_sizes']}")
+    print(f"Prefix sizes: {cfg['prefix_sizes']}")
     print(f"Top-K: {cfg['top_k']}")
     print(f"Training tokens: {cfg['num_tokens']:,.0f}")
     print(f"Expected steps: ~{cfg['num_tokens'] // cfg['batch_size']:,}")
@@ -144,8 +144,8 @@ def main():
         print(f"✓ Transcoder initialized")
         print(f"  - Total parameters: {total_params:,}")
         print(f"  - Trainable parameters: {trainable_params:,}")
-        print(f"  - Groups: {len(cfg['group_sizes'])}")
-        print(f"  - Group sizes: {cfg['group_sizes']}")
+        print(f"  - Prefixes: {len(cfg['prefix_sizes'])}")
+        print(f"  - Prefix sizes: {cfg['prefix_sizes']}")
         print(f"  - Source act size: {transcoder.source_act_size}")
         print(f"  - Target act size: {transcoder.target_act_size}")
     except Exception as e:
@@ -173,7 +173,7 @@ def main():
     print("  - Training metrics over time")
     print("  - Learning rate schedule")
     print("  - Performance metrics (CE degradation, recovery)")
-    print("  - Group-specific FVU (fvu_min, fvu_max, fvu_mean)")
+    print("  - Prefix-specific FVU (fvu_min, fvu_max, fvu_mean)")
     print("  - Model checkpoints as artifacts")
     print()
     print("Activation samples will be saved to:")
