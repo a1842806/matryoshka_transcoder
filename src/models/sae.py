@@ -88,7 +88,13 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         self.config = cfg
         torch.manual_seed(self.config["seed"])
         
-        # Matryoshka group configuration
+        # Matryoshka group configuration - NESTED GROUPS
+        # Each group includes all features from previous groups
+        # Example: group_sizes=[1152, 2304, 4608, 10368]
+        #   Group 0: features 0-1151 (1152 features)
+        #   Group 1: features 0-3455 (1152+2304 features)
+        #   Group 2: features 0-8063 (1152+2304+4608 features)
+        #   Group 3: features 0-18431 (all features)
         total_dict_size = sum(cfg["group_sizes"])
         self.group_sizes = cfg["group_sizes"]
         self.group_indices = [0] + list(torch.cumsum(torch.tensor(cfg["group_sizes"]), dim=0))
@@ -198,16 +204,17 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         # Encode to sparse features
         all_acts, all_acts_topk = self.compute_activations(x_source)
         
-        # Decode using hierarchical groups
-        x_reconstruct = self.b_dec
+        # Decode using hierarchical NESTED groups (each group includes all previous groups)
+        # This matches the original Matryoshka paper design
         intermediate_reconstructs = []
         
         for i in range(self.active_groups):
-            start_idx = self.group_indices[i]
+            # NESTED: Always start from 0, end at cumulative size
+            start_idx = 0
             end_idx = self.group_indices[i+1]
             W_dec_slice = self.W_dec[start_idx:end_idx, :]
             acts_topk_slice = all_acts_topk[:, start_idx:end_idx]
-            x_reconstruct = acts_topk_slice @ W_dec_slice + x_reconstruct
+            x_reconstruct = acts_topk_slice @ W_dec_slice + self.b_dec
             intermediate_reconstructs.append(x_reconstruct)
         
         # Postprocess reconstruction
@@ -373,6 +380,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
     def decode(self, acts_topk):
         """
         Decode sparse features to target layer reconstruction.
+        Uses NESTED groups: only features up to the active group size.
         
         Args:
             acts_topk: Sparse feature activations
@@ -380,5 +388,10 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         Returns:
             Reconstruction of target layer
         """
-        reconstruct = acts_topk @ self.W_dec + self.b_dec
+        # For nested groups, use only features up to the current active group size
+        max_feature_idx = self.group_indices[self.active_groups]
+        acts_topk_active = acts_topk[:, :max_feature_idx]
+        W_dec_active = self.W_dec[:max_feature_idx, :]
+        
+        reconstruct = acts_topk_active @ W_dec_active + self.b_dec
         return self.postprocess_output(reconstruct, self.x_mean, self.x_std)
