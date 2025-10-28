@@ -5,7 +5,7 @@ import os
 import math
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from utils.logs import init_wandb, log_wandb, log_model_performance, save_checkpoint
+from utils.logs import init_wandb, log_wandb, log_model_performance
 from utils.activation_samples import ActivationSampleCollector
 from utils.clean_results import CleanResultsManager
 import multiprocessing as mp
@@ -169,7 +169,21 @@ def train_transcoder(transcoder, activation_store, model, cfg):
             log_transcoder_performance(wandb_run, i, model, activation_store, transcoder)
 
         if i % cfg["checkpoint_freq"] == 0:
-            save_checkpoint(wandb_run, transcoder, cfg, i)
+            # Save intermediate checkpoint using clean results manager
+            intermediate_metrics = {
+                "loss": float(transcoder_output['loss'].detach().cpu()),
+                "l2_loss": float(transcoder_output['l2_loss'].detach().cpu()),
+                "l0_norm": float(transcoder_output['l0_norm'].detach().cpu()),
+                "fvu": float(transcoder_output['fvu'].detach().cpu()),
+                "dead_features": float(transcoder.num_batches_not_active.sum().item())
+            }
+            results_manager.save_checkpoint(
+                experiment_dir=experiment_dir,
+                model=transcoder,
+                config=cfg,
+                step=i,
+                metrics=intermediate_metrics
+            )
         
         # Collect activation samples if enabled
         if sample_collector and i % cfg.get("sample_collection_freq", 1000) == 0:

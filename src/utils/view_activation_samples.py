@@ -7,7 +7,7 @@ from typing import List, Dict, Optional
 import argparse
 from pathlib import Path
 
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 try:
     from src.utils.clean_results import CleanResultsManager

@@ -52,6 +52,11 @@ log_activity() {
 # Function to get current GPU users
 get_gpu_users() {
     nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name --format=csv,noheader 2>/dev/null | while IFS=',' read -r gpu_uuid pid process_name; do
+        # Clean up whitespace
+        gpu_uuid=$(echo "$gpu_uuid" | tr -d ' ')
+        pid=$(echo "$pid" | tr -d ' ')
+        process_name=$(echo "$process_name" | tr -d ' ')
+        
         if [ -n "$gpu_uuid" ] && [ -n "$pid" ]; then
             user=$(ps -o user= -p "$pid" 2>/dev/null || echo 'unknown')
             gpu_index=$(nvidia-smi --query-gpu=index,uuid --format=csv,noheader | grep "$gpu_uuid" | cut -d',' -f1 | tr -d ' ')
@@ -71,9 +76,10 @@ check_gpu_usage() {
         return
     fi
     
-    # Check if state file exists
+    # Check if state file exists, if not initialize it
     if [ ! -f /tmp/gpu_monitor_state ]; then
         echo "$current_users" > /tmp/gpu_monitor_state
+        echo -e "${BLUE}📊 Initialized GPU monitoring state${NC}"
         return
     fi
     
@@ -89,18 +95,30 @@ check_gpu_usage() {
                 # Check if it's a different user than current user
                 current_user=$(whoami)
                 if [ "$user" != "$current_user" ]; then
+                    # Get GPU details for the alert
+                    gpu_details=$(nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu --format=csv,noheader,nounits | sed -n "$((gpu_index + 1))p")
+                    gpu_name=$(echo "$gpu_details" | cut -d',' -f1 | tr -d ' ')
+                    mem_used=$(echo "$gpu_details" | cut -d',' -f2 | tr -d ' ')
+                    mem_total=$(echo "$gpu_details" | cut -d',' -f3 | tr -d ' ')
+                    gpu_util=$(echo "$gpu_details" | cut -d',' -f4 | tr -d ' ')
+                    
                     echo -e "${RED}🚨 ALERT: User '$user' started using GPU $gpu_index!${NC}"
+                    echo -e "${YELLOW}   GPU: $gpu_name${NC}"
                     echo -e "${YELLOW}   Process: $process_name (PID: $pid)${NC}"
+                    echo -e "${YELLOW}   Memory: ${mem_used}MB / ${mem_total}MB${NC}"
+                    echo -e "${YELLOW}   Utilization: ${gpu_util}%${NC}"
                     
                     # Send notifications
-                    send_notification "GPU Alert" "User '$user' started using GPU $gpu_index"
+                    send_notification "GPU Alert" "User '$user' started using GPU $gpu_index ($gpu_name)"
                     play_sound
                     
                     # Log the activity
-                    log_activity "ALERT: User '$user' started using GPU $gpu_index - Process: $process_name (PID: $pid)"
+                    log_activity "ALERT: User '$user' started using GPU $gpu_index ($gpu_name) - Process: $process_name (PID: $pid) - Memory: ${mem_used}MB/${mem_total}MB - Util: ${gpu_util}%"
                 else
-                    echo -e "${GREEN}ℹ️  You started using GPU $gpu_index${NC}"
-                    log_activity "INFO: Current user started using GPU $gpu_index - Process: $process_name (PID: $pid)"
+                    # Only log if this is truly a new process (not just the first run)
+                    if [ -n "$previous_users" ]; then
+                        log_activity "INFO: Current user started using GPU $gpu_index - Process: $process_name (PID: $pid)"
+                    fi
                 fi
             fi
         fi
@@ -118,18 +136,61 @@ show_status() {
     echo "Current user: $(whoami)"
     echo
     
-    local current_users=$(get_gpu_users)
-    if [ -n "$current_users" ] && [ "$(echo "$current_users" | grep -v "^$" | wc -l)" -gt 0 ]; then
-        echo -e "${YELLOW}Currently active GPU users:${NC}"
-        echo "$current_users" | while IFS=',' read -r gpu_index user pid process_name; do
-            if [ -n "$gpu_index" ]; then
-                echo "  GPU $gpu_index: $user ($process_name)"
-            fi
-        done
-    else
-        echo -e "${GREEN}No GPU processes currently running${NC}"
-    fi
+    # Get GPU count
+    local gpu_count=$(nvidia-smi --query-gpu=count --format=csv,noheader,nounits | head -1 | tr -d ' ')
+    
+    echo -e "${YELLOW}GPU Status Overview:${NC}"
+    echo "Total GPUs: $gpu_count"
     echo
+    
+    # Show detailed GPU information
+    for ((i=0; i<gpu_count; i++)); do
+        local gpu_info=$(nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader,nounits | sed -n "$((i+1))p")
+        local gpu_index=$(echo "$gpu_info" | cut -d',' -f1 | tr -d ' ')
+        local gpu_name=$(echo "$gpu_info" | cut -d',' -f2 | tr -d ' ')
+        local mem_used=$(echo "$gpu_info" | cut -d',' -f3 | tr -d ' ')
+        local mem_total=$(echo "$gpu_info" | cut -d',' -f4 | tr -d ' ')
+        local gpu_util=$(echo "$gpu_info" | cut -d',' -f5 | tr -d ' ')
+        local temp=$(echo "$gpu_info" | cut -d',' -f6 | tr -d ' ')
+        
+        # Calculate memory percentage
+        local mem_percent=0
+        if [ "$mem_total" -gt 0 ]; then
+            mem_percent=$((mem_used * 100 / mem_total))
+        fi
+        
+        # Format GPU name (truncate if too long)
+        if [ ${#gpu_name} -gt 25 ]; then
+            gpu_name="${gpu_name:0:22}..."
+        fi
+        
+        echo -e "${BLUE}GPU $gpu_index:${NC} $gpu_name"
+        echo -e "  Memory: ${mem_used}MB / ${mem_total}MB (${mem_percent}%)"
+        echo -e "  Utilization: ${gpu_util}%"
+        echo -e "  Temperature: ${temp}°C"
+        
+        # Show processes on this GPU
+        local gpu_processes=$(nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name --format=csv,noheader 2>/dev/null | while IFS=',' read -r gpu_uuid pid process_name; do
+            gpu_uuid=$(echo "$gpu_uuid" | tr -d ' ')
+            pid=$(echo "$pid" | tr -d ' ')
+            process_name=$(echo "$process_name" | tr -d ' ')
+            if [ -n "$gpu_uuid" ] && [ -n "$pid" ]; then
+                gpu_idx=$(nvidia-smi --query-gpu=index,uuid --format=csv,noheader | grep "$gpu_uuid" | cut -d',' -f1 | tr -d ' ')
+                if [ "$gpu_idx" = "$gpu_index" ]; then
+                    user=$(ps -o user= -p "$pid" 2>/dev/null || echo 'unknown')
+                    echo "    $user ($process_name - PID: $pid)"
+                fi
+            fi
+        done)
+        
+        if [ -n "$gpu_processes" ]; then
+            echo -e "  ${YELLOW}Active processes:${NC}"
+            echo "$gpu_processes"
+        else
+            echo -e "  ${GREEN}No active processes${NC}"
+        fi
+        echo
+    done
 }
 
 # Main monitoring loop
