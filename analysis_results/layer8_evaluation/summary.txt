@@ -1,0 +1,21 @@
+================================================================================
+INTERPRETABILITY EVALUATION SUMMARY
+================================================================================
+
+Checkpoint: results/gemma_2_2b/layer8/2025-10-28_7000k-steps-layer8
+Layer: 8
+Evaluation batches: 1000
+
+KEY METRICS:
+--------------------------------------------------------------------------------
+FVU (lower is better):              0.3806
+Absorption Score (lower is better): 0.0000
+Dead Features:                      0.0%
+Mean L0 Sparsity:                   70.2
+Cosine Similarity:                  0.7879
+
+INTERPRETATION:
+--------------------------------------------------------------------------------
+❌ Reconstruction: NEEDS IMPROVEMENT (FVU ≥ 0.3)
+✅ Interpretability: EXCELLENT (absorption < 0.01)
+✅ Feature Utilization: EXCELLENT (< 10% dead)

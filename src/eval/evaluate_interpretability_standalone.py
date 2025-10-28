@@ -88,7 +88,7 @@ def load_transcoder(checkpoint_path: str, device: torch.device, dtype: torch.dty
     
     # Create and load transcoder
     transcoder = MatryoshkaTranscoder(cfg).to(device=device, dtype=dtype)
-    state_path = os.path.join(checkpoint_path, "sae.pt")
+    state_path = os.path.join(checkpoint_path, "checkpoint.pt")
     transcoder.load_state_dict(torch.load(state_path, map_location=device))
     transcoder.eval()
     

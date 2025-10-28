@@ -7,6 +7,19 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 import torch
 
+def _make_json_serializable(obj):
+    """Convert PyTorch dtypes and other non-serializable objects to strings."""
+    if isinstance(obj, torch.dtype):
+        return str(obj)
+    elif isinstance(obj, torch.device):
+        return str(obj)
+    elif isinstance(obj, dict):
+        return {k: _make_json_serializable(v) for k, v in obj.items()}
+    elif isinstance(obj, (list, tuple)):
+        return [_make_json_serializable(item) for item in obj]
+    else:
+        return obj
+
 class CleanResultsManager:
     
     def __init__(self, base_dir: str = "results"):
@@ -32,14 +45,16 @@ class CleanResultsManager:
         torch.save(model.state_dict(), model_path)
         
         config_path = experiment_dir / "config.json"
+        serializable_config = _make_json_serializable(config)
         with open(config_path, 'w') as f:
-            json.dump(config, f, indent=2)
+            json.dump(serializable_config, f, indent=2)
         
         if metrics:
             log_path = experiment_dir / "training_log.json"
             log_data = {"step": step, "metrics": metrics, "timestamp": datetime.now().isoformat()}
+            serializable_log_data = _make_json_serializable(log_data)
             with open(log_path, 'w') as f:
-                json.dump(log_data, f, indent=2)
+                json.dump(serializable_log_data, f, indent=2)
     
     def save_activation_samples(self, experiment_dir: Path, sample_collector, top_k_features: int = 100, samples_per_feature: int = 10):
         samples_dir = experiment_dir / "activation_samples"

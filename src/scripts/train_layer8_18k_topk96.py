@@ -1,4 +1,4 @@
-"""Minimal training script for Gemma-2-2B Layer 8 - 16k steps."""
+"""Minimal training script for Gemma-2-2B Layer 8 - 3k steps."""
 
 import torch
 import sys
@@ -20,8 +20,8 @@ def main():
     cfg["dataset_path"] = "HuggingFaceFW/fineweb-edu"
     cfg["layer"] = 8
     
-    # Training settings for 16k steps
-    cfg["num_tokens"] = int(16e6)  # 16M tokens for ~16k steps
+    # Training settings for 3k steps
+    cfg["num_tokens"] = int(3e6)  # 3M tokens for ~3k steps
     cfg["model_batch_size"] = 4
     cfg["batch_size"] = 1024
     cfg["seq_len"] = 64
@@ -32,12 +32,12 @@ def main():
     
     # Learning rate scheduling
     cfg["scheduler_type"] = "warmup_decay"
-    cfg["warmup_steps"] = 1000
+    cfg["warmup_steps"] = 200  # Reduced warmup for 3k steps
     cfg["min_lr"] = cfg["lr"] * 0.01
     
     # Matryoshka settings
     cfg["dict_size"] = 18432
-    cfg["prefix_sizes"] = [1152, 2073, 3732, 6718, 4757]
+    cfg["prefix_sizes"] = [2304, 4608, 9216, 13824, 18432]
     cfg["top_k"] = 96
     cfg["aux_penalty"] = 1/64
     cfg["n_batches_to_dead"] = 20
@@ -53,10 +53,10 @@ def main():
     cfg["samples_per_feature_to_save"] = 10
     
     # Logging
-    cfg["perf_log_freq"] = 50
-    cfg["checkpoint_freq"] = 500
-    cfg["wandb_project"] = "gemma-2-2b-layer8-16k-steps"
-    cfg["experiment_description"] = "16k-steps-layer8"
+    cfg["perf_log_freq"] = 25
+    cfg["checkpoint_freq"] = 250
+    cfg["wandb_project"] = "gemma-2-2b-layer8-3k-steps"
+    cfg["experiment_description"] = "3k-steps-layer8"
 
     # Create transcoder config
     cfg = create_transcoder_config(
@@ -74,7 +74,7 @@ def main():
     cfg = post_init_cfg(cfg)
 
     print("=" * 80)
-    print("🚀 STARTING TRAINING - Gemma-2-2B Layer 8 (16k steps)")
+    print("🚀 STARTING TRAINING - Gemma-2-2B Layer 8 (3k steps)")
     print("=" * 80)
     print(f"Model: {cfg['model_name']}")
     print(f"Layer: {cfg['layer']}")
@@ -84,6 +84,7 @@ def main():
     print(f"Dictionary size: {cfg['dict_size']:,}")
     print(f"Prefix sizes: {cfg['prefix_sizes']}")
     print(f"Learning rate: {cfg['lr']}")
+    print(f"Warmup steps: {cfg['warmup_steps']}")
     print(f"W&B project: {cfg['wandb_project']}")
     print("=" * 80)
 
@@ -101,9 +102,9 @@ def main():
         print("✅ TRAINING COMPLETED SUCCESSFULLY!")
         print("=" * 80)
         print("Results saved to organized structure:")
-        print("  - Checkpoint: results/gemma_2_2b/layer8/[date]_16k-steps-layer8/")
-        print("  - Activation samples: results/gemma_2_2b/layer8/[date]_16k-steps-layer8/activation_samples/")
-        print("  - W&B dashboard: https://wandb.ai/[entity]/gemma-2-2b-layer8-16k-steps")
+        print("  - Checkpoint: results/gemma_2_2b/layer8/[date]_3k-steps-layer8/")
+        print("  - Activation samples: results/gemma_2_2b/layer8/[date]_3k-steps-layer8/activation_samples/")
+        print("  - W&B dashboard: https://wandb.ai/[entity]/gemma-2-2b-layer8-3k-steps")
         print("=" * 80)
     except Exception as e:
         print(f"\n❌ Training failed: {e}")
