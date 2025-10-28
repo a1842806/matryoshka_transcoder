@@ -56,7 +56,15 @@ def load_transcoder(checkpoint_path: str, device: torch.device, dtype: torch.dty
         except:
             cfg["model_dtype"] = dtype
     
-    # Fix group_sizes
+    # Fix prefix_sizes if it's a string (new format)
+    if isinstance(cfg.get("prefix_sizes"), str):
+        try:
+            cfg["prefix_sizes"] = json.loads(cfg["prefix_sizes"])
+        except:
+            import ast
+            cfg["prefix_sizes"] = ast.literal_eval(cfg["prefix_sizes"])
+    
+    # Fix group_sizes if it's a string (legacy format)
     if isinstance(cfg.get("group_sizes"), str):
         try:
             cfg["group_sizes"] = json.loads(cfg["group_sizes"])
@@ -81,13 +89,17 @@ def load_transcoder(checkpoint_path: str, device: torch.device, dtype: torch.dty
     
     # Create and load transcoder
     transcoder = MatryoshkaTranscoder(cfg).to(device=device, dtype=dtype)
-    state_path = os.path.join(checkpoint_path, "sae.pt")
+    
+    # Load state dict - try both new and old formats
+    state_path = os.path.join(checkpoint_path, "checkpoint.pt")
+    if not os.path.exists(state_path):
+        state_path = os.path.join(checkpoint_path, "sae.pt")
     transcoder.load_state_dict(torch.load(state_path, map_location=device))
     transcoder.eval()
     
     print(f"✓ Transcoder loaded successfully")
     print(f"  - Dictionary size: {cfg['dict_size']:,}")
-    print(f"  - Prefix sizes: {cfg.get('prefix_sizes', 'N/A')}")
+    print(f"  - Prefix sizes: {cfg.get('prefix_sizes', cfg.get('group_sizes', 'N/A'))}")
     print(f"  - Top-k: {cfg.get('top_k', 'N/A')}")
     
     return transcoder, cfg
