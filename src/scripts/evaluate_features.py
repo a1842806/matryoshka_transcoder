@@ -55,8 +55,8 @@ class FeatureEvaluator:
         self.feature_weights = transcoder.W_dec.detach()  # (dict_size, act_size)
         self.dict_size = cfg["dict_size"]
 
-        if hasattr(transcoder, 'group_indices'):
-            self.group_indices = transcoder.group_indices
+        if hasattr(transcoder, 'prefix_indices'):
+            self.prefix_indices = transcoder.prefix_indices
             self.is_matryoshka = True
         else:
             self.is_matryoshka = False
@@ -171,9 +171,9 @@ class FeatureEvaluator:
         print(f"  ({absorbed_pairs:.0f}/{total_pairs:.0f} pairs with similarity > {threshold})")
         print(f"\nTop 10 Most Similar Feature Pairs:")
         for i, j, sim in similar_pairs[:10]:
-            group_i = self._get_group_index(i)
-            group_j = self._get_group_index(j)
-            print(f"  Feature {i:4d} (Group {group_i}) ↔ Feature {j:4d} (Group {group_j}): {sim:.4f}")
+            prefix_i = self._get_prefix_index(i)
+            prefix_j = self._get_prefix_index(j)
+            print(f"  Feature {i:4d} (Prefix {prefix_i}) ↔ Feature {j:4d} (Prefix {prefix_j}): {sim:.4f}")
         
         return {
             "absorption_score": absorption_score,
@@ -257,9 +257,9 @@ class FeatureEvaluator:
         print(f"  ({split_pairs_count_int:.0f}/{total_pairs:.0f} pairs co-activate > {threshold} of the time)")
         print(f"\nTop 10 Most Co-activating Feature Pairs:")
         for i, j, coact in split_pairs[:10]:
-            group_i = self._get_group_index(i)
-            group_j = self._get_group_index(j)
-            print(f"  Feature {i:4d} (Group {group_i}) ↔ Feature {j:4d} (Group {group_j}): {coact:.4f}")
+            prefix_i = self._get_prefix_index(i)
+            prefix_j = self._get_prefix_index(j)
+            print(f"  Feature {i:4d} (Prefix {prefix_i}) ↔ Feature {j:4d} (Prefix {prefix_j}): {coact:.4f}")
         
         return {
             "splitting_score": splitting_score,
@@ -357,18 +357,18 @@ class FeatureEvaluator:
 
         group_stats = []
         
-        for g in range(len(self.group_indices) - 1):
-            start_idx = self.group_indices[g]
-            end_idx = self.group_indices[g + 1]
+        for g in range(len(self.prefix_indices) - 1):
+            start_idx = self.prefix_indices[g]
+            end_idx = self.prefix_indices[g + 1]
 
             group_features = feature_vecs_norm[start_idx:end_idx]
             within_sim = (group_features @ group_features.T)
             within_sim = within_sim - torch.eye(end_idx - start_idx, device=self.device)
             within_sim_mean = within_sim.abs().mean().item()
 
-            if g < len(self.group_indices) - 2:
-                next_start = self.group_indices[g + 1]
-                next_end = self.group_indices[g + 2]
+            if g < len(self.prefix_indices) - 2:
+                next_start = self.prefix_indices[g + 1]
+                next_end = self.prefix_indices[g + 2]
                 next_group_features = feature_vecs_norm[next_start:next_end]
                 between_sim = (group_features @ next_group_features.T)
                 between_sim_mean = between_sim.abs().mean().item()
@@ -382,7 +382,7 @@ class FeatureEvaluator:
                 "between_similarity": between_sim_mean
             })
             
-            print(f"\nGroup {g} (features {start_idx}-{end_idx-1}, size={end_idx - start_idx}):")
+            print(f"\nPrefix {g} (features {start_idx}-{end_idx-1}, size={end_idx - start_idx}):")
             print(f"  Within-group similarity: {within_sim_mean:.4f}")
             if between_sim_mean is not None:
                 print(f"  Between-group similarity: {between_sim_mean:.4f}")
@@ -408,12 +408,12 @@ class FeatureEvaluator:
 
         if self.is_matryoshka:
             print(f"\nDead features per group:")
-            for g in range(len(self.group_indices) - 1):
-                start_idx = self.group_indices[g]
-                end_idx = self.group_indices[g + 1]
-                group_dead = (activation_counts[start_idx:end_idx] == 0).sum().item()
-                group_size = end_idx - start_idx
-                print(f"  Group {g}: {group_dead} / {group_size} ({group_dead/group_size:.2%})")
+            for g in range(len(self.prefix_indices) - 1):
+                start_idx = self.prefix_indices[g]
+                end_idx = self.prefix_indices[g + 1]
+                prefix_dead = (activation_counts[start_idx:end_idx] == 0).sum().item()
+                prefix_size = end_idx - start_idx
+                print(f"  Prefix {g}: {prefix_dead} / {prefix_size} ({prefix_dead/prefix_size:.2%})")
         
         return {
             "dead_features": dead_features,
@@ -421,15 +421,15 @@ class FeatureEvaluator:
             "activation_counts": activation_counts.cpu()
         }
     
-    def _get_group_index(self, feature_idx):
-        """Get which group a feature belongs to."""
+    def _get_prefix_index(self, feature_idx):
+        """Get which prefix a feature belongs to."""
         if not self.is_matryoshka:
             return 0
         
-        for g in range(len(self.group_indices) - 1):
-            if self.group_indices[g] <= feature_idx < self.group_indices[g + 1]:
+        for g in range(len(self.prefix_indices) - 1):
+            if self.prefix_indices[g] <= feature_idx < self.prefix_indices[g + 1]:
                 return g
-        return len(self.group_indices) - 2
+        return len(self.prefix_indices) - 2
     
     def save_results(self, results, save_dir="evaluation_results"):
         """Save evaluation results."""

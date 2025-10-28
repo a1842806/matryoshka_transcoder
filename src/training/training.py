@@ -7,7 +7,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from utils.logs import init_wandb, log_wandb, log_model_performance, save_checkpoint
 from utils.activation_samples import ActivationSampleCollector
-# Anti-duplication imports removed - reverted to clean state
+from utils.clean_results import CleanResultsManager
 import multiprocessing as mp
 from queue import Empty
 import wandb
@@ -117,6 +117,14 @@ def train_transcoder(transcoder, activation_store, model, cfg):
 
     wandb_run = init_wandb(cfg)
     
+    results_manager = CleanResultsManager()
+    experiment_dir = results_manager.create_experiment_dir(
+        model_name=cfg["model_name"],
+        layer=cfg["layer"],
+        steps=num_batches,
+        description=cfg.get("experiment_description", "")
+    )
+    
     # Initialize activation sample collector if enabled
     sample_collector = None
     if cfg.get("save_activation_samples", False):
@@ -210,21 +218,29 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         if scheduler is not None:
             scheduler.step()
     
-    # Save final checkpoint
-    save_checkpoint(wandb_run, transcoder, cfg, num_batches)
+    final_metrics = {
+        "loss": float(transcoder_output['loss'].detach().cpu()),
+        "l2_loss": float(transcoder_output['l2_loss'].detach().cpu()),
+        "l0_norm": float(transcoder_output['l0_norm'].detach().cpu()),
+        "fvu": float(transcoder_output['fvu'].detach().cpu()),
+        "dead_features": float(transcoder.num_batches_not_active.sum().item())
+    }
     
-    # Save activation samples if collected
+    results_manager.save_checkpoint(
+        experiment_dir=experiment_dir,
+        model=transcoder,
+        config=cfg,
+        step=num_batches,
+        metrics=final_metrics
+    )
+    
     if sample_collector:
-        sample_dir = f"checkpoints/transcoder/{cfg['model_name']}/{cfg['name']}_{num_batches}_activation_samples"
-        os.makedirs(sample_dir, exist_ok=True)
-        
-        # Save samples
-        sample_collector.save_samples(
-            sample_dir, 
+        results_manager.save_activation_samples(
+            experiment_dir=experiment_dir,
+            sample_collector=sample_collector,
             top_k_features=cfg.get("top_features_to_save", 100),
             samples_per_feature=cfg.get("samples_per_feature_to_save", 10)
         )
-        print(f"\nSaved activation samples to {sample_dir}")
     
     wandb_run.finish()
 

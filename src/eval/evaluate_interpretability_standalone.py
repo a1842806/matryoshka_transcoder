@@ -87,7 +87,7 @@ def load_transcoder(checkpoint_path: str, device: torch.device, dtype: torch.dty
     
     print(f"✓ Transcoder loaded successfully")
     print(f"  - Dictionary size: {cfg['dict_size']:,}")
-    print(f"  - Group sizes: {cfg.get('group_sizes', 'N/A')}")
+    print(f"  - Prefix sizes: {cfg.get('prefix_sizes', 'N/A')}")
     print(f"  - Top-k: {cfg.get('top_k', 'N/A')}")
     
     return transcoder, cfg

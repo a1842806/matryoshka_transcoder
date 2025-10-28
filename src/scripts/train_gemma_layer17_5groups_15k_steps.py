@@ -1,7 +1,5 @@
-import torch
+import torch, sys, os
 from transformer_lens import HookedTransformer
-import sys
-import os
 
 # Add the parent directory to the path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -10,10 +8,6 @@ from src.models.sae import MatryoshkaTranscoder
 from src.models.transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
 from src.training.training import train_transcoder
 from src.utils.config import get_default_cfg, post_init_cfg
-
-
-
-GROUP_SIZES_5_NESTED = 
 
 def main():
     cfg = get_default_cfg()
@@ -31,7 +25,7 @@ def main():
     cfg["lr"] = 4e-4
     cfg["model_dtype"] = torch.bfloat16
     cfg["dtype"] = torch.bfloat16
-    cfg["device"] = "cuda:1"
+    cfg["device"] = "cuda"
     
     # Learning rate scheduling
     cfg["scheduler_type"] = "warmup_decay"
@@ -39,9 +33,7 @@ def main():
     cfg["min_lr"] = cfg["lr"] * 0.01
     
     cfg["dict_size"] = 18432
-    cfg["prefix_sizes"] = [1152, 2073, 3732, 6718, 4757]
-    
-    print(f"5 Prefixes: {cfg['prefix_sizes']} (total: {sum(cfg['prefix_sizes']):,})")
+    cfg["prefix_sizes"] = [2304, 4608, 9216, 13824, 18432]
     
     # Matryoshka-specific settings
     cfg["top_k"] = 96

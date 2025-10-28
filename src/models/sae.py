@@ -90,18 +90,28 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         
         # Matryoshka prefix configuration - NESTED PREFIXES
         # Each prefix includes all features from previous prefixes (like Russian nesting dolls)
-        # Example: prefix_sizes=[1152, 2304, 4608, 10368]
-        #   Prefix 0: features 0-1151 (1152 features total)
-        #   Prefix 1: features 0-3455 (1152+2304 = 3456 features total, includes Prefix 0)
-        #   Prefix 2: features 0-8063 (1152+2304+4608 = 8064 features total, includes Prefixes 0-1)
-        #   Prefix 3: features 0-18431 (1152+2304+4608+10368 = 18432 features total, all features)
         # 
-        # The cumsum creates the nested boundaries:
-        # prefix_indices = [0, 1152, 3456, 8064, 18432]
-        total_dict_size = sum(cfg["prefix_sizes"])
-        self.prefix_sizes = cfg["prefix_sizes"]
-        self.prefix_indices = [0] + list(torch.cumsum(torch.tensor(cfg["prefix_sizes"]), dim=0))
-        self.active_prefixes = len(cfg["prefix_sizes"])
+        # Support both formats for backward compatibility:
+        # 1. Individual sizes: [1152, 2073, 3732, 6718, 4757] (sums to total)
+        # 2. Cumulative sizes: [2304, 4608, 9216, 13824, 18432] (last element is total)
+        # 
+        # Detect format by checking if elements are monotonically increasing
+        # Individual sizes: [1152, 2073, 3732, 6718, 4757] (not monotonic)
+        # Cumulative sizes: [2304, 4608, 9216, 13824, 18432] (monotonic)
+        prefix_sizes = cfg["prefix_sizes"]
+        is_monotonic = all(prefix_sizes[i] <= prefix_sizes[i+1] for i in range(len(prefix_sizes)-1))
+        
+        if is_monotonic and len(prefix_sizes) > 1:
+            # Cumulative sizes format - use directly
+            self.prefix_sizes = prefix_sizes
+            total_dict_size = prefix_sizes[-1]
+        else:
+            # Individual sizes format - convert to cumulative
+            self.prefix_sizes = list(torch.cumsum(torch.tensor(prefix_sizes), dim=0).tolist())
+            total_dict_size = self.prefix_sizes[-1]
+        
+        self.prefix_indices = [0] + self.prefix_sizes  # Add 0 at start for boundaries
+        self.active_prefixes = len(self.prefix_sizes)
         
         # Source and target dimensions (may differ for cross-layer mapping)
         self.source_act_size = cfg.get("source_act_size", cfg["act_size"])
