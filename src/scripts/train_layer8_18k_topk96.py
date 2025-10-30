@@ -1,4 +1,4 @@
-"""Gemma-2-2B layer-17 Matryoshka training run with warmup/decay."""
+"""Compact training recipe for Gemma-2-2B layer 8 (≈3k steps)."""
 
 import os
 import sys
@@ -23,7 +23,7 @@ def build_config() -> dict:
         {
             "model_name": "gemma-2-2b",
             "dataset_path": "HuggingFaceFW/fineweb-edu",
-            "layer": 17,
+            "layer": 8,
             "num_tokens": int(3e6),
             "model_batch_size": 4,
             "batch_size": 1024,
@@ -33,7 +33,7 @@ def build_config() -> dict:
             "dtype": torch.bfloat16,
             "device": "cuda:1" if torch.cuda.device_count() > 1 else "cuda" if torch.cuda.is_available() else "cpu",
             "scheduler_type": "warmup_decay",
-            "warmup_steps": 500,
+            "warmup_steps": 200,
             "dict_size": 18432,
             "prefix_sizes": [2304, 4608, 9216, 13824, 18432],
             "top_k": 96,
@@ -47,9 +47,10 @@ def build_config() -> dict:
             "sample_activation_threshold": 0.1,
             "top_features_to_save": 100,
             "samples_per_feature_to_save": 10,
-            "perf_log_freq": 50,
-            "checkpoint_freq": 500,
-            "wandb_project": "gemma-2-2b-layer17-interpretability",
+            "perf_log_freq": 25,
+            "checkpoint_freq": 250,
+            "wandb_project": "gemma-2-2b-layer8-3k-steps",
+            "experiment_description": "3k-steps-layer8",
         }
     )
 
@@ -57,15 +58,11 @@ def build_config() -> dict:
 
     cfg = create_transcoder_config(
         cfg,
-        source_layer=17,
-        target_layer=17,
+        source_layer=8,
+        target_layer=8,
         source_site="mlp_in",
         target_site="mlp_out",
     )
-
-    cfg["source_act_size"] = 2304
-    cfg["target_act_size"] = 2304
-    cfg["input_unit_norm"] = False
 
     return post_init_cfg(cfg)
 
@@ -98,4 +95,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    
+

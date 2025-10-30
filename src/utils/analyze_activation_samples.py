@@ -360,7 +360,7 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python analyze_activation_samples.py <samples_directory>")
         print("\nExample:")
-        print("  python analyze_activation_samples.py checkpoints/sae/gemma-2-2b/my_model_activation_samples")
+        print("  python analyze_activation_samples.py results/gemma-2-2b/layer17/15000/activation_samples")
         sys.exit(1)
     
     samples_dir = sys.argv[1]

@@ -166,3 +166,4 @@ checkpoints/
 wandb/
 logs/
 models/
+results/

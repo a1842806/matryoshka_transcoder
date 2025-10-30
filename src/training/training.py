@@ -1,18 +1,11 @@
 import torch
 import tqdm
-import sys
-import os
 import math
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from utils.logs import init_wandb, log_wandb, log_model_performance, save_checkpoint
+from utils.logs import init_wandb, log_wandb, log_model_performance
 from utils.activation_samples import ActivationSampleCollector
-# Anti-duplication imports removed - reverted to clean state
-import multiprocessing as mp
-from queue import Empty
+from utils.clean_results import CleanResultsManager
 import wandb
-import json
-import os
 from torch.optim.lr_scheduler import LambdaLR, CosineAnnealingLR, SequentialLR, LinearLR
 
 
@@ -53,50 +46,6 @@ def create_scheduler(optimizer, cfg, num_batches):
         # No scheduler
         return None
 
-
-def save_checkpoint_mp(sae, cfg, step):
-    """
-    Save checkpoint without requiring a wandb run object.
-    Creates an artifact but doesn't log it to wandb directly.
-    Uses organized structure: checkpoints/{model_type}/{base_model}/{name}_{step}/
-    """
-    # Determine model type (sae or transcoder)
-    sae_type = cfg.get("sae_type", "topk")
-    if "transcoder" in sae_type or "clt" in sae_type:
-        model_type = "transcoder"
-    else:
-        model_type = "sae"
-    
-    # Get base model name (e.g., "gpt2-small", "gemma-2-2b")
-    base_model = cfg["model_name"]
-    
-    # Create organized directory structure
-    save_dir = f"checkpoints/{model_type}/{base_model}/{cfg['name']}_{step}"
-    os.makedirs(save_dir, exist_ok=True)
-
-    # Save model state
-    sae_path = os.path.join(save_dir, "sae.pt")
-    torch.save(sae.state_dict(), sae_path)
-
-    # Prepare config for JSON serialization
-    json_safe_cfg = {}
-    for key, value in cfg.items():
-        if isinstance(value, (int, float, str, bool, type(None))):
-            json_safe_cfg[key] = value
-        elif isinstance(value, (torch.dtype, type)):
-            json_safe_cfg[key] = str(value)
-        else:
-            json_safe_cfg[key] = str(value)
-
-    # Save config
-    config_path = os.path.join(save_dir, "config.json")
-    with open(config_path, "w") as f:
-        json.dump(json_safe_cfg, f, indent=4)
-
-    print(f"Model and config saved at step {step} in {save_dir}")
-    return save_dir, sae_path, config_path
-
-
 def train_transcoder(transcoder, activation_store, model, cfg):
     """
     Train a single transcoder (cross-layer feature transformer).
@@ -116,6 +65,14 @@ def train_transcoder(transcoder, activation_store, model, cfg):
     pbar = tqdm.trange(num_batches)
 
     wandb_run = init_wandb(cfg)
+    
+    results_manager = CleanResultsManager()
+    experiment_dir = results_manager.create_experiment_dir(
+        model_name=cfg["model_name"],
+        layer=cfg["layer"],
+        steps=num_batches,
+        description=cfg.get("experiment_description", "")
+    )
     
     # Initialize activation sample collector if enabled
     sample_collector = None
@@ -161,7 +118,22 @@ def train_transcoder(transcoder, activation_store, model, cfg):
             log_transcoder_performance(wandb_run, i, model, activation_store, transcoder)
 
         if i % cfg["checkpoint_freq"] == 0:
-            save_checkpoint(wandb_run, transcoder, cfg, i)
+            # Save intermediate checkpoint using clean results manager
+            intermediate_metrics = {
+                "loss": float(transcoder_output['loss'].detach().cpu()),
+                "l2_loss": float(transcoder_output['l2_loss'].detach().cpu()),
+                "l0_norm": float(transcoder_output['l0_norm'].detach().cpu()),
+                "fvu": float(transcoder_output['fvu'].detach().cpu()),
+                "dead_features": float(transcoder.num_batches_not_active.sum().item())
+            }
+            results_manager.save_checkpoint(
+                experiment_dir=experiment_dir,
+                model=transcoder,
+                config=cfg,
+                step=i,
+                metrics=intermediate_metrics,
+                is_final=False,
+            )
         
         # Collect activation samples if enabled
         if sample_collector and i % cfg.get("sample_collection_freq", 1000) == 0:
@@ -210,21 +182,33 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         if scheduler is not None:
             scheduler.step()
     
-    # Save final checkpoint
-    save_checkpoint(wandb_run, transcoder, cfg, num_batches)
+    final_metrics = {
+        "loss": float(transcoder_output['loss'].detach().cpu()),
+        "l2_loss": float(transcoder_output['l2_loss'].detach().cpu()),
+        "l0_norm": float(transcoder_output['l0_norm'].detach().cpu()),
+        "fvu": float(transcoder_output['fvu'].detach().cpu()),
+        "dead_features": float(transcoder.num_batches_not_active.sum().item())
+    }
     
-    # Save activation samples if collected
+    final_config = dict(cfg)
+    final_config["completed_steps"] = num_batches
+
+    results_manager.save_checkpoint(
+        experiment_dir=experiment_dir,
+        model=transcoder,
+        config=final_config,
+        step=num_batches,
+        metrics=final_metrics,
+        is_final=True,
+    )
+    
     if sample_collector:
-        sample_dir = f"checkpoints/transcoder/{cfg['model_name']}/{cfg['name']}_{num_batches}_activation_samples"
-        os.makedirs(sample_dir, exist_ok=True)
-        
-        # Save samples
-        sample_collector.save_samples(
-            sample_dir, 
+        results_manager.save_activation_samples(
+            experiment_dir=experiment_dir,
+            sample_collector=sample_collector,
             top_k_features=cfg.get("top_features_to_save", 100),
             samples_per_feature=cfg.get("samples_per_feature_to_save", 10)
         )
-        print(f"\nSaved activation samples to {sample_dir}")
     
     wandb_run.finish()
 
@@ -259,54 +243,4 @@ def log_transcoder_performance(wandb_run, step, model, activation_store, transco
             "performance/cosine_similarity": cos_sim.item(),
             "performance/fvu": transcoder_output["fvu"].item(),
         }, step=step)
-
-def train_transcoder_group_seperate_wandb(transcoders, activation_stores, model, cfgs):
-    def new_wandb_process(config, log_queue, entity, project):
-        run = wandb.init(
-            entity=entity, 
-            project=project, 
-            config=config, 
-            name=config["name"]
-        )
-        
-        # Train the transcoder
-        train_transcoder(
-            transcoders[config["index"]], 
-            activation_stores[config["index"]], 
-            model, 
-            config
-        )
-        
-        # Send completion signal
-        log_queue.put(("complete", config["index"]))
-        run.finish()
-
-    # Create processes for each transcoder
-    processes = []
-    log_queue = mp.Queue()
     
-    for i, (transcoder, activation_store, cfg) in enumerate(zip(transcoders, activation_stores, cfgs)):
-        cfg["index"] = i
-        process = mp.Process(
-            target=new_wandb_process, 
-            args=(cfg, log_queue, cfg.get("entity", None), cfg["wandb_project"])
-        )
-        processes.append(process)
-        process.start()
-
-    # Wait for all processes to complete
-    completed = 0
-    while completed < len(processes):
-        try:
-            message, index = log_queue.get(timeout=1)
-            if message == "complete":
-                completed += 1
-                print(f"Transcoder {index} training completed")
-        except Empty:
-            continue
-    
-    # Clean up processes
-    for process in processes:
-        process.join()
-    
-    print("All transcoder training completed!")

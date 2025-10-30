@@ -88,11 +88,30 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         self.config = cfg
         torch.manual_seed(self.config["seed"])
         
-        # Matryoshka group configuration
-        total_dict_size = sum(cfg["group_sizes"])
-        self.group_sizes = cfg["group_sizes"]
-        self.group_indices = [0] + list(torch.cumsum(torch.tensor(cfg["group_sizes"]), dim=0))
-        self.active_groups = len(cfg["group_sizes"])
+        # Matryoshka prefix configuration - NESTED PREFIXES
+        # Each prefix includes all features from previous prefixes (like Russian nesting dolls)
+        # 
+        # Support both formats for backward compatibility:
+        # 1. Individual sizes: [1152, 2073, 3732, 6718, 4757] (sums to total)
+        # 2. Cumulative sizes: [2304, 4608, 9216, 13824, 18432] (last element is total)
+        # 
+        # Detect format by checking if elements are monotonically increasing
+        # Individual sizes: [1152, 2073, 3732, 6718, 4757] (not monotonic)
+        # Cumulative sizes: [2304, 4608, 9216, 13824, 18432] (monotonic)
+        prefix_sizes = cfg["prefix_sizes"]
+        is_monotonic = all(prefix_sizes[i] <= prefix_sizes[i+1] for i in range(len(prefix_sizes)-1))
+        
+        if is_monotonic and len(prefix_sizes) > 1:
+            # Cumulative sizes format - use directly
+            self.prefix_sizes = prefix_sizes
+            total_dict_size = prefix_sizes[-1]
+        else:
+            # Individual sizes format - convert to cumulative
+            self.prefix_sizes = list(torch.cumsum(torch.tensor(prefix_sizes), dim=0).tolist())
+            total_dict_size = self.prefix_sizes[-1]
+        
+        self.prefix_indices = [0] + self.prefix_sizes  # Add 0 at start for boundaries
+        self.active_prefixes = len(self.prefix_sizes)
         
         # Source and target dimensions (may differ for cross-layer mapping)
         self.source_act_size = cfg.get("source_act_size", cfg["act_size"])
@@ -198,16 +217,19 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         # Encode to sparse features
         all_acts, all_acts_topk = self.compute_activations(x_source)
         
-        # Decode using hierarchical groups
-        x_reconstruct = self.b_dec
+        # Decode using hierarchical NESTED prefixes (each prefix includes all previous prefixes)
+        # This matches the original Matryoshka paper design
+        # Prefix i uses features [0:prefix_indices[i+1]], creating nested reconstructions
         intermediate_reconstructs = []
         
-        for i in range(self.active_groups):
-            start_idx = self.group_indices[i]
-            end_idx = self.group_indices[i+1]
+        for i in range(self.active_prefixes):
+            # NESTED: Always start from 0, end at cumulative size
+            # This creates a nested structure where each prefix contains all previous features
+            start_idx = 0
+            end_idx = self.prefix_indices[i+1]
             W_dec_slice = self.W_dec[start_idx:end_idx, :]
             acts_topk_slice = all_acts_topk[:, start_idx:end_idx]
-            x_reconstruct = acts_topk_slice @ W_dec_slice + x_reconstruct
+            x_reconstruct = acts_topk_slice @ W_dec_slice + self.b_dec
             intermediate_reconstructs.append(x_reconstruct)
         
         # Postprocess reconstruction
@@ -228,7 +250,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         # Total loss
         loss = l2_loss + self.config["l1_coeff"] * l1_loss + aux_loss
         
-        # Compute FVU for each group
+        # Compute FVU for each prefix
         fvus = []
         for intermediate_reconstruct in intermediate_reconstructs:
             intermediate_reconstruct = self.postprocess_output(intermediate_reconstruct, x_mean, x_std)
@@ -263,7 +285,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
             all_acts: All activations (before TopK)
             all_acts_topk: TopK activations
             x_mean, x_std: Preprocessing statistics
-            intermediate_reconstructs: Intermediate reconstructions from each group
+            intermediate_reconstructs: Intermediate reconstructions from each prefix
         
         Returns:
             Dictionary with loss components and metrics
@@ -276,7 +298,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         aux_loss = self.get_auxiliary_loss(x_target, x_reconstruct, all_acts)
         loss = l2_loss + self.config["l1_coeff"] * l1_loss + aux_loss
         
-        # Compute FVU for each group
+        # Compute FVU for each prefix
         fvus = []
         for intermediate_reconstruct in intermediate_reconstructs:
             intermediate_reconstruct = self.postprocess_output(intermediate_reconstruct, x_mean, x_std)
@@ -362,8 +384,8 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         x_source = x_source.reshape(-1, x_source.shape[-1])
         _, result = self.compute_activations(x_source)
         
-        # Zero out features beyond active groups
-        max_act_index = self.group_indices[self.active_groups]
+        # Zero out features beyond active prefixes
+        max_act_index = self.prefix_indices[self.active_prefixes]
         result[:, max_act_index:] = 0
         
         if len(original_shape) == 3:
@@ -373,6 +395,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
     def decode(self, acts_topk):
         """
         Decode sparse features to target layer reconstruction.
+        Uses NESTED groups: only features up to the active group size.
         
         Args:
             acts_topk: Sparse feature activations
@@ -380,5 +403,10 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         Returns:
             Reconstruction of target layer
         """
-        reconstruct = acts_topk @ self.W_dec + self.b_dec
+        # For nested prefixes, use only features up to the current active prefix size
+        max_feature_idx = self.prefix_indices[self.active_prefixes]
+        acts_topk_active = acts_topk[:, :max_feature_idx]
+        W_dec_active = self.W_dec[:max_feature_idx, :]
+        
+        reconstruct = acts_topk_active @ W_dec_active + self.b_dec
         return self.postprocess_output(reconstruct, self.x_mean, self.x_std)

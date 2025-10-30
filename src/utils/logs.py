@@ -1,8 +1,5 @@
 import wandb
 import torch
-from functools import partial
-import os
-import json
 
 def init_wandb(cfg):
     return wandb.init(project=cfg["wandb_project"], name=cfg["name"], config=cfg, reinit=True)
@@ -57,54 +54,3 @@ def log_model_performance(wandb_run, step, model, activations_store, transcoder,
         log_dict = {f"{k}_{index}": v for k, v in log_dict.items()}
 
     wandb_run.log(log_dict, step=step)
-
-def save_checkpoint(wandb_run, model, cfg, step):
-    """
-    Save checkpoint with organized structure:
-    checkpoints/{model_type}/{base_model}/{name}_{step}/
-    """
-    # Determine model type (sae or transcoder)
-    sae_type = cfg.get("sae_type", "topk")
-    if "transcoder" in sae_type or "clt" in sae_type:
-        model_type = "transcoder"
-    else:
-        model_type = "sae"
-    
-    # Get base model name (e.g., "gpt2-small", "gemma-2-2b")
-    base_model = cfg["model_name"]
-    
-    # Create organized directory structure
-    save_dir = f"checkpoints/{model_type}/{base_model}/{cfg['name']}_{step}"
-    os.makedirs(save_dir, exist_ok=True)
-
-    # Save model state
-    model_path = os.path.join(save_dir, "sae.pt")
-    torch.save(model.state_dict(), model_path)
-
-    # Prepare config for JSON serialization
-    json_safe_cfg = {}
-    for key, value in cfg.items():
-        if isinstance(value, (int, float, str, bool, type(None))):
-            json_safe_cfg[key] = value
-        elif isinstance(value, (torch.dtype, type)):
-            json_safe_cfg[key] = str(value)
-        else:
-            json_safe_cfg[key] = str(value)
-
-    # Save config
-    config_path = os.path.join(save_dir, "config.json")
-    with open(config_path, "w") as f:
-        json.dump(json_safe_cfg, f, indent=4)
-
-    # Create and log artifact
-    artifact = wandb.Artifact(
-        name=f"{cfg['name']}_{step}",
-        type="model",
-        description=f"Model checkpoint at step {step}",
-    )
-    artifact.add_file(model_path)
-    artifact.add_file(config_path)
-    wandb_run.log_artifact(artifact)
-
-    print(f"Model and config saved to {save_dir}")
-

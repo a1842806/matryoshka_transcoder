@@ -1,4 +1,4 @@
-"""Gemma-2-2B layer-17 Matryoshka training run with warmup/decay."""
+"""Gemma-2-2B layer-17 Matryoshka training with five nested groups."""
 
 import os
 import sys
@@ -24,16 +24,16 @@ def build_config() -> dict:
             "model_name": "gemma-2-2b",
             "dataset_path": "HuggingFaceFW/fineweb-edu",
             "layer": 17,
-            "num_tokens": int(3e6),
+            "num_tokens": int(15e6),
             "model_batch_size": 4,
             "batch_size": 1024,
             "seq_len": 64,
             "lr": 4e-4,
             "model_dtype": torch.bfloat16,
             "dtype": torch.bfloat16,
-            "device": "cuda:1" if torch.cuda.device_count() > 1 else "cuda" if torch.cuda.is_available() else "cpu",
+            "device": "cuda" if torch.cuda.is_available() else "cpu",
             "scheduler_type": "warmup_decay",
-            "warmup_steps": 500,
+            "warmup_steps": 1000,
             "dict_size": 18432,
             "prefix_sizes": [2304, 4608, 9216, 13824, 18432],
             "top_k": 96,
@@ -49,7 +49,7 @@ def build_config() -> dict:
             "samples_per_feature_to_save": 10,
             "perf_log_freq": 50,
             "checkpoint_freq": 500,
-            "wandb_project": "gemma-2-2b-layer17-interpretability",
+            "wandb_project": "gemma-2-2b-layer17-5groups-15k",
         }
     )
 
@@ -77,7 +77,7 @@ def main() -> None:
 
     print(
         f"Training Matryoshka transcoder: model={cfg['model_name']} "
-        f"layer={cfg['layer']} steps≈{expected_steps}"
+        f"layer={cfg['layer']} groups={len(cfg['prefix_sizes'])} steps≈{expected_steps}"
     )
     print(f"Artifacts will be stored under {run_dir_hint}")
 
@@ -98,4 +98,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    
