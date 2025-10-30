@@ -1,0 +1,19 @@
+{
+  "feature_redundancy": 0.0,
+  "similar_pairs_count": 0,
+  "redundancy_threshold": 0.9,
+  "fvu": 0.38369128104099137,
+  "mse": 0.368828125,
+  "mae": 0.4416796875,
+  "cosine_similarity": 0.785390625,
+  "mean_l0": 71.04484558105469,
+  "median_l0": 63.0,
+  "l0_std": 40.44559097290039,
+  "dead_features_count": 0,
+  "dead_features_percentage": 0.0,
+  "alive_features_count": 18432,
+  "total_features": 18432,
+  "dict_size": 18432,
+  "layer": 8,
+  "model_name": "gemma-2-2b"
+}

@@ -1,0 +1,10 @@
+{
+  "autointerp_score": null,
+  "autointerp_latents_evaluated": 0,
+  "absorption_score": 0.0,
+  "raw_absorption": 1.0,
+  "letters_evaluated": 0,
+  "mean_l0": 96,
+  "dict_size": 18432,
+  "model_name": "gemma-2-2b"
+}
