@@ -82,7 +82,7 @@ def browse_experiments():
     print("=" * 80)
     
     for model_name, layers in experiments.items():
-        print(f"\n📊 {model_name.upper().replace('_', '-')}")
+        print(f"\n📊 {model_name}")
         print("-" * 40)
         
         for layer_num, exp_list in layers.items():
@@ -95,23 +95,27 @@ def browse_experiments():
     
     print("\n" + "=" * 80)
     print("Select an experiment to view activation samples:")
-    print("Format: model_layer_experiment_index")
-    print("Example: gemma_2_2b_17_1")
+    print("Format: <model> <layer> <experiment_index>")
+    print("Example: gemma-2-2b 17 1")
     print("Or 'q' to quit")
     
     try:
-        choice = input("Choice: ").strip().lower()
-        if choice == 'q':
+        choice = input("Choice: ").strip()
+        if choice.lower() == 'q':
             return
         
-        parts = choice.split('_')
-        if len(parts) != 4:
-            print("Invalid format. Use: model_layer_experiment_index")
+        parts = choice.split()
+        if len(parts) != 3:
+            print("Invalid format. Use: <model> <layer> <experiment_index>")
             return
         
-        model_name = f"{parts[0]}_{parts[1]}_{parts[2]}"
-        layer_num = int(parts[3])
-        exp_idx = int(parts[4]) - 1
+        model_name = parts[0]
+        try:
+            layer_num = int(parts[1])
+            exp_idx = int(parts[2]) - 1
+        except ValueError:
+            print("Layer and experiment index must be integers.")
+            return
         
         if model_name in experiments and layer_num in experiments[model_name]:
             exp_list = experiments[model_name][layer_num]

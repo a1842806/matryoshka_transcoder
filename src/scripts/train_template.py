@@ -8,10 +8,10 @@ The specific training scripts should be clean and minimal like train_gemma_layer
 This template shows all available configuration options with explanations.
 
 RESULTS ORGANIZATION:
-- Training results are automatically saved to organized structure: results/model/layer/date_description/
+- Training results are automatically saved to organized structure: results/{model}/{layerX}/{steps}/
 - No need to manually manage checkpoints or activation samples
 - Use view_activation_samples.py to browse and view results
-- Use src/utils/cleanup_results.py to migrate old messy results
+- Use src/utils/cleanup_results.py to migrate legacy checkpoints if needed
 """
 
 import torch, sys, os
@@ -241,10 +241,10 @@ def main():
     # ============================================================================
     
     # Training will automatically save results to organized structure:
-    # results/gemma_2_2b/layer17/2024-10-27_15k-steps-5groups/
-    # ├── checkpoint.pt
-    # ├── config.json
-    # ├── training_log.json
+    # results/gemma-2-2b/layer17/15000/
+    # ├── checkpoints/final.pt
+    # ├── config.json  (includes completed_at timestamp)
+    # ├── metrics.json
     # └── activation_samples/
     #     ├── collection_summary.json
     #     └── feature_*.json

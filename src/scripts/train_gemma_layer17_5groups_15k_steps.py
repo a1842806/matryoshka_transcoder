@@ -1,90 +1,100 @@
-import torch, sys, os
+"""Gemma-2-2B layer-17 Matryoshka training with five nested groups."""
+
+import os
+import sys
+
+import torch
 from transformer_lens import HookedTransformer
 
-# Add the parent directory to the path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from src.models.sae import MatryoshkaTranscoder
-from src.models.transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
+from src.models.transcoder_activation_store import (
+    TranscoderActivationsStore,
+    create_transcoder_config,
+)
 from src.training.training import train_transcoder
 from src.utils.config import get_default_cfg, post_init_cfg
 
-def main():
+
+def build_config() -> dict:
     cfg = get_default_cfg()
-    
-    # Model settings
-    cfg["model_name"] = "gemma-2-2b"
-    cfg["dataset_path"] = "HuggingFaceFW/fineweb-edu"
-    cfg["layer"] = 17
-    
-    # Training settings for 15k steps
-    cfg["num_tokens"] = int(15e6)  # 15M tokens for ~15k steps
-    cfg["model_batch_size"] = 4
-    cfg["batch_size"] = 1024
-    cfg["seq_len"] = 64
-    cfg["lr"] = 4e-4
-    cfg["model_dtype"] = torch.bfloat16
-    cfg["dtype"] = torch.bfloat16
-    cfg["device"] = "cuda"
-    
-    # Learning rate scheduling
-    cfg["scheduler_type"] = "warmup_decay"
-    cfg["warmup_steps"] = 1000  # 1000 steps warmup for 15k total
+    cfg.update(
+        {
+            "model_name": "gemma-2-2b",
+            "dataset_path": "HuggingFaceFW/fineweb-edu",
+            "layer": 17,
+            "num_tokens": int(15e6),
+            "model_batch_size": 4,
+            "batch_size": 1024,
+            "seq_len": 64,
+            "lr": 4e-4,
+            "model_dtype": torch.bfloat16,
+            "dtype": torch.bfloat16,
+            "device": "cuda" if torch.cuda.is_available() else "cpu",
+            "scheduler_type": "warmup_decay",
+            "warmup_steps": 1000,
+            "dict_size": 18432,
+            "prefix_sizes": [2304, 4608, 9216, 13824, 18432],
+            "top_k": 96,
+            "aux_penalty": 1 / 64,
+            "n_batches_to_dead": 20,
+            "top_k_aux": 256,
+            "save_activation_samples": True,
+            "sample_collection_freq": 100,
+            "max_samples_per_feature": 100,
+            "sample_context_size": 20,
+            "sample_activation_threshold": 0.1,
+            "top_features_to_save": 100,
+            "samples_per_feature_to_save": 10,
+            "perf_log_freq": 50,
+            "checkpoint_freq": 500,
+            "wandb_project": "gemma-2-2b-layer17-5groups-15k",
+        }
+    )
+
     cfg["min_lr"] = cfg["lr"] * 0.01
-    
-    cfg["dict_size"] = 18432
-    cfg["prefix_sizes"] = [2304, 4608, 9216, 13824, 18432]
-    
-    # Matryoshka-specific settings
-    cfg["top_k"] = 96
-    cfg["aux_penalty"] = 1/64
-    cfg["n_batches_to_dead"] = 20
-    cfg["top_k_aux"] = 256
-    
-    # Activation sample collection
-    cfg["save_activation_samples"] = True
-    cfg["sample_collection_freq"] = 100
-    cfg["max_samples_per_feature"] = 100
-    cfg["sample_context_size"] = 20
-    cfg["sample_activation_threshold"] = 0.1
-    cfg["top_features_to_save"] = 100
-    cfg["samples_per_feature_to_save"] = 10
-    
-    # Logging and checkpointing
-    cfg["perf_log_freq"] = 50
-    cfg["checkpoint_freq"] = 500
-    cfg["wandb_project"] = "gemma-2-2b-layer17-5groups-15k"
-    
-    # Create transcoder config
+
     cfg = create_transcoder_config(
         cfg,
         source_layer=17,
         target_layer=17,
         source_site="mlp_in",
-        target_site="mlp_out"
+        target_site="mlp_out",
     )
-    
-    # Ensure correct activation sizes
+
     cfg["source_act_size"] = 2304
     cfg["target_act_size"] = 2304
     cfg["input_unit_norm"] = False
-    
-    cfg = post_init_cfg(cfg)
 
-    model = HookedTransformer.from_pretrained_no_processing(
-        cfg["model_name"], 
-        dtype=cfg["model_dtype"]
-    ).to(cfg["device"])
-    
+    return post_init_cfg(cfg)
+
+
+def main() -> None:
+    cfg = build_config()
+    expected_steps = int(cfg["num_tokens"] // cfg["batch_size"])
+    run_dir_hint = f"results/{cfg['model_name']}/layer{cfg['layer']}/{expected_steps}"
+
+    print(
+        f"Training Matryoshka transcoder: model={cfg['model_name']} "
+        f"layer={cfg['layer']} groups={len(cfg['prefix_sizes'])} steps≈{expected_steps}"
+    )
+    print(f"Artifacts will be stored under {run_dir_hint}")
+
+    model = HookedTransformer.from_pretrained_no_processing(cfg["model_name"], dtype=cfg["model_dtype"])
+    model = model.to(cfg["device"])
+
     activation_store = TranscoderActivationsStore(model, cfg)
     transcoder = MatryoshkaTranscoder(cfg).to(cfg["device"])
-    expected_steps = int(cfg["num_tokens"] // cfg["batch_size"])
-    
+
     try:
         train_transcoder(transcoder, activation_store, model, cfg)
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception as exc:  # pragma: no cover
+        print(f"Training failed: {exc}")
         raise
+    else:
+        print(f"Training complete. Inspect {run_dir_hint} for checkpoints, metrics, and samples.")
+
 
 if __name__ == "__main__":
     main()
