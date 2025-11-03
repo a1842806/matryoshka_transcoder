@@ -1,4 +1,4 @@
-"""Compact training recipe for Gemma-2-2B layer 8 (≈16k steps)."""
+"""Compact training recipe for Gemma-2-2B layer 17 (≈16k steps)."""
 
 import os
 import sys
@@ -23,7 +23,7 @@ def build_config() -> dict:
         {
             "model_name": "gemma-2-2b",
             "dataset_path": "HuggingFaceFW/fineweb-edu",
-            "layer": 8,
+            "layer": 17,
             "num_tokens": 16_384_000,
             "model_batch_size": 4,
             "batch_size": 1024,
@@ -49,8 +49,8 @@ def build_config() -> dict:
             "samples_per_feature_to_save": 10,
             "perf_log_freq": 25,
             "checkpoint_freq": 3000,
-            "wandb_project": "gemma-2-2b-layer8-16k-steps",
-            "experiment_description": "16k-steps-layer8",
+            "wandb_project": "gemma-2-2b-layer17-16k-steps",
+            "experiment_description": "16k-steps-layer17",
         }
     )
 
@@ -62,8 +62,8 @@ def build_config() -> dict:
 
     cfg = create_transcoder_config(
         cfg,
-        source_layer=8,
-        target_layer=8,
+        source_layer=17,
+        target_layer=17,
         source_site="mlp_in",
         target_site="mlp_out",
     )
@@ -99,4 +99,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
