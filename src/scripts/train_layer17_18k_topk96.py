@@ -27,7 +27,7 @@ def build_config() -> dict:
             "num_tokens": 16_384_000,
             "model_batch_size": 4,
             "batch_size": 1024,
-            "seq_len": 64,
+            "seq_len": 128,
             "lr": 4e-4,
             "model_dtype": torch.bfloat16,
             "dtype": torch.bfloat16,

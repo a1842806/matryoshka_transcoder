@@ -20,15 +20,14 @@
 
 ### Standard Results Layout
 
-All training runs are saved using the standardized layout:
+All training runs should save artifacts under:
 
 ```
 results/{model_name}/layer{layer}/{steps}/
-    ├── config.json         # Run configuration (final includes completed_at)
-    ├── checkpoints/        # Weights (final.pt) and/or interim step_*.pt
-    ├── metrics/step_*.json # Interim metric snapshots (optional)
-    ├── metrics.json        # Final summary metrics
-    └── activation_samples/ # Optional interpretability samples
+    ├── config.json
+    ├── checkpoints/
+    ├── metrics/            # interim metrics (optional)
+    └── metrics.json        # final summary
 ```
 
 Keeping this structure consistent allows downstream scripts to enumerate experiments without bespoke parsing logic.
@@ -37,7 +36,7 @@ Keeping this structure consistent allows downstream scripts to enumerate experim
 
 - `MatryoshkaTranscoder` exposes nested groups with cumulative decoders for progressive reconstructions.
 - `TranscoderActivationsStore` collects paired activations (source/target) for cross-layer training.
-- Config helpers define model-specific defaults (e.g., GPT-2 vs Gemma-2 hidden sizes, prefix sizes, top-k).
+- Config helpers define model-specific defaults (e.g., GPT-2 vs Gemma-2 hidden sizes, prefix sizes, top_k).
 - Activation sampling utilities capture highest-activation examples per latent for interpretability analysis.
 
 ## Documentation Map

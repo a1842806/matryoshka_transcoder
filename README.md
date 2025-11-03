@@ -32,8 +32,6 @@ python src/scripts/train_gemma_example.py
 ## Installation
 
 ```bash
-git clone https://github.com/a1842806/matryoshka_transcoder.git
-cd matryoshka_transcoder
 pip install transformer_lens wandb datasets torch
 ```
 
@@ -42,17 +40,11 @@ pip install transformer_lens wandb datasets torch
 ### Training Matryoshka Transcoders
 
 ```bash
-# Quick start - GPT-2 Small (simple, reliable)
-python src/scripts/train_gpt2_simple.py
+# Gemma-2-2B Layer 8 (≈16k steps)
+python -m src.scripts.train_layer8_18k_topk96
 
-# Full training with W&B logging
-python src/scripts/train_gpt2_transcoder.py
-
-# Gemma-2-2B examples
-python src/scripts/train_gemma_example.py
-
-# Advanced multi-transcoder training
-python src/scripts/train_matryoshka_transcoder.py
+# Gemma-2-2B Layer 17 with warmup + cosine decay + samples
+python -m src.scripts.train_gemma_layer17_with_warmup_decay_samples
 ```
 
 ### Training with Gemma-2-2B
@@ -73,20 +65,23 @@ python train_gemma_example.py transcoder
 ### Transcoder Training
 
 ```python
-from sae import MatryoshkaTranscoder
-from transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
-from training import train_transcoder
+from src.models.sae import MatryoshkaTranscoder
+from src.models.transcoder_activation_store import TranscoderActivationsStore, create_transcoder_config
+from src.training.training import train_transcoder
+from src.utils.config import get_default_cfg
 
-# Configure source/target mapping
+cfg = get_default_cfg()
+cfg["model_name"] = "gemma-2-2b"
+
+# Configure source/target mapping (true MLP transformation)
 cfg = create_transcoder_config(
     cfg,
     source_layer=8,
     target_layer=8,
-    source_site="resid_mid",  # After attention
-    target_site="mlp_out"    # After MLP
+    source_site="mlp_in",
+    target_site="mlp_out",
 )
 
-# Create and train transcoder
 activation_store = TranscoderActivationsStore(model, cfg)
 transcoder = MatryoshkaTranscoder(cfg)
 train_transcoder(transcoder, activation_store, model, cfg)
@@ -95,19 +90,21 @@ train_transcoder(transcoder, activation_store, model, cfg)
 ### Using Trained Models
 
 ```python
-# Load from checkpoint
-from utils import load_sae_from_wandb
-from sae import MatryoshkaTranscoder
+# Load from results directory (final.pt + config.json)
+import json, torch
+from src.models.sae import MatryoshkaTranscoder
 
-transcoder, cfg = load_sae_from_wandb(
-    "your-project/artifact:version",
-    MatryoshkaTranscoder
-)
+run_dir = "results/gemma-2-2b/layer8/16384"  # example
+with open(f"{run_dir}/config.json", "r") as f:
+    cfg = json.load(f)
 
-# Encode source activations
+transcoder = MatryoshkaTranscoder(cfg)
+state = torch.load(f"{run_dir}/checkpoints/final.pt", map_location=cfg.get("device", "cpu"))
+transcoder.load_state_dict(state)
+transcoder.eval()
+
+# Encode and decode
 sparse_features = transcoder.encode(source_acts)
-
-# Decode to target
 target_reconstruction = transcoder.decode(sparse_features)
 ```
 
@@ -130,32 +127,32 @@ target_reconstruction = transcoder.decode(sparse_features)
 | Parameter | Description | Typical Value |
 |-----------|-------------|---------------|
 | `dict_size` | Total features | 16x activation size |
-| `group_sizes` | Feature groups | [1x, 2x, 4x, 9x] |
+| `prefix_sizes` | Cumulative prefixes | [1x, 2x, 4x, 9x] |
 | `top_k` | Active features | dict_size / 200 |
 | `lr` | Learning rate | 3e-4 |
 | `batch_size` | Batch size | 1024-4096 |
 | `aux_penalty` | Dead feature weight | 1/32 |
 
-### Group Size Guidelines
+### Prefix Size Guidelines
 
 ```python
 # Small model (GPT-2, 768-dim)
-"group_sizes": [768, 1536, 3072, 6912]
+"prefix_sizes": [768, 1536, 3072, 6912]
 
-# Medium model (Gemma-2-2B, 2304-dim)  
-"group_sizes": [2304, 4608, 9216, 20736]
+# Medium model (Gemma-2-2B, 2304-dim)
+"prefix_sizes": [2304, 4608, 9216, 20736]
 
-# Large expansion (32x total)
-"group_sizes": [512, 1024, 2048, 4096, 8192, 16128]
+# Large expansion (example)
+"prefix_sizes": [512, 1024, 2048, 4096, 8192, 16128]
 ```
 
 ## Common Use Cases
 
 ### Within-Layer Transcoders
 
-**MLP Transformation** (learns what MLP does):
+**MLP Transformation** (learns the true MLP mapping):
 ```python
-source_site="resid_mid", target_site="mlp_out"
+source_site="mlp_in", target_site="mlp_out"
 ```
 
 **Attention Transformation** (learns what attention does):
@@ -200,31 +197,17 @@ Your training will be logged to Weights & Biases:
 
 ## Evaluation
 
-### Feature Quality Metrics
+### Reconstruction and Comparison
 
 ```bash
-# Automatic: finds most recent checkpoint
-python src/scripts/run_evaluation.py
-
-# Or specify checkpoint
-python src/scripts/run_evaluation.py checkpoints/transcoder/gpt2-small/model_name_9764/
+# Compare your transcoder vs Gemma Scope at layer 17
+python -m src.scripts.compare_transcoders \
+  --matryoshka_checkpoint results/gemma-2-2b/layer17/15000/checkpoints \
+  --gemma_scope_dir models/gemma-scope-2b-pt-transcoders \
+  --dataset HuggingFaceFW/fineweb-edu --tokens 2000000
 ```
 
-**Or programmatically:**
-
-```python
-from src.scripts.evaluate_features import evaluate_trained_transcoder
-
-results = evaluate_trained_transcoder(
-    checkpoint_path="checkpoints/transcoder/gpt2-small/model_name_9764",
-    activation_store=activation_store,
-    model=model,
-    cfg=cfg,
-    num_batches=100
-)
-```
-
-**Key metrics:**
+**Key internal metrics (typical):**
 - **Absorption Score**: Feature redundancy (lower is better, < 0.05 good)
 - **Splitting Score**: Co-activation frequency (lower is better, < 0.05 good)
 - **Monosemanticity**: Feature specificity (higher is better, > 0.7 good)
@@ -260,35 +243,35 @@ cfg["num_tokens"] = int(5e7)
 ## Documentation
 
 ### Core Guides
-- **[docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)**: Navigation guide and project organization
-- **[docs/TRANSCODER_QUICKSTART.md](docs/TRANSCODER_QUICKSTART.md)**: 5-minute quick start guide
-- **[docs/MATRYOSHKA_TRANSCODER.md](docs/MATRYOSHKA_TRANSCODER.md)**: Comprehensive transcoder documentation
-
-### Research & Analysis
-- **[docs/FEATURE_EVALUATION_GUIDE.md](docs/FEATURE_EVALUATION_GUIDE.md)**: Feature quality metrics and evaluation
-- **[docs/ACTIVATION_SAMPLE_COLLECTION.md](docs/ACTIVATION_SAMPLE_COLLECTION.md)**: Interpretability and sample collection
-
-### Technical References
-- **[docs/GEMMA_GUIDE.md](docs/GEMMA_GUIDE.md)**: FVU metrics, Gemma-2 support, hook correction, multi-GPU setup
-- **[docs/GPU_MEMORY_GUIDE.md](docs/GPU_MEMORY_GUIDE.md)**: Memory management and troubleshooting
-- **[docs/IMPLEMENTATION_NOTES.md](docs/IMPLEMENTATION_NOTES.md)**: Historical implementation details and migration info
+- **docs/01_PROJECT_OVERVIEW_AND_STRUCTURE.md**: Project overview and repository layout
+- **docs/02_TRAINING_AND_CONFIGURATION.md**: Training, configuration, Gemma notes, results layout
+- **docs/03_EVALUATION_AND_METRICS.md**: Metrics, SAEBench methodology overview
+- **docs/04_MATRYOSHKA_TRANSCODER_AND_NESTED_GROUPS.md**: Architecture and nested prefixes
+- **docs/05_INTERPRETABILITY_TOOLS_ACTIVATION_SAMPLES.md**: Activation sample collection and analysis
 
 ## File Structure
 
 ```
-matryoshka_transcoder/
-├── sae.py                              # SAE and Transcoder classes
-├── transcoder_activation_store.py      # Data pipeline for transcoders
-├── training.py                         # Training functions
-├── train_matryoshka_transcoder.py      # Transcoder training scripts
-├── train_gemma_example.py              # Gemma-2 training examples
-├── main.py                             # Main SAE training
-├── config.py                           # Configuration management
-├── activation_store.py                  # SAE data pipeline
-├── utils.py                            # Utilities
-├── logs.py                             # Logging utilities
-├── checkpoints/                        # Saved models
-└── docs/                               # Documentation
+matryoshka_sae/
+├── src/
+│   ├── models/
+│   │   ├── sae.py
+│   │   └── transcoder_activation_store.py
+│   ├── training/
+│   │   └── training.py
+│   ├── scripts/
+│   │   ├── train_layer8_18k_topk96.py
+│   │   ├── train_gemma_layer17_with_warmup_decay_samples.py
+│   │   └── compare_transcoders.py
+│   └── utils/
+│       ├── config.py
+│       ├── activation_samples.py
+│       ├── analyze_activation_samples.py
+│       ├── clean_results.py
+│       └── logs.py
+├── results/             # results/{model_name}/layer{L}/{steps}/
+├── docs/                # consolidated docs
+└── README.md
 ```
 
 ## Acknowledgments
