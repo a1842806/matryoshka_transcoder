@@ -247,6 +247,10 @@ def create_transcoder_config(base_cfg, source_layer, target_layer, source_site, 
     cfg["layer"] = source_layer
     cfg["hook_point"] = cfg["source_hook_point"]
     
+    # Set activation sizes for transcoder (will default to act_size if not explicitly set)
+    cfg["source_act_size"] = cfg.get("source_act_size", cfg.get("act_size"))
+    cfg["target_act_size"] = cfg.get("target_act_size", cfg.get("act_size"))
+    
     # Update name
     cfg["name"] = (
         f"{cfg['model_name']}_{cfg['source_hook_point']}_to_{cfg['target_hook_point']}_"

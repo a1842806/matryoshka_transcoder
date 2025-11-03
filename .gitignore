@@ -167,3 +167,6 @@ wandb/
 logs/
 models/
 results/
+
+# User-specific ignores
+gpu_monitor.sh

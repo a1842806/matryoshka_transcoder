@@ -1,4 +1,4 @@
-"""Compact training recipe for Gemma-2-2B layer 8 (≈3k steps)."""
+"""Compact training recipe for Gemma-2-2B layer 8 (≈16k steps)."""
 
 import os
 import sys
@@ -24,7 +24,7 @@ def build_config() -> dict:
             "model_name": "gemma-2-2b",
             "dataset_path": "HuggingFaceFW/fineweb-edu",
             "layer": 8,
-            "num_tokens": int(3e6),
+            "num_tokens": 16_384_000,
             "model_batch_size": 4,
             "batch_size": 1024,
             "seq_len": 64,
@@ -33,7 +33,7 @@ def build_config() -> dict:
             "dtype": torch.bfloat16,
             "device": "cuda:1" if torch.cuda.device_count() > 1 else "cuda" if torch.cuda.is_available() else "cpu",
             "scheduler_type": "warmup_decay",
-            "warmup_steps": 200,
+            "warmup_steps": 1024,
             "dict_size": 18432,
             "prefix_sizes": [2304, 4608, 9216, 13824, 18432],
             "top_k": 96,
@@ -48,13 +48,17 @@ def build_config() -> dict:
             "top_features_to_save": 100,
             "samples_per_feature_to_save": 10,
             "perf_log_freq": 25,
-            "checkpoint_freq": 250,
-            "wandb_project": "gemma-2-2b-layer8-3k-steps",
-            "experiment_description": "3k-steps-layer8",
+            "checkpoint_freq": 3000,
+            "wandb_project": "gemma-2-2b-layer8-16k-steps",
+            "experiment_description": "16k-steps-layer8",
         }
     )
 
     cfg["min_lr"] = cfg["lr"] * 0.01
+
+    # Set activation sizes explicitly for Gemma-2-2b MLP layers
+    cfg["source_act_size"] = 2304
+    cfg["target_act_size"] = 2304
 
     cfg = create_transcoder_config(
         cfg,
