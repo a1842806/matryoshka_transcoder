@@ -1,3 +1,5 @@
+import copy
+
 import transformer_lens.utils as utils
 import torch 
 
@@ -129,11 +131,44 @@ def post_init_cfg(cfg):
     return cfg
 
 
+def build_autointerp_eval_cfg(
+    base_cfg,
+    *,
+    layer,
+    total_tokens=2_000_000,
+    context_size=128,
+    description="auto_interp",
+    source_site="mlp_in",
+    target_site="mlp_out",
+):
+    """Derive an evaluation config tailored for AutoInterp activation gathering."""
+
+    cfg = copy.deepcopy(base_cfg)
+    cfg["num_tokens"] = int(total_tokens)
+    cfg["seq_len"] = int(context_size)
+    cfg.setdefault("model_batch_size", 32)
+    cfg.setdefault("num_batches_in_buffer", 4)
+    cfg["experiment_description"] = description
+    cfg.setdefault("device", cfg.get("device", "cuda"))
+    cfg.setdefault("dtype", cfg.get("dtype", torch.float32))
+    cfg.setdefault("results_root", cfg.get("results_root", "results"))
+
+    cfg = create_transcoder_config(
+        cfg,
+        source_layer=layer,
+        target_layer=layer,
+        source_site=source_site,
+        target_site=target_site,
+    )
+
+    return cfg
+
+
 def create_gemma_mlp_transcoder_config(base_cfg, layer):
     """
     Create transcoder configuration for Gemma-2 MLP transformation.
     
-    Uses resid_mid -> mlp_out transformation (working approach).
+    Uses mlp_in -> mlp_out transformation (true MLP transformation).
     
     Args:
         base_cfg: Base configuration dictionary
@@ -149,15 +184,15 @@ def create_gemma_mlp_transcoder_config(base_cfg, layer):
     cfg["target_layer"] = layer
     cfg["layer"] = layer
     
-    # Use resid_mid (working approach)
-    cfg["source_site"] = "resid_mid"
+    # Use mlp_in -> mlp_out (true MLP transformation)
+    cfg["source_site"] = "mlp_in"
     cfg["target_site"] = "mlp_out"
-    cfg["source_hook_point"] = f"blocks.{layer}.hook_resid_mid"
+    cfg["source_hook_point"] = f"blocks.{layer}.hook_mlp_in"
     cfg["target_hook_point"] = f"blocks.{layer}.hook_mlp_out"
     
     # Update name
     cfg["name"] = (
-        f"{cfg['model_name']}_residmid_to_mlpout_{layer}_"
+        f"{cfg['model_name']}_mlpin_to_mlpout_{layer}_"
         f"{cfg['dict_size']}_{cfg['sae_type']}_{cfg['top_k']}_{cfg['lr']}"
     )
     

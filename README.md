@@ -260,9 +260,7 @@ matryoshka_sae/
 │   ├── training/
 │   │   └── training.py
 │   ├── scripts/
-│   │   ├── train_layer8_18k_topk96.py
-│   │   ├── train_gemma_layer17_with_warmup_decay_samples.py
-│   │   └── compare_transcoders.py
+│   │   └── train_template.py
 │   └── utils/
 │       ├── config.py
 │       ├── activation_samples.py
@@ -279,14 +277,3 @@ matryoshka_sae/
 The training code is heavily inspired and basically a stripped-down version of [SAELens](https://github.com/jbloomAus/SAELens). Thanks to the SAELens team for their foundational work in this area!
 
 ## Citation
-
-If you use this implementation, please cite:
-
-```bibtex
-@article{matryoshka_sae_2025,
-  title={Learning Multi-Level Features with Matryoshka Sparse Autoencoders},
-  author={},
-  journal={arXiv preprint arXiv:2503.17547},
-  year={2025}
-}
-```

@@ -76,7 +76,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
     using hierarchical feature groups at multiple abstraction levels.
     
     Key differences from SAE:
-    - Input: activations from source layer (e.g., resid_mid)
+    - Input: activations from source layer (e.g., mlp_in)
     - Output: reconstruction of target layer (e.g., mlp_out)
     - Loss: measures quality of cross-layer transformation
     """
@@ -91,24 +91,18 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         # Matryoshka prefix configuration - NESTED PREFIXES
         # Each prefix includes all features from previous prefixes (like Russian nesting dolls)
         # 
-        # Support both formats for backward compatibility:
-        # 1. Individual sizes: [1152, 2073, 3732, 6718, 4757] (sums to total)
-        # 2. Cumulative sizes: [2304, 4608, 9216, 13824, 18432] (last element is total)
-        # 
-        # Detect format by checking if elements are monotonically increasing
-        # Individual sizes: [1152, 2073, 3732, 6718, 4757] (not monotonic)
-        # Cumulative sizes: [2304, 4608, 9216, 13824, 18432] (monotonic)
+        # Format: Cumulative sizes [2304, 4608, 9216, 13824, 18432]
+        # - Must be monotonically increasing
+        # - Last element is the total dictionary size
+        # - Each prefix uses features [0:prefix_size], creating nested structure
         prefix_sizes = cfg["prefix_sizes"]
-        is_monotonic = all(prefix_sizes[i] <= prefix_sizes[i+1] for i in range(len(prefix_sizes)-1))
-        
-        if is_monotonic and len(prefix_sizes) > 1:
-            # Cumulative sizes format - use directly
-            self.prefix_sizes = prefix_sizes
-            total_dict_size = prefix_sizes[-1]
-        else:
-            # Individual sizes format - convert to cumulative
-            self.prefix_sizes = list(torch.cumsum(torch.tensor(prefix_sizes), dim=0).tolist())
-            total_dict_size = self.prefix_sizes[-1]
+        if not all(prefix_sizes[i] <= prefix_sizes[i+1] for i in range(len(prefix_sizes)-1)):
+            raise ValueError(
+                f"prefix_sizes must be monotonically increasing (cumulative format). "
+                f"Got: {prefix_sizes}"
+            )
+        self.prefix_sizes = prefix_sizes
+        total_dict_size = prefix_sizes[-1]
         
         self.prefix_indices = [0] + self.prefix_sizes  # Add 0 at start for boundaries
         self.active_prefixes = len(self.prefix_sizes)
@@ -203,7 +197,7 @@ class MatryoshkaTranscoder(BaseAutoencoder):
         Forward pass: encode source → sparse features → decode to target reconstruction
         
         Args:
-            x_source: Source layer activations (e.g., resid_mid)
+            x_source: Source layer activations (e.g., mlp_in)
             x_target: Target layer activations (e.g., mlp_out) - for loss computation
         
         Returns:
