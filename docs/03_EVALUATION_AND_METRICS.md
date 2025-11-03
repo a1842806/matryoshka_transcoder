@@ -51,21 +51,11 @@ Key steps: train letter-class probes; select main latents via k-sparse probing; 
 
 ### Implementation Notes
 
-- The script skeleton `src/eval/eval_saebench_autointerp_absorption.py` reflects the correct methodology but requires full implementations (probe training, sequence collection, LLM integration).
-- For production-grade results, use SAEBench directly or finish the skeleton; costs/time apply for LLM evaluation.
+- This repository does not include a full SAEBench AutoInterp/Absorption implementation. Follow the SAEBench documentation or integrate your own adapter respecting the methodology above.
 
 ## AutoInterp Without GPT APIs (Free Backends)
 
-You can reproduce AutoInterp flows without paid APIs using local Hugging Face models:
-
-```bash
-python src/eval/eval_saebench_autointerp_absorption.py \
-    --checkpoint results/gemma-2-2b/8/7000/checkpoints/model.pt \
-    --llm-backend huggingface \
-    --llm-model microsoft/DialoGPT-medium
-```
-
-Other options: SAEBench backend when available, or local frameworks (Ollama) via adapter.
+You can evaluate AutoInterp using local Hugging Face models (DialoGPT, BlenderBot, etc.) or SAEBench’s own tooling; no paid API is required if you supply a local LLM. Provide an adapter that implements the description and detection tasks described above.
 
 ## Recommended Workflow
 
@@ -83,8 +73,8 @@ Other options: SAEBench backend when available, or local frameworks (Ollama) via
 
 ## Outputs
 
-- Numeric metrics: `results/{model}/{layer}/{steps}/metrics.json`
-- Optional artifacts: `analysis_results/...` for richer comparisons/plots.
+- Numeric metrics per run: `results/{model_name}/layer{layer}/{steps}/metrics.json`
+- Comparison outputs (when using `scripts/compare_transcoders.py`): `metrics/comparisons/...`
 
 Example JSON snippet:
 

@@ -61,7 +61,7 @@ def main():
     
     # Length of each sequence (context window)
     # Affects memory usage: longer = more memory
-    cfg["seq_len"] = 64
+    cfg["seq_len"] = 128
     
     # Learning rate for optimizer
     # Typical range: 1e-5 to 1e-3

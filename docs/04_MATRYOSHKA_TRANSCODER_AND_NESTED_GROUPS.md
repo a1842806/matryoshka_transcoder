@@ -16,12 +16,12 @@ Source Activations ──▶ Encoder (W_enc) ──▶ TopK Sparse Features
 
 ## Nested Groups: Core Mechanism
 
-Groups are cumulative slices. With `group_sizes = [1152, 2304, 4608, 10368]` the effective totals are `[1152, 3456, 8064, 18432]`.
+Groups are cumulative slices. With `prefix_sizes = [1152, 2304, 4608, 10368]` the effective totals are `[1152, 3456, 8064, 18432]`.
 
 ```python
 # Initialization (conceptual)
-total_dict_size = sum(cfg["group_sizes"])  # e.g., 18432
-group_indices = [0] + list(torch.cumsum(torch.tensor(cfg["group_sizes"]), dim=0))
+total_dict_size = sum(cfg["prefix_sizes"])  # e.g., 18432
+group_indices = [0] + list(torch.cumsum(torch.tensor(cfg["prefix_sizes"]), dim=0))
 # [0, 1152, 3456, 8064, 18432]
 
 # Reconstruction uses [0:end_idx] for each group i
@@ -46,14 +46,14 @@ for i in range(active_groups):
 
 ```bash
 # Train a single transcoder (example)
-python -m src.scripts.train_matryoshka_transcoder --model-name gpt2-small --source-layer 8 --target-layer 8
+python -m src.scripts.train_layer8_18k_topk96
 ```
 
 Common within-layer mappings:
 
 ```python
-# MLP transformation
-source_site="resid_mid"; target_site="mlp_out"
+# MLP transformation (recommended)
+source_site="mlp_in"; target_site="mlp_out"
 
 # Attention transformation
 source_site="resid_pre"; target_site="attn_out"
@@ -69,10 +69,10 @@ cfg = {
     "model_name": "gpt2-small",
     "source_layer": 8,
     "target_layer": 8,
-    "source_site": "resid_mid",
+    "source_site": "mlp_in",
     "target_site": "mlp_out",
     "dict_size": 12288,                 # ≈ 16× activation size
-    "group_sizes": [768, 1536, 3072, 6912],  # 1×, 2×, 4×, 9×
+    "prefix_sizes": [768, 1536, 3072, 6912],  # 1×, 2×, 4×, 9×
     "top_k": 64,
     "batch_size": 1024,
     "lr": 3e-4,
@@ -80,7 +80,7 @@ cfg = {
 ```
 
 Guidelines:
-- Use exponentially growing `group_sizes`.
+- Use exponentially growing `prefix_sizes`.
 - Start with `top_k ≈ dict_size / 200`.
 - Keep shared logic in `src/training/` and helpers in `src/utils/`.
 
@@ -97,12 +97,11 @@ recon = transcoder.decode(sparse)
 
 # Full forward pass (training loop returns a dict of metrics)
 out = transcoder(source_acts, target_acts)
-recon, sparsity = out["sae_out"], out["l0_norm"]
+recon, sparsity = out["transcoder_out"], out["l0_norm"]
 ```
 
 ## Verification & Troubleshooting
 
-- Verify nesting with `src/utils/verify_nested_groups.py`.
 - If many dead features: increase `top_k` or `aux_penalty`.
 - If high absorption (cosine): increase `dict_size` or `top_k`.
 - If unstable training: reduce `lr` or increase `batch_size`.
