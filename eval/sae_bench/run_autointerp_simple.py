@@ -215,7 +215,6 @@ def prepare_data(
 ) -> tuple[torch.Tensor, torch.Tensor]:
     """Prepare tokenized data and compute sparsity on-the-fly."""
     from datasets import load_dataset
-    from sae_bench.sae_bench_utils.activation_collection import get_feature_activation_sparsity
     
     # Load dataset and tokenize
     dataset = load_dataset(
@@ -243,16 +242,31 @@ def prepare_data(
     # Move tokens to the same device as the model to ensure GPU is used
     tokens = tokens.to(next(model.parameters()).device, non_blocking=True)
     
-    # Compute sparsity (use smaller batch size to avoid OOM)
-    sparsity = get_feature_activation_sparsity(
-        tokens=tokens,
-        model=model,
-        sae=sae,
-        batch_size=8,  # Reduced from 32 to avoid OOM with large models
-        layer=sae.cfg.hook_layer,
-        hook_name=sae.cfg.hook_name,
-        mask_bos_pad_eos_tokens=True,
-    )
+    # Compute sparsity manually for transcoders (avoids hook caching issues)
+    print(f"[2/3] Computing feature sparsity...")
+    batch_size = 8
+    n_features = sae.cfg.d_sae
+    feature_counts = torch.zeros(n_features, device=sae.device)
+    total_tokens_processed = 0
+    
+    with torch.no_grad():
+        for i in range(0, tokens.shape[0], batch_size):
+            batch = tokens[i:i+batch_size]
+            # Get activations at source hook
+            _, cache = model.run_with_cache(batch, names_filter=[sae.cfg.hook_name])
+            source_acts = cache[sae.cfg.hook_name]  # [batch, seq, d_model]
+            
+            # Encode through SAE
+            latents = sae.encode(source_acts)  # [batch, seq, d_sae]
+            
+            # Count non-zero activations
+            is_active = (latents != 0).float()  # [batch, seq, d_sae]
+            feature_counts += is_active.sum(dim=(0, 1))
+            total_tokens_processed += batch.shape[0] * batch.shape[1]
+    
+    # Compute sparsity as fraction of tokens where each feature is active
+    sparsity = (feature_counts / total_tokens_processed).cpu()
+    print(f"✓ Sparsity computed (mean: {sparsity.mean().item():.4f})")
     
     return tokens, sparsity
 
@@ -289,10 +303,10 @@ def evaluate_transcoder(
     start_time = time.time()
     tokens, sparsity = prepare_data(model, sae, config)
     prep_time = time.time() - start_time
-    print(f"✓ Data prepared in {prep_time:.1f}s (tokens shape: {tokens.shape})")
+    print(f"✓ Data + sparsity prepared in {prep_time:.1f}s (tokens shape: {tokens.shape})")
     
     # Run AutoInterp
-    print(f"[2/3] Running AutoInterp on {n_latents} features...")
+    print(f"[3/3] Running AutoInterp on {n_latents} features...")
     if local_llm is not None:
         print(f"      Using local LLM: {local_llm.model_name} ({local_llm.backend})")
     print(f"      Estimated time: ~{n_latents * 2} minutes (2 min/feature)")
