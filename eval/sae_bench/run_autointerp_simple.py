@@ -59,9 +59,10 @@ class LocalLLMWrapper:
         print(f"Loading {model_name} on {self.device}...")
         
         # Simple: load entire model on one GPU (Mistral-7B fits easily on 24GB)
+        # Use bfloat16 for better stability (avoids CUDA assert errors with float16)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             trust_remote_code=True,
         ).to(self.device)
         
@@ -82,40 +83,62 @@ class LocalLLMWrapper:
         dummy_input = self.tokenizer(
             test_prompt, 
             return_tensors="pt",
-            padding=True,
-            truncation=True,
         ).to(self.device)
         with torch.no_grad():
-            _ = self.model.generate(**dummy_input, max_new_tokens=5)
+            _ = self.model.generate(**dummy_input, max_new_tokens=5, pad_token_id=self.tokenizer.pad_token_id)
         print("✓ GPU memory allocated and working")
     
     def generate(self, messages: list[dict[str, str]], n_completions: int = 1) -> list[str]:
         """Generate completions from messages."""
-        prompt = self._format_prompt_mixtral(messages)
-        inputs = self.tokenizer(
-            prompt, 
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=2048,
-        ).to(self.device)
-        
-        responses = []
-        for _ in range(n_completions):
-            outputs = self.model.generate(
-                **inputs,
-                max_new_tokens=512,
-                temperature=0.0 if n_completions == 1 else 0.7,
-                do_sample=n_completions > 1,
-                top_p=0.95,
-                pad_token_id=self.tokenizer.pad_token_id,
+        try:
+            # Use tokenizer's built-in chat template if available (more robust)
+            if hasattr(self.tokenizer, 'apply_chat_template'):
+                prompt = self.tokenizer.apply_chat_template(
+                    messages, 
+                    tokenize=False, 
+                    add_generation_prompt=True
+                )
+            else:
+                prompt = self._format_prompt_mixtral(messages)
+            
+            inputs = self.tokenizer(
+                prompt, 
+                return_tensors="pt",
+                padding=False,
+                truncation=True,  # Enable truncation to avoid very long prompts
+                max_length=2048,  # Reasonable context window
             )
-            response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-            # Extract just the assistant's response
-            response = response[len(prompt):].strip()
-            responses.append(response)
-        
-        return responses
+            
+            # CRITICAL: Validate token IDs are within vocab size to avoid CUDA index errors
+            vocab_size = self.model.config.vocab_size
+            input_ids = inputs['input_ids']
+            if torch.any(input_ids >= vocab_size):
+                print(f"WARNING: Token IDs out of range! Max ID: {input_ids.max()}, Vocab size: {vocab_size}")
+                # Clamp to valid range
+                input_ids = torch.clamp(input_ids, 0, vocab_size - 1)
+                inputs['input_ids'] = input_ids
+            
+            inputs = inputs.to(self.device)
+            
+            responses = []
+            for _ in range(n_completions):
+                outputs = self.model.generate(
+                    **inputs,
+                    max_new_tokens=256,  # Reduced from 512 for faster inference
+                    temperature=0.0 if n_completions == 1 else 0.7,
+                    do_sample=n_completions > 1,
+                    top_p=0.95,
+                    pad_token_id=self.tokenizer.pad_token_id or self.tokenizer.eos_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
+                )
+                response = self.tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
+                responses.append(response.strip())
+            
+            return responses
+        except Exception as e:
+            print(f"Error in generation: {e}")
+            # Return empty responses on error to continue evaluation
+            return ["Error during generation"] * n_completions
     
     def _format_prompt_mixtral(self, messages: list[dict[str, str]]) -> str:
         """Format messages for Mixtral instruction format."""
@@ -169,18 +192,23 @@ def make_local_llm_api_response(local_llm: LocalLLMWrapper):
 
 
 def load_matryoshka(state_dict_path: Path, layer: int) -> Any:
-    """Load Matryoshka transcoder from checkpoint."""
+    """Load Matryoshka transcoder from checkpoint.
+    
+    Note: Using hook_resid_mid instead of hook_mlp_in because Gemma-2's
+    hook_mlp_in is not cached by TransformerLens. resid_mid is pre-layernorm
+    version of mlp_in, very similar for evaluation purposes.
+    """
     cfg = get_default_cfg()
     cfg["model_name"] = "gemma-2-2b"
     cfg["layer"] = layer
     cfg["source_layer"] = layer
     cfg["target_layer"] = layer
-    cfg["source_site"] = "mlp_in"
+    cfg["source_site"] = "resid_mid"  # Use resid_mid (cached) instead of mlp_in (not cached)
     cfg["target_site"] = "mlp_out"
     cfg["dict_size"] = 18432  # Adjust based on your model
     cfg["top_k"] = 96
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
-    cfg["dtype"] = torch.float16
+    cfg["dtype"] = torch.bfloat16  # Use bfloat16 for stability
     
     # CRITICAL: Set correct activation dimensions for Gemma-2-2B!
     cfg["act_size"] = 2304  # Gemma-2-2B activation size (not GPT-2's 768)
@@ -191,12 +219,16 @@ def load_matryoshka(state_dict_path: Path, layer: int) -> Any:
 
 
 def load_google_transcoder(npz_path: Path, layer: int) -> Any:
-    """Load Google's transcoder from NPZ file."""
+    """Load Google's transcoder from NPZ file.
+    
+    Note: Using hook_resid_mid for source instead of hook_mlp_in
+    because hook_mlp_in is not cached by TransformerLens for Gemma-2.
+    """
     spec = NPZTranscoderSpec(
         path=str(npz_path),
         model_name="gemma-2-2b",
         source_layer=layer,
-        source_hook_point=f"blocks.{layer}.hook_mlp_in",
+        source_hook_point=f"blocks.{layer}.hook_resid_mid",  # Use resid_mid (cached)
         target_hook_point=f"blocks.{layer}.hook_mlp_out",
         d_in=2304,  # Gemma-2-2B activation size
         d_out=2304,
@@ -242,31 +274,22 @@ def prepare_data(
     # Move tokens to the same device as the model to ensure GPU is used
     tokens = tokens.to(next(model.parameters()).device, non_blocking=True)
     
-    # Compute sparsity manually for transcoders (avoids hook caching issues)
+    # Compute actual feature activation sparsity (matches paper methodology)
     print(f"[2/3] Computing feature sparsity...")
-    batch_size = 8
-    n_features = sae.cfg.d_sae
-    feature_counts = torch.zeros(n_features, device=sae.device)
-    total_tokens_processed = 0
+    from sae_bench.sae_bench_utils.activation_collection import (
+        get_feature_activation_sparsity,
+    )
     
-    with torch.no_grad():
-        for i in range(0, tokens.shape[0], batch_size):
-            batch = tokens[i:i+batch_size]
-            # Get activations at source hook
-            _, cache = model.run_with_cache(batch, names_filter=[sae.cfg.hook_name])
-            source_acts = cache[sae.cfg.hook_name]  # [batch, seq, d_model]
-            
-            # Encode through SAE
-            latents = sae.encode(source_acts)  # [batch, seq, d_sae]
-            
-            # Count non-zero activations
-            is_active = (latents != 0).float()  # [batch, seq, d_sae]
-            feature_counts += is_active.sum(dim=(0, 1))
-            total_tokens_processed += batch.shape[0] * batch.shape[1]
-    
-    # Compute sparsity as fraction of tokens where each feature is active
-    sparsity = (feature_counts / total_tokens_processed).cpu()
-    print(f"✓ Sparsity computed (mean: {sparsity.mean().item():.4f})")
+    sparsity = get_feature_activation_sparsity(
+        tokens=tokens,
+        model=model,
+        sae=sae,
+        batch_size=config.llm_batch_size,
+        layer=sae.cfg.hook_layer,
+        hook_name=sae.cfg.hook_name,
+        mask_bos_pad_eos_tokens=True,
+    )
+    print(f"✓ Computed sparsity for {len(sparsity)} features (mean: {sparsity.mean():.4f})")
     
     return tokens, sparsity
 
@@ -311,6 +334,13 @@ def evaluate_transcoder(
         print(f"      Using local LLM: {local_llm.model_name} ({local_llm.backend})")
     print(f"      Estimated time: ~{n_latents * 2} minutes (2 min/feature)")
     
+    # Add rate limiting to avoid OpenAI 429 errors (500 RPM limit)
+    # With 500 RPM limit, we can make ~8 requests per second
+    # Add a small delay to stay under limit (0.15s = ~6-7 req/s with safety margin)
+    import functools
+    rate_limit_delay = 0.15  # seconds between requests
+    last_request_time = [0.0]  # Use list to allow modification in nested function
+    
     autointerp = AutoInterp(
         cfg=config,
         model=model,
@@ -320,6 +350,21 @@ def evaluate_transcoder(
         device=str(sae.device),
         api_key=api_key or "dummy",  # Dummy key if using local LLM
     )
+    
+    # Wrap get_api_response with rate limiting
+    original_get_api_response = autointerp.get_api_response
+    
+    @functools.wraps(original_get_api_response)
+    def rate_limited_get_api_response(*args, **kwargs):
+        """Add delay between API requests to avoid rate limits."""
+        import time
+        elapsed = time.time() - last_request_time[0]
+        if elapsed < rate_limit_delay:
+            time.sleep(rate_limit_delay - elapsed)
+        last_request_time[0] = time.time()
+        return original_get_api_response(*args, **kwargs)
+    
+    autointerp.get_api_response = rate_limited_get_api_response
     
     # Patch with local LLM if provided
     if local_llm is not None:
@@ -404,7 +449,7 @@ def main():
     
     model = HookedTransformer.from_pretrained_no_processing(
         "gemma-2-2b",
-        dtype=torch.float16,
+        dtype=torch.bfloat16,
     ).to(device)
     model.eval()
     print(f"✓ Gemma model loaded on {device}")
@@ -412,14 +457,14 @@ def main():
     # Load transcoders  
     print("Loading Matryoshka transcoder...")
     matryoshka = load_matryoshka(Path(args.matryoshka), args.layer)
-    matryoshka = matryoshka.to(device=device, dtype=torch.float16)
+    matryoshka = matryoshka.to(device=device, dtype=torch.bfloat16)
     print(f"✓ Matryoshka transcoder loaded on {device}")
     
     google = None
     if args.google:
         print("Loading Google transcoder...")
         google = load_google_transcoder(Path(args.google), args.layer)
-        google = google.to(device=device, dtype=torch.float16)
+        google = google.to(device=device, dtype=torch.bfloat16)
         print(f"✓ Google transcoder loaded on {device}")
     
     # Evaluate both

@@ -178,6 +178,7 @@ class NPZTranscoderAdapter(MatryoshkaAutoInterpAdapter):
             "device": spec.device,
             "dtype": dtype,
             "dict_size": spec.d_sae,
+            "act_size": spec.d_in,  # Add act_size (fallback for source_act_size)
             "source_act_size": spec.d_in,
             "target_act_size": spec.d_out,
             "top_k": top_k,
@@ -189,6 +190,7 @@ class NPZTranscoderAdapter(MatryoshkaAutoInterpAdapter):
             "source_site": spec.source_hook_point.split(".")[-1],
             "target_site": spec.target_hook_point.split(".")[-1],
             "seq_len": 128,
+            "seed": 42,  # Add seed for compatibility with SAE base class
         }
 
         sae_cfg = AutoInterpSAEConfig.from_kwargs(
