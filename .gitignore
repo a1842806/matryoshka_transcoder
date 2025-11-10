@@ -170,6 +170,8 @@ wandb/
 logs/
 models/
 results/
+autointerp_result/
+SAEBench/
 
 # User-specific ignores
 gpu_monitor.sh

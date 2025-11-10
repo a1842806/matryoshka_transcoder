@@ -42,8 +42,10 @@ def _resolve_dtype(value: Any) -> torch.dtype:
     if isinstance(value, torch.dtype):
         return value
     if isinstance(value, str):
+        # Handle strings like "torch.bfloat16" or "bfloat16"
+        dtype_str = value.replace("torch.", "") if value.startswith("torch.") else value
         try:
-            return getattr(torch, value)
+            return getattr(torch, dtype_str)
         except AttributeError as exc:  # pragma: no cover - defensive
             raise ValueError(f"Unsupported torch dtype string: {value}") from exc
     raise TypeError(f"Cannot resolve dtype from value of type {type(value)!r}")
@@ -356,13 +358,22 @@ def main() -> None:
 
     base_cfg = _load_json(Path(args.base_config)) if args.base_config else get_default_cfg()
 
+    # For Gemma-2 models, mlp_in is not cached by TransformerLens, so use resid_mid instead
+    # resid_mid is the pre-layernorm version of mlp_in and is very similar for evaluation
+    source_site = args.source_site
+    model_name = base_cfg.get("model_name", "")
+    if "gemma" in model_name.lower() and source_site == "mlp_in":
+        print(f"⚠ NOTE: Gemma-2's mlp_in is not cached by TransformerLens.")
+        print(f"   Using resid_mid instead (pre-layernorm version, very similar for evaluation).")
+        source_site = "resid_mid"
+
     eval_cfg = build_autointerp_eval_cfg(
         base_cfg,
         layer=args.layer,
         total_tokens=args.total_tokens,
         context_size=base_cfg.get("seq_len", 128),
         description=args.description,
-        source_site=args.source_site,
+        source_site=source_site,
         target_site=args.target_site,
     )
 
@@ -386,6 +397,15 @@ def main() -> None:
         npz_spec_path=npz_spec_path,
     )
     adapter = adapter.to(device=device, dtype=dtype)
+    adapter.eval()  # CRITICAL: Set to eval mode for threshold-based sparsification
+    
+    # Verify threshold was loaded from checkpoint
+    if hasattr(adapter, 'threshold'):
+        threshold_val = adapter.threshold.item()
+        if threshold_val == 0.0:
+            print(f"⚠ WARNING: Threshold is 0.0 - all ReLU activations will pass through")
+        else:
+            print(f"✓ Threshold loaded from checkpoint: {threshold_val:.6f}")
 
     override_latents = _read_latents(_maybe_path(args.override_latents))
     eval_config = _build_eval_config(eval_cfg=eval_cfg, args=args, override_latents=override_latents)
@@ -433,12 +453,13 @@ def main() -> None:
 
     summary = _summarise_results(results, expected_latents=eval_config.n_latents)
 
+    # Save to results/saebench/autointerp/[layer_number] format
+    layer_num = eval_cfg.get('source_layer', eval_cfg['layer'])
     run_dir = (
         results_root
-        / eval_cfg["model_name"]
-        / f"layer{eval_cfg.get('source_layer', eval_cfg['layer'])}"
-        / "auto_interp"
-        / args.description
+        / "saebench"
+        / "autointerp"
+        / str(layer_num)
     )
 
     _write_outputs(

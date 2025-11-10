@@ -52,7 +52,10 @@ def get_hook_name(site, layer, model_name):
         if site == "ln2_normalized":
             return f"blocks.{layer}.ln2.hook_normalized"
         elif site == "mlp_in":
-            return f"blocks.{layer}.hook_mlp_in"
+            # TransformerLens does not cache hook_mlp_in for Gemma-2.
+            # Use hook_resid_mid as a cached alternative.
+            # This is pre-layernorm version of mlp_in, very similar for evaluation purposes.
+            return f"blocks.{layer}.hook_resid_mid"
     
     # TransformerLens handles the naming automatically for standard sites
     return utils.get_act_name(site, layer)
@@ -161,6 +164,48 @@ def build_autointerp_eval_cfg(
         target_site=target_site,
     )
 
+    return cfg
+
+
+def create_transcoder_config(
+    base_cfg,
+    source_layer,
+    target_layer,
+    source_site="mlp_in",
+    target_site="mlp_out",
+):
+    """
+    Create transcoder configuration with proper hook points.
+    
+    Args:
+        base_cfg: Base configuration dictionary
+        source_layer: Source layer number
+        target_layer: Target layer number
+        source_site: Source activation site (e.g., "mlp_in", "resid_mid")
+        target_site: Target activation site (e.g., "mlp_out")
+    
+    Returns:
+        Updated configuration dictionary with proper hooks
+    """
+    cfg = base_cfg.copy()
+    model_name = cfg.get("model_name", "gemma-2-2b")
+    
+    # Set layer information
+    cfg["source_layer"] = source_layer
+    cfg["target_layer"] = target_layer
+    cfg["layer"] = source_layer
+    
+    # Set sites
+    cfg["source_site"] = source_site
+    cfg["target_site"] = target_site
+    
+    # Get hook names using get_hook_name (handles Gemma-2 mlp_in -> resid_mid automatically)
+    cfg["source_hook_point"] = get_hook_name(source_site, source_layer, model_name)
+    cfg["target_hook_point"] = get_hook_name(target_site, target_layer, model_name)
+    
+    # Set hook_point for compatibility
+    cfg["hook_point"] = cfg["source_hook_point"]
+    
     return cfg
 
 
