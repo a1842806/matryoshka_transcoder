@@ -170,7 +170,7 @@ wandb/
 logs/
 models/
 results/
-autointerp_result/
+autointerp_results/
 SAEBench/
 
 # User-specific ignores
