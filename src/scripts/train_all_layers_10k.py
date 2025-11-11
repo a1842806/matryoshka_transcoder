@@ -65,6 +65,8 @@ def build_config_for_layer(layer: int, device: str, num_tokens: int = 10_240_000
             "checkpoint_freq": 3000,
             "wandb_project": f"gemma-2-2b-layer{layer}-10k-steps",
             "experiment_description": f"10k-steps-layer{layer}",
+            "loss_recovered_freq": 3000,
+            "loss_recovered_n_batches": 5,
         }
     )
 

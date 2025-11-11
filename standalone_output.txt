@@ -1,0 +1,60 @@
+/home/datngo/anaconda3/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2249: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/home/datngo/anaconda3/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2249: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+================================================================================
+Absorption Evaluation - Layer 8 (Standalone)
+================================================================================
+
+[1/7] Importing PyTorch...
+  ✓ PyTorch 2.4.0+cu121
+  ✓ Device: cuda:0
+
+[2/7] Importing TransformerLens...
+  ✓ TransformerLens loaded
+
+[3/7] Importing model components...
+  ✓ Matryoshka Transcoder
+
+[4/7] Loading transcoder checkpoint...
+  ✓ Checkpoint loaded (keys: ['b_enc', 'W_enc', 'W_dec', 'b_dec', 'threshold'])
+  ✓ Config loaded
+  ✓ Transcoder initialized: 18432 features
+
+[5/7] Loading language model...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.98it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.94it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.78it/s]
+Loaded pretrained model gemma-2-2b into HookedTransformer
+Moving model to device:  cuda:0
+  ✓ Model loaded
+
+[6/7] Creating first-letter dataset...
+  ✓ Found 100 tokens starting with 's'
+  Examples: ['S', 's', ' s', 'st', 'se']
+
+[7/7] Testing transcoder on 's' tokens...
+
+  Top 5 active features for 's' tokens:
+    1. Feature 75: active on 10.0/10 tokens
+    2. Feature 41: active on 10.0/10 tokens
+    3. Feature 1075: active on 10.0/10 tokens
+    4. Feature 1954: active on 10.0/10 tokens
+    5. Feature 1418: active on 10.0/10 tokens
+
+  Average active features per token: 183.5
+
+================================================================================
+✓ STANDALONE TEST COMPLETE!
+================================================================================
+
+This confirms your transcoder can be loaded and used.
+The full absorption evaluation would:
+  - Create a balanced dataset for all 26 letters
+  - Train linear probes as ground truth classifiers
+  - Identify which transcoder features track each letter
+  - Measure precision, recall, F1 for classification
+  - Detect absorption (when features fail to fire)
+  - Run ablation experiments to verify causality
+
+To run the full evaluation, the import issues need to be resolved.
+Consider running the evaluation as a standalone script like this one.
