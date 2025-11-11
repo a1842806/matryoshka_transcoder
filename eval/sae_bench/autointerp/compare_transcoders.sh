@@ -3,9 +3,6 @@
 #
 # Usage (with OpenAI):
 #   ./eval/compare_transcoders.sh LAYER MATRYOSHKA_CHECKPOINT GOOGLE_NPZ [N_LATENTS] [TOTAL_TOKENS]
-#
-# Usage (with local Mixtral):
-#   USE_LOCAL_LLM=1 ./eval/compare_transcoders.sh LAYER MATRYOSHKA_CHECKPOINT GOOGLE_NPZ [N_LATENTS] [TOTAL_TOKENS]
 
 set -e
 
