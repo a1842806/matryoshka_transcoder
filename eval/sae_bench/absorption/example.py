@@ -5,9 +5,9 @@ This script demonstrates the basic usage of the absorption evaluation module.
 """
 
 import torch
-from config import AbsorptionConfig
-from evaluation import run_absorption_evaluation
-from matryoshka_wrapper import load_matryoshka_transcoder
+from .config import AbsorptionConfig
+from .evaluation import run_absorption_evaluation
+from .matryoshka_wrapper import load_matryoshka_transcoder
 
 
 def main():
@@ -27,21 +27,8 @@ def main():
         layers_to_eval=[LAYER],
         device=DEVICE,
         num_samples=5000,  # Reduced for quick test
-        batch_size=32,
-        
-        # Absorption detection settings
-        absorption_threshold=0.3,
-        ablation_threshold=0.01,
-        use_integrated_gradients=True,  # Faster approximation
-        
-        # Metrics to calculate
-        calculate_precision_recall=True,
-        calculate_f1=True,
-        calculate_absorption_rate=True,
-        
-        # Output
+        batch_size=10,
         results_dir="results/absorption",
-        save_detailed_results=True,
         verbose=True,
     )
     
@@ -70,16 +57,10 @@ def main():
         print("="*80)
         
         summary = results['summary']
-        print(f"\nClassification Performance:")
-        print(f"  Mean F1: {summary['mean_f1']:.3f} ± {summary['std_f1']:.3f}")
-        print(f"  Mean Precision: {summary['mean_precision']:.3f} ± {summary['std_precision']:.3f}")
-        print(f"  Mean Recall: {summary['mean_recall']:.3f} ± {summary['std_recall']:.3f}")
-        
-        if 'mean_absorption_rate' in summary:
-            print(f"\nAbsorption Analysis:")
-            print(f"  Mean absorption rate: {summary['mean_absorption_rate']:.3f} ± {summary['std_absorption_rate']:.3f}")
-            print(f"  Max absorption rate: {summary['max_absorption_rate']:.3f}")
-            print(f"  Min absorption rate: {summary['min_absorption_rate']:.3f}")
+        print(f"\nAbsorption Analysis:")
+        print(f"  Mean absorption fraction: {summary['mean_absorption_fraction']:.3f} ± {summary['std_absorption_fraction']:.3f}")
+        print(f"  Mean full absorption rate: {summary['mean_full_absorption_rate']:.3f} ± {summary['std_full_absorption_rate']:.3f}")
+        print(f"  Mean cosine similarity: {summary['mean_cosine_similarity']:.3f} ± {summary['std_cosine_similarity']:.3f}")
         
         # Show some per-letter details
         print(f"\nPer-Letter Examples:")
@@ -87,18 +68,16 @@ def main():
             if letter in results['results_by_letter']:
                 letter_result = results['results_by_letter'][letter]
                 print(f"\nLetter '{letter}':")
-                print(f"  Feature: {letter_result['feature_idx']}")
-                print(f"  F1: {letter_result['classification']['f1']:.3f}")
-                if 'absorption' in letter_result:
-                    print(f"  Absorption rate: {letter_result['absorption']['absorption_rate']:.3f}")
-                    print(f"  Absorbing features: {len(letter_result['absorption']['absorbing_features'])}")
+                print(f"  Main feature: {letter_result['main_feature_idx']}")
+                print(f"  Cosine similarity: {letter_result['cosine_similarity']:.3f}")
+                print(f"  Mean absorption fraction: {letter_result['mean_absorption_fraction']:.3f}")
+                print(f"  Full absorption rate: {letter_result['full_absorption_rate']:.3f}")
         
         print("\n✓ Evaluation complete!")
         
     except FileNotFoundError as e:
         print(f"\n✗ Error: {e}")
-        print("\nMake sure you have trained a transcoder for this layer first:")
-        print(f"  python src/scripts/train_all_layers_10k.py")
+        print("\nMake sure you have trained a transcoder for this layer first.")
         
     except Exception as e:
         print(f"\n✗ Unexpected error: {e}")
@@ -108,4 +87,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

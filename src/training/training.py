@@ -65,8 +65,6 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         )
         print(f"Activation sample collection enabled (collecting every {cfg.get('sample_collection_freq', 1000)} steps)")
     
-    loss_recovered_freq = cfg.get("loss_recovered_freq", cfg.get("checkpoint_freq", 3000))
-    
     for i in pbar:
         source_batch, target_batch = activation_store.next_batch()
         transcoder_output = transcoder(source_batch, target_batch)
@@ -90,8 +88,7 @@ def train_transcoder(transcoder, activation_store, model, cfg):
             wandb_run.log({"learning_rate": current_lr}, step=i)
         
         if i % cfg["perf_log_freq"] == 0:
-            compute_loss_recovered = (i % loss_recovered_freq == 0)
-            log_transcoder_performance(wandb_run, i, model, activation_store, transcoder, cfg, compute_loss_recovered)
+            log_transcoder_performance(wandb_run, i, model, activation_store, transcoder, cfg)
 
         if i % cfg["checkpoint_freq"] == 0:
             intermediate_metrics = {
@@ -173,7 +170,7 @@ def train_transcoder(transcoder, activation_store, model, cfg):
     wandb_run.finish()
 
 
-def log_transcoder_performance(wandb_run, step, model, activation_store, transcoder, cfg, compute_loss_recovered=False):
+def log_transcoder_performance(wandb_run, step, model, activation_store, transcoder, cfg):
     source_batch, target_batch = activation_store.next_batch()
     
     with torch.no_grad():
@@ -194,32 +191,6 @@ def log_transcoder_performance(wandb_run, step, model, activation_store, transco
             "performance/cosine_similarity": cos_sim.item(),
             "performance/fvu": transcoder_output["fvu"].item(),
         }
-        
-        if compute_loss_recovered:
-            try:
-                from src.training.loss_recovered import compute_loss_recovered_for_transcoder
-                
-                source_hook_name = cfg.get("source_hook_point", f"blocks.{cfg['layer']}.hook_resid_mid")
-                target_hook_name = cfg.get("target_hook_point", f"blocks.{cfg['layer']}.hook_mlp_out")
-                n_batches = cfg.get("loss_recovered_n_batches", 5)
-                
-                loss_recovered_metrics = compute_loss_recovered_for_transcoder(
-                    model=model,
-                    transcoder=transcoder,
-                    activation_store=activation_store,
-                    source_hook_name=source_hook_name,
-                    target_hook_name=target_hook_name,
-                    n_batches=n_batches,
-                )
-                
-                metrics_to_log.update({
-                    "loss_recovered/score": loss_recovered_metrics["loss_recovered"],
-                    "loss_recovered/ce_loss_without": loss_recovered_metrics["ce_loss_without_transcoder"],
-                    "loss_recovered/ce_loss_with": loss_recovered_metrics["ce_loss_with_transcoder"],
-                    "loss_recovered/ce_loss_ablation": loss_recovered_metrics["ce_loss_with_ablation"],
-                })
-            except Exception as e:
-                print(f"Warning: Failed to compute Loss Recovered metric: {e}")
         
         wandb_run.log(metrics_to_log, step=step)
 

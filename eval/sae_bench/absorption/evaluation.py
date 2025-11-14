@@ -1,29 +1,105 @@
 """
 Main evaluation script for absorption score.
 
-Runs complete absorption evaluation on Matryoshka transcoders.
+Runs complete absorption evaluation on Matryoshka transcoders using SAE Bench's methodology.
 """
 
 import torch
-from torch.utils.data import DataLoader
+import torch.nn.functional as F
 from transformer_lens import HookedTransformer
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 from pathlib import Path
 import json
 import numpy as np
+import random
 from tqdm import tqdm
 from dataclasses import asdict
 
 from .config import AbsorptionConfig
-from .first_letter_task import (
-    FirstLetterTask,
-    train_linear_probe,
-    evaluate_feature_classification,
-    select_feature_by_cosine_similarity,
-    select_features_k_sparse,
+from .feature_absorption_calculator import (
+    FeatureAbsorptionCalculator,
+    AbsorptionResults,
 )
-from .absorption_metric import AbsorptionMetric, compute_absorption_score
+from .prompting import first_letter_formatter
+from .vocab import LETTERS, get_alpha_tokens
 from .matryoshka_wrapper import MatryoshkaTranscoderWrapper, load_matryoshka_transcoder
+
+
+def select_main_feature_by_cosine(
+    probe_direction: torch.Tensor,
+    encoder_weights: torch.Tensor,
+) -> tuple[int, float]:
+    """
+    Select main feature by cosine similarity with probe direction.
+    
+    Args:
+        probe_direction: Probe weight vector for a specific class (d_model,)
+        encoder_weights: Encoder weight matrix (d_model, n_features)
+    
+    Returns:
+        Tuple of (best_feature_idx, cosine_similarity)
+    """
+    # Ensure same dtype for computation
+    if probe_direction.dtype != encoder_weights.dtype:
+        # Convert to float32 for stable computation
+        probe_direction = probe_direction.float()
+        encoder_weights = encoder_weights.float()
+    
+    # Normalize vectors
+    probe_norm = F.normalize(probe_direction.unsqueeze(0), dim=1)  # (1, d_model)
+    encoder_norm = F.normalize(encoder_weights, dim=0)  # (d_model, n_features)
+    
+    # Compute cosine similarities
+    cosine_sims = torch.matmul(probe_norm, encoder_norm).squeeze(0)  # (n_features,)
+    
+    # Select feature with highest cosine similarity
+    best_idx = cosine_sims.argmax().item()
+    best_sim = cosine_sims[best_idx].item()
+    
+    return best_idx, best_sim
+
+
+def train_probe_on_activations(
+    activations: torch.Tensor,
+    labels: torch.Tensor,
+    device: str = "cuda",
+    lr: float = 0.01,
+    num_epochs: int = 100,
+) -> torch.Tensor:
+    """
+    Train a simple linear probe on activations.
+    
+    Args:
+        activations: (n_samples, d_model)
+        labels: (n_samples, n_classes) one-hot
+        device: Device to train on
+        lr: Learning rate
+        num_epochs: Number of epochs
+    
+    Returns:
+        Probe weights (n_classes, d_model)
+    """
+    from sklearn.linear_model import LogisticRegression
+    
+    # Convert to float32 for numpy compatibility (bfloat16 not supported)
+    X = activations.float().cpu().numpy()
+    y = labels.cpu().numpy().argmax(axis=1)
+    
+    clf = LogisticRegression(
+        penalty='l2',
+        C=1.0,
+        solver='lbfgs',
+        max_iter=num_epochs,
+        random_state=42,
+        multi_class='multinomial',
+    )
+    
+    clf.fit(X, y)
+    
+    # Convert to torch tensor - use float32 for probe weights (more stable than bfloat16)
+    probe_weights = torch.tensor(clf.coef_, dtype=torch.float32, device=device)
+    
+    return probe_weights
 
 
 def run_absorption_evaluation(
@@ -32,7 +108,7 @@ def run_absorption_evaluation(
     save_results: bool = True,
 ) -> Dict:
     """
-    Run full absorption evaluation on a Matryoshka transcoder.
+    Run full absorption evaluation on a Matryoshka transcoder using SAE Bench methodology.
     
     Args:
         config: Evaluation configuration
@@ -43,183 +119,263 @@ def run_absorption_evaluation(
         Dictionary with evaluation results
     """
     print("="*80)
-    print(f"Absorption Score Evaluation")
+    print(f"Absorption Score Evaluation (SAE Bench Style)")
     print(f"Model: {config.model_name}, Layer: {transcoder_wrapper.layer}")
     print(f"Transcoder features: {transcoder_wrapper.n_features}")
     print("="*80)
     
     # Load model
-    print("\n[1/6] Loading model...")
+    print("\n[1/5] Loading model...")
     model = HookedTransformer.from_pretrained_no_processing(
         config.model_name,
         dtype=getattr(torch, config.dtype),
     ).to(config.device)
     
-    # Create first-letter task
-    print("\n[2/6] Creating first-letter classification dataset...")
-    task = FirstLetterTask(
-        model=model,
-        tokenizer=model.tokenizer,
-        letters=config.letters,
-        min_tokens_per_letter=config.min_tokens_per_letter,
-        device=config.device,
-    )
+    # Get vocabulary for ICL prompts
+    print("\n[2/5] Loading vocabulary...")
+    vocab = get_alpha_tokens(model.tokenizer)
+    print(f"  Found {len(vocab)} alpha tokens")
     
-    dataset = task.create_dataset(num_samples=config.num_samples)
-    print(f"  Created dataset with {len(dataset.tokens)} tokens")
-    print(f"  Letters: {len(config.letters)}")
+    # Get model activations for probe training
+    print("\n[3/5] Training linear probe...")
+    # Sample tokens for probe training - get token IDs from vocabulary
+    vocab_tokens = []
+    vocab_labels = []
     
-    # Get model activations
-    print("\n[3/6] Extracting model activations...")
-    activations = task.get_activations(
-        dataset.tokens,
-        layer=transcoder_wrapper.layer,
-        batch_size=config.batch_size,
-    )
-    print(f"  Activations shape: {activations.shape}")
+    # Convert vocabulary strings to token IDs
+    tokenizer = model.tokenizer
+    for token_str in vocab[:min(config.num_samples, len(vocab))]:
+        try:
+            # Encode token string to get token ID(s)
+            token_ids = tokenizer.encode(token_str, add_special_tokens=False)
+            # Only use single-token words
+            if len(token_ids) == 1:
+                token_id = token_ids[0]
+                vocab_tokens.append(token_id)
+                # Find first letter from token string
+                token_clean = token_str.strip().lstrip("▁").lstrip("Ġ").lstrip()
+                if len(token_clean) > 0:
+                    first_char = token_clean[0].lower()
+                    if first_char in LETTERS:
+                        vocab_labels.append(LETTERS.index(first_char))
+                    else:
+                        vocab_tokens.pop()  # Remove if no valid label
+                else:
+                    vocab_tokens.pop()  # Remove if no valid token
+        except Exception:
+            continue
     
-    # Train linear probe
-    print("\n[4/6] Training linear probe...")
-    probe_weights, probe_metrics = train_linear_probe(
+    if len(vocab_tokens) == 0:
+        raise ValueError("No valid tokens found for probe training")
+    
+    print(f"  Using {len(vocab_tokens)} tokens for probe training")
+    
+    # Get activations at the correct hook point
+    tokens_tensor = torch.tensor(vocab_tokens, device=config.device).unsqueeze(1)
+    with torch.no_grad():
+        _, cache = model.run_with_cache(
+            tokens_tensor,
+            stop_at_layer=transcoder_wrapper.layer + 1,
+        )
+        # SAE Bench uses hook_resid_post (after the layer)
+        hook_name = f"blocks.{transcoder_wrapper.layer}.hook_resid_post"
+        activations = cache[hook_name][:, 0, :]  # (n_samples, d_model)
+    
+    # Create labels
+    labels = torch.zeros(len(vocab_labels), len(LETTERS), device=config.device)
+    for i, letter_idx in enumerate(vocab_labels):
+        labels[i, letter_idx] = 1.0
+    
+    # Train probe
+    probe_weights = train_probe_on_activations(
         activations,
-        dataset.labels,
-        l1_penalty=config.probe_l1_penalty,
+        labels,
+        device=config.device,
+        lr=config.probe_lr,
+        num_epochs=config.probe_epochs,
     )
-    print(f"  Probe accuracy: {probe_metrics['accuracy']:.3f}")
-    print(f"  Probe F1: {probe_metrics['f1']:.3f}")
+    print(f"  Probe weights shape: {probe_weights.shape}")
     
-    # Get transcoder feature activations
-    print("\n[5/6] Computing transcoder feature activations...")
-    feature_activations = transcoder_wrapper.encode(activations)
-    print(f"  Feature activations shape: {feature_activations.shape}")
+    # Create absorption calculator
+    print("\n[4/5] Creating absorption calculator...")
+    calculator = FeatureAbsorptionCalculator(
+        model=model,
+        icl_word_list=vocab,
+        max_icl_examples=10,
+        base_template="{word}:",
+        answer_formatter=first_letter_formatter(),
+        word_token_pos=-2,
+        batch_size=config.batch_size,
+        full_absorption_probe_cos_sim_threshold=0.025,
+        absorption_fraction_probe_cos_sim_threshold=0.1,
+        probe_projection_proportion_threshold=0.4,
+        absorption_fraction_max_absorbing_latents=3,
+    )
     
     # Evaluate each letter
-    print("\n[6/6] Evaluating absorption for each letter...")
+    print("\n[5/5] Evaluating absorption for each letter...")
     results_by_letter = {}
     
-    for letter_idx, letter in enumerate(tqdm(config.letters, desc="Letters")):
+    # Filter vocabulary by first letter for each letter
+    vocab_by_letter = {letter: [] for letter in LETTERS}
+    for word in vocab:
+        # Get first letter from word
+        word_clean = word.strip().lstrip("▁").lstrip("Ġ").lstrip()
+        if len(word_clean) > 0:
+            first_char = word_clean[0].lower()
+            if first_char in vocab_by_letter:
+                vocab_by_letter[first_char].append(word)
+    
+    # Determine how many words to use per letter
+    words_per_letter = min(500, min(len(words) for words in vocab_by_letter.values() if len(words) > 0))
+    print(f"  Using {words_per_letter} words per letter for evaluation")
+    
+    for letter_idx, letter in enumerate(tqdm(LETTERS, desc="Letters")):
+        # Get words that start with this letter
+        letter_words = vocab_by_letter[letter]
+        if len(letter_words) == 0:
+            print(f"  Warning: No words found for letter '{letter}', skipping...")
+            results_by_letter[letter] = {
+                'main_feature_idx': -1,
+                'cosine_similarity': 0.0,
+                'mean_absorption_fraction': 0.0,
+                'full_absorption_rate': 0.0,
+                'n_words_evaluated': 0,
+                'absorption_fractions': [],
+                'full_absorptions': [],
+            }
+            continue
+        
+        # Sample words for this letter (use more words for better statistics)
+        if len(letter_words) > words_per_letter:
+            eval_words = random.sample(letter_words, words_per_letter)
+        else:
+            eval_words = letter_words
+        
         # Get probe direction for this letter
         probe_direction = probe_weights[letter_idx]  # (d_model,)
         
-        # Get binary labels for this letter
-        letter_labels = dataset.labels[:, letter_idx]
-        
-        # Select best feature for this letter
-        if config.selection_method == "cosine_similarity":
-            feature_idx, cosine_sim = select_feature_by_cosine_similarity(
-                probe_direction,
-                transcoder_wrapper.W_enc,
-            )
-            print(f"\n  Letter '{letter}': Feature {feature_idx} (cosine={cosine_sim:.3f})")
-        else:
-            # K-sparse selection
-            selected_features = select_features_k_sparse(
-                feature_activations,
-                dataset.labels,
-                k=config.k_sparse,
-                l1_penalty=config.probe_l1_penalty,
-            )
-            feature_idx = selected_features[0]
-            print(f"\n  Letter '{letter}': Feature {feature_idx} (k-sparse)")
-        
-        # Evaluate feature classification performance
-        feature_acts_letter = feature_activations[:, feature_idx]
-        classification_metrics = evaluate_feature_classification(
-            feature_acts_letter,
-            letter_labels,
+        # Select main feature
+        main_feature_idx, cosine_sim = select_main_feature_by_cosine(
+            probe_direction,
+            transcoder_wrapper.W_enc,
         )
         
-        print(f"    Precision: {classification_metrics['precision']:.3f}")
-        print(f"    Recall: {classification_metrics['recall']:.3f}")
-        print(f"    F1: {classification_metrics['f1']:.3f}")
+        # Calculate absorption
+        absorption_results = calculator.calculate_absorption(
+            transcoder=transcoder_wrapper,
+            words=eval_words,
+            probe_direction=probe_direction,
+            main_feature_ids=[main_feature_idx],
+            layer=transcoder_wrapper.layer,
+            show_progress=False,
+        )
         
-        # Detect absorption
-        if config.calculate_absorption_rate:
-            print(f"    Detecting absorption...")
-            absorption_analysis = compute_absorption_score(
-                model=model,
-                transcoder=transcoder_wrapper.transcoder,
-                layer=transcoder_wrapper.layer,
-                tokens=dataset.tokens,
-                labels=letter_labels,
-                probe_direction=probe_direction,
-                main_feature_idx=feature_idx,
-                tokenizer=model.tokenizer,
-                cosine_threshold=config.absorption_threshold,
-                ablation_threshold=config.ablation_threshold,
-                check_causality=True,
-            )
-            absorption_analysis.letter = letter
-            
-            print(f"    Absorption rate: {absorption_analysis.absorption_rate:.3f}")
-            print(f"    Absorbed tokens: {absorption_analysis.num_absorbed_tokens}/{absorption_analysis.num_total_tokens}")
-            print(f"    Absorbing features: {len(absorption_analysis.absorbing_features)}")
-            
-            # Store results
-            results_by_letter[letter] = {
-                'feature_idx': feature_idx,
-                'classification': classification_metrics,
-                'absorption': asdict(absorption_analysis),
-                'probe_metrics': {
-                    'cosine_similarity': cosine_sim if config.selection_method == "cosine_similarity" else None,
-                }
-            }
-        else:
-            results_by_letter[letter] = {
-                'feature_idx': feature_idx,
-                'classification': classification_metrics,
-                'probe_metrics': {
-                    'cosine_similarity': cosine_sim if config.selection_method == "cosine_similarity" else None,
-                }
-            }
+        # Aggregate results
+        absorption_fractions = [
+            result.absorption_fraction for result in absorption_results.word_results
+        ]
+        full_absorptions = [
+            result.is_full_absorption for result in absorption_results.word_results
+        ]
+        probe_projections = [
+            result.probe_projection for result in absorption_results.word_results
+        ]
+        
+        # Calculate statistics
+        mean_absorption_fraction = np.mean(absorption_fractions)
+        full_absorption_rate = np.mean(full_absorptions)
+        
+        # Count words with non-zero absorption
+        non_zero_absorption = [f for f in absorption_fractions if f > 0]
+        n_non_zero = len(non_zero_absorption)
+        mean_non_zero_absorption = np.mean(non_zero_absorption) if n_non_zero > 0 else 0.0
+        
+        # Count words with positive probe projection (where absorption could occur)
+        positive_probe_proj = [p for p in probe_projections if p > 0]
+        n_positive_probe = len(positive_probe_proj)
+        
+        # Calculate median and max for better understanding
+        median_absorption_fraction = np.median(absorption_fractions)
+        max_absorption_fraction = np.max(absorption_fractions) if len(absorption_fractions) > 0 else 0.0
+        
+        results_by_letter[letter] = {
+            'main_feature_idx': main_feature_idx,
+            'cosine_similarity': float(cosine_sim),
+            'mean_absorption_fraction': float(mean_absorption_fraction),
+            'median_absorption_fraction': float(median_absorption_fraction),
+            'max_absorption_fraction': float(max_absorption_fraction),
+            'full_absorption_rate': float(full_absorption_rate),
+            'n_words_evaluated': len(eval_words),
+            'n_non_zero_absorption': n_non_zero,
+            'n_positive_probe_proj': n_positive_probe,
+            'mean_non_zero_absorption': float(mean_non_zero_absorption),
+            'absorption_fractions': [float(f) for f in absorption_fractions],
+            'full_absorptions': [bool(f) for f in full_absorptions],
+        }
     
-    # Aggregate results
+    # Aggregate statistics
     print("\n" + "="*80)
     print("Summary Statistics")
     print("="*80)
     
-    all_f1_scores = [results_by_letter[l]['classification']['f1'] for l in config.letters]
-    all_precisions = [results_by_letter[l]['classification']['precision'] for l in config.letters]
-    all_recalls = [results_by_letter[l]['classification']['recall'] for l in config.letters]
+    all_absorption_fractions = [
+        results_by_letter[l]['mean_absorption_fraction'] for l in LETTERS
+    ]
+    all_full_absorption_rates = [
+        results_by_letter[l]['full_absorption_rate'] for l in LETTERS
+    ]
+    all_cosines = [
+        results_by_letter[l]['cosine_similarity'] for l in LETTERS
+    ]
     
-    print(f"\nClassification Performance:")
-    print(f"  Mean F1: {np.mean(all_f1_scores):.3f} ± {np.std(all_f1_scores):.3f}")
-    print(f"  Mean Precision: {np.mean(all_precisions):.3f} ± {np.std(all_precisions):.3f}")
-    print(f"  Mean Recall: {np.mean(all_recalls):.3f} ± {np.std(all_recalls):.3f}")
+    print(f"\nAbsorption Analysis:")
+    print(f"  Mean absorption fraction: {np.mean(all_absorption_fractions):.4f} ± {np.std(all_absorption_fractions):.4f}")
+    print(f"  Median absorption fraction: {np.median(all_absorption_fractions):.4f}")
+    print(f"  Max absorption fraction: {np.max(all_absorption_fractions):.4f}")
+    print(f"  Mean full absorption rate: {np.mean(all_full_absorption_rates):.3f} ± {np.std(all_full_absorption_rates):.3f}")
+    print(f"  Mean cosine similarity: {np.mean(all_cosines):.3f} ± {np.std(all_cosines):.3f}")
     
-    if config.calculate_absorption_rate:
-        all_absorption_rates = [
-            results_by_letter[l]['absorption']['absorption_rate'] 
-            for l in config.letters
+    # Calculate aggregate stats for non-zero absorption
+    all_non_zero_counts = [
+        results_by_letter[l].get('n_non_zero_absorption', 0) for l in LETTERS
+    ]
+    all_word_counts = [
+        results_by_letter[l].get('n_words_evaluated', 0) for l in LETTERS
+    ]
+    total_non_zero = sum(all_non_zero_counts)
+    total_words = sum(all_word_counts)
+    print(f"\nDetailed Statistics:")
+    print(f"  Words with non-zero absorption: {total_non_zero}/{total_words} ({100*total_non_zero/max(total_words,1):.2f}%)")
+    if total_non_zero > 0:
+        all_non_zero_absorptions = [
+            results_by_letter[l].get('mean_non_zero_absorption', 0) for l in LETTERS
+            if results_by_letter[l].get('n_non_zero_absorption', 0) > 0
         ]
-        print(f"\nAbsorption Analysis:")
-        print(f"  Mean absorption rate: {np.mean(all_absorption_rates):.3f} ± {np.std(all_absorption_rates):.3f}")
-        print(f"  Max absorption rate: {np.max(all_absorption_rates):.3f}")
-        print(f"  Min absorption rate: {np.min(all_absorption_rates):.3f}")
+        if all_non_zero_absorptions:
+            print(f"  Mean absorption (non-zero only): {np.mean(all_non_zero_absorptions):.4f}")
     
     # Compile final results
+    summary_dict = {
+        'mean_absorption_fraction': float(np.mean(all_absorption_fractions)),
+        'std_absorption_fraction': float(np.std(all_absorption_fractions)),
+        'median_absorption_fraction': float(np.median(all_absorption_fractions)),
+        'max_absorption_fraction': float(np.max(all_absorption_fractions)),
+        'mean_full_absorption_rate': float(np.mean(all_full_absorption_rates)),
+        'std_full_absorption_rate': float(np.std(all_full_absorption_rates)),
+        'mean_cosine_similarity': float(np.mean(all_cosines)),
+        'std_cosine_similarity': float(np.std(all_cosines)),
+        'total_words_evaluated': int(total_words),
+        'total_non_zero_absorption': int(total_non_zero),
+        'fraction_with_absorption': float(total_non_zero / max(total_words, 1)),
+    }
+    
     final_results = {
         'config': asdict(config),
         'transcoder_info': transcoder_wrapper.get_feature_stats(),
-        'probe_metrics': probe_metrics,
         'results_by_letter': results_by_letter,
-        'summary': {
-            'mean_f1': float(np.mean(all_f1_scores)),
-            'std_f1': float(np.std(all_f1_scores)),
-            'mean_precision': float(np.mean(all_precisions)),
-            'std_precision': float(np.std(all_precisions)),
-            'mean_recall': float(np.mean(all_recalls)),
-            'std_recall': float(np.std(all_recalls)),
-        }
+        'summary': summary_dict,
     }
-    
-    if config.calculate_absorption_rate:
-        final_results['summary'].update({
-            'mean_absorption_rate': float(np.mean(all_absorption_rates)),
-            'std_absorption_rate': float(np.std(all_absorption_rates)),
-            'max_absorption_rate': float(np.max(all_absorption_rates)),
-            'min_absorption_rate': float(np.min(all_absorption_rates)),
-        })
     
     # Save results
     if save_results:
@@ -296,71 +452,3 @@ def evaluate_multiple_layers(
     print(f"\n✓ Combined results saved to: {output_file}")
     
     return all_results
-
-
-def compare_probe_vs_transcoder(
-    config: AbsorptionConfig,
-    transcoder_wrapper: MatryoshkaTranscoderWrapper,
-) -> Dict:
-    """
-    Compare linear probe performance vs transcoder feature performance.
-    
-    This replicates Figure 2 from the absorption paper.
-    
-    Args:
-        config: Evaluation configuration
-        transcoder_wrapper: Wrapped transcoder
-    
-    Returns:
-        Comparison results
-    """
-    print("\nComparing Linear Probe vs Transcoder Features...")
-    
-    # Load model
-    model = HookedTransformer.from_pretrained_no_processing(
-        config.model_name,
-        dtype=getattr(torch, config.dtype),
-    ).to(config.device)
-    
-    # Create task
-    task = FirstLetterTask(model, model.tokenizer, device=config.device)
-    dataset = task.create_dataset(config.num_samples)
-    
-    # Get activations
-    activations = task.get_activations(dataset.tokens, transcoder_wrapper.layer)
-    
-    # Train probe
-    probe_weights, probe_metrics = train_linear_probe(activations, dataset.labels)
-    
-    # Get transcoder features
-    feature_activations = transcoder_wrapper.encode(activations)
-    
-    # Compare performance
-    results = {
-        'probe_performance': probe_metrics,
-        'transcoder_features': {},
-    }
-    
-    for letter_idx, letter in enumerate(config.letters):
-        probe_dir = probe_weights[letter_idx]
-        letter_labels = dataset.labels[:, letter_idx]
-        
-        # Select transcoder feature
-        feature_idx, _ = select_feature_by_cosine_similarity(
-            probe_dir,
-            transcoder_wrapper.W_enc,
-        )
-        
-        # Evaluate transcoder feature
-        feature_metrics = evaluate_feature_classification(
-            feature_activations[:, feature_idx],
-            letter_labels,
-        )
-        
-        results['transcoder_features'][letter] = {
-            'feature_idx': feature_idx,
-            'metrics': feature_metrics,
-        }
-    
-    return results
-

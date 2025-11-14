@@ -195,24 +195,56 @@ class MatryoshkaTranscoderWrapper:
         Returns:
             MatryoshkaTranscoderWrapper instance
         """
-        checkpoint = torch.load(checkpoint_path, map_location=device)
+        checkpoint_path_obj = Path(checkpoint_path)
         
-        # Extract config and model state
-        if 'config' in checkpoint:
-            cfg = checkpoint['config']
+        # Try to load config from config.json in the same directory
+        config_path = checkpoint_path_obj.parent.parent / "config.json"
+        if config_path.exists():
+            import json
+            with open(config_path, 'r', encoding='utf-8') as f:
+                cfg = json.load(f)
+            
+            # Convert string dtype/device to actual torch types
+            if 'dtype' in cfg and isinstance(cfg['dtype'], str):
+                if cfg['dtype'].startswith('torch.'):
+                    cfg['dtype'] = getattr(torch, cfg['dtype'].split('.')[1])
+                else:
+                    cfg['dtype'] = getattr(torch, cfg['dtype'])
+            if 'model_dtype' in cfg and isinstance(cfg['model_dtype'], str):
+                if cfg['model_dtype'].startswith('torch.'):
+                    cfg['model_dtype'] = getattr(torch, cfg['model_dtype'].split('.')[1])
+                else:
+                    cfg['model_dtype'] = getattr(torch, cfg['model_dtype'])
         else:
-            raise ValueError("Checkpoint must contain 'config' key")
+            # Fallback: try to load from checkpoint (old format)
+            checkpoint = torch.load(checkpoint_path, map_location=device)
+            if 'config' in checkpoint:
+                cfg = checkpoint['config']
+            else:
+                raise ValueError(
+                    f"Could not find config.json at {config_path} and checkpoint "
+                    f"does not contain 'config' key. Please ensure config.json exists "
+                    f"in the experiment directory."
+                )
+        
+        # Load checkpoint (should only contain state_dict)
+        checkpoint = torch.load(checkpoint_path, map_location=device)
         
         # Create transcoder
         transcoder = MatryoshkaTranscoder(cfg)
         
-        # Load state dict
-        if 'model_state_dict' in checkpoint:
-            transcoder.load_state_dict(checkpoint['model_state_dict'])
-        elif 'state_dict' in checkpoint:
-            transcoder.load_state_dict(checkpoint['state_dict'])
+        # Load state dict - checkpoint should be just the state_dict
+        if isinstance(checkpoint, dict):
+            if 'model_state_dict' in checkpoint:
+                transcoder.load_state_dict(checkpoint['model_state_dict'])
+            elif 'state_dict' in checkpoint:
+                transcoder.load_state_dict(checkpoint['state_dict'])
+            else:
+                # Assume checkpoint is the state_dict itself
+                transcoder.load_state_dict(checkpoint)
         else:
-            raise ValueError("Checkpoint must contain 'model_state_dict' or 'state_dict'")
+            # Checkpoint is the state_dict directly
+            transcoder.load_state_dict(checkpoint)
         
         transcoder = transcoder.to(device)
         transcoder.eval()
@@ -267,8 +299,25 @@ def load_matryoshka_transcoder(
     if not subdirs:
         raise FileNotFoundError(f"No training runs found in {checkpoint_path}")
     
-    # Use the most recent (or specified) run
-    latest_dir = max(subdirs, key=lambda d: d.stat().st_mtime)
+    # Filter out directories that don't have checkpoints, prioritize numeric directories (training runs)
+    valid_dirs = []
+    for d in subdirs:
+        checkpoint_file_candidate = d / "checkpoints" / checkpoint_name
+        if checkpoint_file_candidate.exists():
+            valid_dirs.append(d)
+    
+    if not valid_dirs:
+        raise FileNotFoundError(f"No valid training runs with checkpoint '{checkpoint_name}' found in {checkpoint_path}")
+    
+    # Prefer numeric directories (training runs) over others, then use most recent
+    numeric_dirs = [d for d in valid_dirs if d.name.isdigit()]
+    if numeric_dirs:
+        # Use the most recent numeric directory (training run)
+        latest_dir = max(numeric_dirs, key=lambda d: d.stat().st_mtime)
+    else:
+        # Fall back to most recent valid directory
+        latest_dir = max(valid_dirs, key=lambda d: d.stat().st_mtime)
+    
     checkpoint_file = latest_dir / "checkpoints" / checkpoint_name
     
     if not checkpoint_file.exists():

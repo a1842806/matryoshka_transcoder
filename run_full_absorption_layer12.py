@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Full Absorption Score Evaluation for Layer 8 - 2 Hour Comprehensive Test
+Full Absorption Score Evaluation for Layer 12 - 2 Hour Comprehensive Test
 
 This script runs a complete absorption evaluation including:
 - All 26 letters
@@ -24,7 +24,7 @@ sys.path.insert(0, SRC_PATH)
 sys.path.insert(0, PROJECT_ROOT)
 
 print("="*80)
-print("FULL ABSORPTION EVALUATION - LAYER 8")
+print("FULL ABSORPTION EVALUATION - LAYER 12")
 print("="*80)
 print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 print("Estimated runtime: 1-2 hours")
@@ -51,7 +51,7 @@ from models.sae import MatryoshkaTranscoder
 print("  ✓ Matryoshka Transcoder")
 
 # Configuration
-LAYER = 8
+LAYER = 12
 MODEL_NAME = "gemma-2-2b"
 LETTERS = list("abcdefghijklmnopqrstuvwxyz")
 MIN_TOKENS_PER_LETTER = 200  # More samples per letter
@@ -168,15 +168,15 @@ X = activations.float().cpu().numpy()  # Convert bfloat16 to float32 for numpy
 y = labels.cpu().numpy().argmax(axis=1)
 
 clf = LogisticRegression(
-    penalty='l1',
-    C=100.0,  # 1/0.01
-    solver='saga',
-    max_iter=1000,
-    multi_class='multinomial',
+    penalty='l2',  # Use L2 instead of L1 for faster convergence
+    C=1.0,
+    solver='lbfgs',  # Much faster than saga
+    max_iter=500,  # Reduced iterations
     random_state=42,
-    verbose=0,
+    verbose=1,  # Show progress
 )
 
+print("  Training probe (this may take 5-10 minutes)...")
 clf.fit(X, y)
 y_pred = clf.predict(X)
 

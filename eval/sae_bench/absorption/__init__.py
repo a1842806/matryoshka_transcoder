@@ -1,33 +1,37 @@
 """
 Absorption Score Evaluation for Sparse Autoencoders
 
-This module implements the feature absorption evaluation methodology from:
-"A is for Absorption: Studying Feature Splitting and Absorption in Sparse Autoencoders"
-https://arxiv.org/pdf/2409.14507v3
+This module implements the feature absorption evaluation methodology from SAE Bench:
+https://github.com/adamkarvonen/SAEBench
 
-Feature absorption occurs when an SAE/transcoder latent appears to track a concept 
-but fails to activate on arbitrary tokens where token-aligned latents activate instead.
+Feature absorption measures how much of a probe's signal is "absorbed" by other features
+when the main feature fails to activate.
 """
 
-from .absorption_metric import AbsorptionMetric, compute_absorption_score
-from .first_letter_task import FirstLetterTask, train_linear_probe
-from .ablation import (
-    FeatureAblator,
-    integrated_gradients_ablation,
-    compute_ablation_effect,
-    batch_ablation_analysis
+from .feature_absorption_calculator import (
+    FeatureAbsorptionCalculator,
+    FeatureScore,
+    WordAbsorptionResult,
+    AbsorptionResults,
 )
-from .evaluation import run_absorption_evaluation
+from .evaluation import (
+    run_absorption_evaluation,
+    evaluate_multiple_layers,
+)
+from .config import AbsorptionConfig
+from .matryoshka_wrapper import (
+    MatryoshkaTranscoderWrapper,
+    load_matryoshka_transcoder,
+)
 
 __all__ = [
-    'AbsorptionMetric',
-    'compute_absorption_score',
-    'FirstLetterTask',
-    'train_linear_probe',
-    'FeatureAblator',
-    'integrated_gradients_ablation',
-    'compute_ablation_effect',
-    'batch_ablation_analysis',
+    'FeatureAbsorptionCalculator',
+    'FeatureScore',
+    'WordAbsorptionResult',
+    'AbsorptionResults',
     'run_absorption_evaluation',
+    'evaluate_multiple_layers',
+    'AbsorptionConfig',
+    'MatryoshkaTranscoderWrapper',
+    'load_matryoshka_transcoder',
 ]
-

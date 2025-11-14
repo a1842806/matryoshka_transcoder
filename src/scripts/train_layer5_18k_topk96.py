@@ -51,8 +51,6 @@ def build_config() -> dict:
             "checkpoint_freq": 3000,
             "wandb_project": "gemma-2-2b-layer5-16k-steps",
             "experiment_description": "16k-steps-layer5",
-            "loss_recovered_freq": 3000,
-            "loss_recovered_n_batches": 5,
         }
     )
 
