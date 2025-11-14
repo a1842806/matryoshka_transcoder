@@ -17,7 +17,7 @@ from datetime import datetime
 import json
 
 # Set up paths
-PROJECT_ROOT = "/home/datngo/User/matryoshka_sae"
+PROJECT_ROOT = "/home/datngo/User/matryoshka_transcoder"
 SRC_PATH = os.path.join(PROJECT_ROOT, "src")
 sys.path = [p for p in sys.path if 'utils' not in p.lower() or PROJECT_ROOT in p]
 sys.path.insert(0, SRC_PATH)
