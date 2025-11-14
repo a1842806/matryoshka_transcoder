@@ -252,7 +252,7 @@ cfg["num_tokens"] = int(5e7)
 ## File Structure
 
 ```
-matryoshka_sae/
+matryoshka_transcoder/
 ├── src/
 │   ├── models/
 │   │   ├── sae.py

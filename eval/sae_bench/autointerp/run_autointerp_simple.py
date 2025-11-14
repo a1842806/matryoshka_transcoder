@@ -1,14 +1,6 @@
-"""Simplified AutoInterp evaluation for local execution with local LLM support.
+"""Simplified AutoInterp evaluation for local execution.
 
-Usage (with local Mistral):
-    python eval/sae_bench/run_autointerp_simple.py \
-        --matryoshka results/gemma-2-2b/layer8/checkpoints/final.pt \
-        --layer 8 \
-        --n-latents 50 \
-        --use-local-llm \
-        --local-model mistralai/Mistral-7B-Instruct-v0.2
-
-Usage (with OpenAI):
+Usage:
     python eval/sae_bench/run_autointerp_simple.py \
         --matryoshka results/gemma-2-2b/layer8/checkpoints/final.pt \
         --layer 8 \
@@ -24,7 +16,7 @@ import os
 import statistics
 import time
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 import torch
 from sae_bench.evals.autointerp.eval_config import AutoInterpEvalConfig
@@ -36,151 +28,24 @@ from eval.sae_bench.config import NPZTranscoderSpec
 from src.utils.config import get_default_cfg
 
 
-class LocalLLMWrapper:
-    """Wrapper for local LLM inference using transformers (single-GPU)."""
-    
-    def __init__(self, model_name: str, device_ids: list[int] = [0, 1]):
-        print(f"Loading local LLM: {model_name}")
-        print(f"Target GPU devices: {device_ids}")
-        self.model_name = model_name
-        
-        # Use transformers directly (simple single-GPU for Mistral-7B)
-        print("Loading with transformers on single GPU...")
-        from transformers import AutoModelForCausalLM, AutoTokenizer
-        
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        # Set pad_token to avoid CUDA asserts
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
-        self.tokenizer.padding_side = "left"  # For generation
-        
-        self.device = f"cuda:{device_ids[0]}"  # Use first GPU
-        
-        print(f"Loading {model_name} on {self.device}...")
-        
-        # Simple: load entire model on one GPU (Mistral-7B fits easily on 24GB)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            torch_dtype=torch.float16,
-            trust_remote_code=True,
-        ).to(self.device)
-        
-        self.backend = "transformers"
-        self.device_ids = device_ids
-        
-        # Verify GPU placement
-        total_params = sum(p.numel() for p in self.model.parameters())
-        on_device = all(str(p.device) == self.device for p in self.model.parameters())
-        
-        print(f"✓ Loaded {model_name}: {total_params/1e9:.1f}B params on {self.device}")
-        if not on_device:
-            print(f"  ⚠ WARNING: Some parameters not on {self.device}!")
-        
-        # Force GPU memory allocation with proper test
-        print("Testing GPU inference...")
-        test_prompt = "Hello"
-        dummy_input = self.tokenizer(
-            test_prompt, 
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-        ).to(self.device)
-        with torch.no_grad():
-            _ = self.model.generate(**dummy_input, max_new_tokens=5)
-        print("✓ GPU memory allocated and working")
-    
-    def generate(self, messages: list[dict[str, str]], n_completions: int = 1) -> list[str]:
-        """Generate completions from messages."""
-        prompt = self._format_prompt_mixtral(messages)
-        inputs = self.tokenizer(
-            prompt, 
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=2048,
-        ).to(self.device)
-        
-        responses = []
-        for _ in range(n_completions):
-            outputs = self.model.generate(
-                **inputs,
-                max_new_tokens=512,
-                temperature=0.0 if n_completions == 1 else 0.7,
-                do_sample=n_completions > 1,
-                top_p=0.95,
-                pad_token_id=self.tokenizer.pad_token_id,
-            )
-            response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-            # Extract just the assistant's response
-            response = response[len(prompt):].strip()
-            responses.append(response)
-        
-        return responses
-    
-    def _format_prompt_mixtral(self, messages: list[dict[str, str]]) -> str:
-        """Format messages for Mixtral instruction format."""
-        formatted = []
-        for msg in messages:
-            role = msg["role"]
-            content = msg["content"]
-            
-            if role == "system":
-                formatted.append(f"<s>[INST] {content}")
-            elif role == "user":
-                if formatted:
-                    formatted.append(f"{content} [/INST]")
-                else:
-                    formatted.append(f"<s>[INST] {content} [/INST]")
-            elif role == "assistant":
-                formatted.append(f"{content}</s>")
-        
-        # If the last message is from user, we're ready for assistant response
-        if messages[-1]["role"] == "user":
-            return " ".join(formatted) + " "
-        
-        return " ".join(formatted)
-
-
-def make_local_llm_api_response(local_llm: LocalLLMWrapper):
-    """Create a patched get_api_response method for AutoInterp using local LLM."""
-    
-    def get_api_response(
-        self: AutoInterp,
-        messages: Iterable[dict[str, str]],
-        max_tokens: int,
-        n_completions: int = 1,
-    ) -> tuple[list[str], str]:
-        """Patched method to use local LLM instead of OpenAI."""
-        
-        message_list = list(messages)
-        responses = local_llm.generate(message_list, n_completions)
-        
-        # Format log for display
-        from tabulate import tabulate
-        log_table = tabulate(
-            [m.values() for m in message_list + [{"role": "assistant", "content": responses[0]}]],
-            tablefmt="simple_grid",
-            maxcolwidths=[None, 120],
-        )
-        
-        return responses, log_table
-    
-    return get_api_response
-
-
 def load_matryoshka(state_dict_path: Path, layer: int) -> Any:
-    """Load Matryoshka transcoder from checkpoint."""
+    """Load Matryoshka transcoder from checkpoint.
+    
+    Note: Using hook_resid_mid instead of hook_mlp_in because Gemma-2's
+    hook_mlp_in is not cached by TransformerLens. resid_mid is pre-layernorm
+    version of mlp_in, very similar for evaluation purposes.
+    """
     cfg = get_default_cfg()
     cfg["model_name"] = "gemma-2-2b"
     cfg["layer"] = layer
     cfg["source_layer"] = layer
     cfg["target_layer"] = layer
-    cfg["source_site"] = "mlp_in"
+    cfg["source_site"] = "resid_mid"  # Use resid_mid (cached) instead of mlp_in (not cached)
     cfg["target_site"] = "mlp_out"
     cfg["dict_size"] = 18432  # Adjust based on your model
     cfg["top_k"] = 96
     cfg["device"] = "cuda" if torch.cuda.is_available() else "cpu"
-    cfg["dtype"] = torch.float16
+    cfg["dtype"] = torch.bfloat16  # Use bfloat16 for stability
     
     # CRITICAL: Set correct activation dimensions for Gemma-2-2B!
     cfg["act_size"] = 2304  # Gemma-2-2B activation size (not GPT-2's 768)
@@ -191,12 +56,16 @@ def load_matryoshka(state_dict_path: Path, layer: int) -> Any:
 
 
 def load_google_transcoder(npz_path: Path, layer: int) -> Any:
-    """Load Google's transcoder from NPZ file."""
+    """Load Google's transcoder from NPZ file.
+    
+    Note: Using hook_resid_mid for source instead of hook_mlp_in
+    because hook_mlp_in is not cached by TransformerLens for Gemma-2.
+    """
     spec = NPZTranscoderSpec(
         path=str(npz_path),
         model_name="gemma-2-2b",
         source_layer=layer,
-        source_hook_point=f"blocks.{layer}.hook_mlp_in",
+        source_hook_point=f"blocks.{layer}.hook_resid_mid",  # Use resid_mid (cached)
         target_hook_point=f"blocks.{layer}.hook_mlp_out",
         d_in=2304,  # Gemma-2-2B activation size
         d_out=2304,
@@ -215,7 +84,6 @@ def prepare_data(
 ) -> tuple[torch.Tensor, torch.Tensor]:
     """Prepare tokenized data and compute sparsity on-the-fly."""
     from datasets import load_dataset
-    from sae_bench.sae_bench_utils.activation_collection import get_feature_activation_sparsity
     
     # Load dataset and tokenize
     dataset = load_dataset(
@@ -243,16 +111,22 @@ def prepare_data(
     # Move tokens to the same device as the model to ensure GPU is used
     tokens = tokens.to(next(model.parameters()).device, non_blocking=True)
     
-    # Compute sparsity (use smaller batch size to avoid OOM)
+    # Compute actual feature activation sparsity (matches paper methodology)
+    print(f"[2/3] Computing feature sparsity...")
+    from sae_bench.sae_bench_utils.activation_collection import (
+        get_feature_activation_sparsity,
+    )
+    
     sparsity = get_feature_activation_sparsity(
         tokens=tokens,
         model=model,
         sae=sae,
-        batch_size=8,  # Reduced from 32 to avoid OOM with large models
+        batch_size=config.llm_batch_size,
         layer=sae.cfg.hook_layer,
         hook_name=sae.cfg.hook_name,
         mask_bos_pad_eos_tokens=True,
     )
+    print(f"✓ Computed sparsity for {len(sparsity)} features (mean: {sparsity.mean():.4f})")
     
     return tokens, sparsity
 
@@ -263,8 +137,7 @@ def evaluate_transcoder(
     model: HookedTransformer,
     n_latents: int,
     total_tokens: int,
-    api_key: str | None = None,
-    local_llm: LocalLLMWrapper | None = None,
+    api_key: str,
 ) -> dict[str, Any]:
     """Evaluate a single transcoder."""
     
@@ -289,13 +162,18 @@ def evaluate_transcoder(
     start_time = time.time()
     tokens, sparsity = prepare_data(model, sae, config)
     prep_time = time.time() - start_time
-    print(f"✓ Data prepared in {prep_time:.1f}s (tokens shape: {tokens.shape})")
+    print(f"✓ Data + sparsity prepared in {prep_time:.1f}s (tokens shape: {tokens.shape})")
     
     # Run AutoInterp
-    print(f"[2/3] Running AutoInterp on {n_latents} features...")
-    if local_llm is not None:
-        print(f"      Using local LLM: {local_llm.model_name} ({local_llm.backend})")
+    print(f"[3/3] Running AutoInterp on {n_latents} features...")
     print(f"      Estimated time: ~{n_latents * 2} minutes (2 min/feature)")
+    
+    # Add rate limiting to avoid OpenAI 429 errors (500 RPM limit)
+    # With 500 RPM limit, we can make ~8 requests per second
+    # Add a small delay to stay under limit (0.15s = ~6-7 req/s with safety margin)
+    import functools
+    rate_limit_delay = 0.15  # seconds between requests
+    last_request_time = [0.0]  # Use list to allow modification in nested function
     
     autointerp = AutoInterp(
         cfg=config,
@@ -304,13 +182,23 @@ def evaluate_transcoder(
         tokenized_dataset=tokens,
         sparsity=sparsity,
         device=str(sae.device),
-        api_key=api_key or "dummy",  # Dummy key if using local LLM
+        api_key=api_key,
     )
     
-    # Patch with local LLM if provided
-    if local_llm is not None:
-        patched_method = make_local_llm_api_response(local_llm)
-        autointerp.get_api_response = patched_method.__get__(autointerp, AutoInterp)
+    # Wrap get_api_response with rate limiting
+    original_get_api_response = autointerp.get_api_response
+    
+    @functools.wraps(original_get_api_response)
+    def rate_limited_get_api_response(*args, **kwargs):
+        """Add delay between API requests to avoid rate limits."""
+        import time
+        elapsed = time.time() - last_request_time[0]
+        if elapsed < rate_limit_delay:
+            time.sleep(rate_limit_delay - elapsed)
+        last_request_time[0] = time.time()
+        return original_get_api_response(*args, **kwargs)
+    
+    autointerp.get_api_response = rate_limited_get_api_response
     
     eval_start = time.time()
     results = asyncio.run(autointerp.run())
@@ -349,32 +237,15 @@ def main():
                        help="Number of features to evaluate (default: 50)")
     parser.add_argument("--total-tokens", type=int, default=2_000_000,
                        help="Total tokens for evaluation (default: 2M)")
-    parser.add_argument("--output-dir", type=str, default="autointerp_results",
-                       help="Output directory for results")
-    
-    # Local LLM options
-    parser.add_argument("--use-local-llm", action="store_true",
-                       help="Use local LLM instead of OpenAI API")
-    parser.add_argument("--local-model", type=str, 
-                       default="mistralai/Mistral-7B-Instruct-v0.2",
-                       help="HuggingFace model name for local LLM")
-    parser.add_argument("--local-gpus", type=int, nargs="+", default=[0, 1],
-                       help="GPU IDs to use for local LLM (default: 0 1)")
+    parser.add_argument("--output-dir", type=str, default=None,
+                       help="Output directory for results (default: results/saebench/autointerp/[layer])")
     
     args = parser.parse_args()
     
-    # Initialize LLM (local or API)
-    local_llm = None
-    api_key = None
-    
-    if args.use_local_llm:
-        print(f"Using local LLM: {args.local_model}")
-        print(f"GPU devices: {args.local_gpus}")
-        local_llm = LocalLLMWrapper(args.local_model, device_ids=args.local_gpus)
-    else:
-        api_key = os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            raise RuntimeError("OPENAI_API_KEY environment variable must be set (or use --use-local-llm)")
+    # Get API key from environment
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY environment variable must be set")
     
     # Load model
     print("="*60)
@@ -383,14 +254,12 @@ def main():
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA not available! Cannot run on GPU.")
     
-    # Use GPU 1 for Gemma to avoid OOM (Mistral is on GPU 0)
-    device = "cuda:1" if len(args.local_gpus) > 1 and args.use_local_llm else "cuda:0"
+    device = "cuda:0"
     print(f"Loading Gemma-2-2B model on {device}...")
-    print(f"  (Mistral LLM is on cuda:{args.local_gpus[0] if args.use_local_llm else 'N/A'})")
     
     model = HookedTransformer.from_pretrained_no_processing(
         "gemma-2-2b",
-        dtype=torch.float16,
+        dtype=torch.bfloat16,
     ).to(device)
     model.eval()
     print(f"✓ Gemma model loaded on {device}")
@@ -398,14 +267,20 @@ def main():
     # Load transcoders  
     print("Loading Matryoshka transcoder...")
     matryoshka = load_matryoshka(Path(args.matryoshka), args.layer)
-    matryoshka = matryoshka.to(device=device, dtype=torch.float16)
+    matryoshka = matryoshka.to(device=device, dtype=torch.bfloat16)
+    matryoshka.eval()  # CRITICAL: Set to eval mode for threshold-based sparsification
     print(f"✓ Matryoshka transcoder loaded on {device}")
+    
+    # Verify threshold was loaded from checkpoint
+    threshold_val = matryoshka.threshold.item() if hasattr(matryoshka, 'threshold') else 0.0
+    print(f"  Threshold value: {threshold_val:.6f} ({'✓ loaded from checkpoint' if threshold_val > 0.0 else '⚠ WARNING: threshold is 0.0 - all ReLU activations will pass through'})")
     
     google = None
     if args.google:
         print("Loading Google transcoder...")
         google = load_google_transcoder(Path(args.google), args.layer)
-        google = google.to(device=device, dtype=torch.float16)
+        google = google.to(device=device, dtype=torch.bfloat16)
+        google.eval()  # Set to eval mode
         print(f"✓ Google transcoder loaded on {device}")
     
     # Evaluate both
@@ -416,7 +291,6 @@ def main():
         args.n_latents,
         args.total_tokens,
         api_key=api_key,
-        local_llm=local_llm,
     )
     
     google_results = None
@@ -428,11 +302,13 @@ def main():
             args.n_latents,
             args.total_tokens,
             api_key=api_key,
-            local_llm=local_llm,
         )
     
-    # Save results
-    output_dir = Path(args.output_dir)
+    # Save results to results/saebench/autointerp/[layer_number] format
+    if args.output_dir is None:
+        output_dir = Path("results") / "saebench" / "autointerp" / str(args.layer)
+    else:
+        output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     
     with open(output_dir / "matryoshka_results.json", "w") as f:

@@ -10,23 +10,18 @@ from torch.optim.lr_scheduler import LambdaLR, CosineAnnealingLR, SequentialLR, 
 
 
 def linear_warmup(step, warmup_steps, base_lr):
-    """Linear warmup function for learning rate scheduling."""
     return min(1.0, step / warmup_steps)
 
 
 def warmup_cosine_decay(step, warmup_steps, total_steps, base_lr):
-    """Combined warmup and cosine decay function.""" 
     if step < warmup_steps:
-        # Warmup phase: linear increase
         return step / warmup_steps
     else:
-        # Decay phase: cosine annealing
         progress = (step - warmup_steps) / (total_steps - warmup_steps)
         return 0.5 * (1 + math.cos(math.pi * progress))
 
 
 def create_scheduler(optimizer, cfg, num_batches):
-    """Create learning rate scheduler based on configuration."""
     scheduler_type = cfg.get("scheduler_type", "none")
     
     if scheduler_type == "warmup_only":
@@ -43,25 +38,12 @@ def create_scheduler(optimizer, cfg, num_batches):
         return LambdaLR(optimizer, lr_lambda=lambda step: warmup_cosine_decay(step, warmup_steps, num_batches, cfg["lr"]))
     
     else:
-        # No scheduler
         return None
 
 def train_transcoder(transcoder, activation_store, model, cfg):
-    """
-    Train a single transcoder (cross-layer feature transformer).
-    
-    Args:
-        transcoder: MatryoshkaTranscoder or similar model
-        activation_store: TranscoderActivationsStore providing paired activations
-        model: The language model
-        cfg: Configuration dictionary
-    """
     num_batches = int(cfg["num_tokens"] // cfg["batch_size"])
     optimizer = torch.optim.Adam(transcoder.parameters(), lr=cfg["lr"], betas=(cfg["beta1"], cfg["beta2"]))
-    
-    # Create learning rate scheduler
     scheduler = create_scheduler(optimizer, cfg, num_batches)
-    
     pbar = tqdm.trange(num_batches)
 
     wandb_run = init_wandb(cfg)
@@ -74,7 +56,6 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         description=cfg.get("experiment_description", "")
     )
     
-    # Initialize activation sample collector if enabled
     sample_collector = None
     if cfg.get("save_activation_samples", False):
         sample_collector = ActivationSampleCollector(
@@ -85,40 +66,31 @@ def train_transcoder(transcoder, activation_store, model, cfg):
         print(f"Activation sample collection enabled (collecting every {cfg.get('sample_collection_freq', 1000)} steps)")
     
     for i in pbar:
-        # Get paired activations (source, target)
         source_batch, target_batch = activation_store.next_batch()
-        
-        # Forward pass - transcoder learns source -> target mapping
         transcoder_output = transcoder(source_batch, target_batch)
         
-        # Log metrics
         log_wandb(transcoder_output, i, wandb_run)
         
-        # Log dead-feature metrics (count and percentage) with proper visualization
         n_to_dead = cfg.get("n_batches_to_dead", 20)
         dead_mask_log = transcoder.num_batches_not_active >= n_to_dead
         dead_count_log = int(dead_mask_log.sum().item())
         total_features_log = int(transcoder.num_batches_not_active.numel())
         percent_dead_log = (dead_count_log / max(1, total_features_log)) * 100.0
         
-        # Log both count and percentage for comprehensive tracking
-        # This creates separate plots in W&B: one for absolute counts, one for percentages
         wandb_run.log({
-            "dead_features_count": dead_count_log,        # Total number of dead features
-            "dead_features_percentage": percent_dead_log,  # Percentage of dead features
-            "dead_features_alive": total_features_log - dead_count_log,  # Active features
+            "dead_features_count": dead_count_log,
+            "dead_features_percentage": percent_dead_log,
+            "dead_features_alive": total_features_log - dead_count_log,
         }, step=i)
         
-        # Log learning rate if scheduler is used
         if scheduler is not None:
             current_lr = optimizer.param_groups[0]['lr']
             wandb_run.log({"learning_rate": current_lr}, step=i)
         
         if i % cfg["perf_log_freq"] == 0:
-            log_transcoder_performance(wandb_run, i, model, activation_store, transcoder)
+            log_transcoder_performance(wandb_run, i, model, activation_store, transcoder, cfg)
 
         if i % cfg["checkpoint_freq"] == 0:
-            # Save intermediate checkpoint using clean results manager
             intermediate_metrics = {
                 "loss": float(transcoder_output['loss'].detach().cpu()),
                 "l2_loss": float(transcoder_output['l2_loss'].detach().cpu()),
@@ -135,24 +107,16 @@ def train_transcoder(transcoder, activation_store, model, cfg):
                 is_final=False,
             )
         
-        # Collect activation samples if enabled
         if sample_collector and i % cfg.get("sample_collection_freq", 1000) == 0:
-            # Get a batch with tokens for sample collection
             source_batch_with_tokens, batch_tokens = activation_store.get_batch_with_tokens()
-            
-            # Encode to get sparse features
             with torch.no_grad():
                 sparse_features = transcoder.encode(source_batch_with_tokens)
-            
-            # Collect samples (using source batch tokens as context)
             sample_collector.collect_batch_samples(
                 sparse_features,
                 batch_tokens,
                 activation_store.tokenizer
             )
         
-        # Update progress bar with key metrics
-        # Convert scalars to Python floats to avoid autograd references in formatting
         loss_val = float(transcoder_output['loss'].detach().cpu())
         l0_val = float(transcoder_output['l0_norm'].detach().cpu())
         l2_val = float(transcoder_output['l2_loss'].detach().cpu())
@@ -167,18 +131,11 @@ def train_transcoder(transcoder, activation_store, model, cfg):
             f"Dead: {dead_val:.0f}"
         )
         
-        # Backward pass
-        # Backward pass; retain graph to avoid edge cases with reused tensors
         transcoder_output["loss"].backward(retain_graph=True)
-        
-        # Update decoder weights to maintain unit norm
         transcoder.make_decoder_weights_and_grad_unit_norm()
-        
-        # Optimizer step
         optimizer.step()
         optimizer.zero_grad()
         
-        # Update scheduler
         if scheduler is not None:
             scheduler.step()
     
@@ -213,34 +170,29 @@ def train_transcoder(transcoder, activation_store, model, cfg):
     wandb_run.finish()
 
 
-def log_transcoder_performance(wandb_run, step, model, activation_store, transcoder):
-    """
-    Log transcoder performance metrics (reconstruction quality, etc.).
-    """
-    # Get a batch for evaluation
+def log_transcoder_performance(wandb_run, step, model, activation_store, transcoder, cfg):
     source_batch, target_batch = activation_store.next_batch()
     
     with torch.no_grad():
-        # Get transcoder reconstruction
         transcoder_output = transcoder(source_batch, target_batch)
         reconstruction = transcoder_output["transcoder_out"]
         
-        # Compute reconstruction quality metrics
         mse = (reconstruction - target_batch).pow(2).mean()
         mae = (reconstruction - target_batch).abs().mean()
-        
-        # Compute cosine similarity
         cos_sim = torch.nn.functional.cosine_similarity(
             reconstruction.flatten(), 
             target_batch.flatten(), 
             dim=0
         )
         
-        # Log metrics
-        wandb_run.log({
+        metrics_to_log = {
             "performance/mse": mse.item(),
             "performance/mae": mae.item(),
             "performance/cosine_similarity": cos_sim.item(),
             "performance/fvu": transcoder_output["fvu"].item(),
-        }, step=step)
+        }
+        
+        wandb_run.log(metrics_to_log, step=step)
+
+
     

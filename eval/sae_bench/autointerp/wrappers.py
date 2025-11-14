@@ -19,6 +19,20 @@ def _norm_decoder_rows(weights: torch.Tensor) -> torch.Tensor:
     return weights / weights.norm(dim=-1, keepdim=True).clamp_min(1e-12)
 
 
+def _resolve_dtype(value: Any) -> torch.dtype:
+    """Resolve a dtype from a string or torch.dtype object."""
+    if isinstance(value, torch.dtype):
+        return value
+    if isinstance(value, str):
+        # Handle strings like "torch.bfloat16" or "bfloat16"
+        dtype_str = value.replace("torch.", "") if value.startswith("torch.") else value
+        try:
+            return getattr(torch, dtype_str)
+        except AttributeError:
+            raise ValueError(f"Unsupported torch dtype string: {value}")
+    raise TypeError(f"Cannot resolve dtype from value of type {type(value)!r}")
+
+
 def _coerce_matrix(
     array: np.ndarray, *, expected: Tuple[int, int], name: str
 ) -> np.ndarray:
@@ -78,8 +92,9 @@ class MatryoshkaAutoInterpAdapter(MatryoshkaTranscoder):
 
         super().__init__(cfg_local)
 
-        device = torch.device(cfg_local["device"])
-        dtype = cfg_local["dtype"]
+        # dtype and device should already be resolved (torch.dtype and torch.device objects)
+        device = cfg_local["device"] if isinstance(cfg_local["device"], torch.device) else torch.device(cfg_local["device"])
+        dtype = cfg_local["dtype"] if isinstance(cfg_local["dtype"], torch.dtype) else _resolve_dtype(cfg_local["dtype"])
 
         self.cfg = sae_cfg
         self.device = device
@@ -133,17 +148,25 @@ def build_matryoshka_adapter(
             _infer_hook_name(cfg_local["model_name"], cfg_local["source_site"], hook_layer),
         )
 
+    # Resolve dtype from string if necessary
+    dtype = _resolve_dtype(cfg_local.get("dtype", torch.float32))
+    device = torch.device(cfg_local.get("device", "cuda"))
+    
     sae_cfg = AutoInterpSAEConfig.from_kwargs(
         model_name=cfg_local["model_name"],
         hook_layer=hook_layer,
         hook_name=hook_point,
         d_in=cfg_local.get("source_act_size", cfg_local["act_size"]),
         d_sae=cfg_local["dict_size"],
-        dtype=cfg_local["dtype"],
-        device=torch.device(cfg_local["device"]),
+        dtype=dtype,
+        device=device,
         context_size=cfg_local.get("seq_len"),
         dataset_path=cfg_local.get("dataset_path", ""),
     )
+    
+    # Update cfg_local with resolved dtype and device for MatryoshkaTranscoder
+    cfg_local["dtype"] = dtype
+    cfg_local["device"] = device
 
     adapter = MatryoshkaAutoInterpAdapter(cfg_local, sae_cfg=sae_cfg)
 
@@ -178,6 +201,7 @@ class NPZTranscoderAdapter(MatryoshkaAutoInterpAdapter):
             "device": spec.device,
             "dtype": dtype,
             "dict_size": spec.d_sae,
+            "act_size": spec.d_in,  # Add act_size (fallback for source_act_size)
             "source_act_size": spec.d_in,
             "target_act_size": spec.d_out,
             "top_k": top_k,
@@ -189,6 +213,7 @@ class NPZTranscoderAdapter(MatryoshkaAutoInterpAdapter):
             "source_site": spec.source_hook_point.split(".")[-1],
             "target_site": spec.target_hook_point.split(".")[-1],
             "seq_len": 128,
+            "seed": 42,  # Add seed for compatibility with SAE base class
         }
 
         sae_cfg = AutoInterpSAEConfig.from_kwargs(
